@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <corners android:radius="50dp" />
+
+    <!-- 修改了这里：在 # 后面加了 99 -->
+    <!-- #990F1520 代表 60% 不透明度的深色背景 -->
+    <solid android:color="#990F1520" />
+
+    <stroke
+        android:width="1dp"
+        android:color="#33FFFFFF" /> <!-- 边框也可以稍微透一点，这里用了20%透明度的白色 -->
+</shape>

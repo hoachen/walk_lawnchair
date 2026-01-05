@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="horizontal"
+    android:padding="16dp">
+
+    <!-- 7天平均步数 -->
+    <include
+        android:id="@+id/stats_7days"
+        layout="@layout/item_step_stat_progress"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
+
+    <!-- 30天平均步数 -->
+    <include
+        android:id="@+id/stats_30days"
+        layout="@layout/item_step_stat_progress"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
+
+    <!-- 最佳记录 -->
+    <include
+        android:id="@+id/stats_best"
+        layout="@layout/item_step_stat_progress"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
+
+</LinearLayout> 

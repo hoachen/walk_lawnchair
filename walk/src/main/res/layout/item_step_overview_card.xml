@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:orientation="vertical"
+    android:paddingHorizontal="24dp"
+    android:paddingVertical="12dp">
+
+    <!-- 玻璃拟态卡片 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/lockscreen_glass_card_background"
+        android:clipChildren="true"
+        android:clipToPadding="true"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <!-- 顶部标题和徽章区域 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <!-- 标题 -->
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="sans-serif"
+                android:letterSpacing="0.01"
+                android:text="@string/step_overview_title"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <!-- 徽章 -->
+            <TextView
+                android:id="@+id/tv_badge_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/lockscreen_badge_background"
+                android:fontFamily="sans-serif"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="5dp"
+                android:text="@string/step_overview_badge_in_progress"
+                android:textColor="#6EE7B7"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <!-- 主要内容区域：步数 + 环形进度 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <!-- 左侧：步数显示 -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="start"
+                android:orientation="vertical">
+
+                <!-- 步数 -->
+                <TextView
+                    android:id="@+id/tv_step_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:letterSpacing="-0.02"
+                    android:lineHeight="64sp"
+                    android:text="5,230"
+                    android:textColor="#FFFFFF"
+                    android:textSize="64sp"
+                    android:textStyle="bold"
+                    tools:ignore="SpUsage" />
+
+                <!-- 步数标签 -->
+                <TextView
+                    android:id="@+id/tv_step_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="sans-serif"
+                    android:text="@string/step_overview_step_label"
+                    android:textColor="#99FFFFFF"
+                    android:textSize="14sp"
+                    android:textStyle="normal" />
+
+            </LinearLayout>
+
+            <!-- 右侧：环形进度 -->
+            <FrameLayout
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:background="@drawable/lockscreen_ring_progress"
+                android:gravity="center">
+
+                <!-- 百分比显示 -->
+                <TextView
+                    android:id="@+id/tv_percentage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="sans-serif"
+                    android:text="65%"
+                    android:textColor="#00D68F"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+            </FrameLayout>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>

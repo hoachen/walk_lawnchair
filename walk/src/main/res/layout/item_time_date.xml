@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingTop="10dp"
+    android:paddingBottom="24dp">
+
+    <!-- 时间显示 -->
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="22:30"
+        android:textColor="#FFFFFF"
+        android:textSize="88sp"
+        android:textStyle="normal"
+        android:fontFamily="sans-serif-light"
+        android:letterSpacing="-0.03"
+        android:lineSpacingMultiplier="0.9"
+        android:shadowColor="#000000"
+        android:shadowDx="0"
+        android:shadowDy="4"
+        android:shadowRadius="12" />
+
+    <!-- 日期显示 -->
+    <TextView
+        android:id="@+id/tv_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="12月12日 · 周五"
+        android:textColor="#E6FFFFFF"
+        android:textSize="16sp"
+        android:textStyle="normal"
+        android:fontFamily="sans-serif-medium"
+        android:letterSpacing="0.005"
+        android:shadowColor="#000000"
+        android:shadowDx="0"
+        android:shadowDy="4"
+        android:shadowRadius="12" />
+
+</LinearLayout>

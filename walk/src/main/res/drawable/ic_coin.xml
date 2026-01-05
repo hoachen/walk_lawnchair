@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="40dp"
+    android:height="40dp"
+    android:viewportWidth="40"
+    android:viewportHeight="40">
+    
+    <!-- 金币外圈 -->
+    <path
+        android:pathData="M20,5C11.7157,5 5,11.7157 5,20C5,28.2843 11.7157,35 20,35C28.2843,35 35,28.2843 35,20C35,11.7157 28.2843,5 20,5Z"
+        android:fillColor="#FFD700"/>
+    
+    <!-- 金币内圈光泽 -->
+    <path
+        android:pathData="M20,7C12.8203,7 7,12.8203 7,20C7,27.1797 12.8203,33 20,33C27.1797,33 33,27.1797 33,20C33,12.8203 27.1797,7 20,7Z"
+        android:fillColor="#FFEC4F"/>
+    
+    <!-- 金币中心"C"字母 -->
+    <path
+        android:pathData="M21.5,15H17.5C16.6716,15 16,15.6716 16,16.5V23.5C16,24.3284 16.6716,25 17.5,25H21.5C22.3284,25 23,24.3284 23,23.5V22.5C23,21.9477 22.5523,21.5 22,21.5C21.4477,21.5 21,21.9477 21,22.5V23H18V17H21V18C21,18.5523 21.4477,19 22,19C22.5523,19 23,18.5523 23,18V16.5C23,15.6716 22.3284,15 21.5,15Z"
+        android:fillColor="#FFB800"/>
+    
+    <!-- 高光效果 -->
+    <path
+        android:pathData="M14,13C13.4477,13 13,13.4477 13,14C13,14.5523 13.4477,15 14,15C14.5523,15 15,14.5523 15,14C15,13.4477 14.5523,13 14,13Z"
+        android:fillColor="#FFFFFF"
+        android:fillAlpha="0.7"/>
+</vector> 

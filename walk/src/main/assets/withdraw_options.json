@@ -1,0 +1,44 @@
+{
+  "withdrawOptions": [
+    {
+      "id": 1,
+      "type": "RP",
+      "amount": 10,
+      "coinsRequired": 1000,
+      "dailyLimit": 5
+    },
+    {
+      "id": 2,
+      "type": "RP",
+      "amount": 100,
+      "coinsRequired": 10000,
+      "dailyLimit": 5
+    },
+    {
+      "id": 3,
+      "type": "$",
+      "amount": 100,
+      "coinsRequired": 10000,
+      "dailyLimit": 5
+    },
+    {
+      "id": 4,
+      "type": "$",
+      "amount": 100,
+      "dailyLimit": 5
+    },
+    {
+      "id": 5,
+      "type": "$",
+      "amount": 100,
+      "dailyLimit": 5
+    },
+    {
+      "id": 6,
+      "type": "$",
+      "amount": 100,
+      "coinsRequired": 10000,
+      "dailyLimit": 5
+    }
+  ]
+} 

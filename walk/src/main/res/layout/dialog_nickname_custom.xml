@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/edit_nickname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:gravity="center"
+        android:hint="@string/nickname_hint"
+        android:inputType="text"
+        android:maxLength="12"
+        android:textColor="?attr/colorOnSurface"
+        android:maxLines="1"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:textSize="18sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#CCCCCC" />
+
+</LinearLayout> 

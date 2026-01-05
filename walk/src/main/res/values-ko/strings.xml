@@ -1,0 +1,594 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name"> Walk Win Cash</string>
+    
+    <!-- MainActivity -->
+    <string name="daily_steps">일일 걸음 수</string>
+    <string name="coin_hint">100걸음마다 1코인을 얻습니다.</string>
+    <string name="playtime_event">플레이타임 이벤트</string>
+    <string name="steps_count">0</string>
+    <string name="coins_count">0</string>
+    g
+    <string name="confirm">확인</string>
+    <string name="cancel">취소</string>
+    <string name="error">오류</string>
+    <string name="not_set">설정되지 않음</string>
+    
+    <!-- Profile -->
+    <string name="set_nickname">닉네임 설정</string>
+    <string name="data_update_hint">데이터는 자정에 업데이트됩니다</string>
+    <string name="activity_status">지난 7일: 좌식 생활</string>
+    
+    <!-- Step Stats -->
+    <string name="steps">걸음</string>
+    <string name="seven_days_avg">7일 평균</string>
+    <string name="thirty_days_avg">30일 평균</string>
+    <string name="best_record">최고 기록</string>
+
+    <!-- Records -->
+    <string name="withdrawal_record_title">기록</string>
+    <string name="withdrawal_record_empty">환전 기록이 없습니다</string>
+    <string name="withdrawal_record_load_failed">환전 기록을 가져오지 못했습니다</string>
+    <string name="withdrawal_record_network_error">네트워크 오류, 나중에 다시 시도해 주세요</string>
+    <string name="withdrawal_record_no_more">더 이상 기록이 없습니다</string>
+    <string name="withdrawal_record_order">주문: %s</string>
+    <string name="withdrawal_record_coins">%d 코인</string>
+    <string name="withdrawal_record_commission">수수료: %1$s%2$.1f (%3$d 코인)</string>
+    
+    <!-- Status -->
+    <string name="withdrawal_status_pending">검토 대기 중</string>
+    <string name="withdrawal_status_passed">검토 통과</string>
+    <string name="withdrawal_status_failed">검토 실패</string>
+    <string name="withdrawal_status_success">성공</string>
+    <string name="withdrawal_status_exception">환전 예외</string>
+    <string name="withdrawal_status_unknown">알 수 없는 상태</string>
+    
+    <!-- Trends -->
+    <string name="trends_title">활동 추세</string>
+    <string name="tab_daily">일</string>
+    <string name="tab_weekly">주</string>
+    <string name="tab_monthly">월</string>
+    <string name="best_day">최고 일</string>
+    <string name="best_week">최고 주</string>
+    <string name="best_month">최고 월</string>
+    <string name="km">km</string>
+    <string name="kcal">kcal</string>
+    <string name="no_data_available">사용 가능한 데이터가 없습니다</string>
+    <string name="dataset_steps">걸음 수</string>
+    <string name="date_format_daily">EEE, MMM d</string>
+    <string name="date_format_weekly_range">%1$s - %2$d</string>
+    <string name="date_format_monthly">MMM yyyy</string>
+    <string name="date_format_month_day">MMM d</string>
+    <string name="weekly_label_format">%d주</string>
+    <string name="monthly_label_format">%d월</string>
+    <string name="weekday_sunday">일</string>
+    <string name="weekday_monday">월</string>
+    <string name="weekday_tuesday">화</string>
+    <string name="weekday_wednesday">수</string>
+    <string name="weekday_thursday">목</string>
+    <string name="weekday_friday">금</string>
+    <string name="weekday_saturday">토</string>
+    <string name="step_format_thousands">%.1fK</string>
+    
+    <!-- Settings -->
+    <string name="settings_account">내 계정</string>
+    <string name="settings_nickname">닉네임 설정</string>
+    <string name="settings_theme">테마</string>
+    <string name="settings_theme_color">테마 색상</string>
+    <string name="settings_step_source">걸음 데이터 소스</string>
+    <string name="settings_step_source_system">시스템 걸음 계수기</string>
+    <string name="settings_step_source_sensor">센서</string>
+    <string name="settings_step_issues">걸음 계수기 문제?</string>
+    <string name="settings_preferences">환경 설정</string>
+    <string name="settings_distance_unit">거리 단위</string>
+    <string name="settings_notification">알림</string>
+    <string name="settings_sounds">소리</string>
+    <string name="settings_vibration">진동</string>
+    <string name="settings_km">킬로미터</string>
+    <string name="settings_miles">마일</string>
+    <string name="settings_like_us">우리 앱을 좋아하시나요?</string>
+    <string name="settings_rate_us">평가하기</string>
+    <string name="settings_share">친구와 공유</string>
+    <string name="settings_feedback">피드백 &amp; 질문</string>
+    <string name="settings_feedback_report">문제 보고</string>
+    <string name="settings_feedback_qa">자주 묻는 질문</string>
+    <string name="settings_privacy">개인정보 &amp; 약관</string>
+    <string name="settings_privacy_policy">개인정보 보호정책</string>
+    <string name="settings_terms">서비스 약관</string>
+    <string name="settings_language">언어</string>
+    <string name="settings_region">지역</string>
+    <string name="settings_version">버전</string>
+    <string name="settings_version_format">v%s</string>
+    
+    <!-- SettingsManager keys and values -->
+    <string name="settings_key_account">account</string>
+    <string name="settings_key_nickname">nickname</string>
+    <string name="settings_key_theme">theme</string>
+    <string name="settings_key_preferences">preferences</string>
+    <string name="settings_key_notification">notification</string>
+    <string name="settings_key_sounds">sounds</string>
+    <string name="settings_key_vibration">vibration</string>
+    <string name="settings_key_share">share</string>
+    <string name="settings_key_feedback">feedback</string>
+    <string name="settings_key_report">report</string>
+    <string name="settings_key_qa">qa</string>
+    <string name="settings_key_privacy">privacy</string>
+    <string name="settings_key_terms">terms</string>
+    <string name="settings_key_language">language</string>
+    <string name="settings_key_region">region</string>
+    <string name="settings_key_version">version</string>
+    <string name="settings_value_unknown">알 수 없음</string>
+    <string name="settings_language_simplified_chinese">간체 중국어</string>
+    <string name="settings_region_mainland_china">중국 본토</string>
+    <string name="settings_language_english">영어</string>
+    <string name="settings_language_portuguese">포르투갈어 (브라질)</string>
+    <string name="settings_language_indonesian">인도네시아어</string>
+    <string name="settings_region_hong_kong">홍콩 특별행정구</string>
+    <string name="settings_region_taiwan">대만 지역</string>
+    <string name="settings_region_singapore">싱가포르</string>
+    <string name="settings_region_usa">미국</string>
+    <string name="settings_region_default">기본값</string>
+    <string name="settings_region_uk">영국</string>
+    <string name="settings_region_japan">일본</string>
+    <string name="settings_region_korea">대한민국</string>
+    <string name="settings_region_india">인도</string>
+    <string name="settings_region_indonesia">인도네시아</string>
+    <string name="settings_region_brazil">브라질</string>
+    
+    <!-- Shared Preferences Keys -->
+    <string name="pref_key_gender">gender</string>
+    <string name="pref_key_height">height</string>
+    <string name="pref_key_weight">weight</string>
+    <string name="pref_key_nickname">nickname</string>
+    
+    <!-- LeaderboardActivity -->
+    <string name="leaderboard_yesterday">어제</string>
+    <string name="leaderboard_position">순위</string>
+    <string name="leaderboard_last_7_days">지난 7일</string>
+    <string name="leaderboard_last_30_days">지난 30일</string>
+    <string name="leaderboard_yesterday_file">leaderboard_yesterday.json</string>
+    <string name="leaderboard_7days_file">leaderboard_7days.json</string>
+    <string name="leaderboard_30days_file">leaderboard_30days.json</string>
+    
+    <!-- Gender Selection -->
+    <string name="gender_selection">성별 선택</string>
+    <string name="gender_male">남성</string>
+    <string name="gender_female">여성</string>
+    <string name="gender_other">기타</string>
+
+    <!-- Height Selection -->
+    <string name="height_selection">키 설정</string>
+    <string name="height_unit_cm">cm</string>
+    <string name="height_unit_ft">피트</string>
+    <string name="height_hint">키를 입력하세요</string>
+    <string name="height_error">유효한 키를 입력해 주세요</string>
+    <string name="height_format_cm">%d cm</string>
+    <string name="height_format_ft" formatted="false">%d\'%d\"</string>
+    <string name="height_unit_ft_feet">피트</string>
+    <string name="height_unit_ft_inches">인치</string>
+
+    <!-- Weight Selection -->
+    <string name="weight_selection">체중 설정</string>
+    <string name="weight_unit_kg">kg</string>
+    <string name="weight_unit_lbs">파운드</string>
+    <string name="weight_format_kg">%.1f kg</string>
+    <string name="weight_format_lbs">%.1f 파운드</string>
+    <string name="weight_dot">.</string>
+
+    <!-- Avatar Selection -->
+    <string name="avatar_selection">아바타 변경</string>
+    <string name="avatar_pick_gallery">갤러리에서 선택</string>
+    <string name="avatar_permission_required">갤러리 접근 권한이 필요합니다</string>
+    <string name="avatar_pick_failed">이미지 선택 실패</string>
+
+    <!-- Nickname Selection -->
+    <string name="nickname_selection">닉네임 설정</string>
+    <string name="nickname_hint">닉네임을 입력하세요</string>
+    <string name="nickname_empty_error">닉네임은 비워둘 수 없습니다</string>
+    <string name="nickname_too_long_error">닉네임은 12자를 초과할 수 없습니다</string>
+    <string name="nickname_default">닉네임 설정을 탭하세요</string>
+
+    <string name="home">홈</string>
+    <string name="settings">설정</string>
+    <string name="leaderboard">리더보드</string>
+    
+    <!-- Formats -->
+    <string name="format_distance">%.1f</string>
+
+    <!-- 对话框相关 -->
+    <string name="close">닫기</string>
+    <string name="save">저장</string>
+    <string name="icon_description">대화 상자 아이콘</string>
+
+    <!-- 金币任务页面 -->
+    <string name="need_more_coins">더 많은 코인이 필요하신가요?</string>
+    <string name="hoard_coins_by_walking">걷기로 코인을 모으세요!</string>
+    <string name="task_earn_coins_title">코인 얻기</string>
+    <string name="task_1_text">작업 1: %d걸음 걷기</string>
+    <string name="task_2_text">작업 2: %d걸음 걷기</string>
+    <string name="task_3_text">작업 3: %d걸음 걷기</string>
+    <string name="task_entry_get_extra_coin">추가 코인 얻기</string>
+    <string name="task_remaining_steps">작업을 완료하려면 %d걸음 더 걷기</string>
+
+    <!-- 主题颜色选择 -->
+    <string name="theme_color_title">테마 색상 선택</string>
+    <string name="theme_color_blue">파랑</string>
+    <string name="theme_color_green">초록</string>
+    <string name="theme_color_purple">보라</string>
+    <string name="theme_color_red">빨강</string>
+    <string name="theme_color_orange">주황</string>
+    <string name="theme_color_apply">적용</string>
+    <string name="theme_color_cancel">취소</string>
+    <string name="enter_amount">여기서 많은 양의 보상을 현금으로 환전할 수 있습니다.</string>
+    <string name="ok">확인</string>
+    <string name="claim">받기</string>
+    <string name="today_step_count">오늘의 걸음 수: %1$d 걸음</string>
+
+    <string name="rewatch_ad_double">두 배</string>
+    
+    <!-- 灵感广告相关 -->
+    <string name="inspiration_ad_title">오늘의 모든 코인을 모으려면 동영상을 시청하시겠습니까?</string>
+    
+    <!-- 文档类型选择 -->
+    <string name="document_type">문서 유형</string>
+    <string name="update_region_error_toast">국가 변경 실패, 다시 시도해 주세요</string>
+    <string name="go">이동</string>
+    <string-array name="document_types">
+        <item>CPF</item>
+        <item>CNPJ</item>
+    </string-array>
+    
+    <!-- 新提取的硬编码字符串 -->
+    <!-- 身高体重单位相关 -->
+    <string name="pref_key_height_unit_cm">height_unit_cm</string>
+    <string name="pref_key_weight_unit_kg">weight_unit_kg</string>
+    
+    <!-- 头像相关 -->
+    <string name="pref_key_avatar_uri">avatar_uri</string>
+    
+    <!-- 隐私政策相关 -->
+    <string name="privacy_policy_url">https://sites.google.com/view/sedeanalizprivacypolicy</string>
+    
+    <!-- 数值范围 -->
+    <string name="height_min_cm">50</string>
+    <string name="height_max_cm">300</string>
+    <string name="height_min_ft">1</string>
+    <string name="height_max_ft">9</string>
+    <string name="height_min_inches">0</string>
+    <string name="height_max_inches">11</string>
+    <string name="weight_min_kg">30</string>
+    <string name="weight_max_kg">200</string>
+    <string name="weight_min_lbs">66</string>
+    <string name="weight_max_lbs">440</string>
+    
+    <!-- 步数相关 -->
+    <string name="step_permission_code">1001</string>
+    
+    <!-- 共享偏好存储文件名 -->
+    <string name="settings_file_name">settings</string>
+    
+    <!-- 格式化相关 -->
+    <string name="height_cm_to_ft_rate">30.48</string>
+    <string name="height_cm_to_inch_rate">2.54</string>
+    <string name="weight_kg_to_lbs_rate">2.20462</string>
+    
+    <!-- RegionHelper相关 -->
+    <string name="region_helper_tag">RegionHelper</string>
+    <string name="region_helper_pref_name">app_region_preference</string>
+    <string name="region_helper_region_key">selected_region</string>
+    <string name="region_helper_region_list">region_list</string>
+    <string name="region_helper_default_region">default</string>
+    
+    <!-- ThemeManager相关 -->
+    <string name="theme_manager_tag">ThemeManager</string>
+    <string name="theme_manager_pref_name">theme_preferences</string>
+    <string name="theme_manager_key_theme_id">theme_id</string>
+    <string name="theme_manager_default_theme_id">1</string>
+    
+    <!-- 新增 Withdraw 相关字符串 -->
+    <string name="withdraw">환전</string>
+    <string name="withdrawal_amount_label">환전 금액</string>
+    <string name="coins_format">%1$d 코인</string>
+    <string name="currency_format">%1$s %2$.4f</string>
+    <string name="country_code_placeholder">+62</string>
+    <string name="please_select_withdraw_option">환전 옵션을 선택해 주세요</string>
+    <string name="enter_name">이름과 성을 입력하세요.</string>
+    <string name="enter_phone">전화번호 입력</string>
+    <string name="enter_email">이메일 주소 입력</string>
+    <string name="country_code">국가 코드</string>
+    <string name="select_country_code">국가 코드 선택</string>
+    <string name="country_code_format">국가 코드       +%1$s</string>
+    <string name="submit">제출</string>
+    
+    <!-- 新发现的硬编码字符串 -->
+    <!-- dialog_fancy.xml -->
+    <string name="withdrawal_success">성공적으로 환전되었습니다! 축하합니다!</string>
+    <string name="join_community">커뮤니티에 가입하세요, 더 많은 큰 환전이 여러분을 기다리고 있습니다.</string>
+    <string name="telegram">텔레그램</string>
+    
+    <!-- item_withdraw_option.xml -->
+    <string name="withdraw_option_days">5/일</string>
+    <string name="withdraw_option_amount">RP 10</string>
+    <string name="withdraw_option_consume">소비:</string>
+    <string name="withdraw_option_coins">1,000</string>
+    
+    <!-- activity_coin_reward.xml -->
+    <string name="coin_reward_page">코인 보상 페이지</string>
+    <string name="congratulations_reward">xx 보상을 얻으셨습니다! 축하합니다</string>
+    
+    <!-- dialog_screenshot_selection.xml -->
+    <string name="select_screenshot_style">스크린샷 스타일 선택</string>
+    
+    <!-- dialog_country_code.xml -->
+    <string name="country_code_title">국가 코드</string>
+    <string name="select_country_code_title">국가 코드 선택</string>
+    
+    <!-- activity_main.xml -->
+    <string name="main_distance_value">5.6</string>
+    <string name="main_distance_unit">Km</string>
+    <string name="main_calories_value">14</string>
+    <string name="main_calories_unit">Kcal</string>
+    <string name="main_duration_value">5</string>
+    <string name="main_duration_unit">분</string>
+    <string name="earn_coins">코인 얻기 ></string>
+    
+    <!-- item_region_option.xml -->
+    <string name="region_option_indonesia">인도네시아/IDR</string>
+    
+    <!-- fragment_leaderboard.xml -->
+    <string name="no_leaderboard_data">리더보드 데이터가 없습니다</string>
+    
+    <!-- activity_splash.xml -->
+    <string name="splash_slogan">모든 걸음은 건강한 여정입니다</string>
+    
+    <!-- dialog_task_done.xml -->
+    <string name="task_done_coins">6666</string>
+    
+    <!-- activity_withdraw.xml -->
+    <string name="withdraw_title">환전</string>
+    <string name="my_balance">내 잔액</string>
+    <string name="usd_zero">USD 0.0</string>
+    <string name="equals_sign">=</string>
+    <string name="zero_coins">0 코인</string>
+    <string name="united_states">미국: US</string>
+    <string name="switch_text">전환</string>
+    <string name="withdraw_button">환전</string>
+    
+    <!-- item_screenshot_option.xml -->
+    <string name="dana">DANA</string>
+    
+    <!-- coin_circel_button.xml -->
+    <string name="dollar_sign">$</string>
+    
+    <!-- activity_trends.xml -->
+    <string name="sample_date">화, 3월 4일</string>
+    <string name="sample_steps">2.2K</string>
+    <string name="sample_distance">1.6</string>
+    <string name="sample_calories">85</string>
+    <string name="sample_best_steps">2.2K</string>
+    <string name="sample_best_distance">1.6</string>
+    <string name="sample_best_calories">85</string>
+    
+    <!-- 语言切换提示 -->
+    <string name="language_change_restart_title">언어가 변경되었습니다</string>
+    <string name="language_change_restart_message">새 언어 설정을 적용하려면 앱이 재시작됩니다</string>
+    <string name="language_change_restart_now">지금 재시작</string>
+    <string name="language_change_restart_later">나중에 재시작</string>
+    
+    <!-- 数据库相关 -->
+    <string name="database_name">walk_app.db</string>
+    <string name="sp_file_name">share_date</string>
+    <string name="ad_sp_file_name">ad_sp</string>
+    <string name="ad_displayed_key">ad_displayed</string>
+    
+    <!-- Email 反馈 -->
+    <string name="email_feedback_subject">%s 피드백</string>
+    <string name="email_feedback_content">여기에 문제를 설명해 주세요:\n\n\n\n\n----------\n기기 정보: %1$s %2$s\n시스템 버전: Android %3$s\n앱 버전: %4$s\n</string>
+    
+    <!-- WithdrawActivity -->
+    <string name="withdraw_data_key">withdraw_data</string>
+    <string name="region_selection_tag">region_selection</string>
+    <string name="country_code_selection_tag">country_code_selection</string>
+
+    <!-- WebViewActivity -->
+    <string name="web_page">웹 페이지</string>
+    <string name="refresh">새로 고침</string>
+    <string name="loading">로딩 중</string>
+    <string name="error_loading_url">URL을 로드하지 못했습니다</string>
+    <string name="web_view_url_extra">web_view_url_extra</string>
+    <string name="web_view_title_extra">web_view_title_extra</string>
+    <string name="no_app_to_handle_action">이 작업을 처리할 수 있는 애플리케이션이 없습니다</string>
+
+    <!-- Lucky Wheel Dialog Strings -->
+    <string name="go_get_redeem">환전</string>
+    <string name="enter_your_first_name">이름을 입력해 주세요</string>
+    <string name="enter_your_middle_name">중간 이름을 입력해 주세요</string>
+    <string name="enter_your_last_name">성을 입력해 주세요</string>
+    <string name="first_name_should_not_empty" >이름을 입력해 주세요</string>
+    <string name="last_name_should_not_empty" >성을 입력해 주세요</string>
+
+    <!-- Permission Request Activity Strings -->
+    <string name="permission_request_title">잠금 화면 표시</string>
+    <string name="permission_request_description">%1$s이(가) 잠금 화면에 표시되어 더 나은 걸음 추적 경험을 제공할 수 있도록 허용</string>
+    <string name="permission_icon_description">잠금 화면 권한 아이콘</string>
+    <string name="btn_grant_permission">권한 부여</string>
+    <string name="btn_skip_permission">지금 건너뛰기</string>
+    <string name="permission_granted_message">권한이 성공적으로 부여되었습니다</string>
+    <string name="permission_denied_message">권한이 거부되었습니다. 나중에 설정에서 활성화할 수 있습니다</string>
+    <string name="permission_back_press_message">계속하려면 옵션을 선택해 주세요</string>
+
+    <!-- 多步骤权限申请字符串 -->
+    <string name="permission_request_title_system_alert">잠금 화면 표시</string>
+    <string name="permission_request_description_system_alert">%1$s이(가) 잠금 화면에 표시되어 더 나은 걸음 추적 경험을 제공할 수 있도록 허용</string>
+    <string name="permission_granted_message_system_alert">잠금 화면 표시 권한이 부여되었습니다</string>
+    <string name="permission_denied_message_system_alert">잠금 화면 표시 권한이 거부되었습니다</string>
+    <string name="permission_skipped_message_system_alert">잠금 화면 표시 권한이 건너뛰어졌습니다</string>
+    
+    <string name="permission_request_title_storage">갤러리 접근</string>
+    <string name="permission_request_description_storage">%1$s이(가) 개인 사진으로 잠금 화면 표시를 사용자 정의하기 위해 갤러리에 접근할 수 있도록 허용</string>
+    <string name="permission_granted_message_storage">갤러리 접근 권한이 부여되었습니다</string>
+    <string name="permission_denied_message_storage">갤러리 접근 권한이 거부되었습니다</string>
+    <string name="permission_skipped_message_storage">갤러리 접근 권한이 건너뛰어졌습니다</string>
+    
+    <!-- 权限拒绝对话框字符串 -->
+    <string name="permission_denied_dialog_title_system_alert">잠금 화면 표시 필요</string>
+    <string name="permission_denied_dialog_message_system_alert">빠른 접근을 위해 잠금 화면에 걸음 추적 정보를 표시하려면 잠금 화면 표시 권한이 필요합니다. 이 권한 없이는 잠금 화면에서 걸음 진행 상황을 볼 수 없습니다.\n\n지금 이 권한을 부여하시겠습니까?</string>
+    <string name="permission_denied_dialog_title_storage">갤러리 접근 필요</string>
+    <string name="permission_denied_dialog_message_storage">자신의 사진으로 잠금 화면 표시를 개인화하려면 갤러리 접근이 필요합니다. 이 권한 없이는 잠금 화면 모양을 사용자 정의할 수 없습니다.\n\n지금 이 권한을 부여하시겠습니까?</string>
+    <string name="permission_denied_dialog_retry">다시 시도</string>
+    <string name="permission_denied_dialog_skip">건너뛰기</string>
+    
+    <!-- 永久拒绝权限对话框字符串 -->
+    <string name="permission_permanently_denied_dialog_title_storage">갤러리 접근 필요</string>
+    <string name="permission_permanently_denied_dialog_message_storage">갤러리 접근 권한을 영구적으로 거부했습니다. 개인 사진으로 잠금 화면을 사용자 정의하려면 시스템 설정에서 이 권한을 활성화해야 합니다.\n\n갤러리 접근을 활성화하려면 설정을 열겠습니까?</string>
+    <string name="permission_permanently_denied_dialog_settings">설정 열기</string>
+    <string name="permission_permanently_denied_dialog_skip">건너뛰기</string>
+
+    <!-- 新增权限申请字符串 -->
+    <string name="permission_request_title_activity_recognition">활동 인식</string>
+    <string name="permission_request_description_activity_recognition">%1$s이(가) 배경에서 신체 활동을 추적하고 걸음을 자동으로 셀 수 있도록 허용</string>
+    <string name="permission_granted_message_activity_recognition">활동 인식 권한이 부여되었습니다</string>
+
+    <string name="permission_request_title_notification">알림</string>
+    <string name="permission_request_description_notification">%1$s이(가) 걸음 추적 진행 상황과 보상에 대한 알림을 표시할 수 있도록 허용</string>
+    <string name="permission_granted_message_notification">알림 권한이 부여되었습니다</string>
+
+    <string name="permission_request_title_battery_optimization">배터리 최적화</string>
+    <string name="permission_request_description_battery_optimization">%1$s이(가) 정확한 걸음 수 계산을 위해 배터리 최적화 제한 없이 배경에서 실행될 수 있도록 허용</string>
+    <string name="permission_granted_message_battery_optimization">배터리 최적화 권한이 부여되었습니다</string>
+
+    <!-- Required permission denied dialog strings -->
+    <string name="required_permission_denied_title_format">%1$s 거부됨</string>
+    <string name="required_permission_denied_message_format">%1$s은(는) 앱이 제대로 작동하기 위해 필요합니다. 앱을 계속 사용하려면 이 권한을 허용해 주세요.</string>
+    <string name="required_permission_retry">다시 시도</string>
+    <string name="required_permission_exit_app">앱 종료</string>
+    
+    <string name="required_permission_permanently_denied_title_format">%1$s 영구적으로 거부됨</string>
+    <string name="required_permission_permanently_denied_message_format">%1$s이(가) 영구적으로 거부되었습니다. 앱을 계속 사용하려면 설정에서 이 권한을 수동으로 활성화해 주세요.</string>
+    <string name="required_permission_go_to_settings">설정으로 이동</string>
+    
+    <!-- Permission name strings -->
+    <string name="permission_name_activity_recognition">활동 인식 권한</string>
+    <string name="permission_name_notification">알림 권한</string>
+    <string name="permission_name_battery_optimization">배터리 최적화 권한</string>
+    <string name="permission_name_required">필수 권한</string>
+
+    <string name="swipe_hit_unlock">잠금 해제하려면 왼쪽으로 스와이프</string>
+
+    <string name="poor_network">네트워크 상태가 좋지 않습니다. 광고 로드 중…</string>
+    <string name="network_error">네트워크 연결이 불안정합니다</string>
+    <string name="ad_loading">광고를 로드하는 중…</string>
+    <string name="ad_failed">광고 로드 실패</string>
+    <string name="retry">다시 시도</string>
+
+    <string name="weekly_trend_title">최근 7일 걸음 추세</string>
+    <string name="weekly_trend_subtitle">하루 5,000걸음 이상 습관을 유지하세요</string>
+    <string name="weekly_average_format">주간 평균 · %1$s 걸음</string>
+
+    <string name="time_date_date_sample">2023년 11월 23일</string>
+
+    <string name="task_list_title">오늘의 걸음 과제</string>
+    <string name="task_list_subtitle">과제를 완료할 때마다 코인을 받으세요</string>
+    <string name="task_list_progress_sample">진행도 · 5 / 12</string>
+    <string name="task_list_progress_format">진행도 · %1$d / %2$d</string>
+
+    <string name="task_item_title_sample">100 걸음</string>
+    <string name="task_item_subtitle_sample">가볍게 몸을 풀고 빠르게 완료</string>
+    <string name="task_item_progress_label_completed">완료됨</string>
+    <string name="task_item_progress_text_sample">100 / 100</string>
+    <string name="task_item_action_button">코인 받기</string>
+    <string name="task_item_claimed">수령 완료</string>
+    <string name="task_item_claim">코인 받기</string>
+    <string name="task_item_go_walk">걷기 시작</string>
+    <string name="task_locked_keep_going">계속하세요</string>
+    <string name="task_locked_more_coins">더 많은 코인 잠금 해제</string>
+    <string name="task_locked_challenge">도전하기</string>
+
+    <string name="task_desc_100">가볍게 몸을 풀고 빠르게 완료</string>
+    <string name="task_desc_500">계속 걸으면 더 좋아집니다</string>
+    <string name="task_desc_1000">가벼운 짧은 산책</string>
+    <string name="task_desc_2000">오늘 진전이 좋아요</string>
+    <string name="task_desc_3000">다음 단계까지 조금 남았어요</string>
+    <string name="task_desc_4000">거의 다음 단계예요</string>
+    <string name="task_desc_5000">오늘의 추천 목표</string>
+    <string name="task_desc_7000">고급 도전</string>
+    <string name="task_desc_else">개근 챔피언 도전</string>
+
+    <string name="summary_title">오늘 개요</string>
+    <string name="summary_date_sample">12월 12일 · 금</string>
+    <string name="summary_step_label">오늘 걸음 수</string>
+    <string name="summary_step_unit">걸음</string>
+    <string name="summary_ring_label_today_target">오늘 목표</string>
+    <string name="summary_distance_sample">거리 3.8 km</string>
+    <string name="summary_calories_sample">소모 245 kcal</string>
+    <string name="summary_remaining_sample">남은 수치 2,770 / 8,000</string>
+
+    <string name="label_distance">거리</string>
+    <string name="label_calories">칼로리</string>
+    <string name="label_time">시간</string>
+    <string name="summary_distance_format">거리 %.1f km</string>
+    <string name="summary_calories_format">소모 %d kcal</string>
+    <string name="summary_remaining_format">남은 %1$s / %2$s</string>
+
+    <string name="step_overview_title">오늘 걸음 개요</string>
+    <string name="step_overview_subtitle_format">오늘 목표 %1$s 걸음</string>
+    <string name="step_overview_badge_in_progress">진행 중</string>
+    <string name="step_overview_step_unit">걸음</string>
+    <string name="step_overview_step_label">오늘 걸은 걸음</string>
+    <string name="step_overview_ring_label_completion">완료도</string>
+
+    <string name="heart_steps_title">오늘의 걸음</string>
+    <string name="heart_steps_unit">걸음</string>
+    <string name="heart_steps_coin_button">코인 교환</string>
+
+    <string name="profile_title">프로필</string>
+    <string name="profile_subtitle">개인 정보를 관리하세요</string>
+
+    <string name="achievements_title">오늘의 업적</string>
+    <string name="achievements_subtitle">걸음, 연속 달성, 코인을 한눈에</string>
+    <string name="achievement1_title">3일 연속</string>
+    <string name="achievement1_desc">4일 더 유지하면 “일주일 무게” 달성</string>
+    <string name="achievement1_tag">+10 🪙</string>
+    <string name="achievement2_title">오늘 사용자 80%보다 앞섰습니다</string>
+    <string name="achievement2_desc">총 걸음 5,230 · 우수한 성과</string>
+    <string name="achievement2_tag">활력 +20</string>
+    <string name="achievement3_title">걸음 과제 5개 완료</string>
+    <string name="achievement3_desc">오늘 목표까지 2,770 걸음 더</string>
+    <string name="achievement3_tag">목표 8,000 걸음</string>
+
+    <string name="ach_over_users_title_format">오늘 %1$d%% 사용자보다 앞섰습니다</string>
+    <string name="ach_over_users_desc_format">과제 완료 %1$d/%2$d · 우수한 성과</string>
+    <string name="ach_over_users_tag_format">활력 +%1$d</string>
+    <string name="ach_today_distance_title_format">오늘 %1$s km 걸었습니다</string>
+    <string name="ach_today_distance_desc_format">트랙을 %1$d 바퀴 돈 것과 같습니다</string>
+    <string name="ach_today_distance_tag">거리 업적</string>
+    <string name="ach_complete_tasks_title_format">걸음 과제 %1$d개 완료</string>
+    <string name="ach_complete_tasks_desc_format">오늘 목표까지 %1$d 걸음 더</string>
+    <string name="ach_complete_tasks_tag_format">목표 %1$d 걸음</string>
+
+    <string name="withdrawal_record_order_sample">주문: 12345678</string>
+    <string name="withdrawal_record_status_success_sample">환전 성공</string>
+    <string name="withdrawal_record_amount_sample">$30.00</string>
+    <string name="withdrawal_record_coins_sample">3000 코인</string>
+    <string name="withdrawal_record_commission_sample">수수료: $3.00 (300 코인)</string>
+    <string name="withdrawal_record_create_time_sample">2023-05-20 14:30</string>
+
+    <string name="log_share_title_default">앱 로그 피드백</string>
+    <string name="log_select_app_prompt">공유할 앱을 선택하세요:</string>
+    <string name="log_collecting_toast">로그 수집 중...</string>
+    <string name="log_collect_share_failed">로그 수집 및 공유 실패</string>
+    <string name="log_collect_failed_toast_format">로그 수집 실패: %1$s</string>
+    <string name="log_device_info_header">======= 기기 정보 =======</string>
+    <string name="log_time_label">시간: %1$s</string>
+    <string name="log_device_label">기기: %1$s %2$s</string>
+    <string name="log_android_version_label">Android 버전: %1$s (SDK %2$d)</string>
+    <string name="log_device_id_label">기기 ID: %1$s</string>
+    <string name="log_separator">==========================</string>
+    <string name="log_file_not_exist_format">로그 파일이 존재하지 않습니다: %1$s</string>
+    <string name="log_zip_success_format">로그 파일 압축: %1$s -&gt; %2$s bytes</string>
+    <string name="log_share_chooser_title">로그 파일 공유</string>
+    <string name="log_share_failed_toast">파일 공유 실패</string>
+
+    <string name="task_badge_sample">+5 🪙</string>
+    <string name="coin_content_description">코인</string>
+</resources>

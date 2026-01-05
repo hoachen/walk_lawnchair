@@ -1,0 +1,83 @@
+package com.ur.apps.ad.admob
+
+import android.content.Context
+import android.view.ViewGroup
+import com.ur.apps.utils.URLog
+
+class BubbleAdmobAdLoader : AdmobAdLoader() {
+
+    companion object {
+
+        const val TAG = "BubbleAdmobAdLoader"
+
+
+        //        native
+//        ca-app-pub-2830772598550207/1472427327
+//        ca-app-pub-2830772598550207/2662397670
+//        ca-app-pub-2830772598550207/5497085202
+
+        const val ADMOB_NATIVE_UNIT_ID = "ca-app-pub-2830772598550207/1472427327"
+        const val ADMOB_NATIVE_UNIT_ID_TEST = "ca-app-pub-3940256099942544/2247696110"
+
+        const val ADMOB_BANNER_UNIT_ID = "ca-app-pub-2830772598550207/3975479346"
+
+        // banner
+//        ca-app-pub-2830772598550207/3975479346
+//        ca-app-pub-2830772598550207/5337303104
+//        ca-app-pub-2830772598550207/2735190498
+        const val ADMOB_BANNER_UNIT_TEST_ID =  "ca-app-pub-3940256099942544/9214589741"
+
+    }
+
+    override fun getBannerAdFormat() : String = "In_Banner"
+
+    override fun getNativeAdFormat() : String = "In_Native"
+
+
+    override fun enableEventImpressionToTenjin() = false
+
+    override fun loggerTag(): String {
+        return TAG
+    }
+
+
+    override fun getNativeUnitId() : String {
+        URLog.i(TAG, "getBoobleNativeUnitId")
+        if (useDebugAdmobId) {
+            URLog.i(TAG, "user Debug Admob native unit id $ADMOB_NATIVE_UNIT_ID_TEST")
+            return ADMOB_NATIVE_UNIT_ID_TEST
+        }
+        return ADMOB_NATIVE_UNIT_ID
+    }
+
+    override fun getBannerUnitId() : String {
+        URLog.i(TAG, "getHomeBannerUnitId")
+        if (useDebugAdmobId) {
+            URLog.i(TAG, "user Debug Admob banner unit id $ADMOB_BANNER_UNIT_TEST_ID")
+            return ADMOB_BANNER_UNIT_TEST_ID
+        }
+        return ADMOB_BANNER_UNIT_ID
+    }
+
+
+    override fun loadBannerAd(context: Context, container: ViewGroup?) {
+        super.loadBannerAd(context, container)
+        URLog.i(TAG, "load bubble admob banner ad")
+    }
+
+    override fun showBannerAd(context: Context, container: ViewGroup) {
+        super.showBannerAd(context, container)
+        URLog.i(TAG, "show bubble admob banner ad")
+    }
+
+    override fun loadNativeAd(context: Context) {
+        super.loadNativeAd(context)
+        URLog.i(TAG, "load bubble admob native ad")
+    }
+
+    override fun showNativeAd(context: Context, adContainer: ViewGroup, adViewWidth: Int) {
+        super.showNativeAd(context, adContainer, adViewWidth)
+        URLog.i(TAG, "show bubble admob native ad")
+    }
+
+}

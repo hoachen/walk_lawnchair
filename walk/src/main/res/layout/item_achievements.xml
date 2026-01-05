@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="16dp"
+    android:layout_marginVertical="8dp"
+    app:cardBackgroundColor="@color/md_theme_surfaceBright"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="4dp"
+    app:strokeColor="@color/md_theme_outlineVariant"
+    app:strokeWidth="1dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="14dp">
+
+        <!-- 标题区域 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/achievements_title"
+                    android:textColor="@color/md_theme_onSurface"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_subtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="@string/achievements_subtitle"
+                    android:textColor="@color/md_theme_onSurfaceVariant"
+                    android:textSize="11sp" />
+        </LinearLayout>
+
+        <!-- 成就列表 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:orientation="vertical"
+            android:divider="@drawable/divider_achievement"
+            android:showDividers="middle"
+            android:dividerPadding="8dp">
+
+            <!-- 成就1：连续打卡 -->
+            <LinearLayout
+                android:id="@+id/achievement1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <!-- 图标 -->
+                <TextView
+                    android:id="@+id/achievement1_icon"
+                    android:layout_width="26dp"
+                    android:layout_height="26dp"
+                    android:gravity="center"
+                    android:text="🔥"
+                    android:textSize="14sp"
+                    android:background="@drawable/achievement_icon_background"
+                    android:textColor="@color/md_theme_onTertiaryContainer" />
+
+                <!-- 文本内容 -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/achievement1_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/achievement1_title"
+                        android:textColor="@color/md_theme_onSurface"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/achievement1_desc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="@string/achievement1_desc"
+                        android:textColor="@color/md_theme_onSurfaceVariant"
+                        android:textSize="11sp" />
+                </LinearLayout>
+
+                <!-- 标签 -->
+                <TextView
+                    android:id="@+id/achievement1_tag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="8dp"
+                    android:paddingVertical="4dp"
+                    android:text="@string/achievement1_tag"
+                    android:textColor="@color/md_theme_primary"
+                    android:textSize="10sp"
+                    android:background="@drawable/achievement_tag_background" />
+            </LinearLayout>
+
+            <!-- 成就2：超过用户 -->
+            <LinearLayout
+                android:id="@+id/achievement2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <!-- 图标 -->
+                <TextView
+                    android:id="@+id/achievement2_icon"
+                    android:layout_width="26dp"
+                    android:layout_height="26dp"
+                    android:gravity="center"
+                    android:text="🏅"
+                    android:textSize="14sp"
+                    android:background="@drawable/achievement_icon_background"
+                    android:textColor="@color/md_theme_onTertiaryContainer" />
+
+                <!-- 文本内容 -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/achievement2_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/achievement2_title"
+                        android:textColor="@color/md_theme_onSurface"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/achievement2_desc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="@string/achievement2_desc"
+                        android:textColor="@color/md_theme_onSurfaceVariant"
+                        android:textSize="11sp" />
+                </LinearLayout>
+
+                <!-- 标签 -->
+                <TextView
+                    android:id="@+id/achievement2_tag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="8dp"
+                    android:paddingVertical="4dp"
+                    android:text="@string/achievement2_tag"
+                    android:textColor="@color/md_theme_primary"
+                    android:textSize="10sp"
+                    android:background="@drawable/achievement_tag_background" />
+            </LinearLayout>
+
+            <!-- 成就3：完成步数任务 -->
+            <LinearLayout
+                android:id="@+id/achievement3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <!-- 图标 -->
+                <TextView
+                    android:id="@+id/achievement3_icon"
+                    android:layout_width="26dp"
+                    android:layout_height="26dp"
+                    android:gravity="center"
+                    android:text="🎯"
+                    android:textSize="14sp"
+                    android:background="@drawable/achievement_icon_background"
+                    android:textColor="@color/md_theme_onTertiaryContainer" />
+
+                <!-- 文本内容 -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/achievement3_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/achievement3_title"
+                        android:textColor="@color/md_theme_onSurface"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/achievement3_desc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="@string/achievement3_desc"
+                        android:textColor="@color/md_theme_onSurfaceVariant"
+                        android:textSize="11sp" />
+                </LinearLayout>
+
+                <!-- 标签 -->
+                <TextView
+                    android:id="@+id/achievement3_tag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="8dp"
+                    android:paddingVertical="4dp"
+                    android:text="@string/achievement3_tag"
+                    android:textColor="@color/md_theme_primary"
+                    android:textSize="10sp"
+                    android:background="@drawable/achievement_tag_background" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

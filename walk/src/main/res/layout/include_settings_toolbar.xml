@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:paddingHorizontal="16dp"
+    android:paddingVertical="12dp">
+
+    <!-- 左侧：返回按钮（使用个人资料页面按钮的样式） -->
+    <FrameLayout
+        android:id="@+id/btn_back"
+        android:layout_width="38dp"
+        android:layout_height="38dp"
+        android:background="@drawable/icon_button_profile_background"
+        android:clickable="true"
+        android:elevation="4dp"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackgroundBorderless"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_back"
+            app:tint="@color/md_theme_onSurface" />
+
+    </FrameLayout>
+
+    <!-- 中间：页面标题 -->
+    <LinearLayout
+        android:id="@+id/title_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingHorizontal="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:letterSpacing="0.08"
+            android:text="@string/settings"
+            android:textAllCaps="true"
+            android:textColor="@color/md_theme_onSurface"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <!-- 可以添加副标题，如果需要的话 -->
+        <!--
+        <TextView
+            android:id="@+id/tv_subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:fontFamily="sans-serif"
+            android:text="管理应用设置"
+            android:textColor="?attr/colorOnSurfaceVariant"
+            android:textSize="11sp" />
+        -->
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

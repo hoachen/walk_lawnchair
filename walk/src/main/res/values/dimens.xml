@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 颜色选项圆角半径 -->
+    <dimen name="color_option_corner_radius">8dp</dimen>
+    
+    <!-- 颜色选项阴影 -->
+    <dimen name="color_option_normal_elevation">2dp</dimen>
+    <dimen name="color_option_selected_elevation">6dp</dimen>
+    
+    <!-- 颜色选项选中时的边框宽度 -->
+    <dimen name="color_option_selected_stroke_width">2dp</dimen>
+    <dimen name="global_dialog_width">350dp</dimen>
+</resources> 

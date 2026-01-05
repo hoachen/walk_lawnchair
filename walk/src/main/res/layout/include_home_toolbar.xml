@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="56dp"
+    android:paddingHorizontal="16dp">
+
+    <!-- 设置图标 -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_settings"
+        style="@style/Ur.Widget.Material3.Button.IconButton"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        app:icon="@drawable/profile_settings"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- 排行榜图标 -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_leaderboard"
+        style="@style/Ur.Widget.Material3.Button.IconButton"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        app:icon="@drawable/profile_leader_board"
+        app:layout_constraintStart_toEndOf="@id/btn_settings"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- 房子图标 -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_home"
+        style="@style/Ur.Widget.Material3.Button.IconButton"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        app:icon="@drawable/profile_home"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout> 

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ad_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp"
+    android:paddingTop="4dp"
+    android:paddingBottom="4dp">
+
+<!--    &lt;!&ndash; 广告卡片 &ndash;&gt;-->
+<!--    <androidx.cardview.widget.CardView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:cardCornerRadius="16dp"-->
+<!--        app:cardElevation="0dp"-->
+<!--        app:cardBackgroundColor="@android:color/transparent"-->
+<!--        android:layout_marginTop="4dp"-->
+<!--        android:layout_marginBottom="4dp">-->
+
+<!--        &lt;!&ndash; 右侧占位符区域 &ndash;&gt;-->
+<!--        <FrameLayout-->
+<!--            android:id="@+id/banner_ad_container"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="100dp"-->
+<!--            android:background="@drawable/banner_placeholder_background"-->
+<!--            android:gravity="center">-->
+<!--        </FrameLayout>-->
+
+<!--    </androidx.cardview.widget.CardView>-->
+
+</FrameLayout>

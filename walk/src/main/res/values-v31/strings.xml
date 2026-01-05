@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ok">OK</string>
+    <string name="claim">Claim</string>
+    <string name="update_region_error_toast">变更国家失败，请重试</string>
+    <string name="go">Go</string>
+</resources>

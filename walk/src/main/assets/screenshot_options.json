@@ -1,0 +1,32 @@
+{
+  "screenshotOptions": [
+    {
+      "id": 1,
+      "code": "dana",
+      "name": "DANA",
+      "region": "Indonesia/IDR",
+      "isDefault": true
+    },
+    {
+      "id": 2,
+      "code": "gopay",
+      "name": "GoPay",
+      "region": "Indonesia/IDR",
+      "isDefault": false
+    },
+    {
+      "id": 3,
+      "code": "ovo",
+      "name": "OVO",
+      "region": "Indonesia/IDR",
+      "isDefault": false
+    },
+    {
+      "id": 4,
+      "code": "paypal",
+      "name": "PayPal",
+      "region": "United States/USD",
+      "isDefault": false
+    }
+  ]
+}

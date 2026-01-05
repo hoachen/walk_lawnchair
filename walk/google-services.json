@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1002052763238",
+    "project_id": "walk-win-cash",
+    "storage_bucket": "walk-win-cash.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1002052763238:android:4f72afd985b75713f8f7a7",
+        "android_client_info": {
+          "package_name": "com.ur.apps.walk"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDs7b3JahVb1oQtuSkyS0-4JFJYriOg2_o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

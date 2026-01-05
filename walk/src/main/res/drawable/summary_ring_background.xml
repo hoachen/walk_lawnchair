@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    
+    <!-- 外环：conic渐变模拟（65%进度） -->
+    <item>
+        <shape android:shape="oval">
+            <size android:width="88dp" android:height="88dp" />
+            <!-- 使用layer-list模拟conic渐变：65% primary, 35% outline -->
+            <gradient
+                android:type="sweep"
+                android:startColor="@color/md_theme_primary"
+                android:endColor="@color/md_theme_outline"
+                android:centerX="50%"
+                android:centerY="50%"
+                android:angle="0" />
+        </shape>
+    </item>
+    
+</layer-list>

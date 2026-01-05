@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground"
+    android:gravity="center_vertical"
+    android:minHeight="56dp"
+    android:orientation="vertical"
+    android:paddingHorizontal="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:minHeight="56dp">
+
+        <!-- 设置项标题 -->
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="?attr/colorOnBackground"
+            android:textSize="16sp" />
+
+        <!-- 设置项值（用于Value类型） -->
+        <TextView
+            android:id="@+id/tv_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:textColor="?attr/colorOnBackground"
+            android:textSize="14sp"
+            android:visibility="gone" />
+
+        <!-- 开关（用于Switch类型） -->
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/switch_setting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+
+        <!-- 颜色选择器（用于ColorPicker类型） -->
+        <View
+            android:id="@+id/view_color"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:background="@drawable/bg_rounded_color_option"
+            android:visibility="gone" />
+
+        <!-- 距离单位切换（用于Distance类型） -->
+        <com.google.android.material.button.MaterialButtonToggleGroup
+            android:id="@+id/toggle_distance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:selectionRequired="true"
+            app:singleSelection="true">
+
+            <Button
+                android:id="@+id/btn_km"
+                style="?attr/materialButtonOutlinedStyle"
+                android:layout_width="48dp"
+                android:layout_height="wrap_content"
+                android:text="@string/settings_km"
+                android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/btn_miles"
+                style="?attr/materialButtonOutlinedStyle"
+                android:layout_width="48dp"
+                android:layout_height="wrap_content"
+                android:text="@string/settings_miles"
+                android:textSize="12sp" />
+        </com.google.android.material.button.MaterialButtonToggleGroup>
+    </LinearLayout>
+
+    <!-- 颜色选项容器（用于展开ColorPicker） -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/color_options_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="8dp"
+        android:paddingHorizontal="8dp"
+        tools:itemCount="8"
+        tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        tools:spanCount="4"
+        tools:listitem="@layout/item_color_option"
+        android:visibility="gone" />
+</LinearLayout>

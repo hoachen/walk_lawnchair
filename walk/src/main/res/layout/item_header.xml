@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingHorizontal="16dp"
+    android:paddingVertical="12dp">
+
+    <!-- 左侧：个人主页按钮（带径向渐变） -->
+    <FrameLayout
+        android:id="@+id/btn_profile"
+        android:layout_width="38dp"
+        android:layout_height="38dp"
+        android:background="@drawable/icon_button_profile_background"
+        android:clickable="true"
+        android:elevation="4dp"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackgroundBorderless">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/profile_user"
+            app:tint="@color/md_theme_onSurface" />
+
+    </FrameLayout>
+
+    <!-- 中间：应用名称和副标题 -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingHorizontal="8dp">
+
+        <TextView
+            android:id="@+id/tv_app_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:letterSpacing="0.08"
+            android:text="@string/home_title_brand"
+            android:textAllCaps="true"
+            android:textColor="@color/md_theme_onSurface"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_app_subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:fontFamily="sans-serif"
+            android:text="@string/home_subtitle_slogan"
+            android:textColor="?attr/colorOnSurfaceVariant"
+            android:textSize="11sp" />
+    </LinearLayout>
+
+    <!-- 右侧：金币提现按钮（带径向渐变） -->
+    <FrameLayout
+        android:id="@+id/btn_withdraw"
+        android:layout_width="38dp"
+        android:layout_height="38dp"
+        android:background="@drawable/icon_button_profile_background"
+        android:clickable="true"
+        android:elevation="8dp"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackgroundBorderless">
+
+        <ImageView
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:layout_gravity="center"
+            android:src="@drawable/icon_dollar_display"
+            />
+
+    </FrameLayout>
+
+</LinearLayout>

@@ -1,0 +1,26 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    
+    <!-- 绿色背景 -->
+    <path
+        android:fillColor="#009C3B"
+        android:pathData="M0,0h24v24h-24z"/>
+    
+    <!-- 黄色菱形 -->
+    <path
+        android:fillColor="#FFDF00"
+        android:pathData="M2,12l10,-8l10,8l-10,8z"/>
+    
+    <!-- 蓝色圆圈 -->
+    <path
+        android:fillColor="#002776"
+        android:pathData="M12,12m-4,0a4,4 0,1 1,8 0a4,4 0,1 1,-8 0"/>
+    
+    <!-- 白色条带 -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M12,14.5c-1.5,0 -2.5,-0.5 -3,-1.5c0.5,1 1.5,1.5 3,1.5c1.5,0 2.5,-0.5 3,-1.5c-0.5,1 -1.5,1.5 -3,1.5z"/>
+</vector> 

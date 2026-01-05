@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/global_dialog_width"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="24dp">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <NumberPicker
+            android:id="@+id/picker_height"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp" />
+
+        <NumberPicker
+            android:id="@+id/picker_height_decimal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tv_unit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/height_unit_cm"
+            android:textColor="?attr/colorOnSurface"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+    <RadioGroup
+        android:id="@+id/radio_group_unit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/radio_cm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="@string/height_unit_cm"
+            android:textColor="?attr/colorOnSurface" />
+
+        <RadioButton
+            android:id="@+id/radio_ft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/height_unit_ft"
+            android:textColor="?attr/colorOnSurface" />
+
+    </RadioGroup>
+
+</LinearLayout> 

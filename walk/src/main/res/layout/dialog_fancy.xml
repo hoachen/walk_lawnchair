@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="@dimen/global_dialog_width"
+    android:layout_height="350dp">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/close_start_guide"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.9" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/close_top_guide"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.1" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/text_start_guide"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.15" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/text_end_guide"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.8" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/text_top_guide"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.3" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/text_bottom_guide"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.80" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/fancy_dialog_bg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/dialog_text"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/fancy_content_area"
+        android:orientation="vertical"
+        android:paddingHorizontal="10dp"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/text_bottom_guide"
+        app:layout_constraintEnd_toEndOf="@+id/text_end_guide"
+        app:layout_constraintStart_toStartOf="@+id/text_start_guide"
+        app:layout_constraintTop_toTopOf="@+id/text_top_guide">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="@string/withdrawal_success"
+            android:textAlignment="center"
+            android:textColor="?attr/colorOnSurface"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="@string/join_community"
+            android:textAlignment="center"
+            android:textColor="?attr/colorOnSurface"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="@string/telegram"
+            android:textAlignment="center"
+            android:textColor="?attr/colorSecondary"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/telegram_url"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="@string/telegram"
+            android:textAlignment="center"
+            android:textColor="?attr/colorPrimary"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/fake_close_click"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:layout_constraintBottom_toBottomOf="@id/close_top_guide"
+        app:layout_constraintEnd_toEndOf="@+id/close_start_guide"
+        app:layout_constraintStart_toStartOf="@+id/close_start_guide"
+        app:layout_constraintTop_toTopOf="@id/close_top_guide" />
+
+    <!-- 确认按钮 -->
+    <Button
+        android:id="@+id/btn_go"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="20dp"
+        android:background="?attr/colorSecondaryContainer"
+        android:text="@string/go"
+        android:textColor="?colorOnSecondaryContainer"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

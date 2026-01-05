@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/dialog_background"
+    android:paddingBottom="16dp">
+
+    <!-- 关闭按钮 (X) -->
+    <ImageView
+        android:id="@+id/btn_close"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:clickable="true"
+        android:contentDescription="@string/close"
+        android:focusable="true"
+        android:padding="6dp"
+        android:src="@drawable/ic_close"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- 标题 -->
+    <TextView
+        android:id="@+id/tv_dialog_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/settings_region"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@id/btn_close"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- 区域选项列表 -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="0dp"
+        android:layout_height="300dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:maxHeight="300dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_dialog_title" />
+
+    <!-- 加载进度条 -->
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:visibility="visible"
+        android:indeterminateTint="@color/colorPrimary"
+        android:indeterminateTintMode="src_in"
+        style="?android:attr/progressBarStyle"
+        app:layout_constraintBottom_toBottomOf="@id/recycler_view"
+        app:layout_constraintEnd_toEndOf="@id/recycler_view"
+        app:layout_constraintStart_toStartOf="@id/recycler_view"
+        app:layout_constraintTop_toTopOf="@id/recycler_view" />
+
+    <!-- 确认按钮 -->
+    <Button
+        android:id="@+id/btn_confirm"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/button_rounded"
+        android:text="@string/confirm"
+        android:textColor="@android:color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/recycler_view" />
+</androidx.constraintlayout.widget.ConstraintLayout>

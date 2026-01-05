@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".WithdrawAmountActivity">
+
+    <!-- 顶部标题栏 -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layoutHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="12dp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <!-- 中间：页面标题 -->
+        <LinearLayout
+            android:id="@+id/title_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingHorizontal="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:letterSpacing="0.08"
+                android:text="@string/withdraw"
+                android:textAllCaps="true"
+                android:textColor="@color/md_theme_onSurface"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- 右侧：关闭按钮（使用个人资料页面按钮的样式） -->
+        <FrameLayout
+            android:id="@+id/btnClose"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:background="@drawable/icon_button_profile_background"
+            android:clickable="true"
+            android:elevation="4dp"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackgroundBorderless"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:src="@android:drawable/ic_menu_close_clear_cancel"
+                app:tint="@color/md_theme_onSurface" />
+
+        </FrameLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- 提现信息卡片 -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardWithdrawInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:cardCornerRadius="16dp"
+        app:layout_constraintTop_toBottomOf="@id/layoutHeader">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- 提现金额部分 -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?attr/colorSecondaryContainer"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/tvWithdrawalAmountLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:text="@string/withdrawal_amount_label"
+                    android:textColor="?attr/colorOnSecondaryContainer"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tvWithdrawalAmount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tvWithdrawalAmountLabel"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/currency_format"
+                    android:textColor="?attr/colorOnSecondaryContainer"
+                    android:textSize="48sp"
+                    android:textStyle="bold"
+                    tools:text="USD 0.0" />
+
+                <TextView
+                    android:id="@+id/tvCoinAmount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tvWithdrawalAmount"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="8dp"
+                    android:drawableEnd="@drawable/ic_coin"
+                    android:drawablePadding="8dp"
+                    android:text="@string/coins_format"
+                    android:textColor="?attr/colorOnSecondaryContainer"
+                    android:textSize="20sp"
+                    tools:text="0 Coins" />
+            </RelativeLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- 表单卡片 -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardForm"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="10dp"
+        app:cardBackgroundColor="?attr/colorSecondaryContainer"
+        app:cardCornerRadius="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnSubmit"
+        app:layout_constraintTop_toBottomOf="@id/cardWithdrawInfo">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewForm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp" />
+    </androidx.cardview.widget.CardView>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnSubmit"
+        style="@style/Ur.Widget.Material3.Button.TextButton"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="@string/submit"
+        android:textColor="?attr/colorOnPrimary"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,25 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 背景环 匹配material.html的ring-circle-bg -->
+    <item android:id="@android:id/background">
+        <shape
+            android:innerRadiusRatio="3"
+            android:shape="ring"
+            android:thickness="8dp"
+            android:useLevel="true">
+            <!-- 未完成部分的颜色 -->
+            <solid android:color="@color/md_theme_outline" />
+        </shape>
+    </item>
+
+    <!-- 前景环(进度部分) 匹配material.html的ring-circle-fg -->
+    <item android:id="@android:id/progress">
+        <shape
+            android:innerRadiusRatio="3"
+            android:shape="ring"
+            android:thickness="8dp"
+            android:useLevel="true">
+            <!-- 已完成部分的颜色 -->
+            <solid android:color="@color/md_theme_primary" />
+        </shape>
+    </item>
+</layer-list>

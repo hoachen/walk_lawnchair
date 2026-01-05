@@ -1,0 +1,36 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    
+    <!-- 红色背景 -->
+    <path
+        android:fillColor="#DE2910"
+        android:pathData="M0,0h24v24h-24z"/>
+    
+    <!-- 大星星 -->
+    <path
+        android:fillColor="#FFDE00"
+        android:pathData="M5,4l1,3l3,0l-2.5,1.8l1,3l-2.5,-1.8l-2.5,1.8l1,-3l-2.5,-1.8l3,0z"/>
+    
+    <!-- 小星星1 -->
+    <path
+        android:fillColor="#FFDE00"
+        android:pathData="M12,3l0.3,1l1,0l-0.8,0.6l0.3,1l-0.8,-0.6l-0.8,0.6l0.3,-1l-0.8,-0.6l1,0z"/>
+    
+    <!-- 小星星2 -->
+    <path
+        android:fillColor="#FFDE00"
+        android:pathData="M14,5l0.3,1l1,0l-0.8,0.6l0.3,1l-0.8,-0.6l-0.8,0.6l0.3,-1l-0.8,-0.6l1,0z"/>
+    
+    <!-- 小星星3 -->
+    <path
+        android:fillColor="#FFDE00"
+        android:pathData="M14,8l0.3,1l1,0l-0.8,0.6l0.3,1l-0.8,-0.6l-0.8,0.6l0.3,-1l-0.8,-0.6l1,0z"/>
+    
+    <!-- 小星星4 -->
+    <path
+        android:fillColor="#FFDE00"
+        android:pathData="M12,10l0.3,1l1,0l-0.8,0.6l0.3,1l-0.8,-0.6l-0.8,0.6l0.3,-1l-0.8,-0.6l1,0z"/>
+</vector> 

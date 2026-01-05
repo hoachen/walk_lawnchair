@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/tv_lucky_wheel_title"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_lucky_wheel_title" />
+
+    <FrameLayout
+        android:id="@+id/frame_wheel_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+
+        <!-- 转盘背景和宝箱 -->
+        <ImageView
+            android:layout_width="350dp"
+            android:layout_height="350dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_shader_luck_wheel" />
+
+        <!-- 转盘背景和宝箱 -->
+        <ImageView
+            android:id="@+id/iv_wheel_bg"
+            android:layout_width="350dp"
+            android:layout_height="350dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_lucky_wheel" />
+
+        <!-- 旋转的转盘 -->
+        <ImageView
+            android:id="@+id/iv_wheel"
+            android:layout_width="210dp"
+            android:layout_height="210dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_box_and_money" />
+
+
+        <!-- 指针架 - 固定不旋转 -->
+        <FrameLayout
+            android:id="@+id/pointer_frame"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone">
+
+            <!-- 指针 -->
+            <ImageView
+                android:id="@+id/iv_wheel_pointer"
+                android:layout_width="30dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center_horizontal|top"
+                android:src="@drawable/wheel_pointer"
+                android:visibility="gone" />
+        </FrameLayout>
+    </FrameLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="300dp"
+        android:layout_height="214dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_board_list"
+            android:scaleType="centerInside"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/perform_start"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginEnd="10dp"
+            android:clickable="true"
+            android:text="Start"
+            android:textAlignment="center"
+            android:textColor="?colorOnBackground"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/fake_display_list"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="10dp"
+            android:textAlignment="center"
+            android:textSize="11sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/perform_start" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/tv_rank"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="?attr/colorOnSurface"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="1" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/iv_avatar"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tv_rank"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/CircleImageView" />
+
+    <TextView
+        android:id="@+id/tv_nickname"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:textColor="?attr/colorOnSurface"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@id/tv_country"
+        app:layout_constraintEnd_toStartOf="@id/tv_coins"
+        app:layout_constraintStart_toEndOf="@id/iv_avatar"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Username" />
+
+    <TextView
+        android:id="@+id/tv_country"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:textColor="?attr/colorOnSurface"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/iv_avatar"
+        app:layout_constraintTop_toBottomOf="@id/tv_nickname"
+        tools:text="United States" />
+
+    <TextView
+        android:id="@+id/tv_coins"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="?attr/colorOnSurface"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="31,702" />
+
+</androidx.constraintlayout.widget.ConstraintLayout> 

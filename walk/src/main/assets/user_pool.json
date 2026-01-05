@@ -1,0 +1,1352 @@
+[
+  {
+    "userId": "1",
+    "nickname": "Addict23",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a1ad3aec9cb9f779d4e4",
+    "country": "United States",
+    "coinsYesterday": 27184,
+    "coins7Days": 194145,
+    "coins30Days": 748619
+  },
+  {
+    "userId": "2",
+    "nickname": "RunMaster",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a2ad3aec9cb9f779d4e4",
+    "country": "Brazil",
+    "coinsYesterday": 22074,
+    "coins7Days": 162228,
+    "coins30Days": 589578
+  },
+  {
+    "userId": "3",
+    "nickname": "TheMaster",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a3ad3aec9cb9f779d4e4",
+    "country": "Indonesia",
+    "coinsYesterday": 9373,
+    "coins7Days": 77724,
+    "coins30Days": 290907
+  },
+  {
+    "userId": "4",
+    "nickname": "TheMachine",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a4ad3aec9cb9f779d4e4",
+    "country": "Brazil",
+    "coinsYesterday": 20990,
+    "coins7Days": 140060,
+    "coins30Days": 515360
+  },
+  {
+    "userId": "5",
+    "nickname": "Addict5085",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a5ad3aec9cb9f779d4e4",
+    "country": "Indonesia",
+    "coinsYesterday": 10897,
+    "coins7Days": 60482,
+    "coins30Days": 226109
+  },
+  {
+    "userId": "6",
+    "nickname": "TheMachineMaster",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a6ad3aec9cb9f779d4e4",
+    "country": "Indonesia",
+    "coinsYesterday": 23634,
+    "coins7Days": 150692,
+    "coins30Days": 647073
+  },
+  {
+    "userId": "7",
+    "nickname": "Health",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a7ad3aec9cb9f779d4e4",
+    "country": "Indonesia",
+    "coinsYesterday": 18250,
+    "coins7Days": 113555,
+    "coins30Days": 334791
+  },
+  {
+    "userId": "8",
+    "nickname": "User_8948",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a8ad3aec9cb9f779d4e4",
+    "country": "Brazil",
+    "coinsYesterday": 15729,
+    "coins7Days": 85068,
+    "coins30Days": 309686
+  },
+  {
+    "userId": "9",
+    "nickname": "Lover",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a9ad3aec9cb9f779d4e4",
+    "country": "Indonesia",
+    "coinsYesterday": 17596,
+    "coins7Days": 88707,
+    "coins30Days": 341840
+  },
+  {
+    "userId": "10",
+    "nickname": "MsMoveSr",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a10ad3aec9cb9f779d4e4",
+    "country": "Brazil",
+    "coinsYesterday": 21778,
+    "coins7Days": 123635,
+    "coins30Days": 475813
+  },
+  {
+    "userId": "11",
+    "nickname": "Gamer2151",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a11ad3aec9cb9f779d4e4",
+    "country": "Indonesia",
+    "coinsYesterday": 21291,
+    "coins7Days": 129834,
+    "coins30Days": 439764
+  },
+  {
+    "userId": "12",
+    "nickname": "Run9176",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a12ad3aec9cb9f779d4e4",
+    "country": "Brazil",
+    "coinsYesterday": 31024,
+    "coins7Days": 194410,
+    "coins30Days": 595966
+  },
+  {
+    "userId": "13",
+    "nickname": "TheUser__official",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a13ad3aec9cb9f779d4e4",
+    "country": "Indonesia",
+    "coinsYesterday": 11838,
+    "coins7Days": 69822,
+    "coins30Days": 170982
+  },
+  {
+    "userId": "14",
+    "nickname": "Pro4951",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a14ad3aec9cb9f779d4e4",
+    "country": "Brazil",
+    "coinsYesterday": 33184,
+    "coins7Days": 151956,
+    "coins30Days": 730153
+  },
+  {
+    "userId": "15",
+    "nickname": "Anonymous",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a15ad3aec9cb9f779d4e4",
+    "country": "Brazil",
+    "coinsYesterday": 22832,
+    "coins7Days": 122648,
+    "coins30Days": 462060
+  },
+  {
+    "userId": "16",
+    "nickname": "Path5653",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a16ad3aec9cb9f779d4e4",
+    "country": "Brazil",
+    "coinsYesterday": 16000,
+    "coins7Days": 82375,
+    "coins30Days": 262536
+  },
+  {
+    "userId": "17",
+    "nickname": "Move5842",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a17ad3aec9cb9f779d4e4",
+    "country": "Indonesia",
+    "coinsYesterday": 33721,
+    "coins7Days": 212815,
+    "coins30Days": 638875
+  },
+  {
+    "userId": "18",
+    "nickname": "DrMasterX",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a18ad3aec9cb9f779d4e4",
+    "country": "United States",
+    "coinsYesterday": 9216,
+    "coins7Days": 45512,
+    "coins30Days": 123110
+  },
+  {
+    "userId": "19",
+    "nickname": "Pro4017",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a19ad3aec9cb9f779d4e4",
+    "country": "United States",
+    "coinsYesterday": 13491,
+    "coins7Days": 82827,
+    "coins30Days": 422689
+  },
+  {
+    "userId": "20",
+    "nickname": "CoolGamer",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a20ad3aec9cb9f779d4e4",
+    "country": "Brazil",
+    "coinsYesterday": 18442,
+    "coins7Days": 112862,
+    "coins30Days": 401977
+  },
+  {
+    "userId": "21",
+    "nickname": "DrPace99",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a21ad3aec9cb9f779d4e4",
+    "country": "Brazil",
+    "coinsYesterday": 11460,
+    "coins7Days": 63118,
+    "coins30Days": 197247
+  },
+  {
+    "userId": "22",
+    "nickname": "Legend1036",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a22ad3aec9cb9f779d4e4",
+    "country": "Brazil",
+    "coinsYesterday": 20101,
+    "coins7Days": 135827,
+    "coins30Days": 629327
+  },
+  {
+    "userId": "23",
+    "nickname": "Lover3998",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a23ad3aec9cb9f779d4e4",
+    "country": "United States",
+    "coinsYesterday": 17403,
+    "coins7Days": 91917,
+    "coins30Days": 447673
+  },
+  {
+    "userId": "24",
+    "nickname": "Anonymous",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a24ad3aec9cb9f779d4e4",
+    "country": "United States",
+    "coinsYesterday": 14591,
+    "coins7Days": 107263,
+    "coins30Days": 531702
+  },
+  {
+    "userId": "25",
+    "nickname": "Pace99",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a25ad3aec9cb9f779d4e4",
+    "country": "United States",
+    "coinsYesterday": 17647,
+    "coins7Days": 106364,
+    "coins30Days": 331426
+  },
+  {
+    "userId": "26",
+    "nickname": "Journey23",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a26ad3aec9cb9f779d4e4",
+    "country": "Brazil",
+    "coinsYesterday": 17214,
+    "coins7Days": 86258,
+    "coins30Days": 326594
+  },
+  {
+    "userId": "27",
+    "nickname": "DrUser_",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a27ad3aec9cb9f779d4e4",
+    "country": "Brazil",
+    "coinsYesterday": 14661,
+    "coins7Days": 83600,
+    "coins30Days": 445622
+  },
+  {
+    "userId": "28",
+    "nickname": "Warrior944",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a28ad3aec9cb9f779d4e4",
+    "country": "United States",
+    "coinsYesterday": 10981,
+    "coins7Days": 49363,
+    "coins30Days": 192219
+  },
+  {
+    "userId": "29",
+    "nickname": "DrFitPro",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a29ad3aec9cb9f779d4e4",
+    "country": "Indonesia",
+    "coinsYesterday": 18202,
+    "coins7Days": 131110,
+    "coins30Days": 659533
+  },
+  {
+    "userId": "30",
+    "nickname": "Lover7700",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a30ad3aec9cb9f779d4e4",
+    "country": "Brazil",
+    "coinsYesterday": 7511,
+    "coins7Days": 34020,
+    "coins30Days": 140447
+  },
+  {
+    "userId": "31",
+    "nickname": "Miles",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a31ad3aec9cb9f779d4e4",
+    "country": "Brazil",
+    "coinsYesterday": 19914,
+    "coins7Days": 91198,
+    "coins30Days": 416068
+  },
+  {
+    "userId": "32",
+    "nickname": "TheFitMaster",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a32ad3aec9cb9f779d4e4",
+    "country": "United States",
+    "coinsYesterday": 9887,
+    "coins7Days": 49265,
+    "coins30Days": 151193
+  },
+  {
+    "userId": "33",
+    "nickname": "SuperChampion",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a33ad3aec9cb9f779d4e4",
+    "country": "Indonesia",
+    "coinsYesterday": 17427,
+    "coins7Days": 89890,
+    "coins30Days": 306006
+  },
+  {
+    "userId": "34",
+    "nickname": "Active4075",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a34ad3aec9cb9f779d4e4",
+    "country": "Indonesia",
+    "coinsYesterday": 7455,
+    "coins7Days": 39308,
+    "coins30Days": 140772
+  },
+  {
+    "userId": "35",
+    "nickname": "MrJourney",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a35ad3aec9cb9f779d4e4",
+    "country": "Brazil",
+    "coinsYesterday": 23235,
+    "coins7Days": 158864,
+    "coins30Days": 498607
+  },
+  {
+    "userId": "36",
+    "nickname": "Master",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a36ad3aec9cb9f779d4e4",
+    "country": "Indonesia",
+    "coinsYesterday": 20967,
+    "coins7Days": 112381,
+    "coins30Days": 520748
+  },
+  {
+    "userId": "37",
+    "nickname": "Lover",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a37ad3aec9cb9f779d4e4",
+    "country": "Brazil",
+    "coinsYesterday": 10093,
+    "coins7Days": 56131,
+    "coins30Days": 194263
+  },
+  {
+    "userId": "38",
+    "nickname": "Walker8600",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a38ad3aec9cb9f779d4e4",
+    "country": "Indonesia",
+    "coinsYesterday": 17628,
+    "coins7Days": 78257,
+    "coins30Days": 360742
+  },
+  {
+    "userId": "39",
+    "nickname": "Beast5464",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a39ad3aec9cb9f779d4e4",
+    "country": "Brazil",
+    "coinsYesterday": 21278,
+    "coins7Days": 122656,
+    "coins30Days": 432686
+  },
+  {
+    "userId": "40",
+    "nickname": "MrUser_",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a40ad3aec9cb9f779d4e4",
+    "country": "United States",
+    "coinsYesterday": 19960,
+    "coins7Days": 90228,
+    "coins30Days": 327455
+  },
+  {
+    "userId": "41",
+    "nickname": "Walker8237",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a41ad3aec9cb9f779d4e4",
+    "country": "Brazil",
+    "coinsYesterday": 22723,
+    "coins7Days": 121640,
+    "coins30Days": 315257
+  },
+  {
+    "userId": "42",
+    "nickname": "Hero3592",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a42ad3aec9cb9f779d4e4",
+    "country": "Indonesia",
+    "coinsYesterday": 14222,
+    "coins7Days": 86745,
+    "coins30Days": 408981
+  },
+  {
+    "userId": "43",
+    "nickname": "SirTracker",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a43ad3aec9cb9f779d4e4",
+    "country": "Brazil",
+    "coinsYesterday": 10180,
+    "coins7Days": 53118,
+    "coins30Days": 245159
+  },
+  {
+    "userId": "44",
+    "nickname": "MrWarriorPro",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a44ad3aec9cb9f779d4e4",
+    "country": "United States",
+    "coinsYesterday": 12585,
+    "coins7Days": 76279,
+    "coins30Days": 360523
+  },
+  {
+    "userId": "45",
+    "nickname": "SirChampion",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a45ad3aec9cb9f779d4e4",
+    "country": "Brazil",
+    "coinsYesterday": 6960,
+    "coins7Days": 34423,
+    "coins30Days": 116444
+  },
+  {
+    "userId": "46",
+    "nickname": "The_FanMaster",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a46ad3aec9cb9f779d4e4",
+    "country": "United States",
+    "coinsYesterday": 27360,
+    "coins7Days": 147006,
+    "coins30Days": 573935
+  },
+  {
+    "userId": "47",
+    "nickname": "Anonymous",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a47ad3aec9cb9f779d4e4",
+    "country": "Indonesia",
+    "coinsYesterday": 13373,
+    "coins7Days": 91909,
+    "coins30Days": 339211
+  },
+  {
+    "userId": "48",
+    "nickname": "Master3006",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a48ad3aec9cb9f779d4e4",
+    "country": "United States",
+    "coinsYesterday": 27335,
+    "coins7Days": 193154,
+    "coins30Days": 762927
+  },
+  {
+    "userId": "49",
+    "nickname": "ThePaceJr",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a49ad3aec9cb9f779d4e4",
+    "country": "Brazil",
+    "coinsYesterday": 13487,
+    "coins7Days": 111958,
+    "coins30Days": 368479
+  },
+  {
+    "userId": "50",
+    "nickname": "Anonymous",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a50ad3aec9cb9f779d4e4",
+    "country": "United States",
+    "coinsYesterday": 25721,
+    "coins7Days": 152225,
+    "coins30Days": 798638
+  },
+  {
+    "userId": "51",
+    "nickname": "Anonymous",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a51ad3aec9cb9f779d4e4",
+    "country": "Indonesia",
+    "coinsYesterday": 16982,
+    "coins7Days": 92090,
+    "coins30Days": 359346
+  },
+  {
+    "userId": "52",
+    "nickname": "Ninja9444",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a52ad3aec9cb9f779d4e4",
+    "country": "Brazil",
+    "coinsYesterday": 19044,
+    "coins7Days": 136830,
+    "coins30Days": 475923
+  },
+  {
+    "userId": "53",
+    "nickname": "TheStar",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a53ad3aec9cb9f779d4e4",
+    "country": "United States",
+    "coinsYesterday": 19376,
+    "coins7Days": 104344,
+    "coins30Days": 323176
+  },
+  {
+    "userId": "54",
+    "nickname": "BeastX",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a54ad3aec9cb9f779d4e4",
+    "country": "Brazil",
+    "coinsYesterday": 22111,
+    "coins7Days": 89570,
+    "coins30Days": 354813
+  },
+  {
+    "userId": "55",
+    "nickname": "MegaPace",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a55ad3aec9cb9f779d4e4",
+    "country": "Brazil",
+    "coinsYesterday": 10890,
+    "coins7Days": 52926,
+    "coins30Days": 233970
+  },
+  {
+    "userId": "56",
+    "nickname": "Anonymous",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a56ad3aec9cb9f779d4e4",
+    "country": "Indonesia",
+    "coinsYesterday": 35154,
+    "coins7Days": 248738,
+    "coins30Days": 891473
+  },
+  {
+    "userId": "57",
+    "nickname": "TheHero",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a57ad3aec9cb9f779d4e4",
+    "country": "Brazil",
+    "coinsYesterday": 9031,
+    "coins7Days": 56402,
+    "coins30Days": 239006
+  },
+  {
+    "userId": "58",
+    "nickname": "Ninja2838",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a58ad3aec9cb9f779d4e4",
+    "country": "Brazil",
+    "coinsYesterday": 9393,
+    "coins7Days": 61046,
+    "coins30Days": 239632
+  },
+  {
+    "userId": "59",
+    "nickname": "Pace4542",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a59ad3aec9cb9f779d4e4",
+    "country": "United States",
+    "coinsYesterday": 18998,
+    "coins7Days": 134617,
+    "coins30Days": 440913
+  },
+  {
+    "userId": "60",
+    "nickname": "Warrior3963",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a60ad3aec9cb9f779d4e4",
+    "country": "United States",
+    "coinsYesterday": 17614,
+    "coins7Days": 103694,
+    "coins30Days": 318067
+  },
+  {
+    "userId": "61",
+    "nickname": "Addict3145",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a61ad3aec9cb9f779d4e4",
+    "country": "Indonesia",
+    "coinsYesterday": 11499,
+    "coins7Days": 59768,
+    "coins30Days": 278933
+  },
+  {
+    "userId": "62",
+    "nickname": "Gamer",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a62ad3aec9cb9f779d4e4",
+    "country": "Brazil",
+    "coinsYesterday": 10974,
+    "coins7Days": 53178,
+    "coins30Days": 200000
+  },
+  {
+    "userId": "63",
+    "nickname": "Star3165",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a63ad3aec9cb9f779d4e4",
+    "country": "Indonesia",
+    "coinsYesterday": 12660,
+    "coins7Days": 94160,
+    "coins30Days": 367484
+  },
+  {
+    "userId": "64",
+    "nickname": "Anonymous",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a64ad3aec9cb9f779d4e4",
+    "country": "Indonesia",
+    "coinsYesterday": 30176,
+    "coins7Days": 203104,
+    "coins30Days": 916005
+  },
+  {
+    "userId": "65",
+    "nickname": "WalkerSr",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a65ad3aec9cb9f779d4e4",
+    "country": "Brazil",
+    "coinsYesterday": 38926,
+    "coins7Days": 174115,
+    "coins30Days": 621128
+  },
+  {
+    "userId": "66",
+    "nickname": "Path5920",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a66ad3aec9cb9f779d4e4",
+    "country": "Brazil",
+    "coinsYesterday": 19135,
+    "coins7Days": 131759,
+    "coins30Days": 437676
+  },
+  {
+    "userId": "67",
+    "nickname": "MsUser_",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a67ad3aec9cb9f779d4e4",
+    "country": "United States",
+    "coinsYesterday": 15207,
+    "coins7Days": 61965,
+    "coins30Days": 247358
+  },
+  {
+    "userId": "68",
+    "nickname": "Walker1635",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a68ad3aec9cb9f779d4e4",
+    "country": "Indonesia",
+    "coinsYesterday": 35123,
+    "coins7Days": 176058,
+    "coins30Days": 626394
+  },
+  {
+    "userId": "69",
+    "nickname": "Hero212",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a69ad3aec9cb9f779d4e4",
+    "country": "Brazil",
+    "coinsYesterday": 15985,
+    "coins7Days": 63246,
+    "coins30Days": 174160
+  },
+  {
+    "userId": "70",
+    "nickname": "Addict2381",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a70ad3aec9cb9f779d4e4",
+    "country": "Indonesia",
+    "coinsYesterday": 16703,
+    "coins7Days": 80665,
+    "coins30Days": 412513
+  },
+  {
+    "userId": "71",
+    "nickname": "DrLover23",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a71ad3aec9cb9f779d4e4",
+    "country": "Indonesia",
+    "coinsYesterday": 12640,
+    "coins7Days": 49275,
+    "coins30Days": 147378
+  },
+  {
+    "userId": "72",
+    "nickname": "Anonymous",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a72ad3aec9cb9f779d4e4",
+    "country": "Indonesia",
+    "coinsYesterday": 21502,
+    "coins7Days": 78873,
+    "coins30Days": 219557
+  },
+  {
+    "userId": "73",
+    "nickname": "Legend8183",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a73ad3aec9cb9f779d4e4",
+    "country": "United States",
+    "coinsYesterday": 18118,
+    "coins7Days": 107118,
+    "coins30Days": 566788
+  },
+  {
+    "userId": "74",
+    "nickname": "Active3284",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a74ad3aec9cb9f779d4e4",
+    "country": "Brazil",
+    "coinsYesterday": 15286,
+    "coins7Days": 75531,
+    "coins30Days": 233843
+  },
+  {
+    "userId": "75",
+    "nickname": "CoolPath",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a75ad3aec9cb9f779d4e4",
+    "country": "Indonesia",
+    "coinsYesterday": 9946,
+    "coins7Days": 37108,
+    "coins30Days": 111735
+  },
+  {
+    "userId": "76",
+    "nickname": "Walker",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a76ad3aec9cb9f779d4e4",
+    "country": "United States",
+    "coinsYesterday": 25237,
+    "coins7Days": 139918,
+    "coins30Days": 598529
+  },
+  {
+    "userId": "77",
+    "nickname": "Master3218",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a77ad3aec9cb9f779d4e4",
+    "country": "United States",
+    "coinsYesterday": 13220,
+    "coins7Days": 97387,
+    "coins30Days": 490680
+  },
+  {
+    "userId": "78",
+    "nickname": "Miles806",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a78ad3aec9cb9f779d4e4",
+    "country": "Indonesia",
+    "coinsYesterday": 14704,
+    "coins7Days": 123120,
+    "coins30Days": 410126
+  },
+  {
+    "userId": "79",
+    "nickname": "Journey9234",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a79ad3aec9cb9f779d4e4",
+    "country": "Indonesia",
+    "coinsYesterday": 16626,
+    "coins7Days": 135725,
+    "coins30Days": 674137
+  },
+  {
+    "userId": "80",
+    "nickname": "Fit4633",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a80ad3aec9cb9f779d4e4",
+    "country": "Brazil",
+    "coinsYesterday": 12172,
+    "coins7Days": 67057,
+    "coins30Days": 208929
+  },
+  {
+    "userId": "81",
+    "nickname": "LadyNinjaX",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a81ad3aec9cb9f779d4e4",
+    "country": "Brazil",
+    "coinsYesterday": 15531,
+    "coins7Days": 117628,
+    "coins30Days": 375227
+  },
+  {
+    "userId": "82",
+    "nickname": "Walker",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a82ad3aec9cb9f779d4e4",
+    "country": "United States",
+    "coinsYesterday": 24440,
+    "coins7Days": 104577,
+    "coins30Days": 410471
+  },
+  {
+    "userId": "83",
+    "nickname": "Fit8721",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a83ad3aec9cb9f779d4e4",
+    "country": "United States",
+    "coinsYesterday": 20940,
+    "coins7Days": 118610,
+    "coins30Days": 601816
+  },
+  {
+    "userId": "84",
+    "nickname": "SuperJourneySr",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a84ad3aec9cb9f779d4e4",
+    "country": "Brazil",
+    "coinsYesterday": 23917,
+    "coins7Days": 129812,
+    "coins30Days": 417345
+  },
+  {
+    "userId": "85",
+    "nickname": "MrAddict",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a85ad3aec9cb9f779d4e4",
+    "country": "Indonesia",
+    "coinsYesterday": 21833,
+    "coins7Days": 147394,
+    "coins30Days": 466209
+  },
+  {
+    "userId": "86",
+    "nickname": "LadyPaceMaster",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a86ad3aec9cb9f779d4e4",
+    "country": "Indonesia",
+    "coinsYesterday": 10849,
+    "coins7Days": 87442,
+    "coins30Days": 286311
+  },
+  {
+    "userId": "87",
+    "nickname": "Pro1458",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a87ad3aec9cb9f779d4e4",
+    "country": "United States",
+    "coinsYesterday": 18716,
+    "coins7Days": 143216,
+    "coins30Days": 437340
+  },
+  {
+    "userId": "88",
+    "nickname": "Anonymous",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a88ad3aec9cb9f779d4e4",
+    "country": "Indonesia",
+    "coinsYesterday": 10689,
+    "coins7Days": 91651,
+    "coins30Days": 338366
+  },
+  {
+    "userId": "89",
+    "nickname": "Active",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a89ad3aec9cb9f779d4e4",
+    "country": "Brazil",
+    "coinsYesterday": 24658,
+    "coins7Days": 192689,
+    "coins30Days": 623063
+  },
+  {
+    "userId": "90",
+    "nickname": "Tracker9511",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a90ad3aec9cb9f779d4e4",
+    "country": "Indonesia",
+    "coinsYesterday": 20928,
+    "coins7Days": 116750,
+    "coins30Days": 497194
+  },
+  {
+    "userId": "91",
+    "nickname": "Miles4922",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a91ad3aec9cb9f779d4e4",
+    "country": "Indonesia",
+    "coinsYesterday": 22570,
+    "coins7Days": 141386,
+    "coins30Days": 365679
+  },
+  {
+    "userId": "92",
+    "nickname": "MegaKing",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a92ad3aec9cb9f779d4e4",
+    "country": "United States",
+    "coinsYesterday": 23989,
+    "coins7Days": 133543,
+    "coins30Days": 525273
+  },
+  {
+    "userId": "93",
+    "nickname": "Pro",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a93ad3aec9cb9f779d4e4",
+    "country": "United States",
+    "coinsYesterday": 18222,
+    "coins7Days": 112207,
+    "coins30Days": 368522
+  },
+  {
+    "userId": "94",
+    "nickname": "QueenJr",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a94ad3aec9cb9f779d4e4",
+    "country": "Brazil",
+    "coinsYesterday": 24730,
+    "coins7Days": 134805,
+    "coins30Days": 656392
+  },
+  {
+    "userId": "95",
+    "nickname": "MsStep",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a95ad3aec9cb9f779d4e4",
+    "country": "Indonesia",
+    "coinsYesterday": 31415,
+    "coins7Days": 146729,
+    "coins30Days": 611995
+  },
+  {
+    "userId": "96",
+    "nickname": "SirGamerPro",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a96ad3aec9cb9f779d4e4",
+    "country": "Brazil",
+    "coinsYesterday": 18496,
+    "coins7Days": 121863,
+    "coins30Days": 465875
+  },
+  {
+    "userId": "97",
+    "nickname": "Champion6619",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a97ad3aec9cb9f779d4e4",
+    "country": "United States",
+    "coinsYesterday": 15603,
+    "coins7Days": 72724,
+    "coins30Days": 314694
+  },
+  {
+    "userId": "98",
+    "nickname": "Anonymous",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a98ad3aec9cb9f779d4e4",
+    "country": "Indonesia",
+    "coinsYesterday": 34981,
+    "coins7Days": 205588,
+    "coins30Days": 951817
+  },
+  {
+    "userId": "99",
+    "nickname": "Machine",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a99ad3aec9cb9f779d4e4",
+    "country": "Brazil",
+    "coinsYesterday": 75409,
+    "coins7Days": 440790,
+    "coins30Days": 1607865
+  },
+  {
+    "userId": "100",
+    "nickname": "MsRun",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a100ad3aec9cb9f779d4e4",
+    "country": "Brazil",
+    "coinsYesterday": 21578,
+    "coins7Days": 124617,
+    "coins30Days": 420226
+  },
+  {
+    "userId": "101",
+    "nickname": "Path6219",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a101ad3aec9cb9f779d4e4",
+    "country": "Brazil",
+    "coinsYesterday": 11586,
+    "coins7Days": 79467,
+    "coins30Days": 386215
+  },
+  {
+    "userId": "102",
+    "nickname": "MegaChampion",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a102ad3aec9cb9f779d4e4",
+    "country": "United States",
+    "coinsYesterday": 19880,
+    "coins7Days": 86956,
+    "coins30Days": 269982
+  },
+  {
+    "userId": "103",
+    "nickname": "Sir_Fan",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a103ad3aec9cb9f779d4e4",
+    "country": "Indonesia",
+    "coinsYesterday": 17998,
+    "coins7Days": 79075,
+    "coins30Days": 318387
+  },
+  {
+    "userId": "104",
+    "nickname": "Ninja",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a104ad3aec9cb9f779d4e4",
+    "country": "United States",
+    "coinsYesterday": 6774,
+    "coins7Days": 24779,
+    "coins30Days": 74679
+  },
+  {
+    "userId": "105",
+    "nickname": "Gamer",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a105ad3aec9cb9f779d4e4",
+    "country": "United States",
+    "coinsYesterday": 30580,
+    "coins7Days": 172352,
+    "coins30Days": 527345
+  },
+  {
+    "userId": "106",
+    "nickname": "Move",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a106ad3aec9cb9f779d4e4",
+    "country": "United States",
+    "coinsYesterday": 43762,
+    "coins7Days": 206403,
+    "coins30Days": 629460
+  },
+  {
+    "userId": "107",
+    "nickname": "TheFitPro",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a107ad3aec9cb9f779d4e4",
+    "country": "Indonesia",
+    "coinsYesterday": 18846,
+    "coins7Days": 107132,
+    "coins30Days": 491586
+  },
+  {
+    "userId": "108",
+    "nickname": "StarMaster",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a108ad3aec9cb9f779d4e4",
+    "country": "United States",
+    "coinsYesterday": 17150,
+    "coins7Days": 86808,
+    "coins30Days": 309257
+  },
+  {
+    "userId": "109",
+    "nickname": "Lover3731",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a109ad3aec9cb9f779d4e4",
+    "country": "Indonesia",
+    "coinsYesterday": 41126,
+    "coins7Days": 297426,
+    "coins30Days": 943877
+  },
+  {
+    "userId": "110",
+    "nickname": "Walker4695",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a110ad3aec9cb9f779d4e4",
+    "country": "United States",
+    "coinsYesterday": 12660,
+    "coins7Days": 56308,
+    "coins30Days": 157111
+  },
+  {
+    "userId": "111",
+    "nickname": "MsPacePro",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a111ad3aec9cb9f779d4e4",
+    "country": "United States",
+    "coinsYesterday": 30040,
+    "coins7Days": 164194,
+    "coins30Days": 505814
+  },
+  {
+    "userId": "112",
+    "nickname": "ThePace23",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a112ad3aec9cb9f779d4e4",
+    "country": "Indonesia",
+    "coinsYesterday": 18759,
+    "coins7Days": 82299,
+    "coins30Days": 257954
+  },
+  {
+    "userId": "113",
+    "nickname": "Anonymous",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a113ad3aec9cb9f779d4e4",
+    "country": "Indonesia",
+    "coinsYesterday": 12702,
+    "coins7Days": 78810,
+    "coins30Days": 360899
+  },
+  {
+    "userId": "114",
+    "nickname": "UltraHealth",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a114ad3aec9cb9f779d4e4",
+    "country": "United States",
+    "coinsYesterday": 21097,
+    "coins7Days": 97885,
+    "coins30Days": 294504
+  },
+  {
+    "userId": "115",
+    "nickname": "SuperMachineMaster",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a115ad3aec9cb9f779d4e4",
+    "country": "Brazil",
+    "coinsYesterday": 13281,
+    "coins7Days": 53594,
+    "coins30Days": 217071
+  },
+  {
+    "userId": "116",
+    "nickname": "Star",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a116ad3aec9cb9f779d4e4",
+    "country": "United States",
+    "coinsYesterday": 12777,
+    "coins7Days": 64109,
+    "coins30Days": 243408
+  },
+  {
+    "userId": "117",
+    "nickname": "QueenJr",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a117ad3aec9cb9f779d4e4",
+    "country": "United States",
+    "coinsYesterday": 28129,
+    "coins7Days": 195923,
+    "coins30Days": 919574
+  },
+  {
+    "userId": "118",
+    "nickname": "Lover4418",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a118ad3aec9cb9f779d4e4",
+    "country": "United States",
+    "coinsYesterday": 14414,
+    "coins7Days": 53466,
+    "coins30Days": 154028
+  },
+  {
+    "userId": "119",
+    "nickname": "Active8439",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a119ad3aec9cb9f779d4e4",
+    "country": "United States",
+    "coinsYesterday": 16769,
+    "coins7Days": 108093,
+    "coins30Days": 459120
+  },
+  {
+    "userId": "120",
+    "nickname": "Addict4153",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a120ad3aec9cb9f779d4e4",
+    "country": "United States",
+    "coinsYesterday": 14854,
+    "coins7Days": 113691,
+    "coins30Days": 421336
+  },
+  {
+    "userId": "121",
+    "nickname": "Legend",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a121ad3aec9cb9f779d4e4",
+    "country": "Indonesia",
+    "coinsYesterday": 32997,
+    "coins7Days": 182075,
+    "coins30Days": 553657
+  },
+  {
+    "userId": "122",
+    "nickname": "Anonymous",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a122ad3aec9cb9f779d4e4",
+    "country": "Brazil",
+    "coinsYesterday": 21415,
+    "coins7Days": 141086,
+    "coins30Days": 638101
+  },
+  {
+    "userId": "123",
+    "nickname": "MegaKing",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a123ad3aec9cb9f779d4e4",
+    "country": "Indonesia",
+    "coinsYesterday": 21619,
+    "coins7Days": 143376,
+    "coins30Days": 624517
+  },
+  {
+    "userId": "124",
+    "nickname": "DrJourneyX",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a124ad3aec9cb9f779d4e4",
+    "country": "United States",
+    "coinsYesterday": 10376,
+    "coins7Days": 42472,
+    "coins30Days": 178047
+  },
+  {
+    "userId": "125",
+    "nickname": "Anonymous",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a125ad3aec9cb9f779d4e4",
+    "country": "Brazil",
+    "coinsYesterday": 30151,
+    "coins7Days": 219487,
+    "coins30Days": 833299
+  },
+  {
+    "userId": "126",
+    "nickname": "Fit7398",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a126ad3aec9cb9f779d4e4",
+    "country": "United States",
+    "coinsYesterday": 11835,
+    "coins7Days": 95009,
+    "coins30Days": 374717
+  },
+  {
+    "userId": "127",
+    "nickname": "MsNinja",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a127ad3aec9cb9f779d4e4",
+    "country": "United States",
+    "coinsYesterday": 16908,
+    "coins7Days": 95458,
+    "coins30Days": 374868
+  },
+  {
+    "userId": "128",
+    "nickname": "MegaPath",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a128ad3aec9cb9f779d4e4",
+    "country": "Brazil",
+    "coinsYesterday": 9466,
+    "coins7Days": 72385,
+    "coins30Days": 341518
+  },
+  {
+    "userId": "129",
+    "nickname": "Gamer7734",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a129ad3aec9cb9f779d4e4",
+    "country": "United States",
+    "coinsYesterday": 19946,
+    "coins7Days": 94004,
+    "coins30Days": 459193
+  },
+  {
+    "userId": "130",
+    "nickname": "_Fan2602",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a130ad3aec9cb9f779d4e4",
+    "country": "United States",
+    "coinsYesterday": 18016,
+    "coins7Days": 93304,
+    "coins30Days": 281813
+  },
+  {
+    "userId": "131",
+    "nickname": "Run",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a131ad3aec9cb9f779d4e4",
+    "country": "United States",
+    "coinsYesterday": 19045,
+    "coins7Days": 107701,
+    "coins30Days": 330338
+  },
+  {
+    "userId": "132",
+    "nickname": "TheMiles",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a132ad3aec9cb9f779d4e4",
+    "country": "United States",
+    "coinsYesterday": 21838,
+    "coins7Days": 132305,
+    "coins30Days": 484387
+  },
+  {
+    "userId": "133",
+    "nickname": "MsUser_Jr",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a133ad3aec9cb9f779d4e4",
+    "country": "United States",
+    "coinsYesterday": 25202,
+    "coins7Days": 183213,
+    "coins30Days": 950908
+  },
+  {
+    "userId": "134",
+    "nickname": "LadyPro",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a134ad3aec9cb9f779d4e4",
+    "country": "United States",
+    "coinsYesterday": 37332,
+    "coins7Days": 263137,
+    "coins30Days": 1047138
+  },
+  {
+    "userId": "135",
+    "nickname": "Master8682",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a135ad3aec9cb9f779d4e4",
+    "country": "Brazil",
+    "coinsYesterday": 15841,
+    "coins7Days": 77108,
+    "coins30Days": 215202
+  },
+  {
+    "userId": "136",
+    "nickname": "Legend7114",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a136ad3aec9cb9f779d4e4",
+    "country": "Brazil",
+    "coinsYesterday": 9317,
+    "coins7Days": 68299,
+    "coins30Days": 287022
+  },
+  {
+    "userId": "137",
+    "nickname": "Active",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a137ad3aec9cb9f779d4e4",
+    "country": "Brazil",
+    "coinsYesterday": 31867,
+    "coins7Days": 178374,
+    "coins30Days": 551345
+  },
+  {
+    "userId": "138",
+    "nickname": "MegaLegendX",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a138ad3aec9cb9f779d4e4",
+    "country": "Indonesia",
+    "coinsYesterday": 24914,
+    "coins7Days": 145360,
+    "coins30Days": 448395
+  },
+  {
+    "userId": "139",
+    "nickname": "Legend4710",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a139ad3aec9cb9f779d4e4",
+    "country": "Indonesia",
+    "coinsYesterday": 10065,
+    "coins7Days": 44776,
+    "coins30Days": 152017
+  },
+  {
+    "userId": "140",
+    "nickname": "FitJr",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a140ad3aec9cb9f779d4e4",
+    "country": "United States",
+    "coinsYesterday": 20703,
+    "coins7Days": 132483,
+    "coins30Days": 564314
+  },
+  {
+    "userId": "141",
+    "nickname": "SirMove_official",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a141ad3aec9cb9f779d4e4",
+    "country": "United States",
+    "coinsYesterday": 28234,
+    "coins7Days": 206233,
+    "coins30Days": 775058
+  },
+  {
+    "userId": "142",
+    "nickname": "Move",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a142ad3aec9cb9f779d4e4",
+    "country": "Brazil",
+    "coinsYesterday": 26504,
+    "coins7Days": 171324,
+    "coins30Days": 638609
+  },
+  {
+    "userId": "143",
+    "nickname": "Anonymous",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a143ad3aec9cb9f779d4e4",
+    "country": "United States",
+    "coinsYesterday": 15232,
+    "coins7Days": 85847,
+    "coins30Days": 374493
+  },
+  {
+    "userId": "144",
+    "nickname": "Pace3850",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a144ad3aec9cb9f779d4e4",
+    "country": "United States",
+    "coinsYesterday": 15398,
+    "coins7Days": 89711,
+    "coins30Days": 265634
+  },
+  {
+    "userId": "145",
+    "nickname": "Addict",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a145ad3aec9cb9f779d4e4",
+    "country": "United States",
+    "coinsYesterday": 34559,
+    "coins7Days": 232126,
+    "coins30Days": 1192439
+  },
+  {
+    "userId": "146",
+    "nickname": "Anonymous",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a146ad3aec9cb9f779d4e4",
+    "country": "United States",
+    "coinsYesterday": 9076,
+    "coins7Days": 52849,
+    "coins30Days": 227636
+  },
+  {
+    "userId": "147",
+    "nickname": "Run4820",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a147ad3aec9cb9f779d4e4",
+    "country": "Brazil",
+    "coinsYesterday": 22843,
+    "coins7Days": 116437,
+    "coins30Days": 327973
+  },
+  {
+    "userId": "148",
+    "nickname": "Anonymous",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a148ad3aec9cb9f779d4e4",
+    "country": "United States",
+    "coinsYesterday": 8379,
+    "coins7Days": 31299,
+    "coins30Days": 90979
+  },
+  {
+    "userId": "149",
+    "nickname": "User_2293",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a149ad3aec9cb9f779d4e4",
+    "country": "United States",
+    "coinsYesterday": 21711,
+    "coins7Days": 97264,
+    "coins30Days": 496390
+  },
+  {
+    "userId": "150",
+    "nickname": "LoverMaster",
+    "avatarUrl": "https://api.dicebear.com/7.x/avataaars/png?seed=d941b7350bf70a150ad3aec9cb9f779d4e4",
+    "country": "Brazil",
+    "coinsYesterday": 16758,
+    "coins7Days": 95275,
+    "coins30Days": 294300
+  }
+]

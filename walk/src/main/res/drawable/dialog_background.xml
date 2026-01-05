@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 基础背景色：surfaceContainerLow -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="?attr/colorSurfaceContainerLow" />
+            <corners android:radius="16dp" />
+        </shape>
+    </item>
+
+    <!-- 右下角径向渐变：第三色18%透明度，到58%位置变为透明 -->
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:centerX="100%"
+                android:centerY="100%"
+                android:endColor="@android:color/transparent"
+                android:gradientRadius="58%"
+                android:startColor="#2DF4A11A"
+                android:type="radial" />
+            <corners android:radius="16dp" />
+
+        </shape>
+    </item>
+
+    <!-- 左上角径向渐变：主色22%透明度，到62%位置变为透明 -->
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:centerX="0%"
+                android:centerY="0%"
+                android:endColor="@android:color/transparent"
+                android:gradientRadius="62%"
+                android:startColor="?attr/colorPrimaryContainer"
+                android:type="radial" />
+            <corners android:radius="16dp" />
+
+        </shape>
+    </item>
+
+</layer-list>

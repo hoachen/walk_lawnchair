@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- 第一层：body背景色 #E5E7EB -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#E5E7EB" />
+        </shape>
+    </item>
+
+    <!-- 第二层：.app-root背景色 #F2F4F7，带圆角 -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#F2F4F7" />
+            <corners android:radius="24dp" />
+        </shape>
+    </item>
+
+    <!-- 第三层：右上角径向渐变光晕 -->
+    <!-- 尝试使用百分比半径 -->
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:startColor="#2600D68F"
+                android:endColor="@android:color/transparent"
+                android:centerX="100%"
+                android:centerY="0%"
+                android:gradientRadius="70%"
+                android:type="radial" />
+            <corners android:radius="24dp" />
+        </shape>
+    </item>
+
+</layer-list>

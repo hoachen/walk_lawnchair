@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <!-- 顶部工具栏 -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="@android:drawable/ic_menu_close_clear_cancel"
+        app:title="@string/trends_title"
+        app:titleTextColor="?attr/colorOnBackground" />
+
+    <!-- 选项卡 -->
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tab_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:background="@drawable/tab_background"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:tabBackground="@drawable/tab_selector"
+        app:tabGravity="fill"
+        app:tabIndicatorHeight="0dp"
+        app:tabMode="fixed"
+        app:tabRippleColor="@android:color/transparent"
+        app:tabSelectedTextColor="?attr/colorOnBackground"
+        app:tabTextColor="?attr/colorOnBackground">
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tab_daily" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tab_weekly" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tab_monthly" />
+    </com.google.android.material.tabs.TabLayout>
+
+    <!-- 日期显示 -->
+    <TextView
+        android:id="@+id/tv_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/sample_date"
+        android:textColor="?attr/colorOnBackground"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tab_layout" />
+
+    <!-- 最佳日徽章 -->
+    <TextView
+        android:id="@+id/best_day_badge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:background="@color/colorAccent"
+        android:paddingHorizontal="8dp"
+        android:paddingVertical="2dp"
+        android:text="@string/best_day"
+        android:textColor="?attr/colorOnPrimaryContainer"
+        android:textSize="12sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/tv_date"
+        app:layout_constraintStart_toEndOf="@id/tv_date"
+        app:layout_constraintTop_toTopOf="@id/tv_date" />
+
+    <!-- 统计信息区域 -->
+    <FrameLayout
+        android:id="@+id/card_stats"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/tv_date">
+
+        <LinearLayout
+            android:id="@+id/stats_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16dp">
+
+            <!-- 步数 -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_steps_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sample_steps"
+                    android:textColor="@color/colorOnBackground"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/steps"
+                    android:textColor="@color/colorOnBackground"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <!-- 距离 -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_distance_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sample_distance"
+                    android:textColor="@color/colorOnBackground"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/km"
+                    android:textColor="@color/colorOnBackground"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <!-- 卡路里 -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_calories_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sample_calories"
+                    android:textColor="@color/colorOnBackground"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/kcal"
+                    android:textColor="@color/colorOnBackground"
+                    android:textSize="14sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </FrameLayout>
+
+    <!-- 图表容器 -->
+    <FrameLayout
+        android:id="@+id/card_chart"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@id/card_best_day"
+        app:layout_constraintTop_toBottomOf="@id/card_stats">
+
+        <FrameLayout
+            android:id="@+id/chart_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </FrameLayout>
+
+    <!-- 空数据视图 -->
+    <TextView
+        android:id="@+id/empty_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/no_data_available"
+        android:textColor="?attr/colorOnBackground"
+        android:textSize="16sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/card_stats" />
+
+    <!-- 最佳记录区域 -->
+    <FrameLayout
+        android:id="@+id/card_best_day"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="16dp"
+        app:cardBackgroundColor="?attr/colorSecondaryContainer"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="4dp"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <LinearLayout
+            android:id="@+id/best_day_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginEnd="8dp"
+                    android:src="@drawable/ic_crown"
+                    app:tint="@color/colorAccent" />
+
+                <TextView
+                    android:id="@+id/best_day_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/best_day"
+                    android:textColor="@color/colorOnBackground"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <!-- 最佳记录的统计信息 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <!-- 步数 -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_best_day_steps"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/sample_best_steps"
+                        android:textColor="@color/colorOnBackground"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/steps"
+                        android:textColor="@color/colorOnBackground"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <!-- 距离 -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_best_day_distance"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/sample_best_distance"
+                        android:textColor="@color/colorOnBackground"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/km"
+                        android:textColor="@color/colorOnBackground"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <!-- 卡路里 -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_best_day_calories"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/sample_best_calories"
+                        android:textColor="@color/colorOnBackground"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/kcal"
+                        android:textColor="@color/colorOnBackground"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout> 

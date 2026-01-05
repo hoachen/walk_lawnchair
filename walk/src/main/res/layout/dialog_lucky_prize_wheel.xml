@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/dialog_background">
+
+    <TextView
+        android:id="@+id/tv_lucky_wheel_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Try your luck!"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_lucky_wheel_subtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="100% win rate"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_lucky_wheel_title" />
+
+    <RelativeLayout
+        android:id="@+id/wheel_container"
+        android:layout_width="280dp"
+        android:layout_height="280dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_lucky_wheel_subtitle">
+
+        <!-- 转盘背景 -->
+        <ImageView
+            android:id="@+id/iv_wheel_bg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/wheel_background"
+            android:scaleType="fitCenter" />
+
+        <!-- 宝箱位置 - $1 -->
+        <ImageView
+            android:id="@+id/iv_chest_1"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="25dp"
+            android:src="@drawable/icon_chest" />
+            
+        <TextView
+            android:id="@+id/tv_prize_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/iv_chest_1"
+            android:layout_centerHorizontal="true"
+            android:text="$1"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <!-- 宝箱位置 - $5 -->
+        <ImageView
+            android:id="@+id/iv_chest_2"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="25dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/icon_chest" />
+            
+        <TextView
+            android:id="@+id/tv_prize_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/iv_chest_2"
+            android:layout_marginLeft="-35dp"
+            android:layout_alignBottom="@id/iv_chest_2"
+            android:layout_marginBottom="-25dp"
+            android:text="$5"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <!-- 宝箱位置 - $10 -->
+        <ImageView
+            android:id="@+id/iv_chest_3"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="25dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/icon_chest" />
+            
+        <TextView
+            android:id="@+id/tv_prize_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/iv_chest_3"
+            android:layout_marginRight="-35dp"
+            android:layout_alignBottom="@id/iv_chest_3"
+            android:layout_marginBottom="-25dp"
+            android:text="$10"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <!-- 宝箱位置 - $10 底部 -->
+        <ImageView
+            android:id="@+id/iv_chest_4"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="25dp"
+            android:src="@drawable/icon_chest" />
+            
+        <TextView
+            android:id="@+id/tv_prize_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/iv_chest_4"
+            android:layout_centerHorizontal="true"
+            android:text="$10"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <!-- 中央区域 -->
+        <View
+            android:id="@+id/center_marker"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerInParent="true"
+            android:background="@drawable/center_circle_background" />
+
+        <!-- 指针 -->
+        <ImageView
+            android:id="@+id/iv_wheel_pointer"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/wheel_pointer" />
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/btn_start"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/button_background"
+        android:text="Start"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/wheel_container" />
+
+</androidx.constraintlayout.widget.ConstraintLayout> 

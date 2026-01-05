@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    
+    <!-- 外环：conic渐变模拟（65%进度） -->
+    <item>
+        <shape android:shape="oval">
+            <size android:width="90dp" android:height="90dp" />
+            <!-- 使用sweep渐变模拟conic渐变：65% primary, 35% 透明 -->
+            <gradient
+                android:type="sweep"
+                android:startColor="#00D68F"
+                android:centerColor="#00D68F"
+                android:endColor="#26FFFFFF"
+                android:centerX="50%"
+                android:centerY="50%"
+                android:angle="0" />
+        </shape>
+    </item>
+    
+    <!-- 内圆遮罩：创建环形效果 -->
+    <item
+        android:width="56dp"
+        android:height="56dp"
+        android:gravity="center">
+        <shape android:shape="oval">
+            <solid android:color="#000000" />
+        </shape>
+    </item>
+    
+</layer-list>

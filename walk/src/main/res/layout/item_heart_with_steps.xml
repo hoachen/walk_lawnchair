@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="6dp"
+    android:layout_marginTop="20dp"
+    android:layout_marginBottom="8dp"
+    app:cardCornerRadius="20dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/gradient_primary_to_inverse"
+        android:padding="16dp">
+
+        <!-- 顶部区域：标题和步数 -->
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/heart_steps_title"
+            android:textColor="?attr/colorOnSecondary"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_step_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="9300"
+            android:textColor="?attr/colorOnSecondary"
+            android:textSize="36sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/tv_title"
+            app:layout_constraintTop_toBottomOf="@id/tv_title" />
+
+        <TextView
+            android:id="@+id/tv_step_unit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/heart_steps_unit"
+            android:textColor="?attr/colorOnSecondary"
+            android:textSize="14sp"
+            app:layout_constraintBaseline_toBaselineOf="@id/tv_step_count"
+            app:layout_constraintStart_toEndOf="@id/tv_step_count" />
+
+        <!-- 金币按钮 -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_coin_exchange"
+            style="@style/Widget.Material3.Button.IconButton.Filled"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:text="@string/heart_steps_coin_button"
+            android:textColor="?attr/colorOnSecondary"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- 自定义任务进度条 -->
+        <com.ur.apps.walk.view.TaskProgressBar
+            android:id="@+id/task_progress_bar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            app:backgroundColor="?attr/colorPrimary"
+            app:completedMarkerColor="?attr/colorError"
+            app:cornerRadius="8dp"
+            app:layout_constraintBottom_toTopOf="@id/stats_container"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_step_unit"
+            app:progressColor="?attr/colorOnPrimary"
+            app:progressHeight="10dp"
+            app:scaleTextColor="?attr/colorOnSecondary"
+            app:scaleTextSize="14sp"
+            app:textPadding="12dp" />
+
+        <!-- 底部统计区域 - 三个小卡 -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/stats_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/task_progress_bar">
+
+            <!-- 三等分参考线 -->
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.333" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.667" />
+
+            <!-- 距离小卡 -->
+            <include
+                android:id="@+id/distance_card"
+                layout="@layout/item_stat_card"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/guideline1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- 卡路里小卡 -->
+            <include
+                android:id="@+id/calories_card"
+                layout="@layout/item_stat_card"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/guideline2"
+                app:layout_constraintStart_toStartOf="@id/guideline1"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- 时间小卡 -->
+            <include
+                android:id="@+id/time_card"
+                layout="@layout/item_stat_card"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/guideline2"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 绿色圆形背景 -->
+    <item>
+        <shape android:shape="oval">
+            <solid android:color="#00C89F" /> <!-- 电光青/绿色 -->
+            <size android:width="56dp" android:height="56dp" />
+        </shape>
+    </item>
+
+    <!-- 中间的箭头图标 (需要你自己添加一个 vector icon) -->
+    <!-- 这里假设你有一个名为 ic_arrow_forward 的矢量图 -->
+    <item android:gravity="center"
+        android:drawable="@drawable/ic_arrow_forward_white"
+        android:width="24dp"
+        android:height="24dp" />
+</layer-list>

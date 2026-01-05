@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:paddingHorizontal="16dp"
+    android:paddingVertical="12dp">
+
+    <!-- 左侧：设置按钮（使用首页个人主页按钮的样式） -->
+    <FrameLayout
+        android:id="@+id/btn_settings"
+        android:layout_width="38dp"
+        android:layout_height="38dp"
+        android:background="@drawable/icon_button_profile_background"
+        android:clickable="true"
+        android:elevation="4dp"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackgroundBorderless"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center"
+            android:src="@drawable/profile_settings"
+            app:tint="@color/md_theme_onSurface" />
+
+    </FrameLayout>
+
+    <!-- 中间：页面标题和副标题 -->
+    <LinearLayout
+        android:id="@+id/title_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingHorizontal="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tv_app_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:letterSpacing="0.08"
+            android:text="@string/profile_title"
+            android:textAllCaps="true"
+            android:textColor="@color/md_theme_onSurface"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_app_subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:fontFamily="sans-serif"
+            android:text="@string/profile_subtitle"
+            android:textColor="?attr/colorOnSurfaceVariant"
+            android:textSize="11sp" />
+    </LinearLayout>
+
+    <!-- 右侧：排行榜按钮（使用首页个人主页按钮的样式） -->
+    <FrameLayout
+        android:id="@+id/btn_leaderboard"
+        android:layout_width="38dp"
+        android:layout_height="38dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/icon_button_profile_background"
+        android:clickable="true"
+        android:elevation="4dp"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackgroundBorderless"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btn_home"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center"
+            android:src="@drawable/profile_leader_board"
+            app:tint="@color/md_theme_onSurface" />
+
+    </FrameLayout>
+
+    <!-- 右侧：主页按钮（使用首页金币提现按钮的样式） -->
+    <FrameLayout
+        android:id="@+id/btn_home"
+        android:layout_width="38dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="8dp"
+        android:background="@drawable/icon_button_profile_background"
+        android:clickable="true"
+        android:elevation="8dp"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackgroundBorderless"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center"
+            android:src="@drawable/profile_home"
+            app:tint="@color/md_theme_onTertiary" />
+
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

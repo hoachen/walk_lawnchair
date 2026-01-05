@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 背景圆 -->
+    <item>
+        <shape android:shape="oval">
+            <solid android:color="#FF9800" />
+            <stroke
+                android:width="5dp"
+                android:color="#E65100" />
+        </shape>
+    </item>
+    
+    <!-- 第一扇区 -->
+    <item>
+        <rotate
+            android:fromDegrees="0"
+            android:toDegrees="60"
+            android:pivotX="50%"
+            android:pivotY="50%">
+            <shape android:shape="rectangle">
+                <solid android:color="#F44336" />
+                <size
+                    android:width="140dp"
+                    android:height="140dp" />
+            </shape>
+        </rotate>
+    </item>
+    
+    <!-- 第二扇区 -->
+    <item>
+        <rotate
+            android:fromDegrees="60"
+            android:toDegrees="120"
+            android:pivotX="50%"
+            android:pivotY="50%">
+            <shape android:shape="rectangle">
+                <solid android:color="#2196F3" />
+                <size
+                    android:width="140dp"
+                    android:height="140dp" />
+            </shape>
+        </rotate>
+    </item>
+    
+    <!-- 第三扇区 -->
+    <item>
+        <rotate
+            android:fromDegrees="120"
+            android:toDegrees="180"
+            android:pivotX="50%"
+            android:pivotY="50%">
+            <shape android:shape="rectangle">
+                <solid android:color="#4CAF50" />
+                <size
+                    android:width="140dp"
+                    android:height="140dp" />
+            </shape>
+        </rotate>
+    </item>
+    
+    <!-- 第四扇区 -->
+    <item>
+        <rotate
+            android:fromDegrees="180"
+            android:toDegrees="240"
+            android:pivotX="50%"
+            android:pivotY="50%">
+            <shape android:shape="rectangle">
+                <solid android:color="#FFC107" />
+                <size
+                    android:width="140dp"
+                    android:height="140dp" />
+            </shape>
+        </rotate>
+    </item>
+    
+    <!-- 第五扇区 -->
+    <item>
+        <rotate
+            android:fromDegrees="240"
+            android:toDegrees="300"
+            android:pivotX="50%"
+            android:pivotY="50%">
+            <shape android:shape="rectangle">
+                <solid android:color="#9C27B0" />
+                <size
+                    android:width="140dp"
+                    android:height="140dp" />
+            </shape>
+        </rotate>
+    </item>
+    
+    <!-- 第六扇区 -->
+    <item>
+        <rotate
+            android:fromDegrees="300"
+            android:toDegrees="360"
+            android:pivotX="50%"
+            android:pivotY="50%">
+            <shape android:shape="rectangle">
+                <solid android:color="#3F51B5" />
+                <size
+                    android:width="140dp"
+                    android:height="140dp" />
+            </shape>
+        </rotate>
+    </item>
+    
+    <!-- 中央圆形 -->
+    <item
+        android:width="70dp"
+        android:height="70dp"
+        android:gravity="center">
+        <shape android:shape="oval">
+            <solid android:color="#FFFFFF" />
+            <stroke
+                android:width="3dp"
+                android:color="#E65100" />
+        </shape>
+    </item>
+    
+    <!-- 分隔线 -->
+    <item>
+        <rotate android:fromDegrees="0" android:pivotX="50%" android:pivotY="50%">
+            <shape android:shape="line">
+                <stroke android:width="3dp" android:color="#FFFFFF" />
+                <size android:height="140dp" />
+            </shape>
+        </rotate>
+    </item>
+    
+    <item>
+        <rotate android:fromDegrees="60" android:pivotX="50%" android:pivotY="50%">
+            <shape android:shape="line">
+                <stroke android:width="3dp" android:color="#FFFFFF" />
+                <size android:height="140dp" />
+            </shape>
+        </rotate>
+    </item>
+    
+    <item>
+        <rotate android:fromDegrees="120" android:pivotX="50%" android:pivotY="50%">
+            <shape android:shape="line">
+                <stroke android:width="3dp" android:color="#FFFFFF" />
+                <size android:height="140dp" />
+            </shape>
+        </rotate>
+    </item>
+    
+    <item>
+        <rotate android:fromDegrees="180" android:pivotX="50%" android:pivotY="50%">
+            <shape android:shape="line">
+                <stroke android:width="3dp" android:color="#FFFFFF" />
+                <size android:height="140dp" />
+            </shape>
+        </rotate>
+    </item>
+    
+    <item>
+        <rotate android:fromDegrees="240" android:pivotX="50%" android:pivotY="50%">
+            <shape android:shape="line">
+                <stroke android:width="3dp" android:color="#FFFFFF" />
+                <size android:height="140dp" />
+            </shape>
+        </rotate>
+    </item>
+    
+    <item>
+        <rotate android:fromDegrees="300" android:pivotX="50%" android:pivotY="50%">
+            <shape android:shape="line">
+                <stroke android:width="3dp" android:color="#FFFFFF" />
+                <size android:height="140dp" />
+            </shape>
+        </rotate>
+    </item>
+</layer-list> 

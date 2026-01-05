@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 高亮状态（即将达成） - 以html为绝对标准 -->
+    <item android:state_selected="true" android:state_enabled="true">
+        <shape android:shape="rectangle">
+            <corners android:radius="20dp" />
+            <!-- html绝对标准: linear-gradient(180deg, #FFFBEB 0%, #fff 100%) -->
+            <gradient
+                android:startColor="#FFFBEB"
+                android:endColor="#FFFFFF"
+                android:angle="180" />
+            <!-- html绝对标准: border: 1px solid rgba(251, 188, 5, 0.3) -->
+            <stroke
+                android:width="1dp"
+                android:color="#FBB805"
+                android:alpha="0.3" />
+        </shape>
+    </item>
+    
+    <!-- 已完成状态 -->
+    <item android:state_activated="true" android:state_enabled="true">
+        <shape android:shape="rectangle">
+            <corners android:radius="20dp" />
+            <solid android:color="@color/md_theme_surfaceBright" />
+            <stroke
+                android:width="1dp"
+                android:color="@color/md_theme_outlineVariant" />
+        </shape>
+    </item>
+    
+    <!-- 锁定状态 -->
+    <item android:state_enabled="false">
+        <shape android:shape="rectangle">
+            <corners android:radius="20dp" />
+            <solid android:color="@color/md_theme_surfaceVariant" />
+            <stroke
+                android:width="1dp"
+                android:color="@color/md_theme_outline" />
+        </shape>
+    </item>
+    
+    <!-- 默认状态（普通任务） -->
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="20dp" />
+            <solid android:color="@color/md_theme_surfaceBright" />
+            <stroke
+                android:width="1dp"
+                android:color="@color/md_theme_outlineVariant" />
+        </shape>
+    </item>
+</selector>

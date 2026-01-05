@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    
+    <!-- 基础白色背景 -->
+    <item>
+        <shape android:shape="oval">
+            <solid android:color="@color/md_theme_surfaceBright" />
+            <stroke 
+                android:width="1dp"
+                android:color="@color/md_theme_primaryFixedDim" />
+        </shape>
+    </item>
+    
+    <!-- 左上角径向渐变：primaryContainer到surfaceBright -->
+    <item>
+        <shape android:shape="oval">
+            <gradient
+                android:type="radial"
+                android:gradientRadius="58%"
+                android:centerX="0%"
+                android:centerY="0%"
+                android:startColor="@color/md_theme_primaryContainer"
+                android:endColor="@color/md_theme_surfaceBright" />
+        </shape>
+    </item>
+    
+</layer-list>

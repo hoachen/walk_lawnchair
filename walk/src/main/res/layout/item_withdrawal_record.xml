@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="16dp"
+    android:layout_marginVertical="8dp"
+    app:cardBackgroundColor="?attr/colorPrimary"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="4dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <!-- 订单ID -->
+        <TextView
+            android:id="@+id/tv_order_id"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="?attr/colorOnPrimary"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toStartOf="@id/tv_status"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/withdrawal_record_order_sample" />
+
+        <!-- 状态 -->
+        <TextView
+            android:id="@+id/tv_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_status_tag"
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="2dp"
+            android:textColor="?attr/colorOnSurface"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/withdrawal_record_status_success_sample" />
+
+        <!-- 金额 -->
+        <TextView
+            android:id="@+id/tv_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:textColor="?attr/colorOnPrimary"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_order_id"
+            tools:text="@string/withdrawal_record_amount_sample" />
+
+        <!-- 金币数 -->
+        <TextView
+            android:id="@+id/tv_coin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:textColor="?attr/colorOnPrimary"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@id/tv_amount"
+            app:layout_constraintStart_toEndOf="@id/tv_amount"
+            app:layout_constraintTop_toTopOf="@id/tv_amount"
+            tools:text="@string/withdrawal_record_coins_sample" />
+
+        <!-- 手续费信息 -->
+        <TextView
+            android:id="@+id/tv_commission"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textColor="?attr/colorOnPrimary"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_amount"
+            tools:text="@string/withdrawal_record_commission_sample" />
+
+        <!-- 创建时间 -->
+        <TextView
+            android:id="@+id/tv_create_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textColor="?attr/colorOnPrimary"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_commission"
+            tools:text="@string/withdrawal_record_create_time_sample" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

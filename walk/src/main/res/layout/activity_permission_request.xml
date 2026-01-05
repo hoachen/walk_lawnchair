@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_background"
+    android:padding="24dp">
+
+    <!-- 应用图标 -->
+    <ImageView
+        android:id="@+id/ivAppIcon"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="80dp"
+        android:contentDescription="@string/app_name"
+        android:src="@mipmap/ic_launcher"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- 权限请求标题 -->
+    <TextView
+        android:id="@+id/tvPermissionTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:gravity="center"
+        android:text="@string/permission_request_title"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivAppIcon" />
+
+    <!-- 权限描述 -->
+    <TextView
+        android:id="@+id/tvPermissionDescription"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:lineSpacingExtra="4sp"
+        android:text="@string/permission_request_description"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvPermissionTitle" />
+
+    <!-- 权限图标 -->
+    <ImageView
+        android:id="@+id/ivPermissionIcon"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_marginTop="32dp"
+        android:contentDescription="@string/permission_icon_description"
+        android:src="@drawable/ic_lock_screen"
+        android:tint="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvPermissionDescription" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnGrantPermission"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="48dp"
+        android:backgroundTint="@color/colorPrimary"
+        android:text="@string/btn_grant_permission"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:cornerRadius="28dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivPermissionIcon" />
+
+    <ImageView
+        android:id="@+id/coin_grant_permission"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/icon_grant_permission"
+        app:layout_constraintBottom_toBottomOf="@+id/btnGrantPermission"
+        app:layout_constraintEnd_toEndOf="@+id/btnGrantPermission"
+        app:layout_constraintHorizontal_bias="0.75"
+        app:layout_constraintStart_toStartOf="@+id/btnGrantPermission"
+        app:layout_constraintTop_toTopOf="@+id/btnGrantPermission" />
+
+    <!-- 右上角金币数 -->
+    <TextView
+        android:id="@+id/tv_coin_grant_permission"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="37dp"
+        android:text="Max 50000"
+        android:textColor="#FDE918"
+        android:textStyle="bold"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/coin_grant_permission"
+        app:layout_constraintStart_toStartOf="@+id/coin_grant_permission"
+        app:layout_constraintTop_toTopOf="@+id/coin_grant_permission" />
+
+    <!-- 跳过按钮 -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnSkipPermission"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@android:color/transparent"
+        android:text="@string/btn_skip_permission"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:cornerRadius="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnGrantPermission"
+        app:strokeColor="@color/white"
+        app:strokeWidth="1dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

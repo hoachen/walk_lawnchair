@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingHorizontal="20dp"
+    android:paddingTop="32dp"
+    android:paddingBottom="16dp"
+    android:background="@android:color/transparent"
+    android:clipChildren="false"
+    android:clipToPadding="false">
+
+    <!-- 任务标题区域 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingBottom="16dp">
+
+        <TextView
+            android:id="@+id/tv_task_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/task_earn_coins_title"
+            android:textColor="@color/md_theme_onSurface"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif"
+            android:letterSpacing="-0.02" />
+
+        <TextView
+            android:id="@+id/tv_task_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/task_list_progress_sample"
+            android:textColor="@color/md_theme_onSurfaceVariant"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif"
+            android:background="@drawable/task_badge_background"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="4dp" />
+    </LinearLayout>
+
+    <!-- 横向滑动的任务列表 -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_task_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp"
+        android:clipToPadding="false"
+        android:overScrollMode="never"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+</LinearLayout>

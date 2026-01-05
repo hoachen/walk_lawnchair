@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?><!-- 姓名输入框 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/user_name_area"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="vertical"
+    android:padding="8dp">
+
+    <TextView
+        android:id="@+id/label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:background="@null"
+        android:hint="@string/enter_name"
+        android:inputType="textPersonName"
+        android:textColor="?attr/colorOnSurface"
+        android:textSize="16sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <!-- 电话输入框 -->
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/ic_menu_call"
+            app:tint="?attr/colorOnSurface" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/countryCodeLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/bg_country_code"
+                android:clickable="true"
+                android:focusable="true"
+                android:orientation="horizontal"
+                android:padding="8dp">
+
+                <TextView
+                    android:id="@+id/tvCountryCode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/country_code_placeholder"
+                    android:textColor="?attr/colorOnSurface"
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_marginStart="4dp"
+                    android:src="@android:drawable/arrow_down_float"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/etPhone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:background="@null"
+                android:hint="@string/enter_phone"
+                android:inputType="phone"
+                android:textColor="?attr/colorOnSurface"
+                android:textSize="16sp" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

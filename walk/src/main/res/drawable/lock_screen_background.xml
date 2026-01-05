@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- 第一层：主渐变背景 - 从深绿到深蓝到深黑 -->
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:startColor="#022c22"
+                android:centerColor="#0f172a"
+                android:endColor="#020617"
+                android:angle="270"
+                android:type="linear" />
+        </shape>
+    </item>
+
+    <!-- 第二层：顶部光晕效果 - 模拟 HTML 中的 .glow-top -->
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:startColor="#4D00D68F"
+                android:endColor="@android:color/transparent"
+                android:centerX="50%"
+                android:centerY="-30%"
+                android:gradientRadius="80%"
+                android:type="radial" />
+        </shape>
+    </item>
+
+    <!-- 第三层：微妙的噪点纹理效果（使用半透明 overlay） -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#0D000000" />
+        </shape>
+    </item>
+
+</layer-list>

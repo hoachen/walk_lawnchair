@@ -7,6 +7,44 @@ pluginManagement {
                 includeGroupByRegex("androidx.*")
             }
         }
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        maven { url 'https://maven.aliyun.com/repository/central' }
+        maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
+        google {
+            content {
+                includeGroupByRegex("com\\.android.*")
+                includeGroupByRegex("com\\.google.*")
+                includeGroupByRegex("androidx.*")
+            }
+        }
+        mavenCentral()
+
+        //Anythink(Core)
+        maven {
+            url "https://jfrog.anythinktech.com/artifactory/overseas_sdk"
+        }
+
+        //Pangle
+        maven {
+            url "https://artifact.bytedance.com/repository/pangle"
+        }
+
+        //Mintegral
+        maven {
+            url "https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea"
+        }
+
+        //Chartboost
+        maven {
+            url "https://cboost.jfrog.io/artifactory/chartboost-ads"
+        }
+        maven {
+            url "https://cboost.jfrog.io/artifactory/chartboost-mediation"
+        }
+        maven {
+            url "https://jfrog.anythinktech.com/artifactory/debugger"
+        }
+
         gradlePluginPortal()
     }
 }
@@ -37,6 +75,39 @@ dependencyResolutionManagement {
                 includeGroupByRegex("com\\.google.*")
                 includeGroupByRegex("androidx.*")
             }
+        }
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        maven { url 'https://maven.aliyun.com/repository/central' }
+        google()
+        mavenCentral()
+
+        // JitPack仓库，用于MPAndroidChart依赖
+        maven { url 'https://jitpack.io' }
+
+        //Anythink(Core)
+        maven {
+            url "https://jfrog.anythinktech.com/artifactory/overseas_sdk"
+        }
+
+        //Pangle
+        maven {
+            url "https://artifact.bytedance.com/repository/pangle"
+        }
+
+        //Mintegral
+        maven {
+            url "https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea"
+        }
+
+        //Chartboost
+        maven {
+            url "https://cboost.jfrog.io/artifactory/chartboost-ads"
+        }
+        maven {
+            url "https://cboost.jfrog.io/artifactory/chartboost-mediation"
+        }
+        maven {
+            url "https://jfrog.anythinktech.com/artifactory/debugger"
         }
         mavenCentral()
         maven { url 'https://jitpack.io' }
@@ -95,3 +166,4 @@ include ':baseline-profile'
 include ':androidx-lib'
 include ':flags'
 include ':wmshell'
+include ':walk'

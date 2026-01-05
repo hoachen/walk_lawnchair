@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="120dp"
+    android:height="120dp"
+    android:viewportWidth="120"
+    android:viewportHeight="120">
+    
+    <!-- 中心光芒 -->
+    <path
+        android:pathData="M60,60m-30,0a30,30 0,1 1,60 0a30,30 0,1 1,-60 0"
+        android:fillColor="#FFFFFF"
+        android:fillAlpha="0.1"/>
+    
+    <!-- 光芒四射 -->
+    <path
+        android:pathData="M60,12L65,40L60,50L55,40L60,12Z"
+        android:fillColor="#FFFFFF"
+        android:fillAlpha="0.5"/>
+    
+    <path
+        android:pathData="M60,108L65,80L60,70L55,80L60,108Z"
+        android:fillColor="#FFFFFF"
+        android:fillAlpha="0.5"/>
+    
+    <path
+        android:pathData="M12,60L40,55L50,60L40,65L12,60Z"
+        android:fillColor="#FFFFFF"
+        android:fillAlpha="0.5"/>
+    
+    <path
+        android:pathData="M108,60L80,55L70,60L80,65L108,60Z"
+        android:fillColor="#FFFFFF"
+        android:fillAlpha="0.5"/>
+    
+    <!-- 角度光芒 -->
+    <path
+        android:pathData="M26,26L44,44L44,44L26,26Z"
+        android:strokeWidth="6"
+        android:strokeColor="#FFFFFF"
+        android:strokeAlpha="0.4"/>
+    
+    <path
+        android:pathData="M94,26L76,44L76,44L94,26Z"
+        android:strokeWidth="6"
+        android:strokeColor="#FFFFFF"
+        android:strokeAlpha="0.4"/>
+    
+    <path
+        android:pathData="M26,94L44,76L44,76L26,94Z"
+        android:strokeWidth="6"
+        android:strokeColor="#FFFFFF"
+        android:strokeAlpha="0.4"/>
+    
+    <path
+        android:pathData="M94,94L76,76L76,76L94,94Z"
+        android:strokeWidth="6"
+        android:strokeColor="#FFFFFF"
+        android:strokeAlpha="0.4"/>
+</vector> 
