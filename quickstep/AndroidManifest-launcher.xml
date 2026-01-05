@@ -25,7 +25,7 @@
 
     <uses-sdk android:targetSdkVersion="33" android:minSdkVersion="26"
         tools:overrideLibrary="com.kieronquinn.app.smartspacer.sdk.client"/>
-    
+
     <!--
     Manifest entries specific to Launcher3. This is merged with AndroidManifest-common.xml.
     Refer comments around specific entries on how to extend individual components.
@@ -48,6 +48,18 @@
         Main launcher activity. When extending only change the name, and keep all the
         attributes and intent filters the same
         -->
+
+        <activity android:name="com.ur.chair.walk.SplashActivity"
+            android:launchMode="singleTask"
+            android:theme="@style/Theme.Lawnchair"
+            android:exported="true"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
         <activity
             android:name="app.lawnchair.LawnchairLauncher"
             android:launchMode="singleTask"
@@ -68,7 +80,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.MONKEY"/>
                 <category android:name="android.intent.category.LAUNCHER_APP" />
-                <category android:name="android.intent.category.LAUNCHER" />
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
             </intent-filter>
             <meta-data
                 android:name="com.android.launcher3.grid.control"
