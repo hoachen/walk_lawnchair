@@ -1,6 +1,8 @@
 package app.lawnchair.deck
 
 import android.content.Context
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import app.lawnchair.LawnchairLauncher
 import app.lawnchair.flowerpot.Flowerpot
@@ -104,65 +106,30 @@ class LawndeckManager(private val context: Context) {
         onProgress?.invoke("Categorizing apps...")
 
         val validApps = apps.mapNotNull { it as? AppInfo }
-        val finalCategorizedApps = categorizeAppsWithSystemAndGoogle(validApps, context)
+        var appCount = 0
 
         onProgress?.invoke("Adding apps to workspace...")
 
-        val launcher = this.launcher ?: return
-        val model = launcher.model
-
-        // Collect folders to add and count single apps
-        val foldersToAdd = mutableListOf<FolderInfo>()
-        var singleAppCount = 0
-
-        // Process each category
-        finalCategorizedApps.forEach { (category, categoryApps) ->
-            if (categoryApps.isEmpty()) return@forEach
-
-            if (categoryApps.size == 1) {
-                // Single app - add directly to workspace
-                val app = categoryApps.first()
-                ItemInstallQueue.INSTANCE.get(context).queueItem(app.targetPackage, app.user)
-                singleAppCount++
-            } else {
-                // Multiple apps - create folder
-                onProgress?.invoke("Creating folder: $category...")
-                val folderInfo = createFolderInfo(category, categoryApps)
-                if (folderInfo != null) {
-                    foldersToAdd.add(folderInfo)
-                }
-            }
+        validApps.forEach { app->
+            ItemInstallQueue.INSTANCE.get(context).queueItem(app.targetPackage,app.user)
+            appCount++
         }
 
-        // Add all folders with their items to workspace using custom task
-        if (foldersToAdd.isNotEmpty()) {
-            // Wait for folder task to complete
-            model.enqueueModelUpdateTask(
-                AddFoldersWithItemsTask(foldersToAdd) {
-                    // Callback runs on UI thread from model task
-                    // Also wait for ItemInstallQueue to finish for single apps
-                    // ItemInstallQueue processes asynchronously, so we need to wait a bit
-                    if (singleAppCount > 0) {
-                        // Post to handler to give ItemInstallQueue time to process
-                        android.os.Handler(android.os.Looper.getMainLooper()).postDelayed({
-                            onComplete?.invoke()
-                        }, 800) // Wait for queue to process
-                    } else {
-                        onComplete?.invoke()
-                    }
+
+        if (appCount > 0) {
+            Handler(Looper.getMainLooper()).postDelayed(
+                {
+                    onComplete?.invoke()
                 },
+                1000,
             )
         } else {
-            // No folders, but may have single apps
-            if (singleAppCount > 0) {
-                // Give ItemInstallQueue time to process
-                android.os.Handler(android.os.Looper.getMainLooper()).postDelayed({
-                    onComplete?.invoke()
-                }, 800) // Wait for queue to process
-            } else {
-                onComplete?.invoke()
-            }
+            onComplete?.invoke()
         }
+        // Process each category
+
+
+        // Add all folders with their items to workspace using custom task
     }
 
     /**
@@ -238,7 +205,10 @@ class LawndeckManager(private val context: Context) {
         }
     }
 
-    private fun findFolderByCategory(category: String, dataModel: com.android.launcher3.model.BgDataModel): FolderInfo? {
+    private fun findFolderByCategory(
+        category: String,
+        dataModel: com.android.launcher3.model.BgDataModel,
+    ): FolderInfo? {
         // Search through workspace items to find folder with matching category name
         synchronized(dataModel) {
             dataModel.itemsIdMap.forEach { item ->
