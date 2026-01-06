@@ -570,6 +570,14 @@
 
     <string name="bugreport_group_summary">%d new reports</string>
     <string name="bugreport_group_summary_multiple">Multiple new reports</string>
+    <string name="custom_feed_title"> title</string>
+    <string name="custom_feed_quick_access"> custom_feed_quick_access</string>
+    <string name="custom_feed_weather"> custom_feed_weather</string>
+    <string name="custom_feed_calendar"> custom_feed_calendar</string>
+    <string name="custom_feed_no_events"> custom_feed_no_events</string>
+    <string name="custom_feed_news"> custom_feed_news</string>
+    <string name="custom_feed_news_placeholder"> custom_feed_news_placeholder</string>
+
 
     <!--
 
