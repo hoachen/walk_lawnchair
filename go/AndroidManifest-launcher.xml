@@ -25,17 +25,7 @@
     Refer comments around specific entries on how to extend individual components.
     -->
 
-    <application
-        android:backupAgent="com.android.launcher3.LauncherBackupAgent"
-        android:fullBackupOnly="true"
-        android:fullBackupContent="@xml/backupscheme"
-        android:hardwareAccelerated="true"
-        android:icon="@drawable/ic_launcher_home"
-        android:label="@string/derived_app_name"
-        android:theme="@style/AppTheme"
-        android:largeHeap="@bool/config_largeHeap"
-        android:restoreAnyVersion="true"
-        android:supportsRtl="true" >
+    <application>
 
         <!--
         Main launcher activity. When extending only change the name, and keep all the

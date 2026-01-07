@@ -64,16 +64,6 @@
          android:restoreAnyVersion="true"
          android:supportsRtl="true">
 
-        <activity android:name="com.ur.chair.walk.SplashActivity"
-            android:launchMode="singleTask"
-            android:theme="@style/Theme.Lawnchair"
-            android:exported="true"
-            android:enabled="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
 
         <service android:name="com.android.quickstep.TouchInteractionService"
              android:permission="android.permission.STATUS_BAR_SERVICE"

@@ -1,30 +1,16 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<!--
-  ~     This file is part of Lawnchair Launcher.
-  ~
-  ~     Lawnchair Launcher is free software: you can redistribute it and/or modify
-  ~     it under the terms of the GNU General Public License as published by
-  ~     the Free Software Foundation, either version 3 of the License, or
-  ~     (at your option) any later version.
-  ~
-  ~     Lawnchair Launcher is distributed in the hope that it will be useful,
-  ~     but WITHOUT ANY WARRANTY; without even the implied warranty of
-  ~     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  ~     GNU General Public License for more details.
-  ~
-  ~     You should have received a copy of the GNU General Public License
-  ~     along with Lawnchair Launcher.  If not, see <https://www.gnu.org/licenses/>.
-  -->
-<com.android.launcher3.folder.FolderIcon
+﻿<com.android.launcher3.folder.FolderIcon
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:orientation="vertical"
     android:paddingLeft="@dimen/dynamic_grid_cell_padding_x"
     android:paddingRight="@dimen/dynamic_grid_cell_padding_x"
-    android:focusable="true" >
+    android:focusable="true"
+    tools:viewBindingIgnore="true">
+
     <com.android.launcher3.BubbleTextView
         style="@style/BaseIcon"
         android:id="@+id/folder_icon_name"

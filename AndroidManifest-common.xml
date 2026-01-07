@@ -43,7 +43,7 @@
     <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES" />
     <uses-permission android:name="android.permission.EXPAND_STATUS_BAR" />
     <uses-permission android:name="android.permission.ACCESS_RESTRICTED_SETTINGS" />
-    
+
     <!-- for rotating surface by arbitrary degree -->
     <uses-permission android:name="android.permission.VIBRATE"/>
     <uses-permission android:name="android.permission.ROTATE_SURFACE_FLINGER" />
@@ -69,19 +69,7 @@
     <uses-permission android:name="${applicationId}.permission.READ_SETTINGS" />
     <uses-permission android:name="${applicationId}.permission.WRITE_SETTINGS" />
 
-    <application
-        android:backupAgent="com.android.launcher3.LauncherBackupAgent"
-        android:name="app.lawnchair.LawnchairApp"
-        android:fullBackupOnly="true"
-        android:backupInForeground="true"
-        android:fullBackupContent="@xml/backupscheme"
-        android:hardwareAccelerated="true"
-        android:icon="@drawable/ic_launcher_home"
-        android:label="@string/derived_app_name"
-        android:largeHeap="@bool/config_largeHeap"
-        android:restoreAnyVersion="true"
-        android:supportsRtl="true"
-        tools:replace="android:label">
+    <application>
 
         <!-- Intent received when a session is committed -->
         <receiver

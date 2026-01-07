@@ -17,7 +17,7 @@ import app.lawnchair.data.wallpaper.service.WallpaperDao
 import app.lawnchair.util.MainThreadInitializedObject
 import kotlinx.coroutines.runBlocking
 
-@Database(entities = [IconOverride::class, Wallpaper::class, FolderInfoEntity::class, FolderItemEntity::class], version = 3)
+@Database(entities = [IconOverride::class, Wallpaper::class, FolderInfoEntity::class, FolderItemEntity::class], version = 3, exportSchema = false)
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
 

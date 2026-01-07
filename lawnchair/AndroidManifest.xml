@@ -41,6 +41,55 @@
     <!--override minSdk declared in it-->
     <uses-sdk tools:overrideLibrary="com.kieronquinn.app.smartspacer.sdk" />
 
+<!--    walk start-->
+
+    <meta-data android:name="applovin.sdk.verbose_logging" android:value="true" />
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_HEALTH" />
+    <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION" />
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_LOGS" />
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
+
+    <uses-feature android:name="android.hardware.sensor.accelerometer" />
+
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+    <!-- 锁屏显示权限 -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+
+    <!--非中国区SDK必要权限-->
+    <uses-permission android:name="com.google.android.gms.permission.AD_ID" />
+
+    <queries>
+        <package android:name="com.facebook.katana" />
+    </queries>
+
+    <queries>
+        <package android:name="com.instagram.android" />
+    </queries>
+
+    <meta-data
+        android:name="TENJIN_APP_STORE"
+        android:value="googleplay" />
+    <!--    walk end-->
+
+
+
     <permission
         android:name="${packageName}.permission.READ_SETTINGS"
         tools:node="remove" />
@@ -51,8 +100,160 @@
         android:name="${packageName}.permission.HOTSEAT_EDU"
         tools:node="remove" />
 
-    <application>
+    <application
+        android:name="com.ur.apps.walk.WalkApplication"
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        tools:targetApi="31"
+        android:backupAgent="com.android.launcher3.LauncherBackupAgent"
+        android:fullBackupOnly="true"
+        android:fullBackupContent="@xml/backupscheme"
+        android:hardwareAccelerated="true"
+        android:theme="@style/AppTheme"
+        android:largeHeap="@bool/config_largeHeap"
+        android:restoreAnyVersion="true">
+
+
+        <uses-library android:name="org.apache.http.legacy" android:required="false" />
+
         <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-2830772598550207~1093153378"/>
+
+        <meta-data
+            android:name="com.google.android.gms.ads.AD_MANAGER_APP"
+            android:value="true" />
+
+        <!-- source file: nonchina_jcenter/network_sdk/inmobi/10.8.0/AndroidManifest.xml -->
+        <!--android:networkSecurityConfig="@xml/network_security_config"-->
+
+        <!-- source file: nonchina_jcenter/network_sdk/yandex/7.10.0/AndroidManifest.xml -->
+        <!-- Disable automatic sdk initialization for yandex -->
+        <meta-data
+            android:name="com.yandex.mobile.ads.AUTOMATIC_SDK_INITIALIZATION"
+            android:value="false" />
+        <!-- source file: nonchina_jcenter/network_sdk/fyber/8.3.5/AndroidManifest.xml -->
+
+        <!-- FileProvider配置 -->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true"
+            tools:replace="android:authorities"
+            >
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths"
+                tools:replace="android:resource"
+                />
+        </provider>
+
+        <!-- 启动页Activity -->
+        <activity
+            android:name="com.ur.apps.walk.SplashActivity"
+            android:exported="true"
+            android:noHistory="true"
+            android:theme="@style/Theme.WalkApp.Splash">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.ur.apps.walk.MainActivityRecycler"
+            android:exported="false"
+            android:label="@string/app_name"
+            android:launchMode="singleTask"
+            android:theme="@style/Theme.WalkApp.Theme1" />
+
+        <activity
+            android:name="com.ur.apps.walk.ProfileActivity"
+            android:exported="false"
+            android:theme="@style/Theme.WalkApp.Theme1" />
+
+        <activity
+            android:name="com.ur.apps.walk.SettingsActivity"
+            android:exported="false"
+            android:theme="@style/Theme.WalkApp.Theme1" />
+
+        <activity
+            android:name="com.ur.apps.walk.LeaderboardActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.ur.apps.walk.TrendsActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.WalkApp.Theme1" />
+
+        <activity
+            android:name="com.ur.apps.walk.CoinTaskActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.ur.apps.walk.WithdrawActivity"
+            android:exported="false"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.ur.apps.walk.WithdrawAmountActivity"
+            android:exported="false"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+
+        <activity
+            android:name="com.ur.apps.walk.WithdrawalRecordActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.WalkApp.Theme1" />
+
+        <activity
+            android:name="com.ur.apps.walk.WebViewActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:exported="false"
+            android:theme="@style/Theme.WalkApp.Theme1" />
+
+        <!-- 权限请求页面 -->
+        <activity
+            android:name="com.ur.apps.walk.PermissionRequestActivity"
+            android:exported="false"
+            android:theme="@style/Theme.WalkApp.Theme1" />
+
+        <!-- 锁屏界面 -->
+        <activity
+            android:name="com.ur.apps.walk.LockScreenActivity"
+            android:configChanges="orientation|keyboard"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:launchMode="singleInstance"
+            android:screenOrientation="portrait"
+            android:showWhenLocked="true"
+            android:taskAffinity="com.cashwalk.cashwalk.lockscreen.LockScreenActivity"
+            android:theme="@style/LockScreenTheme"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+
+        <service
+            android:name="com.ur.apps.walk.step.service.StepService"
+            android:enabled="true"
+            android:exported="false"
+            android:foregroundServiceType="dataSync|health" />
+
+
+        <meta-data
+            android:name="design_width_in_dp"
+            android:value="411" />
+    <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
@@ -113,10 +314,12 @@
             android:name="app.lawnchair.bugreport.FileProvider"
             android:authorities="${applicationId}.fileprovider"
             android:exported="false"
-            android:grantUriPermissions="true">
+            android:grantUriPermissions="true"
+            >
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/provider_paths" />
+                android:resource="@xml/provider_paths"
+                tools:replace="android:resource"/>
         </provider>
 
         <provider

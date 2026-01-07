@@ -19,6 +19,7 @@ pluginManagement {
         }
         mavenCentral()
 
+
         //Anythink(Core)
         maven {
             url "https://jfrog.anythinktech.com/artifactory/overseas_sdk"
@@ -46,6 +47,13 @@ pluginManagement {
         }
 
         gradlePluginPortal()
+        resolutionStrategy {
+            eachPlugin {
+                if (requested.id.id == 'org.jetbrains.kotlin.kapt') {
+                    useVersion '1.9.22' // Match your project's Kotlin version
+                }
+            }
+        }
     }
 }
 
@@ -166,4 +174,3 @@ include ':baseline-profile'
 include ':androidx-lib'
 include ':flags'
 include ':wmshell'
-include ':walk'

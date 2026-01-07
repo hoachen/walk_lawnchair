@@ -41,7 +41,6 @@
     <string name="select_all">全选</string>
     <string name="deselect_all">取消全选</string>
     <string name="inverse_selection">逆向全选</string>
-    <string name="loading">正在加载…</string>
     <string name="dismiss">撤销</string>
     <string name="download_update">下载更新</string>
     <string name="install_update">安装更新</string>
@@ -132,7 +131,7 @@
     Preference Dashboard
 
     -->
-    <string name="settings">设置</string>
+    <string name="walk_settings">设置</string>
     <string name="general_label">通用</string>
     <string name="general_description">颜色、图标包与通知圆点</string>
     <string name="home_screen_label">主屏幕</string>
@@ -394,7 +393,6 @@
     <string name="devops">运维</string>
     <string name="support_and_pr">支持和PR</string>
     <string name="community">社区</string>
-    <string name="telegram">Telegram</string>
     <string name="news">新闻</string>
     <string name="legal">Legal</string>
     <string name="acknowledgements">鸣谢</string>
@@ -704,4 +702,580 @@
     <string name="grant_requested_permissions_tap">点击此处授权</string>
     <!-- Message shown when all home screen views are removed -->
     <string name="home_screen_all_views_removed_msg">Home screen cleared</string>
+
+
+<!--    walk start-->
+
+    <string name="app_name"> Walk Win Cash</string>
+
+    <!-- MainActivity -->
+    <string name="daily_steps">每日步数</string>
+    <string name="coin_hint">每走100步获得1金币</string>
+    <string name="playtime_event">游戏时间活动</string>
+    <string name="steps_count">0</string>
+    <string name="coins_count">0</string>
+
+    <!-- Common -->
+    <string name="back">返回</string>
+    <string name="confirm">确定</string>
+    <string name="cancel">取消</string>
+    <string name="error">错误</string>
+    <string name="not_set">未设置</string>
+
+    <!-- Profile -->
+    <string name="set_nickname">设置你的昵称</string>
+    <string name="data_update_hint">数据将在午夜更新</string>
+    <string name="activity_status">最近7天：久坐不动</string>
+
+    <!-- Step Stats -->
+    <string name="steps">步数</string>
+    <string name="seven_days_avg">7天平均</string>
+    <string name="thirty_days_avg">30天平均</string>
+    <string name="best_record">最佳记录</string>
+
+    <!-- Records -->
+    <string name="withdrawal_record_title">记录</string>
+    <string name="withdrawal_record_empty">暂无兑换记录</string>
+    <string name="withdrawal_record_load_failed">获取兑换记录失败</string>
+    <string name="withdrawal_record_network_error">网络错误，请稍后再试</string>
+    <string name="withdrawal_record_no_more">没有更多记录了</string>
+    <string name="withdrawal_record_order">订单: %s</string>
+    <string name="withdrawal_record_coins">%d金币</string>
+    <string name="withdrawal_record_commission">手续费: %1$s%2$.1f (%3$d金币)</string>
+
+    <!-- Status -->
+    <string name="withdrawal_status_pending">待审核</string>
+    <string name="withdrawal_status_passed">审核通过</string>
+    <string name="withdrawal_status_failed">审核失败</string>
+    <string name="withdrawal_status_success">成功</string>
+    <string name="withdrawal_status_exception">兑换异常</string>
+    <string name="withdrawal_status_unknown">未知状态</string>
+
+    <!-- Trends -->
+    <string name="trends_title">运动趋势</string>
+    <string name="tab_daily">日</string>
+    <string name="tab_weekly">周</string>
+    <string name="tab_monthly">月</string>
+    <string name="best_day">最佳日</string>
+    <string name="best_week">最佳周</string>
+    <string name="best_month">最佳月</string>
+    <string name="km">km</string>
+    <string name="kcal">kcal</string>
+    <string name="no_data_available">暂无数据</string>
+    <string name="dataset_steps">步数</string>
+    <string name="date_format_daily">EEE, MMM d</string>
+    <string name="date_format_weekly_range">%1$s - %2$d</string>
+    <string name="date_format_monthly">MMM yyyy</string>
+    <string name="date_format_month_day">MMM d</string>
+    <string name="weekly_label_format">周%d</string>
+    <string name="monthly_label_format">%d月</string>
+    <string name="weekday_sunday">日</string>
+    <string name="weekday_monday">一</string>
+    <string name="weekday_tuesday">二</string>
+    <string name="weekday_wednesday">三</string>
+    <string name="weekday_thursday">四</string>
+    <string name="weekday_friday">五</string>
+    <string name="weekday_saturday">六</string>
+    <string name="step_format_thousands">%.1fK</string>
+
+    <!-- Settings -->
+    <string name="settings_account">我的账户</string>
+    <string name="settings_nickname">设置昵称</string>
+    <string name="settings_theme">主题配色</string>
+    <string name="settings_theme_color">主题颜色</string>
+    <string name="settings_step_source">计步数据源</string>
+    <string name="settings_step_source_system">系统计步器</string>
+    <string name="settings_step_source_sensor">传感器</string>
+    <string name="settings_step_issues">计步相关问题？</string>
+    <string name="settings_preferences">属性配置</string>
+    <string name="settings_distance_unit">距离单位</string>
+    <string name="settings_notification">通知</string>
+    <string name="settings_sounds">声音</string>
+    <string name="settings_vibration">震动</string>
+    <string name="settings_km">公里</string>
+    <string name="settings_miles">英里</string>
+    <string name="settings_like_us">喜欢我们吗？</string>
+    <string name="settings_rate_us">给我们评分</string>
+    <string name="settings_share">分享给朋友</string>
+    <string name="settings_feedback">反馈与问答</string>
+    <string name="settings_feedback_report">问题反馈</string>
+    <string name="settings_feedback_qa">常见问题</string>
+    <string name="settings_privacy">隐私协议&amp;条款</string>
+    <string name="settings_privacy_policy">隐私政策</string>
+    <string name="settings_terms">服务条款</string>
+    <string name="settings_language">语言切换</string>
+    <string name="settings_region">所在国家地区</string>
+    <string name="settings_version">版本号</string>
+    <string name="settings_version_format">v%s</string>
+
+    <!-- SettingsManager keys and values -->
+    <string name="settings_key_account">account</string>
+    <string name="settings_key_nickname">nickname</string>
+    <string name="settings_key_theme">theme</string>
+    <string name="settings_key_preferences">preferences</string>
+    <string name="settings_key_notification">notification</string>
+    <string name="settings_key_sounds">sounds</string>
+    <string name="settings_key_vibration">vibration</string>
+    <string name="settings_key_share">share</string>
+    <string name="settings_key_feedback">feedback</string>
+    <string name="settings_key_report">report</string>
+    <string name="settings_key_qa">qa</string>
+    <string name="settings_key_privacy">privacy</string>
+    <string name="settings_key_terms">terms</string>
+    <string name="settings_key_language">language</string>
+    <string name="settings_key_region">region</string>
+    <string name="settings_key_version">version</string>
+    <string name="settings_value_unknown">unknown</string>
+    <string name="settings_language_simplified_chinese">简体中文</string>
+    <string name="settings_region_mainland_china">中国大陆</string>
+    <string name="settings_language_english">英语</string>
+    <string name="settings_language_portuguese">葡萄牙语（巴西）</string>
+    <string name="settings_language_indonesian">印尼语</string>
+    <string name="settings_region_hong_kong">香港特别行政区</string>
+    <string name="settings_region_taiwan">台湾地区</string>
+    <string name="settings_region_singapore">新加坡</string>
+    <string name="settings_region_usa">美国</string>
+    <string name="settings_region_uk">英国</string>
+    <string name="settings_region_japan">日本</string>
+    <string name="settings_region_korea">韩国</string>
+    <string name="settings_region_india">印度</string>
+    <string name="settings_region_indonesia">印度尼西亚</string>
+    <string name="settings_region_brazil">巴西</string>
+
+    <!-- Shared Preferences Keys -->
+    <string name="pref_key_gender">gender</string>
+    <string name="pref_key_height">height</string>
+    <string name="pref_key_weight">weight</string>
+    <string name="pref_key_nickname">nickname</string>
+
+    <!-- LeaderboardActivity -->
+    <string name="leaderboard_yesterday">昨日</string>
+    <string name="leaderboard_position">排名</string>
+    <string name="leaderboard_last_7_days">最近7天</string>
+    <string name="leaderboard_last_30_days">最近30天</string>
+    <string name="leaderboard_yesterday_file">leaderboard_yesterday.json</string>
+    <string name="leaderboard_7days_file">leaderboard_7days.json</string>
+    <string name="leaderboard_30days_file">leaderboard_30days.json</string>
+
+    <!-- Gender Selection -->
+    <string name="gender_selection">选择性别</string>
+    <string name="gender_male">男</string>
+    <string name="gender_female">女</string>
+    <string name="gender_other">其他</string>
+
+    <!-- Height Selection -->
+    <string name="height_selection">设置身高</string>
+    <string name="height_unit_cm">厘米</string>
+    <string name="height_unit_ft">英尺</string>
+    <string name="height_hint">请输入身高</string>
+    <string name="height_error">请输入有效的身高</string>
+    <string name="height_format_cm">%d厘米</string>
+    <string name="height_format_ft" formatted="false">%d\'%d\"</string>
+    <string name="height_unit_ft_feet">英尺</string>
+    <string name="height_unit_ft_inches">英寸</string>
+
+    <!-- Weight Selection -->
+    <string name="weight_selection">设置体重</string>
+    <string name="weight_unit_kg">公斤</string>
+    <string name="weight_unit_lbs">磅</string>
+    <string name="weight_format_kg">%.1f公斤</string>
+    <string name="weight_format_lbs">%.1f磅</string>
+    <string name="weight_dot">.</string>
+
+    <!-- Avatar Selection -->
+    <string name="avatar_selection">更换头像</string>
+    <string name="avatar_pick_gallery">从相册选择</string>
+    <string name="avatar_permission_required">需要访问相册权限</string>
+    <string name="avatar_pick_failed">选择图片失败</string>
+
+    <!-- Nickname Selection -->
+    <string name="nickname_selection">设置昵称</string>
+    <string name="nickname_hint">请输入昵称</string>
+    <string name="nickname_empty_error">昵称不能为空</string>
+    <string name="nickname_too_long_error">昵称不能超过12个字符</string>
+    <string name="nickname_default">点击设置昵称</string>
+
+    <string name="home">首页</string>
+    <string name="settings">设置</string>
+    <string name="leaderboard">排行榜</string>
+
+    <!-- Formats -->
+    <string name="format_distance">%.1f</string>
+    <string name="ok">确定</string>
+    <string name="claim">领取</string>
+    <string name="today_step_count">今日步数: %1$d 步</string>
+    <string name="update_region_error_toast">变更国家失败，请重试</string>
+    <string name="go">去看看</string>
+
+    <!-- 金币任务页面 -->
+    <string name="need_more_coins">需要更多金币？</string>
+    <string name="hoard_coins_by_walking">通过走路积攒金币！</string>
+    <string name="task_1_text">任务1: 走路%d步</string>
+    <string name="task_2_text">任务2: 走路%d步</string>
+    <string name="task_3_text">任务3: 走路%d步</string>
+    <string name="task_entry_get_extra_coin">获取额外金币</string>
+    <string name="task_remaining_steps">再走 %d 步即可完成任务</string>
+    <string name="enter_amount">您可以在这里将大量奖励兑换为现金</string>
+    <string name="rewatch_ad_double">双倍</string>
+
+    <!-- 灵感广告相关 -->
+    <string name="inspiration_ad_title">观看视频以收集今天的所有金币？</string>
+
+    <!-- 主题颜色选择 -->
+    <string name="theme_color_title">选择主题颜色</string>
+    <string name="theme_color_blue">蓝色</string>
+    <string name="theme_color_green">绿色</string>
+    <string name="theme_color_purple">紫色</string>
+    <string name="theme_color_red">红色</string>
+    <string name="theme_color_orange">橙色</string>
+    <string name="theme_color_apply">应用</string>
+    <string name="theme_color_cancel">取消</string>
+
+    <!-- 文档类型选择 -->
+    <string name="document_type">文档类型</string>
+
+    <!-- 新增 Withdraw 相关字符串 -->
+    <string name="withdraw">兑换</string>
+    <string name="close">关闭</string>
+    <string name="withdrawal_amount_label">兑换金额</string>
+    <string name="coins_format">%1$d 金币</string>
+    <string name="currency_format">%1$s %2$.4f</string>
+    <string name="country_code_placeholder">+62</string>
+    <string name="please_select_withdraw_option">请选择兑换选项</string>
+    <string name="enter_name">输入您的姓名</string>
+    <string name="enter_phone">输入手机号码</string>
+    <string name="enter_email">输入邮箱地址</string>
+    <string name="country_code">国家代码</string>
+    <string name="select_country_code">选择国家代码</string>
+    <string name="country_code_format">国家代码       +%1$s</string>
+    <string name="submit">提交</string>
+
+    <!-- 语言切换提示 -->
+    <string name="language_change_restart_title">语言已变更</string>
+    <string name="language_change_restart_message">应用将重启以应用新的语言设置</string>
+    <string name="language_change_restart_now">立即重启</string>
+    <string name="language_change_restart_later">稍后重启</string>
+
+    <!-- 新发现的硬编码字符串 -->
+    <!-- dialog_fancy.xml -->
+    <string name="withdrawal_success">恭喜您成功兑换！</string>
+    <string name="join_community">加入社区，更多大额兑换等着您。</string>
+    <string name="telegram">电报</string>
+
+    <!-- item_withdraw_option.xml -->
+    <string name="withdraw_option_days">5/天</string>
+    <string name="withdraw_option_amount">RP 10</string>
+    <string name="withdraw_option_consume">消耗：</string>
+    <string name="withdraw_option_coins">1,000</string>
+
+    <!-- activity_coin_reward.xml -->
+    <string name="coin_reward_page">金币奖励页面</string>
+    <string name="congratulations_reward">恭喜获得xx奖励</string>
+
+    <!-- dialog_screenshot_selection.xml -->
+    <string name="select_screenshot_style">选择截图样式</string>
+
+    <!-- dialog_country_code.xml -->
+    <string name="country_code_title">国家代码</string>
+    <string name="select_country_code_title">选择国家代码</string>
+
+    <!-- activity_main.xml -->
+    <string name="main_distance_value">5.6</string>
+    <string name="main_distance_unit">公里</string>
+    <string name="main_calories_value">14</string>
+    <string name="main_calories_unit">千卡</string>
+    <string name="main_duration_value">5</string>
+    <string name="main_duration_unit">分钟</string>
+    <string name="earn_coins">赚取金币 ></string>
+
+    <!-- item_region_option.xml -->
+    <string name="region_option_indonesia">印度尼西亚/IDR</string>
+
+    <!-- fragment_leaderboard.xml -->
+    <string name="no_leaderboard_data">暂无排行榜数据</string>
+
+    <!-- activity_splash.xml -->
+    <string name="splash_slogan">每一步，都是健康的轨迹</string>
+
+    <!-- dialog_task_done.xml -->
+    <string name="task_done_coins">6666</string>
+
+    <!-- activity_withdraw.xml -->
+    <string name="withdraw_title">兑换</string>
+    <string name="my_balance">我的余额</string>
+    <string name="usd_zero">USD 0.0</string>
+    <string name="equals_sign">=</string>
+    <string name="zero_coins">0 金币</string>
+    <string name="united_states">美国：US</string>
+    <string name="switch_text">切换</string>
+    <string name="withdraw_button">兑换</string>
+
+    <!-- item_screenshot_option.xml -->
+    <string name="dana">DANA</string>
+
+    <!-- coin_circel_button.xml -->
+    <string name="dollar_sign">$</string>
+
+    <!-- activity_trends.xml -->
+    <string name="sample_date">周二, 3月4日</string>
+    <string name="sample_steps">2.2千</string>
+    <string name="sample_distance">1.6</string>
+    <string name="sample_calories">85</string>
+    <string name="sample_best_steps">2.2千</string>
+    <string name="sample_best_distance">1.6</string>
+    <string name="sample_best_calories">85</string>
+
+    <!-- 数据库相关 -->
+    <string name="database_name">walk_app.db</string>
+    <string name="sp_file_name">share_date</string>
+    <string name="ad_sp_file_name">ad_sp</string>
+    <string name="ad_displayed_key">ad_displayed</string>
+
+    <!-- Email 反馈 -->
+    <string name="email_feedback_subject">%s 反馈</string>
+    <string name="email_feedback_content">请在此描述您遇到的问题：\n\n\n\n\n----------\n设备信息：%1$s %2$s\n系统版本：Android %3$s\n应用版本：%4$s\n</string>
+
+    <!-- WithdrawActivity -->
+    <string name="withdraw_data_key">withdraw_data</string>
+    <string name="region_selection_tag">region_selection</string>
+    <string name="country_code_selection_tag">country_code_selection</string>
+
+    <!-- 对话框相关 -->
+    <string name="save">保存</string>
+    <string name="icon_description">对话框图标</string>
+
+    <!-- WebViewActivity -->
+    <string name="web_page">网页</string>
+    <string name="refresh">刷新</string>
+    <string name="loading">加载中</string>
+    <string name="error_loading_url">加载网址失败</string>
+    <string name="no_app_to_handle_action">没有可以响应的应用</string>
+
+    <string name="go_get_redeem">兑换</string>
+
+
+    <string name="btn_grant_permission">授予权限</string>
+    <string name="btn_skip_permission">暂时跳过</string>
+    <string name="enter_your_first_name">请输入您的名字</string>
+    <string name="enter_your_last_name">请输入您的姓氏</string>
+    <string name="enter_your_middle_name">请输入您的中间名</string>
+    <string name="first_name_should_not_empty">请填写名字</string>
+    <string name="height_cm_to_ft_rate">30.48</string>
+    <string name="height_cm_to_inch_rate">2.54</string>
+    <string name="height_max_cm">300</string>
+    <string name="height_max_ft">9</string>
+    <string name="height_max_inches">11</string>
+    <string name="height_min_cm">50</string>
+    <string name="height_min_ft">1</string>
+    <string name="height_min_inches">0</string>
+    <string name="last_name_should_not_empty">请填写姓氏</string>
+    <string name="permission_back_press_message">请选择一个选项以继续</string>
+    <string name="permission_denied_dialog_message_storage">需要访问相册权限来个性化您的锁屏显示。没有此权限，您将无法使用自己的照片自定义锁屏外观。\n\n您想现在授予此权限吗？</string>
+    <string name="permission_denied_dialog_message_system_alert">需要锁屏显示权限来在锁屏上显示步数跟踪信息。没有此权限，您将无法在锁屏上查看步数进度。\n\n您想现在授予此权限吗？</string>
+    <string name="permission_denied_dialog_retry">重试</string>
+    <string name="permission_denied_dialog_skip">跳过</string>
+    <string name="permission_denied_dialog_title_storage">需要访问相册</string>
+    <string name="permission_denied_dialog_title_system_alert">需要锁屏显示权限</string>
+    <string name="permission_denied_message">权限被拒绝，您可以在设置中稍后启用</string>
+    <string name="permission_denied_message_storage">相册访问权限被拒绝</string>
+    <string name="permission_denied_message_system_alert">锁屏显示权限被拒绝</string>
+    <string name="permission_granted_message">权限授予成功</string>
+    <string name="permission_granted_message_activity_recognition">活动识别权限已授予</string>
+    <string name="permission_granted_message_battery_optimization">电池优化权限已授予</string>
+    <string name="permission_granted_message_notification">通知权限已授予</string>
+    <string name="permission_granted_message_storage">相册访问权限已授予</string>
+    <string name="permission_granted_message_system_alert">锁屏显示权限已授予</string>
+    <string name="permission_icon_description">锁屏权限图标</string>
+    <string name="permission_name_activity_recognition">活动识别权限</string>
+    <string name="permission_name_battery_optimization">电池优化权限</string>
+    <string name="permission_name_notification">通知权限</string>
+    <string name="permission_name_required">必需权限</string>
+    <string name="permission_permanently_denied_dialog_message_storage">您已永久拒绝相册访问权限。要使用个人照片自定义锁屏，您需要在系统设置中启用此权限。\n\n您想打开设置以启用相册访问吗？</string>
+    <string name="permission_permanently_denied_dialog_settings">打开设置</string>
+    <string name="permission_permanently_denied_dialog_skip">跳过</string>
+    <string name="permission_permanently_denied_dialog_title_storage">需要访问相册</string>
+    <string name="permission_request_description">允许 %1$s 在锁屏上显示以提供更好的步数跟踪体验</string>
+    <string name="permission_request_description_activity_recognition">允许 %1$s 在后台自动跟踪您的身体活动并计数步数</string>
+    <string name="permission_request_description_battery_optimization">允许 %1$s 在后台运行而不受电池优化限制，以准确计数步数</string>
+    <string name="permission_request_description_notification">允许 %1$s 显示步数跟踪进度和奖励的通知</string>
+    <string name="permission_request_description_storage">允许 %1$s 访问您的相册以使用个人照片自定义锁屏显示</string>
+    <string name="permission_request_description_system_alert">允许 %1$s 在锁屏上显示以提供更好的步数跟踪体验</string>
+    <string name="permission_request_title">锁屏显示</string>
+    <string name="permission_request_title_activity_recognition">活动识别</string>
+    <string name="permission_request_title_battery_optimization">电池优化</string>
+    <string name="permission_request_title_notification">通知</string>
+    <string name="permission_request_title_storage">相册访问</string>
+    <string name="permission_request_title_system_alert">锁屏显示</string>
+    <string name="permission_skipped_message_storage">相册访问权限已跳过</string>
+    <string name="permission_skipped_message_notification">通知权限已跳过</string>
+    <string name="permission_skipped_message_battery_optimization">电池优化权限已跳过</string>
+    <string name="permission_skipped_message_system_alert">锁屏显示权限已跳过</string>
+    <string name="pref_key_avatar_uri">avatar_uri</string>
+    <string name="pref_key_height_unit_cm">height_unit_cm</string>
+    <string name="pref_key_weight_unit_kg">weight_unit_kg</string>
+    <string name="privacy_policy_url">https://sites.google.com/view/sedeanalizprivacypolicy</string>
+    <string name="region_helper_default_region">default</string>
+    <string name="region_helper_pref_name">app_region_preference</string>
+    <string name="region_helper_region_key">selected_region</string>
+    <string name="region_helper_region_list">region_list</string>
+    <string name="region_helper_tag">RegionHelper</string>
+    <string name="required_permission_denied_message_format">%1$s 是应用正常运行所必需的。请允许此权限以继续使用应用。</string>
+    <string name="required_permission_denied_title_format">%1$s 被拒绝</string>
+    <string name="required_permission_exit_app">退出应用</string>
+    <string name="required_permission_go_to_settings">前往设置</string>
+    <string name="required_permission_permanently_denied_message_format">%1$s 已被永久拒绝。请手动在设置中启用此权限以继续使用应用。</string>
+    <string name="required_permission_permanently_denied_title_format">%1$s 被永久拒绝</string>
+    <string name="required_permission_retry">重试</string>
+    <string name="settings_file_name">settings</string>
+    <string name="settings_region_default">default</string>
+    <string name="step_permission_code">1001</string>
+    <string name="theme_manager_default_theme_id">1</string>
+    <string name="theme_manager_key_theme_id">theme_id</string>
+    <string name="theme_manager_pref_name">theme_preferences</string>
+    <string name="theme_manager_tag">ThemeManager</string>
+    <string name="web_view_title_extra">web_view_title_extra</string>
+    <string name="web_view_url_extra">web_view_url_extra</string>
+    <string name="weight_kg_to_lbs_rate">2.20462</string>
+    <string name="weight_max_kg">200</string>
+    <string name="weight_max_lbs">440</string>
+    <string name="weight_min_kg">30</string>
+    <string name="weight_min_lbs">66</string>
+    <string name="swipe_hit_unlock">向左滑动以解锁</string>
+
+    <string name="poor_network">网络不佳，广告加载中…</string>
+    <string name="network_error">网络连接不稳定</string>
+    <string name="ad_loading">正在加载广告…</string>
+    <string name="ad_failed">广告加载失败</string>
+    <string name="retry">重试</string>
+
+    <string name="weekly_trend_title">最近 7 天步数趋势</string>
+    <string name="weekly_trend_subtitle">保持 5,000 步以上的好习惯</string>
+    <string name="weekly_average_sample">本周平均 · 6,320 步</string>
+
+    <string name="time_date_date_sample">2023年11月23日</string>
+
+    <string name="task_list_title">今日步数任务</string>
+    <string name="task_list_subtitle">每完成一档任务即可领取对应金币</string>
+    <string name="task_list_progress_sample">进度 · 5 / 12</string>
+
+    <string name="task_item_title_sample">100 步</string>
+    <string name="task_item_subtitle_sample">热身一下就完成</string>
+    <string name="task_item_progress_label_completed">已完成</string>
+    <string name="task_item_progress_text_sample">100 / 100</string>
+    <string name="task_item_action_button">领取金币</string>
+
+    <string name="task_badge_sample">+5 🪙</string>
+    <string name="coin_content_description">金币</string>
+
+    <string name="summary_title">今日概览</string>
+    <string name="summary_date_sample">12 月 12 日 · 周五</string>
+    <string name="summary_step_label">今日步数</string>
+    <string name="summary_step_unit">步</string>
+    <string name="summary_ring_label_today_target">今日目标</string>
+    <string name="summary_distance_sample">距离 3.8 km</string>
+    <string name="summary_calories_sample">消耗 245 kcal</string>
+    <string name="summary_remaining_sample">还差 2,770 / 8,000</string>
+
+    <string name="step_overview_title">今日步数概览</string>
+    <string name="step_overview_subtitle_sample">今日目标 8,000 步</string>
+    <string name="step_overview_badge_in_progress">进行中</string>
+    <string name="step_overview_step_unit">步</string>
+    <string name="step_overview_step_label">今日已走步数</string>
+    <string name="step_overview_ring_label_completion">完成度</string>
+
+    <string name="heart_steps_title">今日步数</string>
+    <string name="heart_steps_unit">步数</string>
+    <string name="heart_steps_coin_button">金币攒兑</string>
+
+    <string name="profile_title">个人资料</string>
+    <string name="profile_subtitle">管理您的个人信息</string>
+
+    <string name="home_subtitle_slogan">每一步，都算数</string>
+    <string name="task_earn_coins_title">赚取金币</string>
+
+    <string name="stat_card_title">标题</string>
+    <string name="stat_card_unit">单位</string>
+
+    <string name="daily_step_value_sample">5.1千</string>
+
+    <string name="achievements_title">今日成就</string>
+    <string name="achievements_subtitle">步数、连续打卡与金币，一目了然</string>
+    <string name="achievement1_title">连续打卡 3 天</string>
+    <string name="achievement1_desc">再坚持 4 天解锁「一周不躺平」</string>
+    <string name="achievement1_tag">+10 🪙</string>
+    <string name="achievement2_title">今日超过 80% 用户</string>
+    <string name="achievement2_desc">总步数 5,230 · 表现优秀</string>
+    <string name="achievement2_tag">活力值 +20</string>
+    <string name="achievement3_title">完成 5 个步数任务</string>
+    <string name="achievement3_desc">再走 2,770 步完成今日目标</string>
+    <string name="achievement3_tag">目标 8,000 步</string>
+
+    <string name="step_overview_subtitle_format">今日目标 %1$s 步</string>
+    <string name="lock_date_format_full">yyyy年MM月dd日 EEEE</string>
+
+    <string name="withdrawal_record_order_sample">订单: 12345678</string>
+    <string name="withdrawal_record_status_success_sample">提现成功</string>
+    <string name="withdrawal_record_amount_sample">￥30.00</string>
+    <string name="withdrawal_record_coins_sample">3000金币</string>
+    <string name="withdrawal_record_commission_sample">手续费: ￥3.00 (300金币)</string>
+    <string name="withdrawal_record_create_time_sample">2023-05-20 14:30</string>
+
+    <string name="log_share_title_default">App日志反馈</string>
+    <string name="log_select_app_prompt">请选择要分享的应用：</string>
+    <string name="log_collecting_toast">正在收集日志...</string>
+    <string name="log_collect_share_failed">收集和分享日志失败</string>
+    <string name="log_collect_failed_toast_format">收集日志失败: %1$s</string>
+    <string name="log_device_info_header">======= 设备信息 =======</string>
+    <string name="log_time_label">时间: %1$s</string>
+    <string name="log_device_label">设备: %1$s %2$s</string>
+    <string name="log_android_version_label">Android版本: %1$s (SDK %2$d)</string>
+    <string name="log_device_id_label">设备ID: %1$s</string>
+    <string name="log_separator">==========================</string>
+    <string name="log_file_not_exist_format">日志文件不存在: %1$s</string>
+    <string name="log_zip_success_format">日志文件压缩成功: %1$s -&gt; %2$s bytes</string>
+    <string name="log_share_chooser_title">分享日志文件</string>
+    <string name="log_share_failed_toast">分享文件失败</string>
+
+
+    <string name="label_distance">距离</string>
+    <string name="label_calories">卡路里</string>
+    <string name="label_time">时间</string>
+
+    <string name="summary_distance_format">距离 %.1f km</string>
+    <string name="summary_calories_format">消耗 %d kcal</string>
+    <string name="summary_remaining_format">还差 %1$s / %2$s</string>
+
+    <string name="task_list_progress_format">进度 · %1$d / %2$d</string>
+    <string name="task_item_title_format">%1$d 步</string>
+    <string name="task_item_claimed">已领取</string>
+    <string name="task_item_claim">领取金币</string>
+    <string name="task_item_go_walk">去走走</string>
+    <string name="task_locked_keep_going">继续加油</string>
+    <string name="task_locked_more_coins">解锁更多金币</string>
+    <string name="task_locked_challenge">挑战一下</string>
+
+    <string name="task_desc_100">热身一下就完成</string>
+    <string name="task_desc_500">继续走，状态更好</string>
+    <string name="task_desc_1000">轻松一小段散步</string>
+    <string name="task_desc_2000">今天已经不错了</string>
+    <string name="task_desc_3000">气血舒展刚刚好</string>
+    <string name="task_desc_4000">离下一档只差一点</string>
+    <string name="task_desc_5000">今日目标推荐</string>
+    <string name="task_desc_7000">进阶挑战</string>
+    <string name="task_desc_else">满勤冠军挑战</string>
+
+    <string name="weekly_average_format">本周平均 · %1$s 步</string>
+
+    <string name="ach_over_users_title_format">今日超过 %1$d%% 用户</string>
+    <string name="ach_over_users_desc_format">任务完成度 %1$d/%2$d · 表现优秀</string>
+    <string name="ach_over_users_tag_format">活力值 +%1$d</string>
+
+    <string name="ach_today_distance_title_format">今日行走 %1$s km</string>
+    <string name="ach_today_distance_desc_format">相当于绕操场 %1$d 圈</string>
+    <string name="ach_today_distance_tag">距离成就</string>
+
+    <string name="ach_complete_tasks_title_format">完成 %1$d 个步数任务</string>
+    <string name="ach_complete_tasks_desc_format">再走 %1$d 步完成今日目标</string>
+    <string name="ach_complete_tasks_tag_format">目标 %1$d 步</string>
+<!--    walk end-->
 </resources>
