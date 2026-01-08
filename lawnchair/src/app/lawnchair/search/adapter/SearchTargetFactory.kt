@@ -221,7 +221,7 @@ class SearchTargetFactory(
             id,
             context.getString(R.string.all_apps_search_market_message),
         )
-            .setIcon(Icon.createWithResource(context, R.drawable.ic_launcher_home))
+            .setIcon(Icon.createWithResource(context, R.drawable.app_logo_foreground))
             .setIntent(PackageManagerHelper.getMarketSearchIntent(context, query))
             .build()
         val extras = bundleOf(

@@ -57,7 +57,7 @@ class PreferenceViewModel(private val app: Application) :
                 )
             }
         val lawnchairIcon = CustomAdaptiveIconDrawable.wrapNonNull(
-            ContextCompat.getDrawable(app, R.drawable.ic_launcher_home)!!,
+            ContextCompat.getDrawable(app, R.mipmap.ic_launcher)!!,
         )
         val defaultIconPack = IconPackInfo(
             name = app.getString(R.string.system_icons),
@@ -83,7 +83,7 @@ class PreferenceViewModel(private val app: Application) :
                 )
             }
         val lawnchairIcon = CustomAdaptiveIconDrawable.wrapNonNull(
-            ContextCompat.getDrawable(app, R.drawable.ic_launcher_home)!!,
+            ContextCompat.getDrawable(app, R.mipmap.ic_launcher)!!,
         )
         var defaultIconPack = listOf(
             IconPackInfo(
