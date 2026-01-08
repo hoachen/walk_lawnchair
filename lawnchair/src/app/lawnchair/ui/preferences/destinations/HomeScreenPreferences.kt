@@ -68,12 +68,9 @@ fun HomeScreenPreferences(
         modifier = modifier,
     ) {
         val lockHomeScreenAdapter = prefs2.lockHomeScreen.getAdapter()
-        val showDeckLayout = prefs2.showDeckLayout.getAdapter().state.value
         val context = LocalContext.current
 
-        if (showDeckLayout) {
-            HomeLayoutSettings()
-        }
+        HomeLayoutSettings()
 
         PreferenceGroup(heading = stringResource(id = R.string.general_label)) {
             val addIconToHomeAdapter = prefs.addIconToHome.getAdapter()

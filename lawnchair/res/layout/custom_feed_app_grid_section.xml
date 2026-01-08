@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="8dp">
+
+    <TextView
+        android:id="@+id/section_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="8dp"
+        android:paddingStart="4dp"
+        android:text="Title"
+        android:textColor="#FFFFFF"
+        android:textSize="14sp" />
+
+    <GridLayout
+        android:id="@+id/app_grid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/app_grid_background"
+        android:backgroundTint="#40FFFFFF"
+        android:columnCount="4"
+        android:padding="12dp"
+        android:alignmentMode="alignMargins"
+        android:rowOrderPreserved="false"
+        android:useDefaultMargins="true">
+    </GridLayout>
+
+</LinearLayout>

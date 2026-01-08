@@ -137,7 +137,7 @@
     <bool name="config_default_show_icon_labels_on_home_screen">true</bool>
     <bool name="config_default_show_icon_labels_in_drawer">true</bool>
     <bool name="config_default_enable_fuzzy_search">false</bool>
-    <bool name="config_default_enable_smartspace">true</bool>
+    <bool name="config_default_enable_smartspace">false</bool>
     <bool name="config_default_enable_feed">false</bool>
     <bool name="config_default_enable_icon_selection">false</bool>
     <bool name="config_default_show_component_names">false</bool>
@@ -150,14 +150,14 @@
     <bool name="config_default_enable_material_u_popup">true</bool>
     <bool name="config_default_enable_two_line_allapps">true</bool>
 
-    <item name="config_default_home_icon_size_factor" type="dimen" format="float">1.0</item>
+    <item name="config_default_home_icon_size_factor" type="dimen" format="float">1.2</item>
     <item name="config_default_folder_preview_background_opacity" type="dimen" format="float">1.0</item>
     <item name="config_default_folder_background_opacity" type="dimen" format="float">1.0</item>
     <item name="config_default_drawer_icon_size_factor" type="dimen" format="float">1.0</item>
     <item name="config_default_home_icon_label_size_factor" type="dimen" format="float">1.0</item>
     <item name="config_default_home_icon_label_folder_size_factor" type="dimen" format="float">1.0</item>
     <item name="page_indicator_height_factor" type="dimen" format="float">1.0</item>
-    <item name="config_default_drawer_icon_label_size_factor" type="dimen" format="float">1.0</item>
+    <item name="config_default_drawer_icon_label_size_factor" type="dimen" format="float">1.2</item>
     <item name="config_default_drawer_cell_height_factor" type="dimen" format="float">1.0</item>
     <item name="config_default_drawer_left_right_factor" type="dimen" format="float">0.1</item>
     <item name="config_default_search_max_result_count" type="dimen" format="integer">5</item>

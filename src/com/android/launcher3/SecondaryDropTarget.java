@@ -164,6 +164,10 @@ public class SecondaryDropTarget extends ButtonDropTarget implements OnAlarmList
             return DISMISS_PREDICTION;
         }
 
+        if (info.getTargetComponent() != null && info.getTargetComponent().getPackageName().equals(getContext().getPackageName())){
+            return INVALID;
+        }
+        
         Boolean uninstallDisabled = mUninstallDisabledCache.get(info.user);
         if (uninstallDisabled == null) {
             UserManager userManager =

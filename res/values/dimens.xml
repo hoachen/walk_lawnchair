@@ -549,4 +549,5 @@
 
     <!-- WindowManagerProxy -->
     <dimen name="max_width_and_height_of_small_display_cutout">136px</dimen>
+    <dimen name="custom_feed_padding">10dp</dimen>
 </resources>

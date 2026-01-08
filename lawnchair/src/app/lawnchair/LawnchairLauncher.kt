@@ -24,6 +24,8 @@ import android.graphics.Color
 import android.graphics.RectF
 import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Pair
 import android.view.Display
 import android.view.View
@@ -38,11 +40,13 @@ import app.lawnchair.LawnchairApp.Companion.showQuickstepWarningIfNecessary
 import app.lawnchair.compat.LawnchairQuickstepCompat
 import app.lawnchair.data.AppDatabase
 import app.lawnchair.data.wallpaper.service.WallpaperService
+import app.lawnchair.deck.LawndeckManager
 import app.lawnchair.factory.LawnchairWidgetHolder
 import app.lawnchair.gestures.GestureController
 import app.lawnchair.gestures.VerticalSwipeTouchController
 import app.lawnchair.gestures.config.GestureHandlerConfig
 import app.lawnchair.nexuslauncher.OverlayCallbackImpl
+import app.lawnchair.overlay.CustomFeedOverlay
 import app.lawnchair.preferences.PreferenceManager
 import app.lawnchair.preferences2.PreferenceManager2
 import app.lawnchair.root.RootHelperManager
@@ -61,6 +65,7 @@ import com.android.launcher3.LauncherAppState
 import com.android.launcher3.LauncherState
 import com.android.launcher3.R
 import com.android.launcher3.Utilities
+import com.android.launcher3.allapps.AllAppsStore
 import com.android.launcher3.model.data.ItemInfo
 import com.android.launcher3.popup.SystemShortcut
 import com.android.launcher3.shortcuts.DeepShortcutView
@@ -94,10 +99,15 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 
 class LawnchairLauncher : QuickstepLauncher() {
-    private val defaultOverlay by unsafeLazy { OverlayCallbackImpl(this) }
+    private val defaultOverlay by unsafeLazy { CustomFeedOverlay(this) }
     private val prefs by unsafeLazy { PreferenceManager.getInstance(this) }
     private val preferenceManager2 by unsafeLazy { PreferenceManager2.getInstance(this) }
-    private val insetsController by unsafeLazy { WindowInsetsControllerCompat(launcher.window, rootView) }
+    private val insetsController by unsafeLazy {
+        WindowInsetsControllerCompat(
+            launcher.window,
+            rootView,
+        )
+    }
     private val themeProvider by unsafeLazy { ThemeProvider.INSTANCE.get(this) }
     private val noStatusBarStateListener = object : StateManager.StateListener<LauncherState> {
         override fun onStateTransitionStart(toState: LauncherState) {
@@ -105,6 +115,7 @@ class LawnchairLauncher : QuickstepLauncher() {
                 insetsController.show(WindowInsetsCompat.Type.statusBars())
             }
         }
+
         override fun onStateTransitionComplete(finalState: LauncherState) {
             if (finalState !is OverviewState) {
                 insetsController.hide(WindowInsetsCompat.Type.statusBars())
@@ -117,6 +128,7 @@ class LawnchairLauncher : QuickstepLauncher() {
                 mAppsView.activeRecyclerView.restoreScrollPosition()
             }
         }
+
         override fun onStateTransitionComplete(finalState: LauncherState) {}
     }
     private val statusBarClockListener = object : StateManager.StateListener<LauncherState> {
@@ -125,7 +137,7 @@ class LawnchairLauncher : QuickstepLauncher() {
                 is BackgroundAppState,
                 is OverviewState,
                 is AllAppsState,
-                -> {
+                    -> {
                     LawnchairApp.instance.restoreClockInStatusBar()
                 }
 
@@ -134,6 +146,7 @@ class LawnchairLauncher : QuickstepLauncher() {
                 }
             }
         }
+
         override fun onStateTransitionComplete(finalState: LauncherState) {}
     }
     private val clearSearchStateListener = object : StateManager.StateListener<LauncherState> {
@@ -164,10 +177,12 @@ class LawnchairLauncher : QuickstepLauncher() {
         super.onCreate(savedInstanceState)
 
         prefs.launcherTheme.subscribeChanges(this, ::updateTheme)
-        prefs.feedProvider.subscribeChanges(this, defaultOverlay::reconnect)
-        preferenceManager2.enableFeed.get().distinctUntilChanged().onEach { enable ->
-            defaultOverlay.setEnableFeed(enable)
-        }.launchIn(scope = lifecycleScope)
+//        prefs.feedProvider.subscribeChanges(this, defaultOverlay::reconnect)
+//        preferenceManager2.enableFeed.get().distinctUntilChanged().onEach { enable ->
+//
+//        }.launchIn(scope = lifecycleScope)
+
+        (defaultOverlay as? OverlayCallbackImpl)?.setEnableFeed(true)
         launcher.stateManager.addStateListener(clearSearchStateListener)
 
         if (prefs.autoLaunchRoot.get()) {
@@ -228,7 +243,10 @@ class LawnchairLauncher : QuickstepLauncher() {
         }
         val isWorkspaceDarkText = Themes.getAttrBoolean(this, R.attr.isWorkspaceDarkText)
         preferenceManager2.darkStatusBar.onEach(launchIn = lifecycleScope) { darkStatusBar ->
-            systemUiController.updateUiState(UI_STATE_BASE_WINDOW, isWorkspaceDarkText || darkStatusBar)
+            systemUiController.updateUiState(
+                UI_STATE_BASE_WINDOW,
+                isWorkspaceDarkText || darkStatusBar,
+            )
         }
         preferenceManager2.backPressGestureHandler.onEach(launchIn = lifecycleScope) { handler ->
             hasBackGesture = handler !is GestureHandlerConfig.NoOp
@@ -238,10 +256,7 @@ class LawnchairLauncher : QuickstepLauncher() {
         LauncherOptionsPopup.migrateLegacyPreferences(launcher)
 
         // Handle update from version 12 Alpha 4 to version 12 Alpha 5.
-        if (
-            prefs.themedIcons.get() &&
-            packageManager.getThemedIconPacksInstalled(this).isEmpty()
-        ) {
+        if (prefs.themedIcons.get() && packageManager.getThemedIconPacksInstalled(this).isEmpty()) {
             prefs.themedIcons.set(newValue = false)
         }
 
@@ -252,6 +267,50 @@ class LawnchairLauncher : QuickstepLauncher() {
         reloadIconsIfNeeded()
 
         AppDatabase.INSTANCE.get(this).checkpointSync()
+
+        initDeckWhenReady()
+    }
+
+
+    private var deckLayoutInit = false
+    private fun initDeckWhenReady() {
+        val appsStore = mAppsView?.appsStore
+        if (appsStore == null) {
+            Handler(Looper.getMainLooper()).postDelayed(
+                {
+                    initDeckWhenReady()
+
+                },
+                200,
+            )
+            return
+        }
+        val listener = object : AllAppsStore.OnUpdateListener {
+            override fun onAppsUpdated() {
+                val apps = appsStore.apps
+                if (!deckLayoutInit && apps != null && apps.isNotEmpty()) {
+                    deckLayoutInit = true
+                    appsStore.removeUpdateListener (this)
+                    lifecycleScope.launch {
+                        val lawndeckManager = LawndeckManager(this@LawnchairLauncher)
+                        lawndeckManager.enableLawndeck {  }
+                    }
+                }
+            }
+
+        }
+
+        val apps = appsStore.apps
+        appsStore.addUpdateListener (listener)
+        if (!deckLayoutInit && apps != null && apps.isNotEmpty()) {
+            deckLayoutInit = true
+            appsStore.removeUpdateListener (listener)
+            lifecycleScope.launch {
+                val lawndeckManager = LawndeckManager(this@LawnchairLauncher)
+                lawndeckManager.enableLawndeck {  }
+            }
+        }
+
     }
 
     override fun collectStateHandlers(out: MutableList<StateHandler<LauncherState>>) {
@@ -260,9 +319,12 @@ class LawnchairLauncher : QuickstepLauncher() {
     }
 
     override fun getSupportedShortcuts(): Stream<SystemShortcut.Factory<*>> = Stream.concat(
-        super.getSupportedShortcuts(),
+        
+        super.getSupportedShortcuts().filter {  shourtcut->
+            shourtcut != SystemShortcut.WIDGETS
+        },
         Stream.concat(
-            Stream.of(LawnchairShortcut.UNINSTALL, LawnchairShortcut.CUSTOMIZE),
+            Stream.of(LawnchairShortcut.UNINSTALL),
             if (LawnchairApp.isRecentsEnabled) Stream.of(LawnchairShortcut.PAUSE_APPS) else Stream.empty(),
         ),
     )
@@ -324,7 +386,8 @@ class LawnchairLauncher : QuickstepLauncher() {
     }
 
     override fun showDefaultOptions(x: Float, y: Float) {
-        val showWallpaperCarousel = "+carousel" in preferenceManager2.launcherPopupOrder.firstBlocking()
+        val showWallpaperCarousel =
+            "+carousel" in preferenceManager2.launcherPopupOrder.firstBlocking()
 
         if (showWallpaperCarousel) {
             show<LawnchairLauncher>(
@@ -347,14 +410,20 @@ class LawnchairLauncher : QuickstepLauncher() {
         if (activityContext == null) return null
 
         val isEmpty = WallpaperService.INSTANCE.get(this).getTopWallpapers().isEmpty()
-        val layout = if (isEmpty) R.layout.longpress_options_menu else R.layout.wallpaper_options_popup
+        val layout =
+            if (isEmpty) R.layout.longpress_options_menu else R.layout.wallpaper_options_popup
 
-        val popup = activityContext.layoutInflater.inflate(layout, activityContext.dragLayer, false) as OptionsPopupView<T>
+        val popup = activityContext.layoutInflater.inflate(
+            layout,
+            activityContext.dragLayer,
+            false,
+        ) as OptionsPopupView<T>
         popup.setTargetRect(targetRect)
         popup.setShouldAddArrow(shouldAddArrow)
 
         for (item in items) {
-            val deepLayout = if (isEmpty) R.layout.system_shortcut else R.layout.wallpaper_options_popup_item
+            val deepLayout =
+                if (isEmpty) R.layout.system_shortcut else R.layout.wallpaper_options_popup_item
 
             val view = popup.inflateAndAdd<DeepShortcutView>(deepLayout, popup)
             if (width > 0) view.layoutParams.width = width
@@ -370,7 +439,8 @@ class LawnchairLauncher : QuickstepLauncher() {
     }
 
     override fun createAppWidgetHolder(): LauncherWidgetHolder {
-        val factory = LauncherWidgetHolder.HolderFactory.newFactory(this) as LawnchairWidgetHolder.LawnchairHolderFactory
+        val factory =
+            LauncherWidgetHolder.HolderFactory.newFactory(this) as LawnchairWidgetHolder.LawnchairHolderFactory
         return factory.newInstance(
             this,
         ) { appWidgetId: Int ->
@@ -439,7 +509,8 @@ class LawnchairLauncher : QuickstepLauncher() {
         if (Utilities.ATLEAST_T) {
             options.splashScreenStyle = SplashScreen.SPLASH_SCREEN_STYLE_ICON
         }
-        options.launchDisplayId = if (v.display != null) v.display.displayId else Display.DEFAULT_DISPLAY
+        options.launchDisplayId =
+            if (v.display != null) v.display.displayId else Display.DEFAULT_DISPLAY
         val callback = RunnableList()
         return ActivityOptionsWrapper(options, callback)
     }
@@ -496,9 +567,7 @@ class LawnchairLauncher : QuickstepLauncher() {
      * Reloads app icons if there is an active icon pack & [PreferenceManager2.alwaysReloadIcons] is enabled.
      */
     private fun reloadIconsIfNeeded() {
-        if (
-            preferenceManager2.alwaysReloadIcons.firstBlocking()
-        ) {
+        if (preferenceManager2.alwaysReloadIcons.firstBlocking()) {
             LauncherAppState.getInstance(this).reloadIcons()
         }
     }
@@ -516,8 +585,9 @@ class LawnchairLauncher : QuickstepLauncher() {
 val Context.launcher: LawnchairLauncher
     get() = BaseActivity.fromContext(this)
 
-val Context.launcherNullable: LawnchairLauncher? get() = try {
-    launcher
-} catch (_: IllegalArgumentException) {
-    null
-}
+val Context.launcherNullable: LawnchairLauncher?
+    get() = try {
+        launcher
+    } catch (_: IllegalArgumentException) {
+        null
+    }
