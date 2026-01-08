@@ -160,7 +160,7 @@ class SettingsAdapter(
 
     // Section ViewHolder
     inner class SectionViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val titleView: TextView = itemView.findViewById(R.id.tv_section_title)
+        private val titleView: TextView = itemView.findViewById(R.id.tv_section_title)!!
 
         fun bind(section: SettingItem.Section) {
             titleView.text = section.title
@@ -177,8 +177,8 @@ class SettingsAdapter(
 
     // Switch ViewHolder
     inner class SwitchViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val titleView: TextView = itemView.findViewById(R.id.tv_title)
-        private val switch: SwitchMaterial = itemView.findViewById(R.id.switch_setting)
+        private val titleView: TextView = itemView.findViewById(R.id.tv_title)!!
+        private val switch: SwitchMaterial = itemView.findViewById(R.id.switch_setting)!!
 
         fun bind(item: SettingItem.Item.Switch) {
             titleView.text = item.title
@@ -193,8 +193,8 @@ class SettingsAdapter(
 
     // Value ViewHolder
     inner class ValueViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val titleView: TextView = itemView.findViewById(R.id.tv_title)
-        private val valueView: TextView = itemView.findViewById(R.id.tv_value)
+        private val titleView: TextView = itemView.findViewById(R.id.tv_title)!!
+        private val valueView: TextView = itemView.findViewById(R.id.tv_value)!!
 
         fun bind(item: SettingItem.Item.Value) {
             titleView.text = item.title
@@ -208,7 +208,7 @@ class SettingsAdapter(
 
     // ColorPicker ViewHolder
     inner class ColorPickerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val colorRecyclerView: RecyclerView = itemView.findViewById(R.id.rv_colors)
+        private val colorRecyclerView: RecyclerView = itemView.findViewById(R.id.rv_colors)!!
         private val themeManager = ThemeManager.getInstance()
 
         fun bind(item: SettingItem.Item.ColorPicker) {
@@ -227,11 +227,11 @@ class SettingsAdapter(
                     val color = themeManager.getColorFromSpecificTheme(
                         baseContext = context,
                         themeResId = theme.themeRes,
-                        attrResId = com.google.android.material.R.attr.colorPrimary
+                        attrResId = com.google.android.material.R.attr.colorOnPrimary
                     )
                     URLog.d(
                         "SettingsAdapter",
-                        "主题[${theme.name}]颜色: 资源ID=${com.google.android.material.R.attr.colorPrimary}, 颜色值=0x${
+                        "主题[${theme.name}]颜色: 资源ID=${com.google.android.material.R.attr.colorOnPrimary}, 颜色值=0x${
                             Integer.toHexString(color)
                         }"
                     )
@@ -250,7 +250,7 @@ class SettingsAdapter(
                 currentTheme.name
             ) { selectedTheme ->
                 // 更新选中颜色
-                item.selectedColor = context.getThemeColor(com.google.android.material.R.attr.colorPrimary)
+                item.selectedColor = context.getThemeColor(com.google.android.material.R.attr.colorOnPrimary)
 
                 // 回调通知
                 listeners.onThemeSelected(selectedTheme)
@@ -268,9 +268,9 @@ class SettingsAdapter(
 
     // Distance ViewHolder
     inner class DistanceViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val titleView: TextView = itemView.findViewById(R.id.tv_title)
+        private val titleView: TextView = itemView.findViewById(R.id.tv_title)!!
         private val toggleGroup: MaterialButtonToggleGroup =
-            itemView.findViewById(R.id.toggle_distance)
+            itemView.findViewById(R.id.toggle_distance)!!
 
         fun bind(item: SettingItem.Item.Distance) {
             titleView.text = item.title
@@ -291,7 +291,7 @@ class SettingsAdapter(
 
     // Action ViewHolder
     inner class ActionViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val titleView: TextView = itemView.findViewById(R.id.tv_title)
+        private val titleView: TextView = itemView.findViewById(R.id.tv_title)!!
 
         fun bind(item: SettingItem.Item.Action) {
             titleView.text = item.title

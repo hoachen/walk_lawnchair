@@ -48,10 +48,10 @@ class ScreenshotOptionsAdapter(
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val cardView: CardView = itemView.findViewById(R.id.card_screenshot_option)
-        private val tvOptionName: TextView = itemView.findViewById(R.id.tv_option_name)
-        private val tvRegion: TextView = itemView.findViewById(R.id.tv_region)
-        private val radioButton: RadioButton = itemView.findViewById(R.id.radio_select)
+        private val cardView: CardView = itemView.findViewById(R.id.card_screenshot_option)!!
+        private val tvOptionName: TextView = itemView.findViewById(R.id.tv_option_name)!!
+        private val tvRegion: TextView = itemView.findViewById(R.id.tv_region)!!
+        private val radioButton: RadioButton = itemView.findViewById(R.id.radio_select)!!
 
         init {
             itemView.setOnClickListener {

@@ -9,6 +9,8 @@ import com.android.launcher3.databinding.ItemLockerAdBinding
 import com.android.launcher3.databinding.ItemStepOverviewCardBinding
 import com.android.launcher3.databinding.ItemTimeDateBinding
 import com.ur.apps.walk.model.MainItem
+import com.android.launcher3.R
+
 
 /**
  * LockScreenAdapter - 用于 LockScreenActivity（通过 MinimalFragment）的专用 Adapter
@@ -120,7 +122,7 @@ class LockScreenAdapter(
         items.add(MainItem.TimeDateItem(time, date))
 
         // 2. 步数概览卡片
-        val badgeText = if (stepCount >= dailyGoal) com.ur.apps.walk.WalkApplication.getContext().getString(com.ur.apps.walk.R.string.task_item_progress_label_completed) else com.ur.apps.walk.WalkApplication.getContext().getString(com.ur.apps.walk.R.string.step_overview_badge_in_progress)
+        val badgeText = if (stepCount >= dailyGoal) com.ur.apps.walk.WalkApplication.getContext().getString(R.string.task_item_progress_label_completed) else com.ur.apps.walk.WalkApplication.getContext().getString(R.string.step_overview_badge_in_progress)
         items.add(
             MainItem.StepOverviewCardItem(
                 stepCount = stepCount,
@@ -128,10 +130,10 @@ class LockScreenAdapter(
                 distance = distance,
                 calories = calories,
                 badgeText = badgeText,
-                title = com.ur.apps.walk.WalkApplication.getContext().getString(com.ur.apps.walk.R.string.step_overview_title),
-                subtitle = com.ur.apps.walk.WalkApplication.getContext().getString(com.ur.apps.walk.R.string.step_overview_subtitle_format, String.format("%,d", dailyGoal)),
-                stepLabel = com.ur.apps.walk.WalkApplication.getContext().getString(com.ur.apps.walk.R.string.step_overview_step_label),
-                ringLabel = com.ur.apps.walk.WalkApplication.getContext().getString(com.ur.apps.walk.R.string.step_overview_ring_label_completion)
+                title = com.ur.apps.walk.WalkApplication.getContext().getString(R.string.step_overview_title),
+                subtitle = com.ur.apps.walk.WalkApplication.getContext().getString(R.string.step_overview_subtitle_format, String.format("%,d", dailyGoal)),
+                stepLabel = com.ur.apps.walk.WalkApplication.getContext().getString(R.string.step_overview_step_label),
+                ringLabel = com.ur.apps.walk.WalkApplication.getContext().getString(R.string.step_overview_ring_label_completion)
             )
         )
 

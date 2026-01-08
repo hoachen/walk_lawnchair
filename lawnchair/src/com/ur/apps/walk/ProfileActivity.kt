@@ -20,6 +20,7 @@ import com.ur.apps.walk.step.utils.SharedPreferencesUtils
 import com.ur.apps.walk.ui.ArcProgressBar
 import com.ur.apps.walk.utils.DialogUtils
 import kotlin.math.min
+import com.android.launcher3.R
 
 private const val AVATAR_END_FIX = "avatar_end_fix"
 private const val AVATAR_END_FIX_KEY = "avatar_end_fix_key"
@@ -129,33 +130,33 @@ class ProfileActivity : BaseActivity(), StepCountChangeCallBack {
         val statsBestView = binding.layoutStepStats.statsBest.root
 
         // 更新7天平均步数
-        stats7daysView.findViewById<TextView>(R.id.tv_steps).text = weekAvgSteps.toString()
-        stats7daysView.findViewById<TextView>(R.id.tv_label).text =
+        stats7daysView.findViewById<TextView>(R.id.tv_steps)?.text = weekAvgSteps.toString()
+        stats7daysView.findViewById<TextView>(R.id.tv_label)?.text =
             getString(R.string.seven_days_avg)
         stats7daysView.findViewById<ArcProgressBar>(R.id.progress_circular)
-            .setProgress(weekProgress)
+            ?.setProgress(weekProgress)
 
         // 更新30天平均步数
-        stats30daysView.findViewById<TextView>(R.id.tv_steps).text = monthAvgSteps.toString()
-        stats30daysView.findViewById<TextView>(R.id.tv_label).text =
+        stats30daysView.findViewById<TextView>(R.id.tv_steps)?.text = monthAvgSteps.toString()
+        stats30daysView.findViewById<TextView>(R.id.tv_label)?.text =
             getString(R.string.thirty_days_avg)
         stats30daysView.findViewById<ArcProgressBar>(R.id.progress_circular)
-            .setProgress(monthProgress)
+            ?.setProgress(monthProgress)
 
         // 更新最佳记录
-        statsBestView.findViewById<TextView>(R.id.tv_steps).text = bestSteps.toString()
-        statsBestView.findViewById<TextView>(R.id.tv_label).text = getString(R.string.best_record)
-        statsBestView.findViewById<ArcProgressBar>(R.id.progress_circular).setProgress(bestProgress)
+        statsBestView.findViewById<TextView>(R.id.tv_steps)?.text = bestSteps.toString()
+        statsBestView.findViewById<TextView>(R.id.tv_label)?.text = getString(R.string.best_record)
+        statsBestView.findViewById<ArcProgressBar>(R.id.progress_circular)?.setProgress(bestProgress)
 
         // 设置点击事件，跳转到趋势页面
-        stats7daysView.setOnClickListener {
+        stats7daysView?.setOnClickListener {
             val intent = Intent(this, TrendsActivity::class.java).apply {
                 putExtra(TrendsActivity.EXTRA_INITIAL_TAB, TrendsActivity.TAB_WEEKLY)
             }
             startActivity(intent)
         }
 
-        stats30daysView.setOnClickListener {
+        stats30daysView?.setOnClickListener {
             val intent = Intent(this, TrendsActivity::class.java).apply {
                 putExtra(TrendsActivity.EXTRA_INITIAL_TAB, TrendsActivity.TAB_MONTHLY)
             }

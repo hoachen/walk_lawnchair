@@ -5,7 +5,7 @@ import com.ur.apps.utils.URLog
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.sg.UserManager
-import com.android.launcher3.Repository.RegionRepository
+import com.ur.apps.walk.repository.RegionRepository
 import kotlinx.coroutines.launch
 
 private const val TAG = "MainViewModel"

@@ -19,6 +19,7 @@ import com.android.launcher3.databinding.ActivityWithdrawalRecordBinding
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import com.android.launcher3.R
 
 /**
  * 提现记录页面

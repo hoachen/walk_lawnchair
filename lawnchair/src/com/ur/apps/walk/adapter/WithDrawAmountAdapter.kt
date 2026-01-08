@@ -103,10 +103,10 @@ class WithDrawAmountAdapter(
      * 电话输入ViewHolder
      */
     inner class PhoneViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val etPhone: EditText = itemView.findViewById(R.id.etPhone)
-        private val tvCountryCode: TextView = itemView.findViewById(R.id.tvCountryCode)
-        private val countryCodeLayout: LinearLayout = itemView.findViewById(R.id.countryCodeLayout)
-        private val label: TextView = itemView.findViewById(R.id.label)
+        private val etPhone: EditText = itemView.findViewById(R.id.etPhone)!!
+//        private val tvCountryCode: TextView = itemView.findViewById(R.id.tvCountryCode)!!
+        private val countryCodeLayout: LinearLayout = itemView.findViewById(R.id.countryCodeLayout)!!
+        private val label: TextView = itemView.findViewById(R.id.label)!!
 
         fun bind(field: FormField, onFieldValueChanged: (FormField, String) -> Unit) {
             val labelText = field.label ?: ""
@@ -165,9 +165,9 @@ class WithDrawAmountAdapter(
      * 选择框ViewHolder
      */
     inner class SelectViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val etDocument: EditText = itemView.findViewById(R.id.etDocument)
-        private val spinnerDocumentType: Spinner = itemView.findViewById(R.id.spinnerDocumentType)
-        private val label: TextView = itemView.findViewById(R.id.label)
+        private val etDocument: EditText = itemView.findViewById(R.id.etDocument)!!
+        private val spinnerDocumentType: Spinner = itemView.findViewById(R.id.spinnerDocumentType)!!
+        private val label: TextView = itemView.findViewById(R.id.label)!!
 
         fun bind(field: FormField, onFieldValueChanged: (FormField, String) -> Unit) {
             val labelText = field.label ?: ""
@@ -236,8 +236,8 @@ class WithDrawAmountAdapter(
      * 普通输入ViewHolder
      */
     inner class NormalViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val etName: EditText = itemView.findViewById(R.id.etName)
-        private val label: TextView = itemView.findViewById(R.id.label)
+        private val etName: EditText = itemView.findViewById(R.id.etName)!!
+        private val label: TextView = itemView.findViewById(R.id.label)!!
 
         fun bind(field: FormField, onFieldValueChanged: (FormField, String) -> Unit) {
             val labelText = field.label ?: ""

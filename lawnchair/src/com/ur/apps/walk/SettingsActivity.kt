@@ -21,6 +21,8 @@ import com.ur.apps.walk.utils.RegionHelper
 import com.ur.apps.walk.utils.ThemeManager
 import com.ur.apps.walk.utils.ThemeManager.BrandTheme
 import kotlinx.coroutines.launch
+import com.android.launcher3.R
+import com.ur.apps.lock.LockAdManager
 
 private const val TAG = "SettingsActivity"
 

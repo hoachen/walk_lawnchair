@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ur.apps.analysis.td.TDAnalyticsManager
 import com.ur.apps.walk.constants.StatisticConstants
 import com.android.launcher3.databinding.ItemLockerAdBinding
+import com.ur.apps.lock.LockAdManager
 import com.ur.apps.walk.model.MainItem
 import org.json.JSONObject
 

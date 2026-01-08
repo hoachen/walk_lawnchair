@@ -13,7 +13,7 @@ import com.sg.request.StrategyRequest
 import com.sg.response.RewardImpResponse
 import com.ur.apps.ad.RewardAdRecord
 import com.ur.apps.ad.toRewardImpRequest
-import com.android.launcher3.Repository.WithdrawRepository
+import com.ur.apps.walk.repository.WithdrawRepository
 import kotlinx.coroutines.launch
 
 class RewardViewModel(application: Application) : AndroidViewModel(application), UserManager.Companion.UserInfoListener  {

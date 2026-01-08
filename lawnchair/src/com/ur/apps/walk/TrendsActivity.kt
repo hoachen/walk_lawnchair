@@ -397,7 +397,7 @@ class TrendsActivity : BaseActivity() {
             val dataSet = LineDataSet(entries, getString(R.string.dataset_steps)).apply {
                 // 设置基本线条属性，自定义渲染器会忽略颜色
                 color =  getThemeColor(
-                    com.google.android.material.R.attr.colorPrimary
+                    com.google.android.material.R.attr.colorOnPrimary
                 )  // 基础颜色
                 lineWidth = 3f // 线条宽度
                 setDrawCircles(true) // 绘制圆点
@@ -413,7 +413,7 @@ class TrendsActivity : BaseActivity() {
                 // 启用高亮效果
                 setDrawHighlightIndicators(true)
                 highLightColor =  getThemeColor(
-                    com.google.android.material.R.attr.colorPrimary
+                    com.google.android.material.R.attr.colorOnPrimary
                 )
                 highlightLineWidth = 1.5f
             }

@@ -9,6 +9,7 @@ import com.ur.apps.absui.BaseUrFullScreenActivity
 import com.ur.apps.utils.URLog
 import com.ur.apps.walk.utils.LocaleHelper
 import com.ur.apps.walk.utils.ThemeManager
+import com.android.launcher3.R
 
 /**
  * 基础Activity，用于处理语言设置和主题应用
@@ -89,4 +90,4 @@ open class BaseActivity : BaseUrFullScreenActivity(), WalkApplication.Foreground
     override fun onEnterBackground() {
         URLog.d(TAG, "${javaClass.simpleName} 收到应用进入后台的通知")
     }
-} 
+}

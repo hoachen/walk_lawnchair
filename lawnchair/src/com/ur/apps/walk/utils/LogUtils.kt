@@ -17,7 +17,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import java.util.zip.ZipEntry
 import java.util.zip.ZipOutputStream
-
+import com.android.launcher3.R
 /**
  * 日志工具类，用于收集应用日志并通过邮件发送
  */
@@ -34,14 +34,14 @@ object LogUtils {
      */
     fun collectAndShareLogs(
         context: Context,
-        title: String = context.getString(com.ur.apps.walk.R.string.log_share_title_default),
-        message: String = context.getString(com.ur.apps.walk.R.string.log_select_app_prompt)
+        title: String = context.getString(R.string.log_share_title_default),
+        message: String = context.getString(R.string.log_select_app_prompt)
     ) {
         // 在后台协程中执行耗时操作
         CoroutineScope(Dispatchers.Main).launch {
             try {
                 // 显示进度提示
-                Toast.makeText(context, context.getString(com.ur.apps.walk.R.string.log_collecting_toast), Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, context.getString(R.string.log_collecting_toast), Toast.LENGTH_SHORT).show()
 
                 // 在IO线程执行文件操作
                 val (logFile, zipFile, zipFileUri) = withContext(Dispatchers.IO) {
@@ -68,8 +68,8 @@ object LogUtils {
                 cleanupTempFilesDelayed(logFile, zipFile)
 
             } catch (e: Exception) {
-                URLog.e(TAG, context.getString(com.ur.apps.walk.R.string.log_collect_share_failed), e)
-                Toast.makeText(context, context.getString(com.ur.apps.walk.R.string.log_collect_failed_toast_format, e.message), Toast.LENGTH_SHORT).show()
+                URLog.e(TAG, context.getString(R.string.log_collect_share_failed), e)
+                Toast.makeText(context, context.getString(R.string.log_collect_failed_toast_format, e.message), Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -99,16 +99,16 @@ object LogUtils {
         try {
             FileOutputStream(logFile).use { fos ->
                 PrintWriter(fos).use { pw ->
-                    pw.println(context.getString(com.ur.apps.walk.R.string.log_device_info_header))
-                    pw.println(context.getString(com.ur.apps.walk.R.string.log_time_label, SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(Date())))
-                    pw.println(context.getString(com.ur.apps.walk.R.string.log_device_label, Build.MANUFACTURER, Build.MODEL))
-                    pw.println(context.getString(com.ur.apps.walk.R.string.log_android_version_label, Build.VERSION.RELEASE, Build.VERSION.SDK_INT))
-                    pw.println(context.getString(com.ur.apps.walk.R.string.log_device_id_label, Build.FINGERPRINT))
-                    pw.println(context.getString(com.ur.apps.walk.R.string.log_separator) + "\n")
+                    pw.println(context.getString(R.string.log_device_info_header))
+                    pw.println(context.getString(R.string.log_time_label, SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(Date())))
+                    pw.println(context.getString(R.string.log_device_label, Build.MANUFACTURER, Build.MODEL))
+                    pw.println(context.getString(R.string.log_android_version_label, Build.VERSION.RELEASE, Build.VERSION.SDK_INT))
+                    pw.println(context.getString(R.string.log_device_id_label, Build.FINGERPRINT))
+                    pw.println(context.getString(R.string.log_separator) + "\n")
                 }
             }
         } catch (e: IOException) {
-            URLog.e(TAG, context.getString(com.ur.apps.walk.R.string.error), e)
+            URLog.e(TAG, context.getString(R.string.error), e)
         }
     }
 
@@ -149,7 +149,7 @@ object LogUtils {
      */
     private fun compressLogFile(context: Context, logFile: File): File {
         if (!logFile.exists()) {
-            throw IOException(context.getString(com.ur.apps.walk.R.string.log_file_not_exist_format, logFile.absolutePath))
+            throw IOException(context.getString(R.string.log_file_not_exist_format, logFile.absolutePath))
         }
 
         val zipFileName = logFile.nameWithoutExtension + ".zip"
@@ -172,10 +172,11 @@ object LogUtils {
                 }
             }
 
-            URLog.d(TAG, context.getString(com.ur.apps.walk.R.string.log_zip_success_format, logFile.length(), zipFile.length()))
+//            URLog.d(TAG, context.getString(R.string.log_zip_success_format,
+//                logFile.length(), zipFile.length()))
             return zipFile
         } catch (e: Exception) {
-            URLog.e(TAG, context.getString(com.ur.apps.walk.R.string.error), e)
+            URLog.e(TAG, context.getString(R.string.error), e)
             throw e
         }
     }
@@ -214,7 +215,7 @@ object LogUtils {
         }
 
         try {
-            context.startActivity(Intent.createChooser(intent, context.getString(com.ur.apps.walk.R.string.log_share_chooser_title)))
+            context.startActivity(Intent.createChooser(intent, context.getString(R.string.log_share_chooser_title)))
         } catch (e: Exception) {
             URLog.e(TAG, context.getString(R.string.log_share_failed_toast), e)
             Toast.makeText(context, context.getString(R.string.log_share_failed_toast), Toast.LENGTH_SHORT).show()

@@ -13,7 +13,7 @@ import com.ur.apps.analysis.shuzhi.SZSdkImpl
 import com.ur.apps.analysis.td.TDAnalyticsManager
 import com.ur.apps.utils.URLog
 import com.android.launcher3.BuildConfig
-import com.android.launcher3.Repository.WithdrawRepository
+import com.ur.apps.walk.repository.WithdrawRepository
 import com.ur.apps.walk.utils.RegionHelper
 import com.ur.apps.walk.withdraw.WithDrawData
 import kotlinx.coroutines.launch

@@ -67,12 +67,12 @@ class WithdrawalRecordAdapter(private val context: Context) :
     override fun getItemCount(): Int = recordList.size
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val tvOrderId: TextView = itemView.findViewById(R.id.tv_order_id)
-        private val tvStatus: TextView = itemView.findViewById(R.id.tv_status)
-        private val tvAmount: TextView = itemView.findViewById(R.id.tv_amount)
-        private val tvCoin: TextView = itemView.findViewById(R.id.tv_coin)
-        private val tvCommission: TextView = itemView.findViewById(R.id.tv_commission)
-        private val tvCreateTime: TextView = itemView.findViewById(R.id.tv_create_time)
+        private val tvOrderId: TextView = itemView.findViewById(R.id.tv_order_id)!!
+        private val tvStatus: TextView = itemView.findViewById(R.id.tv_status)!!
+        private val tvAmount: TextView = itemView.findViewById(R.id.tv_amount)!!
+        private val tvCoin: TextView = itemView.findViewById(R.id.tv_coin)!!
+        private val tvCommission: TextView = itemView.findViewById(R.id.tv_commission)!!
+        private val tvCreateTime: TextView = itemView.findViewById(R.id.tv_create_time)!!
 
         fun bind(item: WithdrawalRecordItem) {
             // 设置订单ID

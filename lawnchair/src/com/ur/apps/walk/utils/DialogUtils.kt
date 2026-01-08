@@ -16,6 +16,8 @@ import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.color.MaterialColors
 import com.android.launcher3.R
 
@@ -38,15 +40,15 @@ class DialogUtils {
             // 设置内容视图
             val contentView =
                 LayoutInflater.from(context).inflate(R.layout.dialog_nickname_custom, null)
-            dialog.findViewById<FrameLayout>(R.id.content_container).addView(contentView)
+            dialog.findViewById<FrameLayout>(R.id.content_container)!!.addView(contentView)
 
             // 获取输入框并设置当前昵称
-            val editNickname = contentView.findViewById<EditText>(R.id.edit_nickname)
+            val editNickname = contentView.findViewById<EditText>(R.id.edit_nickname)!!
             editNickname.setText(currentNickname)
             editNickname.setSelection(currentNickname.length)
 
             // 设置保存按钮点击事件
-            dialog.findViewById<TextView>(R.id.btn_save).setOnClickListener {
+            dialog.findViewById<TextView>(R.id.btn_save)?.setOnClickListener {
                 val nickname = editNickname.text.toString().trim()
                 when {
                     nickname.isEmpty() -> {
@@ -65,7 +67,7 @@ class DialogUtils {
             }
 
             // 设置关闭按钮点击事件
-            dialog.findViewById<ImageView>(R.id.btn_close).setOnClickListener {
+            dialog.findViewById<ImageView>(R.id.btn_close)?.setOnClickListener {
                 dialog.dismiss()
             }
 
@@ -86,11 +88,11 @@ class DialogUtils {
             // 设置内容视图
             val contentView =
                 LayoutInflater.from(context).inflate(R.layout.dialog_gender_custom, null)
-            dialog.findViewById<FrameLayout>(R.id.content_container).addView(contentView)
+            dialog.findViewById<FrameLayout>(R.id.content_container)?.addView(contentView)
 
             // 获取性别选项
-            val tvMale = contentView.findViewById<TextView>(R.id.tv_gender_male)
-            val tvFemale = contentView.findViewById<TextView>(R.id.tv_gender_female)
+            val tvMale = contentView.findViewById<TextView>(R.id.tv_gender_male)!!
+            val tvFemale = contentView.findViewById<TextView>(R.id.tv_gender_female)!!
 //            val tvOther = contentView.findViewById<TextView>(R.id.tv_gender_other)
 
             // 设置当前选择的性别样式
@@ -108,7 +110,7 @@ class DialogUtils {
                     tvMale.textSize = 18f
                     tvMale.typeface = android.graphics.Typeface.DEFAULT_BOLD
 
-                    tvFemale.setTextColor(context.getColor(android.R.color.darker_gray))
+                    tvFemale.setTextColor(context.getColor(android.R.color.darker_gray))!!
                     tvFemale.textSize = 16f
                     tvFemale.typeface = android.graphics.Typeface.DEFAULT
 
@@ -118,7 +120,7 @@ class DialogUtils {
                 }
 
                 1 -> { // 女性
-                    tvMale.setTextColor(context.getColor(android.R.color.darker_gray))
+                    tvMale.setTextColor(context.getColor(android.R.color.darker_gray))!!
                     tvMale.textSize = 16f
                     tvMale.typeface = android.graphics.Typeface.DEFAULT
 
@@ -177,10 +179,10 @@ class DialogUtils {
 //            }
 
             // 隐藏保存按钮，因为点击选项直接保存
-            dialog.findViewById<TextView>(R.id.btn_save).visibility = View.GONE
+            dialog.findViewById<TextView>(R.id.btn_save)?.visibility = View.GONE
 
             // 设置关闭按钮点击事件
-            dialog.findViewById<ImageView>(R.id.btn_close).setOnClickListener {
+            dialog.findViewById<ImageView>(R.id.btn_close)?.setOnClickListener {
                 dialog.dismiss()
             }
 
@@ -202,40 +204,40 @@ class DialogUtils {
             // 设置内容视图 - 这里需要创建一个新的布局文件dialog_height_custom.xml
             val contentView =
                 LayoutInflater.from(context).inflate(R.layout.dialog_height_selection, null)
-            dialog.findViewById<FrameLayout>(R.id.content_container).addView(contentView)
+            dialog.findViewById<FrameLayout>(R.id.content_container)?.addView(contentView)
 
             // 获取控件
             val heightPicker =
-                contentView.findViewById<android.widget.NumberPicker>(R.id.picker_height)
+                contentView.findViewById<android.widget.NumberPicker>(R.id.picker_height)!!
             val heightDecimalPicker =
-                contentView.findViewById<android.widget.NumberPicker>(R.id.picker_height_decimal)
+                contentView.findViewById<android.widget.NumberPicker>(R.id.picker_height_decimal)!!
             val radioGroup =
-                contentView.findViewById<android.widget.RadioGroup>(R.id.radio_group_unit)
-            val tvUnit = contentView.findViewById<TextView>(R.id.tv_unit)
-            val radioCm = contentView.findViewById<android.widget.RadioButton>(R.id.radio_cm)
-            val radioFt = contentView.findViewById<android.widget.RadioButton>(R.id.radio_ft)
+                contentView.findViewById<android.widget.RadioGroup>(R.id.radio_group_unit)!!
+            val tvUnit = contentView.findViewById<TextView>(R.id.tv_unit)!!
+            val radioCm = contentView.findViewById<android.widget.RadioButton>(R.id.radio_cm)!!
+            val radioFt = contentView.findViewById<android.widget.RadioButton>(R.id.radio_ft)!!
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                heightPicker.textColor = context.getThemeColor(
+                heightPicker?.textColor = context.getThemeColor(
                     com.google.android.material.R.attr.colorOnSurface
                 )
-                heightDecimalPicker.textColor = context.getThemeColor(
+                heightDecimalPicker?.textColor = context.getThemeColor(
                     com.google.android.material.R.attr.colorOnSurface
                 )
             }
 
             // 设置当前单位选择
             var currentIsCm = isCm
-            radioCm.isChecked = currentIsCm
-            radioFt.isChecked = !currentIsCm
+            radioCm?.isChecked = currentIsCm
+            radioFt?.isChecked = !currentIsCm
 
             // 更新选择器显示
             fun updatePickerForCm() {
-                heightPicker.minValue = context.getString(R.string.height_min_cm).toInt()
-                heightPicker.maxValue = context.getString(R.string.height_max_cm).toInt()
-                heightPicker.value = currentHeight
-                heightDecimalPicker.visibility = View.GONE
-                tvUnit.text = context.getString(R.string.height_unit_cm)
+                heightPicker?.minValue = context.getString(R.string.height_min_cm).toInt()
+                heightPicker?.maxValue = context.getString(R.string.height_max_cm).toInt()
+                heightPicker?.value = currentHeight
+                heightDecimalPicker?.visibility = View.GONE
+                tvUnit?.text = context.getString(R.string.height_unit_cm)
             }
 
             fun updatePickerForFt() {
@@ -246,16 +248,16 @@ class DialogUtils {
                 val feet = totalInches / 12
                 val inches = totalInches % 12
 
-                heightPicker.minValue = context.getString(R.string.height_min_ft).toInt()
-                heightPicker.maxValue = context.getString(R.string.height_max_ft).toInt()
-                heightPicker.value = feet
+                heightPicker?.minValue = context.getString(R.string.height_min_ft).toInt()
+                heightPicker?.maxValue = context.getString(R.string.height_max_ft).toInt()
+                heightPicker?.value = feet
 
-                heightDecimalPicker.visibility = View.VISIBLE
-                heightDecimalPicker.minValue = context.getString(R.string.height_min_inches).toInt()
-                heightDecimalPicker.maxValue = context.getString(R.string.height_max_inches).toInt()
-                heightDecimalPicker.value = inches
+                heightDecimalPicker?.visibility = View.VISIBLE
+                heightDecimalPicker?.minValue = context.getString(R.string.height_min_inches).toInt()
+                heightDecimalPicker?.maxValue = context.getString(R.string.height_max_inches).toInt()
+                heightDecimalPicker?.value = inches
 
-                tvUnit.text = context.getString(R.string.height_unit_ft)
+                tvUnit?.text = context.getString(R.string.height_unit_ft)
             }
 
             // 初始化选择器
@@ -266,7 +268,7 @@ class DialogUtils {
             }
 
             // 设置单位切换监听
-            radioGroup.setOnCheckedChangeListener { _, checkedId ->
+            radioGroup?.setOnCheckedChangeListener { _, checkedId ->
                 currentIsCm = checkedId == R.id.radio_cm
                 if (currentIsCm) {
                     updatePickerForCm()
@@ -276,7 +278,7 @@ class DialogUtils {
             }
 
             // 设置保存按钮点击事件
-            dialog.findViewById<TextView>(R.id.btn_save).setOnClickListener {
+            dialog.findViewById<TextView>(R.id.btn_save)?.setOnClickListener {
                 // 根据单位类型计算身高
                 val height = if (currentIsCm) {
                     heightPicker.value
@@ -292,7 +294,7 @@ class DialogUtils {
             }
 
             // 设置关闭按钮点击事件
-            dialog.findViewById<ImageView>(R.id.btn_close).setOnClickListener {
+            dialog.findViewById<ImageView>(R.id.btn_close)?.setOnClickListener {
                 dialog.dismiss()
             }
 
@@ -314,18 +316,18 @@ class DialogUtils {
             // 设置内容视图
             val contentView =
                 LayoutInflater.from(context).inflate(R.layout.dialog_weight_selection, null)
-            dialog.findViewById<FrameLayout>(R.id.content_container).addView(contentView)
+            dialog.findViewById<FrameLayout>(R.id.content_container)?.addView(contentView)
 
             // 获取控件
             val weightPicker =
-                contentView.findViewById<android.widget.NumberPicker>(R.id.picker_weight)
+                contentView.findViewById<android.widget.NumberPicker>(R.id.picker_weight)!!
             val weightDecimalPicker =
-                contentView.findViewById<android.widget.NumberPicker>(R.id.picker_weight_decimal)
+                contentView.findViewById<android.widget.NumberPicker>(R.id.picker_weight_decimal)!!
             val radioGroup =
-                contentView.findViewById<android.widget.RadioGroup>(R.id.radio_group_unit)
-            val tvUnit = contentView.findViewById<TextView>(R.id.tv_unit)
-            val radioKg = contentView.findViewById<android.widget.RadioButton>(R.id.radio_kg)
-            val radioLbs = contentView.findViewById<android.widget.RadioButton>(R.id.radio_lbs)
+                contentView.findViewById<android.widget.RadioGroup>(R.id.radio_group_unit)!!
+            val tvUnit = contentView.findViewById<TextView>(R.id.tv_unit)!!
+            val radioKg = contentView.findViewById<android.widget.RadioButton>(R.id.radio_kg)!!
+            val radioLbs = contentView.findViewById<android.widget.RadioButton>(R.id.radio_lbs)!!
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                 weightPicker.textColor = context.getThemeColor(
@@ -344,20 +346,20 @@ class DialogUtils {
             // 更新选择器显示
             fun updatePickerForKg() {
                 // 设置整数部分选择器
-                weightPicker.minValue = context.getString(R.string.weight_min_kg).toInt()
-                weightPicker.maxValue = context.getString(R.string.weight_max_kg).toInt()
+                weightPicker?.minValue = context.getString(R.string.weight_min_kg).toInt()
+                weightPicker?.maxValue = context.getString(R.string.weight_max_kg).toInt()
 
                 // 设置小数部分选择器
-                weightDecimalPicker.minValue = 0
-                weightDecimalPicker.maxValue = 9
+                weightDecimalPicker?.minValue = 0
+                weightDecimalPicker?.maxValue = 9
 
                 val weightInt = currentWeight.toInt()
                 val weightDecimal = ((currentWeight - weightInt) * 10).toInt()
 
-                weightPicker.value = weightInt
-                weightDecimalPicker.value = weightDecimal
+                weightPicker?.value = weightInt
+                weightDecimalPicker?.value = weightDecimal
 
-                tvUnit.text = context.getString(R.string.weight_unit_kg)
+                tvUnit?.text = context.getString(R.string.weight_unit_kg)
             }
 
             fun updatePickerForLbs() {
@@ -368,19 +370,19 @@ class DialogUtils {
                 val weightDecimal = ((weightLbs - weightInt) * 10).toInt()
 
                 // 设置整数部分选择器
-                weightPicker.minValue =
+                weightPicker?.minValue =
                     context.getString(R.string.weight_min_lbs).toInt() // 30kg约等于66磅
-                weightPicker.maxValue =
+                weightPicker?.maxValue =
                     context.getString(R.string.weight_max_lbs).toInt() // 200kg约等于440磅
 
                 // 设置小数部分选择器
-                weightDecimalPicker.minValue = 0
-                weightDecimalPicker.maxValue = 9
+                weightDecimalPicker?.minValue = 0
+                weightDecimalPicker?.maxValue = 9
 
-                weightPicker.value = weightInt
-                weightDecimalPicker.value = weightDecimal
+                weightPicker?.value = weightInt
+                weightDecimalPicker?.value = weightDecimal
 
-                tvUnit.text = context.getString(R.string.weight_unit_lbs)
+                tvUnit?.text = context.getString(R.string.weight_unit_lbs)
             }
 
             // 初始化选择器
@@ -401,7 +403,7 @@ class DialogUtils {
             }
 
             // 设置保存按钮点击事件
-            dialog.findViewById<TextView>(R.id.btn_save).setOnClickListener {
+            dialog.findViewById<TextView>(R.id.btn_save)?.setOnClickListener {
                 // 根据单位类型计算体重
                 val weight = if (currentIsKg) {
                     weightPicker.value + weightDecimalPicker.value / 10f
@@ -416,7 +418,7 @@ class DialogUtils {
             }
 
             // 设置关闭按钮点击事件
-            dialog.findViewById<ImageView>(R.id.btn_close).setOnClickListener {
+            dialog.findViewById<ImageView>(R.id.btn_close)?.setOnClickListener {
                 dialog.dismiss()
             }
 
@@ -438,11 +440,11 @@ class DialogUtils {
             // 设置内容视图
             val contentView =
                 LayoutInflater.from(context).inflate(R.layout.dialog_privacy_policy, parent, false)
-            dialog.findViewById<FrameLayout>(R.id.content_container).addView(contentView)
+            dialog.findViewById<FrameLayout>(R.id.content_container)?.addView(contentView)
 
             // 获取WebView控件和进度条
-            val webView = contentView.findViewById<WebView>(R.id.webview_privacy)
-            val progressBar = contentView.findViewById<ProgressBar>(R.id.progress_bar)
+            val webView = contentView.findViewById<WebView>(R.id.webview_privacy)!!
+            val progressBar = contentView.findViewById<ProgressBar>(R.id.progress_bar)!!
 
             // 确保WebView背景为白色
             webView.setBackgroundColor(android.graphics.Color.WHITE)
@@ -482,15 +484,15 @@ class DialogUtils {
             webView.loadUrl(context.getString(R.string.privacy_policy_url))
 
             // 设置关闭按钮点击事件
-            dialog.findViewById<ImageView>(R.id.btn_close).setOnClickListener {
+            dialog.findViewById<ImageView>(R.id.btn_close)?.setOnClickListener {
                 dialog.dismiss()
             }
 
             // 隐藏保存按钮
-            dialog.findViewById<TextView>(R.id.btn_save).text = context.getString(R.string.ok)
+            dialog.findViewById<TextView>(R.id.btn_save)?.text = context.getString(R.string.ok)
 
             // 设置关闭按钮点击事件
-            dialog.findViewById<TextView>(R.id.btn_save).setOnClickListener {
+            dialog.findViewById<TextView>(R.id.btn_save)?.setOnClickListener {
                 dialog.dismiss()
             }
 
@@ -526,7 +528,7 @@ class DialogUtils {
             val dialog = createBaseDialog(context)
 
             // 设置标题
-            dialog.findViewById<TextView>(R.id.tv_dialog_title).apply {
+            dialog.findViewById<TextView>(R.id.tv_dialog_title)?.apply {
                 text = context.getString(R.string.settings_language)
                 visibility = View.VISIBLE
             }
@@ -534,16 +536,16 @@ class DialogUtils {
             // 设置内容视图
             val contentView =
                 LayoutInflater.from(context).inflate(R.layout.dialog_language_selection, null)
-            dialog.findViewById<FrameLayout>(R.id.content_container).addView(contentView)
+            dialog.findViewById<FrameLayout>(R.id.content_container)?.addView(contentView)
 
             // 获取布局中的RecyclerView
             val recyclerView =
-                contentView.findViewById<androidx.recyclerview.widget.RecyclerView>(R.id.recycler_view)
-            recyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context)
+                contentView.findViewById<RecyclerView>(R.id.recycler_view)!!
+            recyclerView.layoutManager = LinearLayoutManager(context)
 
             // 创建适配器
             val adapter =
-                object : androidx.recyclerview.widget.RecyclerView.Adapter<LanguageViewHolder>() {
+                object : RecyclerView.Adapter<LanguageViewHolder>() {
                     override fun onCreateViewHolder(
                         parent: ViewGroup,
                         viewType: Int
@@ -568,12 +570,12 @@ class DialogUtils {
             recyclerView.adapter = adapter
 
             // 设置关闭按钮点击事件
-            dialog.findViewById<ImageView>(R.id.btn_close).setOnClickListener {
+            dialog.findViewById<ImageView>(R.id.btn_close)?.setOnClickListener {
                 dialog.dismiss()
             }
 
             // 隐藏保存按钮，因为点击语言项直接选择
-            dialog.findViewById<TextView>(R.id.btn_save).visibility = View.GONE
+            dialog.findViewById<TextView>(R.id.btn_save)?.visibility = View.GONE
 
             dialog.show()
         }
@@ -582,16 +584,16 @@ class DialogUtils {
          * 语言选项的ViewHolder
          */
         private class LanguageViewHolder(itemView: View) :
-            androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
-            private val tvLanguage: TextView = itemView.findViewById(R.id.tv_language)
-            private val ivCheck: ImageView = itemView.findViewById(R.id.iv_check)
+            RecyclerView.ViewHolder(itemView) {
+            private val tvLanguage: TextView = itemView.findViewById(R.id.tv_language)!!
+            private val ivCheck: ImageView = itemView.findViewById(R.id.iv_check)!!
 
             fun bind(
-                language: com.ur.apps.walk.utils.LocaleHelper.LanguageItem,
+                language: LocaleHelper.LanguageItem,
                 isSelected: Boolean
             ) {
-                tvLanguage.text = language.name
-                ivCheck.visibility = if (isSelected) View.VISIBLE else View.GONE
+                tvLanguage?.text = language.name
+                ivCheck?.visibility = if (isSelected) View.VISIBLE else View.GONE
             }
         }
 
@@ -608,7 +610,7 @@ class DialogUtils {
             val dialog = createBaseDialog(context)
 
             // 设置标题
-            dialog.findViewById<TextView>(R.id.tv_dialog_title).apply {
+            dialog.findViewById<TextView>(R.id.tv_dialog_title)?.apply {
                 text = context.getString(R.string.settings_region)
                 visibility = View.VISIBLE
             }
@@ -616,11 +618,11 @@ class DialogUtils {
             // 设置内容视图
             val contentView = LayoutInflater.from(context)
                 .inflate(R.layout.dialog_region_selection_setting_item, null)
-            dialog.findViewById<FrameLayout>(R.id.content_container).addView(contentView)
+            dialog.findViewById<FrameLayout>(R.id.content_container)?.addView(contentView)
 
             // 获取布局中的RecyclerView
             val recyclerView =
-                contentView.findViewById<androidx.recyclerview.widget.RecyclerView>(R.id.recycler_view)
+                contentView.findViewById<androidx.recyclerview.widget.RecyclerView>(R.id.recycler_view)!!
             recyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(context)
 
             // 创建适配器
@@ -647,15 +649,15 @@ class DialogUtils {
                     override fun getItemCount() = regions.size
                 }
 
-            recyclerView.adapter = adapter
+            recyclerView?.adapter = adapter
 
             // 设置关闭按钮点击事件
-            dialog.findViewById<ImageView>(R.id.btn_close).setOnClickListener {
+            dialog.findViewById<ImageView>(R.id.btn_close)?.setOnClickListener {
                 dialog.dismiss()
             }
 
             // 隐藏保存按钮，因为点击区域项直接选择
-            dialog.findViewById<TextView>(R.id.btn_save).visibility = View.GONE
+            dialog.findViewById<TextView>(R.id.btn_save)?.visibility = View.GONE
 
             dialog.show()
         }
@@ -665,8 +667,8 @@ class DialogUtils {
          */
         private class RegionViewHolder(itemView: View) :
             androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
-            private val tvRegion: TextView = itemView.findViewById(R.id.tv_region)
-            private val ivCheck: ImageView = itemView.findViewById(R.id.iv_check)
+            private val tvRegion: TextView = itemView.findViewById(R.id.tv_region)!!
+            private val ivCheck: ImageView = itemView.findViewById(R.id.iv_check)!!
 
             fun bind(region: RegionHelper.RegionItem, isSelected: Boolean) {
                 tvRegion.text = region.name
@@ -687,20 +689,20 @@ class DialogUtils {
             // 设置内容视图
             val contentView =
                 LayoutInflater.from(context).inflate(R.layout.dialog_inspiration_ad, null)
-            dialog.findViewById<FrameLayout>(R.id.content_container).addView(contentView)
+            dialog.findViewById<FrameLayout>(R.id.content_container)?.addView(contentView)
             dialog.setCanceledOnTouchOutside(false)
 
             // 设置关闭按钮点击事件
-            dialog.findViewById<ImageView>(R.id.btn_close).setOnClickListener {
+            dialog.findViewById<ImageView>(R.id.btn_close)?.setOnClickListener {
                 dialog.dismiss()
             }
             // 设置confirm按钮点击事件
-            dialog.findViewById<View>(R.id.btn_confirm).setOnClickListener {
+            dialog.findViewById<View>(R.id.btn_confirm)?.setOnClickListener {
                 onConfirmSelected.invoke()
                 dialog.dismiss()
             }
             // 隐藏保存按钮，因为对话框中有自己的按钮
-            dialog.findViewById<TextView>(R.id.btn_save).visibility = View.GONE
+            dialog.findViewById<TextView>(R.id.btn_save)?.visibility = View.GONE
             dialog.show()
         }
 

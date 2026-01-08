@@ -555,31 +555,31 @@ open class AdmobAdLoader : BaseAdLoader() {
             val adView =  inflater.inflate(R.layout.admob_native_ad_layout,
                 null) as NativeAdView
             val headlineView = adView.findViewById<TextView>(R.id.ad_headline)
-            headlineView.text = it.headline
+            headlineView?.text = it.headline
 
 
             val adBody = adView.findViewById<TextView>(R.id.ad_body)
-            adBody.text = it.body
+            adBody?.text = it.body
             val starRatingView = adView.findViewById<RatingBar>(R.id.ad_stars)
             if (it.starRating == null) {
-                starRatingView.visibility = View.INVISIBLE
+                starRatingView?.visibility = View.INVISIBLE
             } else {
-                starRatingView.visibility = View.VISIBLE
-                starRatingView.rating = it.starRating?.toFloat()!!
+                starRatingView?.visibility = View.VISIBLE
+                starRatingView?.rating = it.starRating?.toFloat()!!
             }
             val adAppIcon = adView.findViewById<ImageView>(R.id.ad_app_icon)
             if (it.icon == null) {
-                adAppIcon.visibility = View.GONE
+                adAppIcon?.visibility = View.GONE
             } else {
-                adAppIcon.setImageDrawable(it.icon?.drawable)
-                adAppIcon.visibility = View.VISIBLE
+                adAppIcon?.setImageDrawable(it.icon?.drawable)
+                adAppIcon?.visibility = View.VISIBLE
             }
             adView.headlineView = headlineView
             val mediaView = adView.findViewById<MediaView>(R.id.ad_media)
             adView.mediaView = mediaView
 
              val callToActionButton = adView.findViewById<TextView>(R.id.ad_call_to_action)
-            callToActionButton.text = it.callToAction
+            callToActionButton?.text = it.callToAction
             adView.callToActionView = callToActionButton
             adView.setNativeAd(it)
             adContainer.removeAllViews()

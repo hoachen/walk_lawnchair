@@ -19,6 +19,7 @@ import com.ur.apps.ad.InterstitialAdListener
 import com.ur.apps.ad.RewardAdListener
 import com.ur.apps.ad.admob.BubbleAdmobAdLoader
 import com.ur.apps.analysis.td.TDAnalyticsManager
+import com.ur.apps.lock.LockAdManager
 import com.ur.apps.utils.URLog
 import com.ur.apps.utils.ViewUtils
 import org.json.JSONObject

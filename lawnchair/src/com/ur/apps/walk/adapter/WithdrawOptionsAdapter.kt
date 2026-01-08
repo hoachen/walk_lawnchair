@@ -49,10 +49,10 @@ class WithdrawOptionsAdapter(
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val cardView: CardView = itemView.findViewById(R.id.card_withdraw_option)
-        private val tvRemainCount: TextView = itemView.findViewById(R.id.tv_remain_count)
-        private val tvAmount: TextView = itemView.findViewById(R.id.tv_amount)
-        private val tvCoinRequired: TextView = itemView.findViewById(R.id.tv_coin_required)
+        private val cardView: CardView = itemView.findViewById(R.id.card_withdraw_option)!!
+        private val tvRemainCount: TextView = itemView.findViewById(R.id.tv_remain_count)!!
+        private val tvAmount: TextView = itemView.findViewById(R.id.tv_amount)!!
+        private val tvCoinRequired: TextView = itemView.findViewById(R.id.tv_coin_required)!!
 
 
         fun bind(option: WithdrawOption) {

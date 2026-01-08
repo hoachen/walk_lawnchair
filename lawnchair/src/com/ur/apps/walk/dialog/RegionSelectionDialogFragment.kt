@@ -58,7 +58,7 @@ class RegionSelectionDialogFragment : DialogFragment() {
         viewModel = ViewModelProvider(this)[RegionSelectionViewModel::class.java]
 
         // 设置关闭按钮
-        view.findViewById<ImageView>(R.id.btn_close).setOnClickListener {
+        view.findViewById<ImageView>(R.id.btn_close)?.setOnClickListener {
             dismiss()
         }
 
@@ -66,7 +66,7 @@ class RegionSelectionDialogFragment : DialogFragment() {
         setupRecyclerView(view)
 
         // 设置确认按钮
-        view.findViewById<Button>(R.id.btn_confirm).setOnClickListener {
+        view.findViewById<Button>(R.id.btn_confirm)?.setOnClickListener {
             viewModel.selectedRegion.value?.let { region ->
                 listener?.onRegionSelected(region)
             }
@@ -74,7 +74,7 @@ class RegionSelectionDialogFragment : DialogFragment() {
         }
 
         // 显示进度条
-        val progressBar = view.findViewById<ProgressBar>(R.id.progress_bar)
+        val progressBar = view.findViewById<ProgressBar>(R.id.progress_bar)!!
         progressBar.visibility = View.VISIBLE
 
         // 观察数据变化
@@ -87,7 +87,7 @@ class RegionSelectionDialogFragment : DialogFragment() {
             viewModel.selectRegion(option)
         }
 
-        view.findViewById<RecyclerView>(R.id.recycler_view).apply {
+        view.findViewById<RecyclerView>(R.id.recycler_view)?.apply {
             layoutManager = GridLayoutManager(requireContext(), 2)
             adapter = this@RegionSelectionDialogFragment.adapter
         }

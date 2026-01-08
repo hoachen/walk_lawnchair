@@ -19,6 +19,7 @@ import com.ur.apps.walk.model.RegionOption
 import com.ur.apps.walk.model.RegionUi
 import com.ur.apps.walk.utils.RegionHelper
 import com.ur.apps.walk.viewmodel.WithdrawViewModel
+import com.android.launcher3.R
 
 /**
  * 提现页面
@@ -37,12 +38,12 @@ class WithdrawActivity : BaseActivity() {
         viewModel = ViewModelProvider(this)[WithdrawViewModel::class.java]
 
         // 设置返回按钮
-        binding.layoutToolbar.findViewById<View>(R.id.btn_back).setOnClickListener {
+        binding.layoutToolbar.findViewById<View>(R.id.btn_back)?.setOnClickListener {
             finish()
         }
 
         // 设置提现记录按钮
-        binding.layoutToolbar.findViewById<View>(R.id.btn_records).setOnClickListener {
+        binding.layoutToolbar.findViewById<View>(R.id.btn_records)?.setOnClickListener {
             // 跳转到提现记录页面
             WithdrawalRecordActivity.start(this)
         }
@@ -51,11 +52,11 @@ class WithdrawActivity : BaseActivity() {
         setupRecyclerViewArea()
 
         // 设置国家切换按钮
-        binding.cardCountrySelector.findViewById<View>(R.id.region_area).setOnClickListener {
+        binding.cardCountrySelector.findViewById<View>(R.id.region_area)?.setOnClickListener {
             showRegionSelectionDialog()
         }
         // 设置国家切换按钮
-        binding.cardCountrySelector.findViewById<View>(R.id.btn_switch).setOnClickListener {
+        binding.cardCountrySelector.findViewById<View>(R.id.btn_switch)?.setOnClickListener {
             showRegionSelectionDialog()
         }
 
@@ -91,13 +92,13 @@ class WithdrawActivity : BaseActivity() {
     private fun observeViewModel() {
         // 观察余额信息
         viewModel.balance.observe(this) { balance ->
-            binding.cardBalance.findViewById<TextView>(R.id.tv_balance_amount).text =
+            binding.cardBalance.findViewById<TextView>(R.id.tv_balance_amount)?.text =
                 getString(R.string.currency_format, balance.first, balance.second)
         }
 
         // 观察金币数量
         viewModel.coins.observe(this) { coins ->
-            binding.cardBalance.findViewById<TextView>(R.id.tv_coin_amount).text =
+            binding.cardBalance.findViewById<TextView>(R.id.tv_coin_amount)?.text =
                 getString(R.string.coins_format, coins)
         }
 
@@ -160,7 +161,7 @@ class WithdrawActivity : BaseActivity() {
 
         // 设置区域名称
         val regionName = RegionHelper.getRegionName(this, regionCode.countryCode)
-        binding.cardCountrySelector.findViewById<TextView>(R.id.tv_country).text = regionName
+        binding.cardCountrySelector.findViewById<TextView>(R.id.tv_country)?.text = regionName
     }
 
     /**

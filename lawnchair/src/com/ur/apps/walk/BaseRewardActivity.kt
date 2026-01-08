@@ -26,6 +26,7 @@ import com.ur.apps.utils.NetworkUtils.NETWORK_TYPE_NONE
 import com.ur.apps.utils.NetworkUtils.NETWORK_TYPE_WIFI
 import com.ur.apps.walk.viewmodel.RewardViewModel
 import com.ur.apps.walk.widget.RewardCoinDialog
+import com.android.launcher3.R
 
 open class BaseRewardActivity : BaseActivity(), RewardAdListener, InterstitialAdListener {
 

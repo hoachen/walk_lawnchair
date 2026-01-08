@@ -19,6 +19,7 @@ import com.android.launcher3.databinding.ItemLeaderboardBinding
 import com.ur.apps.walk.model.LeaderboardRepository
 import com.ur.apps.walk.model.LeaderboardUser
 import kotlinx.coroutines.launch
+import com.android.launcher3.R
 
 class LeaderboardActivity : BaseActivity() {
     private lateinit var binding: ActivityLeaderboardBinding

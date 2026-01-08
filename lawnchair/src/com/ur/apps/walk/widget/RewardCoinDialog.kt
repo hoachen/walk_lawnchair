@@ -51,41 +51,43 @@ class RewardCoinDialog(
         val taskDoneIconTreasure = findViewById<ImageView>(R.id.task_done_icon_treasure)
         val taskDoneCoinCount = findViewById<TextView>(R.id.task_done_coin_count)
         val taskDoneCoinAsMoney = findViewById<TextView>(R.id.task_done_coin_as_money)
-        taskDoneIconTreasure.setOnClickListener {
+        taskDoneIconTreasure?.setOnClickListener {
             //todo fix me to display total coin count
             //todo fix me to display coin as money
             taskDoneIconTreasure.setImageResource(R.drawable.task_done_icon_treasure_open)
         }
 
         val taskDoneClaim = findViewById<TextView>(R.id.task_done_claim)
-        taskDoneClaim.paintFlags = taskDoneClaim.paintFlags or Paint.UNDERLINE_TEXT_FLAG
-        taskDoneClaim.setOnClickListener {
-            onTaskDoneClaimAdListener?.invoke()
-            dismiss()
+        taskDoneClaim?.let {
+            taskDoneClaim.paintFlags = taskDoneClaim.paintFlags or Paint.UNDERLINE_TEXT_FLAG
+            taskDoneClaim.setOnClickListener {
+                onTaskDoneClaimAdListener?.invoke()
+                dismiss()
+            }
         }
-        taskDoneCoinCount.text = reward.rewardCoin
-        taskDoneCoinAsMoney.text = "≈${reward.currencyCode} ${reward.rewardAmount}"
+        taskDoneCoinCount?.text = reward.rewardCoin
+        taskDoneCoinAsMoney?.text = "≈${reward.currencyCode} ${reward.rewardAmount}"
         val taskDoneWatchAdVideo = findViewById<TextView>(R.id.task_done_watch_ad_video)
         if (redeem) {
-            taskDoneWatchAdVideo.isEnabled = true
-            taskDoneWatchAdVideo.text = context.getString(R.string.go_get_redeem)
-            taskDoneWatchAdVideo.setOnClickListener {
+            taskDoneWatchAdVideo?.isEnabled = true
+            taskDoneWatchAdVideo?.text = context.getString(R.string.go_get_redeem)
+            taskDoneWatchAdVideo?.setOnClickListener {
                 onGetRedeemListener?.invoke()
                 dismiss()
             }
         } else {
-            taskDoneWatchAdVideo.isEnabled = (reward.doubleSwitch == "t")
-            taskDoneWatchAdVideo.setOnClickListener {
+            taskDoneWatchAdVideo?.isEnabled = (reward.doubleSwitch == "t")
+            taskDoneWatchAdVideo?.setOnClickListener {
                 onReWatchRewardAdListener?.invoke()
                 dismiss()
             }
         }
         val bannerAdContainer = findViewById<FrameLayout>(R.id.banner_ad_view_container)
         if (showBanner) {
-            bannerAdContainer.visibility = View.VISIBLE
+            bannerAdContainer?.visibility = View.VISIBLE
             AdLoaderManager.loadBannerAd(context, bannerAdContainer)
         } else {
-            bannerAdContainer.visibility = View.GONE
+            bannerAdContainer?.visibility = View.GONE
         }
     }
 

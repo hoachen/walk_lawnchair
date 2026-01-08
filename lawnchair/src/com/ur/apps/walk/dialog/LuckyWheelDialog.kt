@@ -77,25 +77,25 @@ class LuckyWheelDialog(
     private fun initViews() {
         URLog.d(TAG, "initViews: 开始初始化视图")
         try {
-            wheelImageView = findViewById(R.id.iv_wheel)
+            wheelImageView = findViewById(R.id.iv_wheel)!!
             URLog.d(TAG, "initViews: 找到轮盘视图 = ${wheelImageView != null}")
 
-            wheelPointerImageView = findViewById(R.id.iv_wheel_pointer)
+            wheelPointerImageView = findViewById(R.id.iv_wheel_pointer)!!
             URLog.d(TAG, "initViews: 找到指针视图 = ${wheelPointerImageView != null}")
 
-            pointerFrame = findViewById(R.id.pointer_frame)
+            pointerFrame = findViewById(R.id.pointer_frame)!!
             URLog.d(TAG, "initViews: 找到指针架视图 = ${pointerFrame != null}")
 
-            performStart = findViewById(R.id.perform_start)
+            performStart = findViewById(R.id.perform_start)!!
             URLog.d(TAG, "initViews: 找到按钮视图 = ${performStart != null}")
 
-            titleView = findViewById(R.id.tv_lucky_wheel_title)
+            titleView = findViewById(R.id.tv_lucky_wheel_title)!!
             URLog.d(TAG, "initViews: 找到标题视图 = ${titleView != null}")
 
-            frameContainer = findViewById(R.id.frame_wheel_container)
+            frameContainer = findViewById(R.id.frame_wheel_container)!!
             URLog.d(TAG, "initViews: 找到容器视图 = ${frameContainer != null}")
 
-            fakeDisplayList = findViewById(R.id.fake_display_list)
+            fakeDisplayList = findViewById(R.id.fake_display_list)!!
 
             // 确保指针正确显示
             wheelPointerImageView.visibility = View.VISIBLE

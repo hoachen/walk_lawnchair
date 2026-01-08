@@ -21,7 +21,7 @@ import com.ur.apps.walk.constants.StatisticConstants
 import com.ur.apps.walk.fragment.LockScreenEmptyFragmentLeft
 import com.ur.apps.walk.fragment.MinimalFragment
 import org.json.JSONObject
-
+import com.android.launcher3.R
 
 /**
  * 锁屏界面 Activity
@@ -77,7 +77,7 @@ class LockScreenActivity : BaseActivity() {
                     or WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD
         )
 
-        mKeyguardManager = getSystemService(KeyguardManager::class.java)
+        mKeyguardManager = getSystemService(KeyguardManager::class.java)!!
 
         initViews()
         initPager()
@@ -94,7 +94,7 @@ class LockScreenActivity : BaseActivity() {
     }
 
     private fun initViews() {
-        fvpMain = findViewById(R.id.fvp_main)
+        fvpMain = findViewById<ViewPager>(R.id.fvp_main)!!
     }
 
     private fun initPager() {
@@ -157,7 +157,7 @@ class LockScreenActivity : BaseActivity() {
         )
         // 确保显示主片段
         fvpMain.currentItem = 1
-        mKeyguardManager = getSystemService(KeyguardManager::class.java)
+        mKeyguardManager = getSystemService(KeyguardManager::class.java)!!
     }
 
     // 禁止返回键

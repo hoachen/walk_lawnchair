@@ -45,6 +45,8 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.util.Random
 import java.util.concurrent.ConcurrentHashMap
+import com.android.launcher3.R
+
 
 class MainActivityRecycler : BaseRewardActivity(), StepCountChangeCallBack,
     MainItemClickListener, NativeAdListener {

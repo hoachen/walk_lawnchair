@@ -53,7 +53,7 @@ class ScreenshotSelectionDialogFragment : DialogFragment() {
         viewModel = ViewModelProvider(this)[ScreenshotSelectionViewModel::class.java]
 
         // 设置关闭按钮
-        view.findViewById<ImageView>(R.id.btn_close).setOnClickListener {
+        view.findViewById<ImageView>(R.id.btn_close)?.setOnClickListener {
             dismiss()
         }
 
@@ -61,7 +61,7 @@ class ScreenshotSelectionDialogFragment : DialogFragment() {
         setupRecyclerView(view)
 
         // 设置确认按钮
-        view.findViewById<Button>(R.id.btn_confirm).setOnClickListener {
+        view.findViewById<Button>(R.id.btn_confirm)?.setOnClickListener {
             viewModel.selectedOption.value?.let { option ->
                 listener?.onScreenshotSelected(option)
             }
@@ -78,7 +78,7 @@ class ScreenshotSelectionDialogFragment : DialogFragment() {
             viewModel.selectOption(option)
         }
 
-        view.findViewById<RecyclerView>(R.id.recycler_screenshot_options).apply {
+        view.findViewById<RecyclerView>(R.id.recycler_screenshot_options)?.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = this@ScreenshotSelectionDialogFragment.adapter
         }

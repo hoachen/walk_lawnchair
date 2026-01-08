@@ -6,7 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.ur.apps.walk.model.RegionOption
-import com.android.launcher3.Repository.RegionRepository
+import com.ur.apps.walk.repository.RegionRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 

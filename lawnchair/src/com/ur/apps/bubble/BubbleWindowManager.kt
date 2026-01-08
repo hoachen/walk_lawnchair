@@ -1,6 +1,5 @@
 package com.ur.apps.bubble
 
-import LockAdManager
 import android.content.Context
 import android.graphics.Color
 import android.graphics.PixelFormat
@@ -19,6 +18,7 @@ import com.ur.apps.ad.BannerAdListener
 import com.ur.apps.ad.BaseAdLoader
 import com.ur.apps.ad.admob.BubbleAdmobAdLoader2
 import com.ur.apps.analysis.td.TDAnalyticsManager
+import com.ur.apps.lock.LockAdManager
 import com.ur.apps.utils.URLog
 import com.ur.apps.utils.ViewUtils
 import org.json.JSONObject

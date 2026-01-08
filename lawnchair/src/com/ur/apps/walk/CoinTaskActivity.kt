@@ -14,6 +14,7 @@ import com.android.launcher3.databinding.ActivityCoinTaskBinding
 import com.android.launcher3.databinding.ItemCoinTaskBinding
 import com.ur.apps.walk.model.TaskModel
 import com.ur.apps.walk.step.manager.StepManager
+import com.android.launcher3.R
 
 /**
  * 赚取金币任务页面

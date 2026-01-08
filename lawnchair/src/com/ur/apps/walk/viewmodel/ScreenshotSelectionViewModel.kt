@@ -6,7 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.ur.apps.walk.model.ScreenshotOption
-import com.android.launcher3.Repository.ScreenshotRepository
+import com.ur.apps.walk.repository.ScreenshotRepository
 import kotlinx.coroutines.launch
 
 /**

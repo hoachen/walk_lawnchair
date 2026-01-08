@@ -12,6 +12,8 @@ import com.android.launcher3.databinding.ActivityWithdrawAmountBinding
 import com.ur.apps.walk.utils.RegionHelper
 import com.ur.apps.walk.viewmodel.WithdrawAmountViewModel
 import com.ur.apps.walk.widget.FancyDialog
+import com.android.launcher3.R
+
 
 /**
  * 提现金额输入和用户信息输入页面

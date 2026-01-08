@@ -36,15 +36,15 @@ class ColorOptionAdapter(
         themes.forEachIndexed { index, theme ->
             URLog.d(
                 TAG,
-                "主题[$index]: ID=${theme.name}, 颜色=${com.google.android.material.R.attr.colorPrimary}"
+                "主题[$index]: ID=${theme.name}, 颜色=${com.google.android.material.R.attr.colorOnPrimary}"
             )
         }
     }
 
     inner class ColorViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val cardView: CardView = itemView as CardView
-        private val colorView: View = itemView.findViewById(R.id.color_square)
-        private val checkMark: ImageView = itemView.findViewById(R.id.check_mark)
+        private val colorView: View = itemView.findViewById(R.id.color_square)!!
+        private val checkMark: ImageView = itemView.findViewById(R.id.check_mark)!!
 
         fun bind(theme: ThemeManager.BrandTheme) {
             try {
@@ -52,7 +52,7 @@ class ColorOptionAdapter(
                 val color = themeManager.getColorFromSpecificTheme(
                     baseContext = context,
                     themeResId = theme.themeRes,
-                    attrResId = com.google.android.material.R.attr.colorPrimary
+                    attrResId = com.google.android.material.R.attr.colorOnPrimary
                 )
 
                 URLog.d(TAG, "为主题${theme.name}创建渐变背景")
@@ -113,7 +113,7 @@ class ColorOptionAdapter(
                 // 回退到使用单一颜色
                 try {
                     val color = context.getThemeColor(
-                        com.google.android.material.R.attr.colorPrimary
+                        com.google.android.material.R.attr.colorOnPrimary
                     )
                     colorView.setBackgroundColor(color)
                 } catch (e2: Exception) {

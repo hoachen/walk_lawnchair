@@ -1,6 +1,5 @@
 package com.ur.apps.walk.fragment
 
-import LockAdManager
 import android.animation.ValueAnimator
 import android.annotation.SuppressLint
 import android.content.BroadcastReceiver
@@ -23,6 +22,7 @@ import com.ur.apps.walk.adapter.LockScreenAdapter
 import com.ur.apps.walk.adapter.MainItemClickListener
 import com.ur.apps.walk.constants.StatisticConstants
 import com.android.launcher3.databinding.FragmentMinimalBinding
+import com.ur.apps.lock.LockAdManager
 import com.ur.apps.walk.model.MainItem
 import com.ur.apps.walk.model.TaskModel
 import com.ur.apps.walk.step.bean.ExerciseStats
@@ -32,6 +32,7 @@ import org.json.JSONObject
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+import com.android.launcher3.R
 
 class MinimalFragment : Fragment(), StepCountChangeCallBack, MainItemClickListener {
 
@@ -200,7 +201,7 @@ class MinimalFragment : Fragment(), StepCountChangeCallBack, MainItemClickListen
         // 更新时间格式
         val timeFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
         val dateFormat = SimpleDateFormat(
-            getString(com.ur.apps.walk.R.string.lock_date_format_full),
+            getString(R.string.lock_date_format_full),
             Locale.getDefault()
         )
 
@@ -421,7 +422,7 @@ class MinimalFragment : Fragment(), StepCountChangeCallBack, MainItemClickListen
             // 任务未完成，提示用户继续步行
             val remaining = targetDistance - currentDistance
             // 使用资源字符串，支持多语言
-            showToast(getString(com.ur.apps.walk.R.string.task_remaining_steps, remaining))
+            showToast(getString(R.string.task_remaining_steps, remaining))
         }
     }
 
@@ -441,7 +442,7 @@ class MinimalFragment : Fragment(), StepCountChangeCallBack, MainItemClickListen
         } else {
             // 任务未完成
             val remaining = stepGoal - currentSteps
-            showToast(getString(com.ur.apps.walk.R.string.task_remaining_steps, remaining))
+            showToast(getString(R.string.task_remaining_steps, remaining))
         }
     }
 
@@ -463,7 +464,7 @@ class MinimalFragment : Fragment(), StepCountChangeCallBack, MainItemClickListen
         val currentTime = System.currentTimeMillis()
         val timeFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
         val dateFormat = SimpleDateFormat(
-            getString(com.ur.apps.walk.R.string.lock_date_format_full),
+            getString(R.string.lock_date_format_full),
             Locale.getDefault()
         )
         val currentTimeStr = timeFormat.format(Date(currentTime))
@@ -488,8 +489,8 @@ class MinimalFragment : Fragment(), StepCountChangeCallBack, MainItemClickListen
         val remainingSteps = dailyGoal - currentSteps
         // 根据完成情况设置徽章文本
         val badgeText =
-            if (currentSteps >= dailyGoal) getString(com.ur.apps.walk.R.string.task_item_progress_label_completed) else getString(
-                com.ur.apps.walk.R.string.step_overview_badge_in_progress
+            if (currentSteps >= dailyGoal) getString(R.string.task_item_progress_label_completed) else getString(
+                R.string.step_overview_badge_in_progress
             )
 
         items.add(
@@ -499,13 +500,13 @@ class MinimalFragment : Fragment(), StepCountChangeCallBack, MainItemClickListen
                 distance = distance,
                 calories = calories,
                 badgeText = badgeText,
-                title = getString(com.ur.apps.walk.R.string.step_overview_title),
+                title = getString(R.string.step_overview_title),
                 subtitle = getString(
-                    com.ur.apps.walk.R.string.step_overview_subtitle_format,
+                    R.string.step_overview_subtitle_format,
                     String.format("%,d", dailyGoal)
                 ),
-                stepLabel = getString(com.ur.apps.walk.R.string.step_overview_step_label),
-                ringLabel = getString(com.ur.apps.walk.R.string.step_overview_ring_label_completion)
+                stepLabel = getString(R.string.step_overview_step_label),
+                ringLabel = getString(R.string.step_overview_ring_label_completion)
             )
         )
         items.add(MainItem.LockerAdItem)
@@ -516,7 +517,7 @@ class MinimalFragment : Fragment(), StepCountChangeCallBack, MainItemClickListen
                 taskId = 1,
                 targetDistance = TASK_ONE,
                 currentDistance = currentSteps,
-                title = getString(com.ur.apps.walk.R.string.earn_coins)
+                title = getString(R.string.earn_coins)
             )
         )
 

@@ -47,13 +47,13 @@ class RegionOptionsAdapter(
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val cardConstraint: View = itemView.findViewById(R.id.card_constraint)
-        private val regionScreen: View = itemView.findViewById(R.id.region_screen)
-        private val imgFlag: ImageView = itemView.findViewById(R.id.img_flag)
-        private val tvRegionName: TextView = itemView.findViewById(R.id.tv_region_name)
-        private val imgPaymentType: ImageView = itemView.findViewById(R.id.payment_type)
+        private val cardConstraint: View = itemView.findViewById(R.id.card_constraint)!!
+        private val regionScreen: View = itemView.findViewById(R.id.region_screen)!!
+        private val imgFlag: ImageView = itemView.findViewById(R.id.img_flag)!!
+        private val tvRegionName: TextView = itemView.findViewById(R.id.tv_region_name)!!
+        private val imgPaymentType: ImageView = itemView.findViewById(R.id.payment_type)!!
         private val regionSelectedDisplay: ImageView =
-            itemView.findViewById(R.id.region_selected_display)
+            itemView.findViewById(R.id.region_selected_display)!!
 
         init {
             itemView.setOnClickListener {

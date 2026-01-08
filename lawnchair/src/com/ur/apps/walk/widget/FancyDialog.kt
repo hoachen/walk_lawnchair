@@ -39,12 +39,12 @@ class FancyDialog(context: Context) : Dialog(context) {
 
         // 设置关闭按钮点击事件
         val closeButton = findViewById<View>(R.id.fake_close_click)
-        closeButton.setOnClickListener {
+        closeButton?.setOnClickListener {
             closeListener?.invoke()
             dismiss()
         }
 
-        val telegramUrl = findViewById<TextView>(R.id.telegram_url)
+        val telegramUrl = findViewById<TextView>(R.id.telegram_url)!!
         val telUrl = UserManager.instance.getGroupUrl() ?: ""
         URLog.i(TAG, "telUrl is : $telUrl")
         telegramUrl.text = telUrl
@@ -57,7 +57,7 @@ class FancyDialog(context: Context) : Dialog(context) {
             this@FancyDialog.context.startActivity(intent)
         }
 
-        val btnGo = findViewById<View>(R.id.btn_go)
+        val btnGo = findViewById<View>(R.id.btn_go)!!
         btnGo.setOnClickListener {
             btnGoListener?.invoke(telegramUrl)
         }
