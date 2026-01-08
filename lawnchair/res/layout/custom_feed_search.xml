@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="8dp">
+
+    <TextView
+        android:id="@+id/search_bar_text"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@drawable/search_bar_background"
+        android:backgroundTint="#80FFFFFF"
+        android:gravity="center"
+        android:text="search app lib"
+        android:drawableStart="@android:drawable/ic_menu_search"
+        android:drawablePadding="8dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp" />
+
+</FrameLayout>

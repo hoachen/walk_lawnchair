@@ -45,8 +45,13 @@ class CustomFeedOverlay(private val launcher: LawnchairLauncher) : LauncherOverl
     private fun createOverlayView(): View {
         Log.d(TAG, "createOverlayView called, screenWidth=$screenWidth")
 
-        // Custom FrameLayout that handles back key
+        // Custom FrameLayout that handles back key and gestures
         val overlayContainer = object : FrameLayout(launcher) {
+            private var startX = 0f
+            private var startY = 0f
+            private var isScrolling = false
+            private val touchSlop = android.view.ViewConfiguration.get(context).scaledTouchSlop
+
             override fun dispatchKeyEvent(event: KeyEvent): Boolean {
                 if (event.keyCode == KeyEvent.KEYCODE_BACK && event.action == KeyEvent.ACTION_UP) {
                     if (currentProgress > 0f) {
@@ -56,6 +61,64 @@ class CustomFeedOverlay(private val launcher: LawnchairLauncher) : LauncherOverl
                     }
                 }
                 return super.dispatchKeyEvent(event)
+            }
+
+            override fun onInterceptTouchEvent(ev: android.view.MotionEvent): Boolean {
+                when (ev.actionMasked) {
+                    android.view.MotionEvent.ACTION_DOWN -> {
+                        startX = ev.x
+                        startY = ev.y
+                        isScrolling = false
+                    }
+                    android.view.MotionEvent.ACTION_MOVE -> {
+                        if (isScrolling) return true
+                        val dx = ev.x - startX
+                        val dy = ev.y - startY
+                        if (kotlin.math.abs(dx) > touchSlop && kotlin.math.abs(dx) > kotlin.math.abs(dy)) {
+                            // Only intercept if dragging LEFT (to close) implies dx < 0 ??
+                            // Actually allow both directions to be responsive
+                            isScrolling = true
+                            // Prevent RecyclerView from stealing subsequent events
+                            requestDisallowInterceptTouchEvent(true)
+                            return true
+                        }
+                    }
+                }
+                return super.onInterceptTouchEvent(ev)
+            }
+
+            override fun onTouchEvent(event: android.view.MotionEvent): Boolean {
+                when (event.actionMasked) {
+                    android.view.MotionEvent.ACTION_MOVE -> {
+                        if (isScrolling) {
+                            val dx = event.x - startX
+                            // progress range: 1.0 (open) to 0.0 (closed)
+                            // View moves by dx. width corresponds to range 0..1
+                            // If dx is -width, progress should change by -1.
+                            val newProgress = (currentProgress + dx / width).coerceIn(0f, 1f)
+                            updateOverlayPosition(newProgress)
+                            // Reset startX to ensure smooth continuous scrolling
+                            // actually simpler to just use absolute difference from initial touch
+                            // But since we update progress immediately, we want delta.
+                            // Let's stick to simple delta model:
+                            // The problem with updating progress AND relying on touch is that
+                            // if we move the view, the touch event coordinate (relative to view) MIGHT shift if the parent moves?
+                            // This layout IS the moving part?
+                            // Yes, this view has translationX.
+                            // If we change translationX, the subsequent ACTION_MOVE event.x might be affected depending on OS.
+                            // Usually event.getRawX() is safer for absolute screen movement tracking.
+                        }
+                    }
+                    android.view.MotionEvent.ACTION_UP, android.view.MotionEvent.ACTION_CANCEL -> {
+                        if (isScrolling) {
+                            isScrolling = false
+                            // Snap to nearest
+                            val target = if (currentProgress > 0.5f) 1f else 0f
+                            animateToProgress(target)
+                        }
+                    }
+                }
+                return true
             }
         }
 
@@ -76,8 +139,7 @@ class CustomFeedOverlay(private val launcher: LawnchairLauncher) : LauncherOverl
                     ViewGroup.LayoutParams.MATCH_PARENT,
                     ViewGroup.LayoutParams.MATCH_PARENT,
                 ).apply {
-                    // Add padding for status bar
-                    topMargin = getStatusBarHeight() + 200
+                    // Start from top, handled by padding if needed
                 }
             }
 
@@ -119,36 +181,178 @@ class CustomFeedOverlay(private val launcher: LawnchairLauncher) : LauncherOverl
      * Get feed items to display
      * Override this method to provide custom content
      */
+    private var searchView: View? = null
+    private var allAppsCache: List<FeedApp> = emptyList()
+
+    private fun showSearchUI() {
+        if (overlayView == null) return
+        val container = overlayView as ViewGroup
+
+        if (searchView == null) {
+            val inflater = android.view.LayoutInflater.from(launcher)
+            searchView = inflater.inflate(R.layout.custom_feed_full_search, container, false)
+
+            // Setup Search Logic
+            val searchInput = searchView!!.findViewById<android.widget.EditText>(R.id.search_input)!!
+            val searchCancel = searchView!!.findViewById<android.widget.TextView>(R.id.search_cancel)!!
+            val searchRecycler = searchView!!.findViewById<androidx.recyclerview.widget.RecyclerView>(R.id.search_results_recycler)!!
+
+            // Adjust header padding for status bar
+            val searchHeader = searchView!!.findViewById<android.widget.LinearLayout>(R.id.search_container_header)!!
+            val statusBarHeight = getStatusBarHeight()
+            searchHeader.setPaddingRelative(
+                searchHeader.paddingStart,
+                statusBarHeight + 20, // Add ~8dp extra
+                searchHeader.paddingEnd,
+                searchHeader.paddingBottom
+            )
+
+            searchRecycler.layoutManager = LinearLayoutManager(launcher)
+
+            // Load all apps if not loaded
+            if (allAppsCache.isEmpty()) {
+                allAppsCache = getAllInstalledApps()
+            }
+
+            val searchAdapter = CustomSearchAdapter(allAppsCache)
+            searchRecycler.adapter = searchAdapter
+
+            searchCancel.setOnClickListener {
+                hideSearchUI()
+            }
+
+            searchInput.addTextChangedListener(object : android.text.TextWatcher {
+                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                    val query = s.toString()
+                    val filtered = if (query.isEmpty()) {
+                        allAppsCache
+                    } else {
+                        allAppsCache.filter { it.title.contains(query, ignoreCase = true) }
+                    }
+                    searchAdapter.updateList(filtered)
+                }
+                override fun afterTextChanged(s: android.text.Editable?) {}
+            })
+
+             // Create a container for the search view to handle background and touch
+             // Actually searchView is the root from layout xml, usually MATCH_PARENT/MATCH_PARENT
+        }
+
+        if (searchView!!.parent == null) {
+             container.addView(searchView)
+             searchView!!.alpha = 0f
+             searchView!!.animate().alpha(1f).setDuration(200).start()
+
+             // Request focus and show keyboard
+             val searchInput = searchView!!.findViewById<android.widget.EditText>(R.id.search_input)!!
+             searchInput.requestFocus()
+             val imm = launcher.getSystemService(android.content.Context.INPUT_METHOD_SERVICE) as android.view.inputmethod.InputMethodManager
+             imm.showSoftInput(searchInput, android.view.inputmethod.InputMethodManager.SHOW_IMPLICIT)
+        }
+    }
+
+    private fun hideSearchUI() {
+        searchView?.let { view ->
+            if (view.parent != null) {
+                 // Hide keyboard
+                 val searchInput = view.findViewById<android.widget.EditText>(R.id.search_input)!!
+                 val imm = launcher.getSystemService(android.content.Context.INPUT_METHOD_SERVICE) as android.view.inputmethod.InputMethodManager
+                 imm.hideSoftInputFromWindow(searchInput.windowToken, 0)
+
+                view.animate().alpha(0f).setDuration(200).withEndAction {
+                    (view.parent as ViewGroup).removeView(view)
+                }.start()
+            }
+        }
+    }
+
+
+    /**
+     * Get ALL installed apps for search
+     */
+    private fun getAllInstalledApps(): List<FeedApp> {
+        val launcherApps = launcher.getSystemService(android.content.Context.LAUNCHER_APPS_SERVICE) as android.content.pm.LauncherApps
+        val userHandle = android.os.Process.myUserHandle()
+        val activities = launcherApps.getActivityList(null, userHandle)
+
+        // Sort by label
+        val sorted = activities.sortedWith(Comparator { a, b ->
+            String.CASE_INSENSITIVE_ORDER.compare(a.label.toString(), b.label.toString())
+        })
+
+        return sorted.map { activityInfo ->
+            val iconDrawable = activityInfo.getBadgedIcon(0)
+             FeedApp(
+                title = activityInfo.label.toString(),
+                iconRes = 0,
+                iconDrawable = iconDrawable,
+                action = {
+                    val intent = android.content.Intent(android.content.Intent.ACTION_MAIN)
+                    intent.component = activityInfo.componentName
+                    intent.addFlags(android.content.Intent.FLAG_ACTIVITY_NEW_TASK or android.content.Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED)
+                    launcher.startActivitySafely(null, intent, null)
+                }
+            )
+        }
+    }
+
+    // Existing getInstalledApps used for feed preview (limited count), effectively redundant now if we cache,
+    // but keeping it simple. Refactor slightly to use cache if available or just getAll and take 16.
+    private fun getInstalledApps(): List<FeedApp> {
+        if (allAppsCache.isNotEmpty()) return allAppsCache.take(16)
+        return getAllInstalledApps().take(16)
+    }
+
     private fun getFeedItems(): List<FeedItem> {
-        // TODO: Replace with actual data source (RSS, API, etc.)
+        // Ensure cache is populated
+        if (allAppsCache.isEmpty()) {
+             allAppsCache = getAllInstalledApps()
+        }
+        val realApps = allAppsCache
+
+        // Partition real apps for demo
+        val commonApps = realApps.take(8)
+        val recentApps = realApps.drop(8).take(8)
+
         return listOf(
+            // Search Bar
             FeedItem(
-                type = FeedItemType.HEADER,
-                title = launcher.getString(R.string.custom_feed_title),
+                type = FeedItemType.SEARCH,
+                title = "应用库",
+                action = { showSearchUI() }
             ),
+
+            // Common Apps
             FeedItem(
-                type = FeedItemType.SHORTCUT_ROW,
-                title = launcher.getString(R.string.custom_feed_quick_access),
+                type = FeedItemType.APP_GRID,
+                title = "常用",
+                apps = commonApps
             ),
+
+            // Recent Apps
             FeedItem(
-                type = FeedItemType.CARD,
-                title = launcher.getString(R.string.custom_feed_weather),
-                subtitle = "25°C - Sunny",
-                iconRes = R.drawable.ic_weather_sunny,
+                type = FeedItemType.APP_GRID,
+                title = "最近",
+                apps = recentApps
             ),
+
+            // Step Count Placeholder
             FeedItem(
-                type = FeedItemType.CARD,
-                title = launcher.getString(R.string.custom_feed_calendar),
-                subtitle = launcher.getString(R.string.custom_feed_no_events),
-                iconRes = R.drawable.ic_calendar,
+                type = FeedItemType.PLACEHOLDER,
+                title = "2396 步数",
             ),
+
+            // Rewards Placeholder
             FeedItem(
-                type = FeedItemType.DIVIDER,
+                type = FeedItemType.PLACEHOLDER,
+                title = "领取步数奖励",
             ),
+
+            // Time Rewards Placeholder
             FeedItem(
-                type = FeedItemType.CARD,
-                title = launcher.getString(R.string.custom_feed_news),
-                subtitle = launcher.getString(R.string.custom_feed_news_placeholder),
+                type = FeedItemType.PLACEHOLDER,
+                title = "时段奖励",
             ),
         )
     }
@@ -221,11 +425,54 @@ class CustomFeedOverlay(private val launcher: LawnchairLauncher) : LauncherOverl
         }
     }
 
+
+    // Inner Adapter for Search Results
+    private inner class CustomSearchAdapter(private var apps: List<FeedApp>) : RecyclerView.Adapter<CustomSearchAdapter.ViewHolder>() {
+
+        inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+            val icon: android.widget.ImageView = view.findViewById<android.widget.ImageView>(R.id.app_icon)!!
+            val title: android.widget.TextView = view.findViewById<android.widget.TextView>(R.id.app_title)!!
+        }
+
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+            val view = android.view.LayoutInflater.from(parent.context).inflate(R.layout.item_search_result, parent, false)
+            return ViewHolder(view)
+        }
+
+        override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+            val app = apps[position]
+            holder.title.text = app.title
+            if (app.iconDrawable != null) {
+                holder.icon.setImageDrawable(app.iconDrawable)
+            } else {
+                holder.icon.setImageResource(android.R.drawable.sym_def_app_icon)
+            }
+            holder.itemView.setOnClickListener {
+                app.action?.invoke()
+            }
+        }
+
+        override fun getItemCount() = apps.size
+
+        fun updateList(newApps: List<FeedApp>) {
+            apps = newApps
+            notifyDataSetChanged()
+        }
+    }
+
     /**
      * Handle back press when overlay is open
      * @return true if back press was consumed
      */
     fun onBackPressed(): Boolean {
+        // Check search view first
+        searchView?.let {
+            if (it.parent != null) {
+                hideSearchUI()
+                return true
+            }
+        }
+
         if (currentProgress > 0f) {
             Log.d(TAG, "onBackPressed: closing overlay")
             animateToProgress(0f)
@@ -278,6 +525,8 @@ class CustomFeedOverlay(private val launcher: LawnchairLauncher) : LauncherOverl
         Log.d(TAG, "onDetachedFromWindow called")
         launcher.setLauncherOverlay(null)
         detachOverlay()
+        // Clear cache
+        allAppsCache = emptyList()
     }
 
     override fun openOverlay() {
@@ -306,7 +555,10 @@ class CustomFeedOverlay(private val launcher: LawnchairLauncher) : LauncherOverl
     override fun onActivityPaused(activity: Activity) {}
     override fun onActivityStopped(activity: Activity) {}
     override fun onActivitySaveInstanceState(activity: Activity, bundle: Bundle) {}
-    override fun onActivityDestroyed(activity: Activity) {}
+    override fun onActivityDestroyed(activity: Activity) {
+        // Clear cache
+        allAppsCache = emptyList()
+    }
 
 
 }
