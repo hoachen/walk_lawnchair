@@ -165,7 +165,7 @@ public class SecondaryDropTarget extends ButtonDropTarget implements OnAlarmList
         }
 
         if (info.getTargetComponent() != null && info.getTargetComponent().getPackageName().equals(getContext().getPackageName())){
-            return INVALID
+            return INVALID;
         }
         
         Boolean uninstallDisabled = mUninstallDisabledCache.get(info.user);
