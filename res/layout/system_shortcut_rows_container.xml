@@ -22,4 +22,7 @@
     android:layout_height="wrap_content"
     android:tag="@string/popup_container_iterate_children"
     android:elevation="@dimen/deep_shortcuts_elevation"
-    android:orientation="vertical"/>
+    android:orientation="vertical"
+    android:clipToOutline="true"
+    android:outlineProvider="background"
+    />
