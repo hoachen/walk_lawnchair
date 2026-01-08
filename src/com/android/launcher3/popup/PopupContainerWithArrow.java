@@ -199,6 +199,10 @@ public class PopupContainerWithArrow<T extends Context & ActivityContext>
             return null;
         }
 
+
+        if (item.getTargetComponent() != null && item.getTargetComponent().getPackageName().endsWith(launcher.getPackageName())) {
+            return null;
+        }
         PopupContainerWithArrow<Launcher> container;
         PopupDataProvider popupDataProvider = launcher.getPopupDataProvider();
         int deepShortcutCount = popupDataProvider.getShortcutCountForItem(item);
