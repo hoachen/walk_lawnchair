@@ -575,4 +575,11 @@
     <string name="task_badge_sample">+5 🪙</string>
     <string name="coin_content_description">Koin</string>
 <!--    walk end-->
+    <!-- WalkGo Default Launcher Dialog -->
+    <string name="welcome_to_walkgo">Selamat datang di WalkGo</string>
+    <string name="set_default_launcher_title">Tetapkan WalkGo sebagai Peluncur default</string>
+    <string name="feature_no_rummaging">Tidak Perlu Mencari-cari</string>
+    <string name="feature_fast_track">Cepat - Masuk ke Aplikasi</string>
+    <string name="action_try_now">Coba Sekarang</string>
+
 </resources>

@@ -1278,4 +1278,11 @@
     <string name="ach_complete_tasks_desc_format">再走 %1$d 步完成今日目标</string>
     <string name="ach_complete_tasks_tag_format">目标 %1$d 步</string>
 <!--    walk end-->
+    <!-- WalkGo Default Launcher Dialog -->
+    <string name="welcome_to_walkgo">欢迎来到 WalkGo</string>
+    <string name="set_default_launcher_title">将 WalkGo 设置为默认启动器</string>
+    <string name="feature_no_rummaging">无需翻找</string>
+    <string name="feature_fast_track">快速进入应用</string>
+    <string name="action_try_now">立即尝试</string>
+
 </resources>

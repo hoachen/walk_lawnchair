@@ -1540,4 +1540,11 @@
 
     <string name="ad_attribution" translatable="false">Ad</string>
 <!--    walk end-->
+    <!-- WalkGo Default Launcher Dialog -->
+    <string name="welcome_to_walkgo">Welcome to WalkGo</string>
+    <string name="set_default_launcher_title">Set WalkGo as default Launcher</string>
+    <string name="feature_no_rummaging">No Rummaging Required</string>
+    <string name="feature_fast_track">Fast - Track to App</string>
+    <string name="action_try_now">Try Now</string>
+
 </resources>

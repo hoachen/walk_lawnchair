@@ -46,6 +46,8 @@ import kotlinx.coroutines.launch
 import java.util.Random
 import java.util.concurrent.ConcurrentHashMap
 import com.android.launcher3.R
+import android.content.pm.PackageManager
+import com.ur.apps.walk.dialog.SetDefaultLauncherDialog
 
 
 class MainActivityRecycler : BaseRewardActivity(), StepCountChangeCallBack,
@@ -440,6 +442,7 @@ class MainActivityRecycler : BaseRewardActivity(), StepCountChangeCallBack,
     override fun onStart() {
         super.onStart()
         TenjinManager.onMainActivityStart()
+        checkDefaultLauncher()
     }
 
     override fun onResume() {
@@ -1235,6 +1238,36 @@ class MainActivityRecycler : BaseRewardActivity(), StepCountChangeCallBack,
         } else {
             steps.toString()
         }
+    }
+
+    private fun checkDefaultLauncher() {
+        if (isFinishing || isDestroyed) return
+
+        val isDefault = isDefaultLauncher(this)
+        val fragmentManager = supportFragmentManager
+        val existingDialog = fragmentManager.findFragmentByTag(SetDefaultLauncherDialog.TAG)
+
+        if (isDefault) {
+            (existingDialog as? androidx.fragment.app.DialogFragment)?.dismissAllowingStateLoss()
+        } else {
+            if (existingDialog == null) {
+                SetDefaultLauncherDialog.newInstance().show(fragmentManager, SetDefaultLauncherDialog.TAG)
+            }
+        }
+    }
+
+    private fun isDefaultLauncher(context: Context): Boolean {
+        val intent = Intent(Intent.ACTION_MAIN)
+        intent.addCategory(Intent.CATEGORY_HOME)
+        val resolveInfo = context.packageManager.resolveActivity(intent, PackageManager.MATCH_DEFAULT_ONLY)
+        if (resolveInfo?.activityInfo?.packageName == context.packageName) {
+            return true
+        }
+        
+        // Double check using getHomeActivities which is sometimes more reliable
+        val homeActivities = ArrayList<android.content.pm.ResolveInfo>()
+        val defaultHome = context.packageManager.getHomeActivities(homeActivities)
+        return defaultHome != null && defaultHome.packageName == context.packageName
     }
 
     companion object {

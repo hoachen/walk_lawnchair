@@ -1259,4 +1259,11 @@
     <string name="task_badge_sample">+5 🪙</string>
     <string name="coin_content_description">Moeda</string>
 <!--    walk end-->
+    <!-- WalkGo Default Launcher Dialog -->
+    <string name="welcome_to_walkgo">Bem-vindo ao WalkGo</string>
+    <string name="set_default_launcher_title">Definir WalkGo como Launcher padrão</string>
+    <string name="feature_no_rummaging">Sem necessidade de vasculhar</string>
+    <string name="feature_fast_track">Rápido - Ir para o App</string>
+    <string name="action_try_now">Tentar Agora</string>
+
 </resources>
