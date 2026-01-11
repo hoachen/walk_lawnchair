@@ -545,8 +545,8 @@ class LawnchairLauncher : QuickstepLauncher() {
                 }
             },
         )
-        URLog.info("onResume --- Launcher")
-        if ((System.currentTimeMillis() - lastShowAdTimestamp) > LockAdManager.instance.launcherAdIntervalTs()) {
+        URLog.info("Launcher onResume")
+        if ((System.currentTimeMillis() - lastShowAdTimestamp) >= LockAdManager.instance.launcherAdIntervalTs()) {
             lastShowAdTimestamp = System.currentTimeMillis()
             showLauncherAd()
         } else {

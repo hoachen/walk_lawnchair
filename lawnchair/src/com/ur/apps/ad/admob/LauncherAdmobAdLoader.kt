@@ -37,6 +37,7 @@ import com.android.launcher3.R
 import com.ur.apps.analysis.td.TDAnalyticsManager
 import com.ur.apps.analysis.tenjin.TenjinManager
 import com.ur.apps.utils.URLog
+import com.ur.apps.walk.WalkApplication
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -192,10 +193,10 @@ object LauncherAdmobAdLoader : BaseAdLoader() {
             AdRequest.Builder().build(),
             object : RewardedAdLoadCallback() {
                 override fun onAdLoaded(ad: RewardedAd) {
-                    Log.d(loggerTag(), "Ad was loaded.")
+                    Log.d(loggerTag(), "reward ad was loaded.")
                     rewardedAd = ad
                     rewardedAd?.setOnPaidEventListener {
-                        Log.i(TAG, "on Admob interstaital paid $it")
+                        Log.i(TAG, "on admob rewardAd paid $it")
                         val adValue = it
                         val adSourceName = rewardedAd?.responseInfo?.loadedAdapterResponseInfo?.adSourceName
                         val adSourceId = rewardedAd?.responseInfo?.loadedAdapterResponseInfo?.adSourceId
@@ -222,6 +223,7 @@ object LauncherAdmobAdLoader : BaseAdLoader() {
                                     it.onRewardedAdPlayEnd(this@LauncherAdmobAdLoader)
                                     it.onRewardedAdClosed(this@LauncherAdmobAdLoader)
                                 }
+                                loadRewardVideoAd(WalkApplication.getContext())
                             }
 
                             override fun onAdFailedToShowFullScreenContent(adError: AdError) {
@@ -308,7 +310,6 @@ object LauncherAdmobAdLoader : BaseAdLoader() {
                     interstitialAd = ad
                     interstitialAd?.setOnPaidEventListener {
                         Log.i(TAG, "on Admob interstaital paid $it")
-                        val adValue = it
                         val adSourceName = interstitialAd?.responseInfo?.loadedAdapterResponseInfo?.adSourceName
                         val adSourceId = interstitialAd?.responseInfo?.loadedAdapterResponseInfo?.adSourceId
                         val revenue: Double = it.valueMicros * 1.0/ 1_000_000 // 价值，以微单位表示 (例如 5000 代表 0.005 USD)
@@ -332,6 +333,7 @@ object LauncherAdmobAdLoader : BaseAdLoader() {
                                     it.onInterstitialAdClose(this@LauncherAdmobAdLoader)
                                     it.onInterstitialAdVideoEnd(this@LauncherAdmobAdLoader)
                                 }
+                                loadInterstitialAd(WalkApplication.getContext())
                             }
 
                             override fun onAdFailedToShowFullScreenContent(adError: AdError) {
