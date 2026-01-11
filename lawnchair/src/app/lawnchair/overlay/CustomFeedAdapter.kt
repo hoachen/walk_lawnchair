@@ -12,11 +12,13 @@ import com.android.launcher3.R
 import com.android.launcher3.databinding.CustomFeedStepCardBinding
 import com.android.launcher3.databinding.CustomFeedTaskCardBinding
 import com.android.launcher3.databinding.CustomFeedAchievementsCardBinding
+import com.android.launcher3.databinding.ItemLockerAdBinding
 import com.ur.apps.walk.adapter.MainItemClickListener
 import com.ur.apps.walk.adapter.TaskItemAdapter
 import com.ur.apps.walk.model.TaskModel
 import com.ur.apps.walk.model.MainItem
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.ur.apps.ad.AdLoaderManager
 
 /**
  * @author
@@ -42,6 +44,7 @@ class CustomFeedAdapter(
         private const val VIEW_TYPE_STEP_OVERVIEW = 7
         private const val VIEW_TYPE_TASK_LIST = 8
         private const val VIEW_TYPE_ACHIEVEMENTS = 9
+        private const val VIEW_TYPE_LOCKER_AD = 10
     }
 
     class HeaderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -333,6 +336,17 @@ class CustomFeedAdapter(
         }
     }
 
+    class FeedOverlayAdViewHolder(private val binding: ItemLockerAdBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(item: FeedItem) {
+        }
+
+        fun unbind() {
+           binding.adContainer.removeAllViews()
+        }
+    }
+
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int,
@@ -349,6 +363,7 @@ class CustomFeedAdapter(
             VIEW_TYPE_STEP_OVERVIEW -> StepOverviewViewHolder(CustomFeedStepCardBinding.inflate(inflater, parent, false))
             VIEW_TYPE_TASK_LIST -> TaskListViewHolder(CustomFeedTaskCardBinding.inflate(inflater, parent, false), mainItemClickListener)
             VIEW_TYPE_ACHIEVEMENTS -> AchievementsViewHolder(CustomFeedAchievementsCardBinding.inflate(inflater, parent, false))
+            VIEW_TYPE_LOCKER_AD -> FeedOverlayAdViewHolder(ItemLockerAdBinding.inflate(inflater, parent, false))
             else -> throw IllegalArgumentException("unknown view type")
         }
     }
@@ -368,6 +383,7 @@ class CustomFeedAdapter(
             is StepOverviewViewHolder -> holder.bind(item)
             is TaskListViewHolder -> holder.bind(item)
             is AchievementsViewHolder -> holder.bind(item)
+            is FeedOverlayAdViewHolder -> holder.bind(item)
         }
     }
 
@@ -387,6 +403,7 @@ class CustomFeedAdapter(
             FeedItemType.STEP_OVERVIEW -> VIEW_TYPE_STEP_OVERVIEW
             FeedItemType.TASK_LIST -> VIEW_TYPE_TASK_LIST
             FeedItemType.ACHIEVEMENTS -> VIEW_TYPE_ACHIEVEMENTS
+            FeedItemType.LOCKER_AD -> VIEW_TYPE_LOCKER_AD
         }
     }
     fun updateData(newItems: List<FeedItem>) {

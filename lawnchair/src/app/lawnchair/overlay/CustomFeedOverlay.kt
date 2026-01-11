@@ -332,6 +332,11 @@ class CustomFeedOverlay(private val launcher: LawnchairLauncher) : LauncherOverl
                 action = { showSearchUI() }
             ),
 
+            // Locker Ad (Added as requested)
+            FeedItem(
+                type = FeedItemType.LOCKER_AD
+            ),
+
             // Common Apps
             FeedItem(
                 type = FeedItemType.APP_GRID,
