@@ -47,6 +47,7 @@ import java.util.concurrent.ConcurrentHashMap
 import com.android.launcher3.R
 import android.content.pm.PackageManager
 import android.os.Process
+import android.provider.Settings
 import com.ur.apps.walk.constants.StatisticConstants
 import com.ur.apps.walk.dialog.RateUsDialog
 import com.ur.apps.walk.dialog.SetDefaultLauncherDialog
@@ -141,10 +142,20 @@ class MainActivityRecycler : BaseRewardActivity(), StepCountChangeCallBack,
 
         // 检查是否是首次启动应用，并显示手指引导动画
         checkFirstLaunchAndShowGuide()
-
+        statsReportDrawOverlays()
         AdLoaderManager.addNativeAdListener(this)
         AdLoaderManager.loadNativeAd(this)
         maybeShowReward(intent)
+    }
+
+    private fun statsReportDrawOverlays() {
+        val isCanShow = Settings.canDrawOverlays(this)
+        TDAnalyticsManager.reportTrackEvent(
+            "overlays_permission_check",
+            JSONObject().apply {
+                put("hasOverlaysPermission", "$isCanShow")
+            }
+        )
     }
 
     override fun onNewIntent(intent: Intent, caller: ComponentCaller) {
@@ -1257,7 +1268,7 @@ class MainActivityRecycler : BaseRewardActivity(), StepCountChangeCallBack,
                 StatisticConstants.LAUNCHER_DEFAULT,
                 JSONObject().put(StatisticConstants.TYPE, "true")
             )
-            
+
             if (existingDialog != null) {
                 (existingDialog as? androidx.fragment.app.DialogFragment)?.dismissAllowingStateLoss()
                 Handler(Looper.getMainLooper()).postDelayed({
@@ -1268,7 +1279,7 @@ class MainActivityRecycler : BaseRewardActivity(), StepCountChangeCallBack,
                 // Check if we should show Rate Us
                 val prefs = SharedPreferencesUtils(this)
                 val hasRated = prefs.getParam(RateUsDialog.PREF_KEY_HAS_RATED, false) as Boolean
-                
+
                 if (!hasRated && existingRateDialog == null) {
                     RateUsDialog.newInstance().show(fragmentManager, RateUsDialog.TAG)
                 }

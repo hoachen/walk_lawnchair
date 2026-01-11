@@ -72,7 +72,22 @@ allprojects {
             implementation libs.protobuf.javalite
         }
     }
-
+    configurations.all {
+        resolutionStrategy {
+            // This ensures all pangle components align on one version
+            force 'com.pangle.global:ads-sdk:6.4.0.6'
+            // Note: Check if 6.4.0.6 is the specific version your adapter requires
+        }
+    }
+//    packaging {
+//        resources {
+//            // Pick the first one it finds and ignore the duplicate
+//            pickFirsts += "lib/arm64-v8a/libnms.so"
+//            pickFirsts += "lib/armeabi-v7a/libnms.so"
+//            pickFirsts += "lib/x86/libnms.so"
+//            pickFirsts += "lib/x86_64/libnms.so"
+//        }
+//    }
     plugins.withType(JavaBasePlugin).configureEach {
         java {
             sourceCompatibility = libs.versions.jdkRelease.get()
@@ -499,13 +514,13 @@ dependencies {
     implementation "com.google.android.gms:play-services-ads-identifier:18.0.1"
     //UnityAds
     implementation "com.anythink.sdk:adapter-tpn-unityads:6.4.56.1"
-    implementation "com.unity3d.ads:unity-ads:4.13.1"
+//    implementation "com.unity3d.ads:unity-ads:4.13.1"
     //Bigo
     implementation "com.anythink.sdk:adapter-tpn-bigo:6.4.56"
-    implementation "com.bigossp:bigo-ads:5.1.0"
+    implementation "com.bigossp:bigo-ads:5.5.2"
     //Pangle
     implementation "com.anythink.sdk:adapter-tpn-pangle-nonchina:6.4.56"
-    implementation "com.pangle.global:ads-sdk:6.4.0.6"
+//    implementation "com.pangle.global:ads-sdk:6.4.0.6"
     implementation "com.google.android.gms:play-services-ads-identifier:18.0.1"
 //
 //    //Kwai
@@ -630,6 +645,24 @@ dependencies {
     }
     // 确保你的项目里有这个，它包含了最新的类型定义
     implementation 'com.google.protobuf:protobuf-javalite:4.33.2'
+
+
+    // admob mediation
+    implementation("com.google.ads.mediation:facebook:6.21.0.0")
+    implementation("com.unity3d.ads:unity-ads:4.16.2")
+    implementation("com.google.ads.mediation:unity:4.16.5.0")
+    implementation("com.google.ads.mediation:vungle:7.6.2.0")
+    implementation("com.google.ads.mediation:chartboost:9.10.2.0")
+    implementation("com.google.ads.mediation:fyber:8.4.1.0")
+    implementation("com.google.ads.mediation:ironsource:9.2.0.0")
+    implementation("com.google.ads.mediation:pangle:7.8.0.8.0") {
+        // 排除掉冲突的 crash_monitor，让它只使用 pag-apm（或者反之）
+        exclude group: 'com.pangle.global', module: 'crash_monitor'
+        exclude group: 'com.pangle.global', module: 'pag-apm'
+        exclude group: 'com.pangle.global', module: 'gecko_pgl'
+    }
+    implementation("com.google.ads.mediation:mintegral:17.0.41.0")
+    implementation("com.google.ads.mediation:inmobi:11.1.0.0")
     // walk end
 
 }

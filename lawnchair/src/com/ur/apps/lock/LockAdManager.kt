@@ -138,6 +138,8 @@ class LockAdManager private constructor() : RewardAdListener, InterstitialAdList
         )
     }
 
+    fun getAdConfig() : LockAdConfig? = lockAdConfig
+
     private fun loadLocalAdConfig() {
         try {
             val adConfig = AdSPUtil.get().getString(AdSPUtil.KEY_LOCK_AD_CONFIG, "")

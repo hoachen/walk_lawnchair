@@ -28,6 +28,7 @@ import kotlinx.coroutines.launch
 import java.util.concurrent.TimeUnit
 import java.util.concurrent.atomic.AtomicBoolean
 import com.android.launcher3.R
+import com.ur.apps.ad.admob.AdmobMediationAdapter
 
 class SplashActivity : BaseUrFullScreenActivity() {
 
@@ -52,6 +53,7 @@ class SplashActivity : BaseUrFullScreenActivity() {
 
         // 启动动画效果
         startAnimations()
+        AdmobMediationAdapter.init(this)
         AdLoaderManager.loadInterstitialAd(this)
         AdLoaderManager.loadRewardVideoAd(this)
 

@@ -13,9 +13,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import com.ur.apps.ad.AdLoaderManager
+import com.ur.apps.ad.BannerAdListener
 import com.ur.apps.ad.BaseAdLoader
 import com.android.launcher3.BuildConfig
 import com.ur.apps.ad.InterstitialAdListener
+import com.ur.apps.ad.NativeAdListener
 import com.ur.apps.ad.RewardAdListener
 import com.ur.apps.ad.admob.BubbleAdmobAdLoader
 import com.ur.apps.analysis.td.TDAnalyticsManager
@@ -122,7 +124,7 @@ class EdgeRandomPositionStrategy : PositionStrategy {
 class BubbleManager(private val adLoader: BubbleAdmobAdLoader) :
     Application.ActivityLifecycleCallbacks,
     InterstitialAdListener,
-    RewardAdListener {
+    RewardAdListener, BannerAdListener, NativeAdListener {
 
     companion object {
         private const val TAG = "BubbleManager"
@@ -140,11 +142,16 @@ class BubbleManager(private val adLoader: BubbleAdmobAdLoader) :
     init {
         AdLoaderManager.addInterstitialAdListener(this)
         AdLoaderManager.addRewardAdListener(this)
+        adLoader.addBannerAdListener(this)
+        adLoader.addNativeAdListener(this)
     }
 
     private var currentActivity = WeakReference<Activity>(null)
 
     private val positionStrategy: PositionStrategy = EdgeRandomPositionStrategy()
+
+
+    private var showCnt = 0
 
 
     override fun onActivityResumed(activity: Activity) {
@@ -198,8 +205,28 @@ class BubbleManager(private val adLoader: BubbleAdmobAdLoader) :
             )
             return
         }
+        if (!checkLimitShow()) {
+            URLog.info(TAG, "shiled with show count limit $showCnt")
+            TDAnalyticsManager.reportTrackEvent(
+                EVENT_BUBBLE_SHILED,
+                JSONObject().apply {
+                    put("reason", "shiled with show count limit $showCnt")
+                    put("activity", className)
+                }
+            )
+            return
+        }
+
         currentActivity = WeakReference(activity)
         showBubbleView(activity)
+    }
+
+    private fun checkLimitShow() : Boolean {
+        val lockAdConfig = LockAdManager.instance.getAdConfig()
+        if (lockAdConfig != null) {
+            return showCnt <= lockAdConfig.bubbleLimit
+        }
+        return true
     }
 
 
@@ -207,22 +234,25 @@ class BubbleManager(private val adLoader: BubbleAdmobAdLoader) :
         // 这里的判断逻辑需要根据实际运行日志来写
         // 例如 TopOn 的 Activity 通常包含 com.anythink
         // AdMob 的通常是 com.google.android.gms.ads.AdActivity
+        if (LockAdManager.instance.getAdConfig()?.isAnyActivityShowBubble == true) {
+            return true
+        }
         return className.lowercase().contains("anythink") ||
-                className.lowercase().contains("kwai") ||
-                className.lowercase().contains("yandex") ||
-                className.lowercase().contains("applovin") ||
-                className.lowercase().contains("inmobi") ||
-                className.lowercase().contains("chartboost") ||
-                className.lowercase().contains("facebook") ||
-                className.lowercase().contains("unity3d") ||
-                className.lowercase().contains("vungle") ||
-                className.lowercase().contains("bytedance") ||
-                className.lowercase().contains("mbridge") ||
-                className.lowercase().contains("sg.bigo") ||
-                className.lowercase().contains("fyber") ||
-                className.lowercase().contains("ads") ||
-                className.lowercase().contains("interstitial") ||
-                className.lowercase().contains("reward")
+            className.lowercase().contains("kwai") ||
+            className.lowercase().contains("yandex") ||
+            className.lowercase().contains("applovin") ||
+            className.lowercase().contains("inmobi") ||
+            className.lowercase().contains("chartboost") ||
+            className.lowercase().contains("facebook") ||
+            className.lowercase().contains("unity3d") ||
+            className.lowercase().contains("vungle") ||
+            className.lowercase().contains("bytedance") ||
+            className.lowercase().contains("mbridge") ||
+            className.lowercase().contains("sg.bigo") ||
+            className.lowercase().contains("fyber") ||
+            className.lowercase().contains("ads") ||
+            className.lowercase().contains("interstitial") ||
+            className.lowercase().contains("reward")
     }
 
     override fun onInterstitialAdClose(adLoader: BaseAdLoader) {
@@ -233,6 +263,20 @@ class BubbleManager(private val adLoader: BubbleAdmobAdLoader) :
     override fun onRewardedAdClosed(adLoader: BaseAdLoader) {
         super.onRewardedAdClosed(adLoader)
         URLog.i(TAG, "onRewardedAdClosed ")
+    }
+
+    override fun onBannerAdShow(adLoader: BaseAdLoader) {
+        super.onBannerAdShow(adLoader)
+        // bubble native ad loader
+        URLog.i(TAG, "bubble show ")
+        showCnt = showCnt + 1
+    }
+
+    override fun onNativeAdShow(adLoader: BaseAdLoader) {
+        super.onNativeAdShow(adLoader)
+        // bubble native ad loader
+        URLog.i(TAG, "bubble show ")
+        showCnt = showCnt + 1
     }
 
     private fun showBubbleView(activity: Activity) {
@@ -350,7 +394,7 @@ class BubbleManager(private val adLoader: BubbleAdmobAdLoader) :
         val targetY = clickPoint.second
 
         URLog.d(TAG, "TargetView: ${targetView.javaClass.simpleName}, " +
-                "Global Point: ($targetX, $targetY)")
+            "Global Point: ($targetX, $targetY)")
 
         // ==========================================
         // 分发点击事件

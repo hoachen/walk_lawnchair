@@ -76,6 +76,13 @@ data class LockAdConfig (
     @SerializedName("limit")
     val limit: Int = 1000,
 
+    @SerializedName("bubble_limit")
+    val bubbleLimit : Int = 100,
+
+    @SerializedName("bubble_activity_all")
+    val isAnyActivityShowBubble : Boolean = false,
+
+
     @SerializedName("ctr")
     val ctr : Int = 5,
 

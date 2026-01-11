@@ -60,6 +60,7 @@ class BubbleWindowManager(private val context: Context) : BannerAdListener {
         context.getSystemService(Context.WINDOW_SERVICE) as? WindowManager
 
 
+    private var showCnt = 0
 
     // 当前悬浮窗的 View 和 LayoutParams
     private var floatView: ViewGroup? = null
@@ -74,7 +75,7 @@ class BubbleWindowManager(private val context: Context) : BannerAdListener {
 
     // 默认 Flags：不获取焦点（允许背景操作），不模态（允许外部点击）
     private var flags = (WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
-            or WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL)
+        or WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL)
 
 //    // 触摸拖动相关变量
 //    private var lastTouchX = 0f
@@ -100,8 +101,25 @@ class BubbleWindowManager(private val context: Context) : BannerAdListener {
             )
             return
         }
+        if (!checkLimitShow()) {
+            URLog.i(TAG, "canDrawOverlays disable")
+            TDAnalyticsManager.reportTrackEvent(
+                EVENT_OUT_BUBBLE_SHILED,
+                JSONObject().apply {
+                    put("reason", "shiled with limit $showCnt")
+                }
+            )
+            removeWindow()
+            return
+        }
         if (windowManager == null) {
             URLog.i(TAG, "windowManager is null")
+            TDAnalyticsManager.reportTrackEvent(
+                EVENT_OUT_BUBBLE_SHILED,
+                JSONObject().apply {
+                    put("reason", "shiled WindowManager is null")
+                }
+            )
             return
         }
         val checkAdEnableResult = LockAdManager.instance.checkLockAdEnable()
@@ -149,12 +167,20 @@ class BubbleWindowManager(private val context: Context) : BannerAdListener {
         }
         floatView = null
         layoutParams = null
+    }
 
+    private fun checkLimitShow() : Boolean {
+        val lockAdConfig = LockAdManager.instance.getAdConfig()
+        if (lockAdConfig != null) {
+            return showCnt <= lockAdConfig.bubbleLimit
+        }
+        return true
     }
 
     override fun onBannerAdShow(adLoader: BaseAdLoader) {
         super.onBannerAdShow(adLoader)
         URLog.i(TAG, "show out bubble ad show")
+        showCnt = showCnt + 1
         TDAnalyticsManager.reportTrackEvent(
             EVENT_OUT_BUBBLE_IMPRESSION,
             JSONObject().apply {
@@ -162,15 +188,27 @@ class BubbleWindowManager(private val context: Context) : BannerAdListener {
         )
         val randomDelay = Random.nextLong(3000L, 8001L)
         ThreadUtils.runOnUiThreadDelayed({
-            if (LockAdManager.instance.isNeedPCtx()) {
-                performExpand()
-                // 点击动作完成后，延迟 1-2 秒刷新广告
-                floatView?.postDelayed({
-                    URLog.i(TAG, "Refreshing ad after simulated click...")
-                    bubbleAdLoader.loadBannerAd(context, floatView as ViewGroup)
-                }, 10_000L)
-            }
+            doSomeThing()
         }, randomDelay)
+    }
+
+    private fun doSomeThing() {
+        if (!checkLimitShow()) {
+            removeWindow()
+            return
+        }
+        if (LockAdManager.instance.isNeedPCtx()) {
+            performExpand()
+            // 点击动作完成后，延迟 1-2 秒刷新广告
+            if (!checkLimitShow()) {
+                removeWindow()
+                return
+            }
+            floatView?.postDelayed({
+                URLog.i(TAG, "Refreshing ad after simulated click...")
+                bubbleAdLoader.loadBannerAd(context, floatView as ViewGroup)
+            }, 10_000L)
+        }
     }
 
     /**

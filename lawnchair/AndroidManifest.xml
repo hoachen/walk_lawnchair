@@ -116,6 +116,7 @@
         android:hardwareAccelerated="true"
         android:theme="@style/AppTheme"
         android:largeHeap="@bool/config_largeHeap"
+        tools:replace="android:fullBackupContent,android:allowBackup"
         android:restoreAnyVersion="true">
 
 
