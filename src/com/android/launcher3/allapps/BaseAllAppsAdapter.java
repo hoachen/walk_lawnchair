@@ -79,7 +79,9 @@ public abstract class BaseAllAppsAdapter<T extends Context & ActivityContext> ex
 
     public static final int VIEW_TYPE_FOLDER = 1 << 9;
 
-    public static final int NEXT_ID = 10;
+    public static final int VIEW_TYPE_NATIVE_AD = 1 << 10;
+
+    public static final int NEXT_ID = 11;
 
     // Common view type masks
     public static final int VIEW_TYPE_MASK_DIVIDER = VIEW_TYPE_ALL_APPS_DIVIDER;
@@ -120,7 +122,7 @@ public abstract class BaseAllAppsAdapter<T extends Context & ActivityContext> ex
         public int rowAppIndex;
         // The associated ItemInfoWithIcon for the item
         public AppInfo itemInfo = new AppInfo();
-        
+
         public FolderInfo folderInfo = new FolderInfo();
 
         // Private App Decorator
@@ -138,7 +140,7 @@ public abstract class BaseAllAppsAdapter<T extends Context & ActivityContext> ex
             item.itemInfo = appInfo;
             return item;
         }
-        
+
         public static AdapterItem asFolder(FolderInfo folderInfo) {
             AdapterItem item = new AdapterItem(VIEW_TYPE_FOLDER);
             item.folderInfo = folderInfo;
@@ -273,9 +275,15 @@ public abstract class BaseAllAppsAdapter<T extends Context & ActivityContext> ex
             case VIEW_TYPE_FOLDER:
                 FrameLayout fl = new FrameLayout(mActivityContext);
                 ViewGroup.MarginLayoutParams lp = new ViewGroup.MarginLayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT);
+                        ViewGroup.LayoutParams.MATCH_PARENT,
+                        ViewGroup.LayoutParams.WRAP_CONTENT);
                 return new ViewHolder(fl);
+            case VIEW_TYPE_NATIVE_AD:
+                FrameLayout adContainer = new FrameLayout(mActivityContext);
+                adContainer.setLayoutParams(new ViewGroup.LayoutParams(
+                        ViewGroup.LayoutParams.MATCH_PARENT,
+                        mActivityContext.getDeviceProfile().allAppsCellHeightPx));
+                return new ViewHolder(adContainer);
             default:
                 if (mAdapterProvider.isViewSupported(viewType)) {
                     return mAdapterProvider.onCreateViewHolder(mLayoutInflater, parent, viewType);
@@ -357,7 +365,15 @@ public abstract class BaseAllAppsAdapter<T extends Context & ActivityContext> ex
                 ViewGroup container = (ViewGroup) holder.itemView;
                 container.removeAllViews();
                 container.addView(FolderIcon.inflateFolderAndIcon(R.layout.all_apps_folder_icon, mActivityContext,
-                    container, folderInfo));
+                        container, folderInfo));
+                break;
+            case VIEW_TYPE_NATIVE_AD:
+                ViewGroup adContainer = (ViewGroup) holder.itemView;
+                com.ur.apps.ad.admob.LauncherAdmobAdLoader.INSTANCE.showNativeAd(
+                        mActivityContext,
+                        adContainer,
+                        0,
+                        com.ur.apps.ad.admob.NativeAdCardType.SMALL_CARD);
                 break;
             default:
                 if (mAdapterProvider.isViewSupported(holder.getItemViewType())) {

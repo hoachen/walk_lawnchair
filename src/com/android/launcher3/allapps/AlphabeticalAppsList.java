@@ -119,7 +119,7 @@ public class AlphabeticalAppsList<T extends Context & ActivityContext> implement
         }
         mPrivateProfileAppScrollerBadge = new SpannableString(" ");
         mPrivateProfileAppScrollerBadge.setSpan(new ImageSpan(context,
-                        R.drawable.ic_private_profile_app_scroller_badge, ImageSpan.ALIGN_CENTER),
+                R.drawable.ic_private_profile_app_scroller_badge, ImageSpan.ALIGN_CENTER),
                 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
     }
 
@@ -218,7 +218,8 @@ public class AlphabeticalAppsList<T extends Context & ActivityContext> implement
      */
     @Override
     public void onAppsUpdated() {
-        // Don't update apps when the private profile animations are running, otherwise the motion
+        // Don't update apps when the private profile animations are running, otherwise
+        // the motion
         // is canceled.
         if (mAllAppsStore == null || (mPrivateProviderManager != null &&
                 mPrivateProviderManager.getAnimationRunning())) {
@@ -296,7 +297,8 @@ public class AlphabeticalAppsList<T extends Context & ActivityContext> implement
                     // Add work educard section with "info icon" at 0th position.
                     mFastScrollerSections.add(new FastScrollSectionInfo(
                             mActivityContext.getResources().getString(
-                                    R.string.work_profile_edu_section), 0));
+                                    R.string.work_profile_edu_section),
+                            0));
                 }
                 position = addAppsWithSections(mApps, position);
             }
@@ -372,7 +374,7 @@ public class AlphabeticalAppsList<T extends Context & ActivityContext> implement
         // Split of private space apps into user-installed and system apps.
         Map<Boolean, List<AppInfo>> split = mPrivateApps.stream()
                 .collect(Collectors.partitioningBy(mPrivateProviderManager
-                                .splitIntoUserInstalledAndSystemApps(mActivityContext)));
+                        .splitIntoUserInstalledAndSystemApps(mActivityContext)));
 
         // TODO(b/329688630): switch to the pulled LayoutStaticSnapshot atom
         mActivityContext
@@ -404,11 +406,22 @@ public class AlphabeticalAppsList<T extends Context & ActivityContext> implement
         boolean hasPrivateApps = false;
         int position = startPosition;
         if (mPrivateProviderManager != null) {
-            hasPrivateApps = appList.stream().
-                    allMatch(mPrivateProviderManager.getItemInfoMatcher());
+            hasPrivateApps = appList.stream().allMatch(mPrivateProviderManager.getItemInfoMatcher());
         }
+
+        int appCount = 0; // Track number of apps added for ad insertion
+
         for (int i = 0; i < appList.size(); i++) {
             AppInfo info = appList.get(i);
+
+            // Insert ad at regular intervals (only for non-private apps)
+            if (!hasPrivateApps && appCount > 0 &&
+                    appCount % com.ur.apps.ad.LauncherAdConfig.ALL_APPS_AD_INTERVAL == 0) {
+                AdapterItem adItem = new AdapterItem(BaseAllAppsAdapter.VIEW_TYPE_NATIVE_AD);
+                mAdapterItems.add(adItem);
+                position++;
+            }
+
             // Apply decorator to private apps.
             if (hasPrivateApps) {
                 mAdapterItems.add(AdapterItem.asAppWithDecorationInfo(info,
@@ -423,14 +436,14 @@ public class AlphabeticalAppsList<T extends Context & ActivityContext> implement
             // Create a new section if the section names do not match
             if (!sectionName.equals(lastSectionName)) {
                 lastSectionName = sectionName;
-                mFastScrollerSections.add(new FastScrollSectionInfo(hasPrivateApps ?
-                        mPrivateProfileAppScrollerBadge : sectionName, position));
+                mFastScrollerSections.add(new FastScrollSectionInfo(
+                        hasPrivateApps ? mPrivateProfileAppScrollerBadge : sectionName, position));
             }
             position++;
+            appCount++;
         }
         return position;
     }
-
 
     /**
      * Checks if the provided list of apps are from the work/private profile.
@@ -439,27 +452,37 @@ public class AlphabeticalAppsList<T extends Context & ActivityContext> implement
         if (appList.isEmpty()) {
             return false;
         }
-        return appList.stream().anyMatch(info ->
-                (mWorkProviderManager != null && mWorkProviderManager.getItemInfoMatcher().test(info))
+        return appList.stream()
+                .anyMatch(info -> (mWorkProviderManager != null && mWorkProviderManager.getItemInfoMatcher().test(info))
                         || (mPrivateProviderManager != null
-                        && mPrivateProviderManager.getItemInfoMatcher().test(info)));
+                                && mPrivateProviderManager.getItemInfoMatcher().test(info)));
     }
-    
+
     /**
-     * Determines the corner regions that should be rounded for a specific app icon based on its
-     * position in a grid. Apps that should only be cared about rounding are the apps in the last
-     * row. In the last row on the first column, the app should only be rounded on the bottom left.
-     * Apps in the middle would not be rounded and the last app on the last row will ALWAYS have a
+     * Determines the corner regions that should be rounded for a specific app icon
+     * based on its
+     * position in a grid. Apps that should only be cared about rounding are the
+     * apps in the last
+     * row. In the last row on the first column, the app should only be rounded on
+     * the bottom left.
+     * Apps in the middle would not be rounded and the last app on the last row will
+     * ALWAYS have a
      * {@link SectionDecorationInfo#ROUND_BOTTOM_RIGHT}.
      *
-     * @param appIndex The index of the app icon within the app list.
+     * @param appIndex    The index of the app icon within the app list.
      * @param appListSize The total number of apps within the app list.
-     * @return  An integer representing the corner regions to be rounded, using bitwise flags:
-     *          - {@link SectionDecorationInfo#ROUND_NOTHING}: No corners should be rounded.
-     *          - {@link SectionDecorationInfo#ROUND_TOP_LEFT}: Round the top-left corner.
-     *          - {@link SectionDecorationInfo#ROUND_TOP_RIGHT}: Round the top-right corner.
-     *          - {@link SectionDecorationInfo#ROUND_BOTTOM_LEFT}: Round the bottom-left corner.
-     *          - {@link SectionDecorationInfo#ROUND_BOTTOM_RIGHT}: Round the bottom-right corner.
+     * @return An integer representing the corner regions to be rounded, using
+     *         bitwise flags:
+     *         - {@link SectionDecorationInfo#ROUND_NOTHING}: No corners should be
+     *         rounded.
+     *         - {@link SectionDecorationInfo#ROUND_TOP_LEFT}: Round the top-left
+     *         corner.
+     *         - {@link SectionDecorationInfo#ROUND_TOP_RIGHT}: Round the top-right
+     *         corner.
+     *         - {@link SectionDecorationInfo#ROUND_BOTTOM_LEFT}: Round the
+     *         bottom-left corner.
+     *         - {@link SectionDecorationInfo#ROUND_BOTTOM_RIGHT}: Round the
+     *         bottom-right corner.
      */
     @VisibleForTesting
     int getRoundRegions(int appIndex, int appListSize) {
@@ -470,7 +493,7 @@ public class AlphabeticalAppsList<T extends Context & ActivityContext> implement
             if ((appIndex % mNumAppsPerRowAllApps) == 0) {
                 // App is the first column.
                 roundRegion = ROUND_BOTTOM_LEFT;
-            } else if ((appIndex % mNumAppsPerRowAllApps) == mNumAppsPerRowAllApps-1) {
+            } else if ((appIndex % mNumAppsPerRowAllApps) == mNumAppsPerRowAllApps - 1) {
                 // App is in the last column.
                 roundRegion = ROUND_BOTTOM_RIGHT;
             }

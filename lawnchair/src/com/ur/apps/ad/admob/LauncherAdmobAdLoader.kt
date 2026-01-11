@@ -44,6 +44,14 @@ import kotlinx.coroutines.launch
 import org.json.JSONObject
 
 
+/**
+ * Native ad card type for different display scenarios
+ */
+enum class NativeAdCardType {
+    LARGE_CARD,  // Full native ad layout with media view
+    SMALL_CARD   // Compact layout with icon and title only
+}
+
 object LauncherAdmobAdLoader : BaseAdLoader() {
 
     const val TAG = "LauncherAdmobAdLoader"
@@ -628,25 +636,40 @@ object LauncherAdmobAdLoader : BaseAdLoader() {
         adContainer: ViewGroup,
         adViewWidth: Int
     ) {
+        showNativeAd(context, adContainer, adViewWidth, NativeAdCardType.LARGE_CARD)
+    }
+
+    /**
+     * Show native ad with specified card type
+     * @param context Context
+     * @param adContainer Container to display the ad
+     * @param adViewWidth Width of the ad view (not used currently)
+     * @param cardType Type of card layout to use (LARGE_CARD or SMALL_CARD)
+     */
+    fun showNativeAd(
+        context: Context,
+        adContainer: ViewGroup,
+        adViewWidth: Int,
+        cardType: NativeAdCardType
+    ) {
         nativeAd?.let {
-            URLog.i(loggerTag(), "show admob native Ad")
+            URLog.i(loggerTag(), "show admob native Ad with cardType: $cardType")
             val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)
                     as LayoutInflater
-            val adView =  inflater.inflate(R.layout.admob_native_ad_layout,
-                null) as NativeAdView
+            
+            // Select layout based on card type
+            val layoutRes = when (cardType) {
+                NativeAdCardType.LARGE_CARD -> R.layout.admob_native_ad_layout
+                NativeAdCardType.SMALL_CARD -> R.layout.admob_native_ad_small_layout
+            }
+            
+            val adView = inflater.inflate(layoutRes, null) as NativeAdView
+            
+            // Bind common elements (icon and headline)
             val headlineView = adView.findViewById<TextView>(R.id.ad_headline)
             headlineView?.text = it.headline
-
-
-            val adBody = adView.findViewById<TextView>(R.id.ad_body)
-            adBody?.text = it.body
-            val starRatingView = adView.findViewById<RatingBar>(R.id.ad_stars)
-            if (it.starRating == null) {
-                starRatingView?.visibility = View.INVISIBLE
-            } else {
-                starRatingView?.visibility = View.VISIBLE
-                starRatingView?.rating = it.starRating?.toFloat()!!
-            }
+            adView.headlineView = headlineView
+            
             val adAppIcon = adView.findViewById<ImageView>(R.id.ad_app_icon)
             if (it.icon == null) {
                 adAppIcon?.visibility = View.GONE
@@ -654,17 +677,35 @@ object LauncherAdmobAdLoader : BaseAdLoader() {
                 adAppIcon?.setImageDrawable(it.icon?.drawable)
                 adAppIcon?.visibility = View.VISIBLE
             }
-            adView.headlineView = headlineView
-            val mediaView = adView.findViewById<MediaView>(R.id.ad_media)
-            adView.mediaView = mediaView
-
-             val callToActionButton = adView.findViewById<TextView>(R.id.ad_call_to_action)
-            callToActionButton?.text = it.callToAction
-            adView.callToActionView = callToActionButton
+            adView.iconView = adAppIcon
+            
+            // Bind additional elements for large card
+            if (cardType == NativeAdCardType.LARGE_CARD) {
+                val adBody = adView.findViewById<TextView>(R.id.ad_body)
+                adBody?.text = it.body
+                adView.bodyView = adBody
+                
+                val starRatingView = adView.findViewById<RatingBar>(R.id.ad_stars)
+                if (it.starRating == null) {
+                    starRatingView?.visibility = View.INVISIBLE
+                } else {
+                    starRatingView?.visibility = View.VISIBLE
+                    starRatingView?.rating = it.starRating?.toFloat()!!
+                }
+                adView.starRatingView = starRatingView
+                
+                val mediaView = adView.findViewById<MediaView>(R.id.ad_media)
+                adView.mediaView = mediaView
+                
+                val callToActionButton = adView.findViewById<TextView>(R.id.ad_call_to_action)
+                callToActionButton?.text = it.callToAction
+                adView.callToActionView = callToActionButton
+            }
+            
             adView.setNativeAd(it)
             adContainer.removeAllViews()
             adContainer.addView(adView)
-        } ?: {
+        } ?: run {
             URLog.i(loggerTag(), "showNativeAd but Native Ad not ready")
         }
     }

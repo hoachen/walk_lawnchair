@@ -62,7 +62,8 @@ import app.lawnchair.util.LawnchairUtilsKt;
  * Manages the opening and closing animations for a {@link Folder}.
  *
  * All of the animations are done in the Folder.
- * ie. When the user taps on the FolderIcon, we immediately hide the FolderIcon and show the Folder
+ * ie. When the user taps on the FolderIcon, we immediately hide the FolderIcon
+ * and show the Folder
  * in its place before starting the animation.
  */
 public class FolderAnimationManager {
@@ -133,8 +134,7 @@ public class FolderAnimationManager {
      * Prepares the Folder for animating between open / closed states.
      */
     public AnimatorSet getAnimator() {
-        final BaseDragLayer.LayoutParams lp =
-                (BaseDragLayer.LayoutParams) mFolder.getLayoutParams();
+        final BaseDragLayer.LayoutParams lp = (BaseDragLayer.LayoutParams) mFolder.getLayoutParams();
         mFolderIcon.getPreviewItemManager().recomputePreviewDrawingParams();
         ClippedFolderIconLayoutRule rule = mFolderIcon.getLayoutRule();
         final List<View> itemsInPreview = getPreviewIconsOnPage(0);
@@ -149,7 +149,11 @@ public class FolderAnimationManager {
         // Match size/scale of icons in the preview
         float previewScale = rule.scaleForItem(itemsInPreview.size());
         float previewSize = rule.getIconSize() * previewScale;
-        float baseIconSize = getBubbleTextView(itemsInPreview.get(0)).getIconSize();
+        // Skip non-BubbleTextView items (e.g., ads) for icon size calculation
+        View firstItem = itemsInPreview.get(0);
+        float baseIconSize = (firstItem instanceof BubbleTextView || firstItem instanceof AppPairIcon)
+                ? getBubbleTextView(firstItem).getIconSize()
+                : mDeviceProfile.iconSizePx;
         float initialScale = previewSize / baseIconSize * scaleRelativeToDragLayer;
         final float finalScale = 1f;
         float scale = mIsOpening ? initialScale : finalScale;
@@ -212,9 +216,12 @@ public class FolderAnimationManager {
         AnimatorSet a = new AnimatorSet();
 
         // Initialize the Folder items' text.
-        PropertyResetListener colorResetListener =
-                new PropertyResetListener<>(TEXT_ALPHA_PROPERTY, 1f);
+        PropertyResetListener colorResetListener = new PropertyResetListener<>(TEXT_ALPHA_PROPERTY, 1f);
         for (View icon : mFolder.getItemsOnPage(mFolder.mContent.getCurrentPage())) {
+            // Skip non-BubbleTextView items (e.g., ads)
+            if (!(icon instanceof BubbleTextView || icon instanceof AppPairIcon)) {
+                continue;
+            }
             BubbleTextView titleText = getBubbleTextView(icon);
             if (mIsOpening) {
                 titleText.setTextVisibility(false);
@@ -270,7 +277,8 @@ public class FolderAnimationManager {
         play(a, shapeDelegate.createRevealAnimator(
                 mFolder.getContent(), contentStart, contentEnd, finalRadius, !mIsOpening));
 
-        // Fade in the folder name, as the text can overlap the icons when grid size is small.
+        // Fade in the folder name, as the text can overlap the icons when grid size is
+        // small.
         mFolder.getFolderName().setAlpha(mIsOpening ? 0f : 1f);
         play(a, getAnimator(mFolder.getFolderName(), View.ALPHA, 0, 1),
                 mIsOpening ? FOLDER_NAME_ALPHA_DURATION : 0,
@@ -282,17 +290,21 @@ public class FolderAnimationManager {
         float diff = normalHeight - scaledHeight;
         play(a, getAnimator(mFolder.mFooter, View.TRANSLATION_Y, -diff, 0f));
 
-        // Animate the elevation midway so that the shadow is not noticeable in the background.
+        // Animate the elevation midway so that the shadow is not noticeable in the
+        // background.
         int midDuration = mDuration / 2;
         Animator z = getAnimator(mFolder, View.TRANSLATION_Z, -mFolder.getElevation(), 0);
         play(a, z, mIsOpening ? midDuration : 0, midDuration);
 
         // Store clip variables.
-        // Because {@link #onAnimationStart} and {@link #onAnimationEnd} callbacks are sent to
+        // Because {@link #onAnimationStart} and {@link #onAnimationEnd} callbacks are
+        // sent to
         // message queue and executed on separate frame, we should save states in
-        // {@link #onAnimationStart} instead of before creating animator, so that cancelling
+        // {@link #onAnimationStart} instead of before creating animator, so that
+        // cancelling
         // animation A and restarting animation B allows A to reset states in
-        // {@link #onAnimationEnd} before B reads new UI state from {@link #onAnimationStart}.
+        // {@link #onAnimationEnd} before B reads new UI state from {@link
+        // #onAnimationStart}.
         a.addListener(new AnimatorListenerAdapter() {
             private CellLayout mCellLayout;
 
@@ -344,7 +356,8 @@ public class FolderAnimationManager {
             }
         });
 
-        // We set the interpolator on all current child animators here, because the preview item
+        // We set the interpolator on all current child animators here, because the
+        // preview item
         // animators may use a different interpolator.
         for (Animator animator : a.getChildAnimations()) {
             animator.setInterpolator(mFolderInterpolator);
@@ -352,7 +365,8 @@ public class FolderAnimationManager {
 
         int radiusDiff = scaledRadius - mPreviewBackground.getRadius();
         addPreviewItemAnimators(a, initialScale / scaleRelativeToDragLayer,
-                // Background can have a scaled radius in drag and drop mode, so we need to add the
+                // Background can have a scaled radius in drag and drop mode, so we need to add
+                // the
                 // difference to keep the preview items centered.
                 (int) (previewItemOffsetX / scaleRelativeToDragLayer) + radiusDiff, radiusDiff);
         return a;
@@ -370,14 +384,15 @@ public class FolderAnimationManager {
      * Animate the items on the current page.
      */
     private void addPreviewItemAnimators(AnimatorSet animatorSet, final float folderScale,
-                                         int previewItemOffsetX, int previewItemOffsetY) {
+            int previewItemOffsetX, int previewItemOffsetY) {
         ClippedFolderIconLayoutRule rule = mFolderIcon.getLayoutRule();
         boolean isOnFirstPage = mFolder.mContent.getCurrentPage() == 0;
         final List<View> itemsInPreview = getPreviewIconsOnPage(
                 isOnFirstPage ? 0 : mFolder.mContent.getCurrentPage());
         final int numItemsInPreview = itemsInPreview.size();
         final int numItemsInFirstPagePreview = isOnFirstPage
-                ? numItemsInPreview : MAX_NUM_ITEMS_IN_PREVIEW;
+                ? numItemsInPreview
+                : MAX_NUM_ITEMS_IN_PREVIEW;
 
         TimeInterpolator previewItemInterpolator = getPreviewItemInterpolator();
 
@@ -393,7 +408,10 @@ public class FolderAnimationManager {
             // Match scale of icons in the preview of the items on the first page.
             float previewScale = rule.scaleForItem(numItemsInFirstPagePreview);
             float previewSize = rule.getIconSize() * previewScale;
-            float baseIconSize = getBubbleTextView(v).getIconSize();
+            // Skip non-BubbleTextView items (e.g., ads) for icon size calculation
+            float baseIconSize = (v instanceof BubbleTextView || v instanceof AppPairIcon)
+                    ? getBubbleTextView(v).getIconSize()
+                    : mDeviceProfile.iconSizePx;
             float iconScale = previewSize / baseIconSize;
 
             final float initialScale = iconScale / folderScale;
@@ -402,14 +420,15 @@ public class FolderAnimationManager {
             v.setScaleX(scale);
             v.setScaleY(scale);
 
-            // Match positions of the icons in the folder with their positions in the preview
+            // Match positions of the icons in the folder with their positions in the
+            // preview
             rule.computePreviewItemDrawingParams(i, numItemsInFirstPagePreview, mTmpParams);
-            // The PreviewLayoutRule assumes that the icon size takes up the entire width so we
+            // The PreviewLayoutRule assumes that the icon size takes up the entire width so
+            // we
             // offset by the actual size.
             int iconOffsetX = (int) ((vLp.width - baseIconSize) * iconScale) / 2;
 
-            final int previewPosX =
-                    (int) ((mTmpParams.transX - iconOffsetX + previewItemOffsetX) / folderScale);
+            final int previewPosX = (int) ((mTmpParams.transX - iconOffsetX + previewItemOffsetX) / folderScale);
             final float paddingTop = v.getPaddingTop() * iconScale;
             final int previewPosY = (int) ((mTmpParams.transY + previewItemOffsetY - paddingTop)
                     / folderScale);
@@ -484,8 +503,10 @@ public class FolderAnimationManager {
 
     private TimeInterpolator getPreviewItemInterpolator() {
         if (isLargeFolder()) {
-            // With larger folders, we want the preview items to reach their final positions faster
-            // (when opening) and later (when closing) so that they appear aligned with the rest of
+            // With larger folders, we want the preview items to reach their final positions
+            // faster
+            // (when opening) and later (when closing) so that they appear aligned with the
+            // rest of
             // the folder items when they are both visible.
             return mIsOpening
                     ? mLargeFolderPreviewItemOpenInterpolator
@@ -507,8 +528,10 @@ public class FolderAnimationManager {
     }
 
     /**
-     * Gets the {@link com.android.launcher3.BubbleTextView} from an icon. In some cases the
-     * BubbleTextView is the whole icon itself, while in others it is contained within the view and
+     * Gets the {@link com.android.launcher3.BubbleTextView} from an icon. In some
+     * cases the
+     * BubbleTextView is the whole icon itself, while in others it is contained
+     * within the view and
      * only serves to store the title text.
      */
     private BubbleTextView getBubbleTextView(View v) {
