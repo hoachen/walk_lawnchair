@@ -16,6 +16,7 @@ import app.lawnchair.LawnchairLauncher
 import com.android.launcher3.R
 
 import com.android.systemui.plugins.shared.LauncherOverlayManager
+import com.ur.apps.walk.model.MainItem
 import com.ur.apps.walk.adapter.MainItemClickListener
 import com.ur.apps.walk.model.TaskModel
 import com.ur.apps.walk.step.bean.ExerciseStats
@@ -392,11 +393,16 @@ class CustomFeedOverlay(private val launcher: LawnchairLauncher) : LauncherOverl
                 )
             },
 
-            // Time Rewards Placeholder
-            FeedItem(
-                type = FeedItemType.PLACEHOLDER,
-                title = "时段奖励",
-            ),
+            // Achievements
+            run {
+                val achievements = getTodayAchievements()
+                FeedItem(
+                    type = FeedItemType.ACHIEVEMENTS,
+                    title = launcher.getString(R.string.achievements_title),
+                    subtitle = launcher.getString(R.string.achievements_subtitle),
+                    achievements = achievements
+                )
+            },
         )
     }
 
@@ -628,6 +634,64 @@ class CustomFeedOverlay(private val launcher: LawnchairLauncher) : LauncherOverl
                 feedAdapter?.updateData(getFeedItems())
             }
         }
+    }
+
+    private fun getTodayAchievements(): List<MainItem.AchievementsItem.Achievement> {
+        val stepManager = StepManager.getInstance(launcher)
+        val stats = stepManager.getTodayStats()
+        val currentSteps = stats.steps
+
+        // 1. 获取任务完成情况
+        val tasks = TaskModel.updateTaskCompletion(launcher, currentSteps)
+        val completedTasks = TaskModel.getCompletedCount(tasks)
+        val totalTasks = TaskModel.getTotalCount()
+
+        // 2. 计算任务完成百分比（用于"超过百分之多少用户"）
+        val taskCompletionPercentage = if (totalTasks > 0) {
+            (completedTasks.toFloat() / totalTasks * 100).toInt()
+        } else {
+            0
+        }
+
+        // 3. 获取任务列表中的最大步数值
+        val maxTaskStep = TaskModel.DEFAULT_TASKS.maxByOrNull { it.stepGoal }?.stepGoal ?: 8000
+
+        // 4. 计算今日行走距离（公里）
+        val distanceKm = String.format("%.1f", stats.distance)
+
+        // 5. 计算剩余步数
+        val remainingSteps = maxTaskStep - currentSteps
+
+        return listOf(
+            // 第一个成就：今日超过用户的统计行为（根据任务完成百分比计算）
+            MainItem.AchievementsItem.Achievement(
+                icon = "🏅",
+                title = launcher.getString(R.string.ach_over_users_title_format, taskCompletionPercentage),
+                description = launcher.getString(
+                    R.string.ach_over_users_desc_format,
+                    completedTasks,
+                    totalTasks
+                ),
+                tag = launcher.getString(R.string.ach_over_users_tag_format, taskCompletionPercentage / 5)
+            ),
+            // 第二个成就：今日行走距离成就
+            MainItem.AchievementsItem.Achievement(
+                icon = "🚶",
+                title = launcher.getString(R.string.ach_today_distance_title_format, distanceKm),
+                description = launcher.getString(
+                    R.string.ach_today_distance_desc_format,
+                    (stats.distance * 2.5).toInt()
+                ),
+                tag = launcher.getString(R.string.ach_today_distance_tag)
+            ),
+            // 第三个成就：按照最大任务值显示
+            MainItem.AchievementsItem.Achievement(
+                icon = "🎯",
+                title = launcher.getString(R.string.ach_complete_tasks_title_format, completedTasks),
+                description = launcher.getString(R.string.ach_complete_tasks_desc_format, remainingSteps),
+                tag = launcher.getString(R.string.ach_complete_tasks_tag_format, maxTaskStep)
+            )
+        )
     }
 
     // ========== MainItemClickListener Interface ==========

@@ -11,9 +11,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.android.launcher3.R
 import com.android.launcher3.databinding.CustomFeedStepCardBinding
 import com.android.launcher3.databinding.CustomFeedTaskCardBinding
+import com.android.launcher3.databinding.CustomFeedAchievementsCardBinding
 import com.ur.apps.walk.adapter.MainItemClickListener
 import com.ur.apps.walk.adapter.TaskItemAdapter
 import com.ur.apps.walk.model.TaskModel
+import com.ur.apps.walk.model.MainItem
 import androidx.recyclerview.widget.LinearLayoutManager
 
 /**
@@ -39,6 +41,7 @@ class CustomFeedAdapter(
         private const val VIEW_TYPE_PLACEHOLDER = 6
         private const val VIEW_TYPE_STEP_OVERVIEW = 7
         private const val VIEW_TYPE_TASK_LIST = 8
+        private const val VIEW_TYPE_ACHIEVEMENTS = 9
     }
 
     class HeaderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -280,9 +283,53 @@ class CustomFeedAdapter(
                 taskAdapter?.updateCurrentDistance(item.stepCount)
             }
 
-
-
             taskAdapter?.submitList(item.tasks)
+        }
+    }
+
+    class AchievementsViewHolder(private val binding: CustomFeedAchievementsCardBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(item: FeedItem) {
+            binding.tvTitle.text = item.title
+            binding.tvSubtitle.text = item.subtitle
+
+            updateAchievements(item.achievements)
+        }
+
+        private fun updateAchievements(achievements: List<MainItem.AchievementsItem.Achievement>) {
+            // 获取所有成就视图
+            val achievementViews = listOf(
+                Triple(
+                    binding.achievement1Icon,
+                    binding.achievement1Title,
+                    binding.achievement1Desc to binding.achievement1Tag
+                ),
+                Triple(
+                    binding.achievement2Icon,
+                    binding.achievement2Title,
+                    binding.achievement2Desc to binding.achievement2Tag
+                ),
+                Triple(
+                    binding.achievement3Icon,
+                    binding.achievement3Title,
+                    binding.achievement3Desc to binding.achievement3Tag
+                )
+            )
+
+            // 遍历更新每个成就视图
+            for (i in achievementViews.indices) {
+                if (i < achievements.size) {
+                    val achievement = achievements[i]
+                    val (iconView, titleView, descViews) = achievementViews[i]
+                    val (descView, tagView) = descViews
+
+                    iconView.text = achievement.icon
+                    titleView.text = achievement.title
+                    descView.text = achievement.description
+                    tagView.text = achievement.tag
+                }
+            }
         }
     }
 
@@ -301,6 +348,7 @@ class CustomFeedAdapter(
             VIEW_TYPE_PLACEHOLDER -> PlaceholderViewHolder(inflater.inflate(R.layout.custom_feed_placeholder, parent, false))
             VIEW_TYPE_STEP_OVERVIEW -> StepOverviewViewHolder(CustomFeedStepCardBinding.inflate(inflater, parent, false))
             VIEW_TYPE_TASK_LIST -> TaskListViewHolder(CustomFeedTaskCardBinding.inflate(inflater, parent, false), mainItemClickListener)
+            VIEW_TYPE_ACHIEVEMENTS -> AchievementsViewHolder(CustomFeedAchievementsCardBinding.inflate(inflater, parent, false))
             else -> throw IllegalArgumentException("unknown view type")
         }
     }
@@ -319,6 +367,7 @@ class CustomFeedAdapter(
             is PlaceholderViewHolder -> holder.bind(item)
             is StepOverviewViewHolder -> holder.bind(item)
             is TaskListViewHolder -> holder.bind(item)
+            is AchievementsViewHolder -> holder.bind(item)
         }
     }
 
@@ -337,6 +386,7 @@ class CustomFeedAdapter(
             FeedItemType.PLACEHOLDER -> VIEW_TYPE_PLACEHOLDER
             FeedItemType.STEP_OVERVIEW -> VIEW_TYPE_STEP_OVERVIEW
             FeedItemType.TASK_LIST -> VIEW_TYPE_TASK_LIST
+            FeedItemType.ACHIEVEMENTS -> VIEW_TYPE_ACHIEVEMENTS
         }
     }
     fun updateData(newItems: List<FeedItem>) {

@@ -24,6 +24,8 @@ data class FeedItem(
     val ringLabel: String = "",
     // For TASK_LIST
     val tasks: List<com.ur.apps.walk.model.TaskModel> = emptyList(),
+    // For ACHIEVEMENTS
+    val achievements: List<com.ur.apps.walk.model.MainItem.AchievementsItem.Achievement> = emptyList(),
 )
 
 data class FeedApp(
@@ -34,5 +36,5 @@ data class FeedApp(
 )
 
 enum class FeedItemType {
-    HEADER, CARD, SHORTCUT_ROW, DIVIDER, SEARCH, APP_GRID, PLACEHOLDER, STEP_OVERVIEW, TASK_LIST
+    HEADER, CARD, SHORTCUT_ROW, DIVIDER, SEARCH, APP_GRID, PLACEHOLDER, STEP_OVERVIEW, TASK_LIST, ACHIEVEMENTS
 }
