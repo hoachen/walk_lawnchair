@@ -14,6 +14,14 @@ data class FeedItem(
     @DrawableRes val iconRes: Int = 0,
     val action: (() -> Unit)? = null,
     val apps: List<FeedApp> = emptyList(), // For APP_GRID
+    // For STEP_OVERVIEW
+    val stepCount: Int = 0,
+    val dailyGoal: Int = 0,
+    val distance: Double = 0.0,
+    val calories: Int = 0,
+    val badgeText: String = "",
+    val stepLabel: String = "",
+    val ringLabel: String = "",
 )
 
 data class FeedApp(
@@ -24,5 +32,5 @@ data class FeedApp(
 )
 
 enum class FeedItemType {
-    HEADER, CARD, SHORTCUT_ROW, DIVIDER, SEARCH, APP_GRID, PLACEHOLDER
+    HEADER, CARD, SHORTCUT_ROW, DIVIDER, SEARCH, APP_GRID, PLACEHOLDER, STEP_OVERVIEW
 }

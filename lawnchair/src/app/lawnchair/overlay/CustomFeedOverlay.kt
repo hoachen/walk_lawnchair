@@ -14,7 +14,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import app.lawnchair.LawnchairLauncher
 import com.android.launcher3.R
+
 import com.android.systemui.plugins.shared.LauncherOverlayManager
+import com.ur.apps.walk.model.TaskModel
+import com.ur.apps.walk.step.bean.ExerciseStats
+import com.ur.apps.walk.step.callback.StepCountChangeCallBack
+import com.ur.apps.walk.step.manager.StepManager
 
 /**
  * @author
@@ -25,7 +30,7 @@ import com.android.systemui.plugins.shared.LauncherOverlayManager
 private const val TAG = "CustomFeedOverlay"
 
 class CustomFeedOverlay(private val launcher: LawnchairLauncher) : LauncherOverlayManager,
-    LauncherOverlayManager.LauncherOverlay {
+    LauncherOverlayManager.LauncherOverlay, StepCountChangeCallBack {
     init {
         Log.d(TAG, "customFeedOverlay created ")
     }
@@ -33,6 +38,7 @@ class CustomFeedOverlay(private val launcher: LawnchairLauncher) : LauncherOverl
     private var callbacks: LauncherOverlayManager.LauncherOverlayCallbacks? = null
 
     private var overlayView: View? = null
+    private var feedAdapter: CustomFeedAdapter? = null
 
 
     private var isAttached = false
@@ -147,7 +153,8 @@ class CustomFeedOverlay(private val launcher: LawnchairLauncher) : LauncherOverl
             val recyclerView = RecyclerView(launcher).apply {
                 id = View.generateViewId()
                 layoutManager = LinearLayoutManager(launcher)
-                adapter = CustomFeedAdapter(launcher, getFeedItems())
+                feedAdapter = CustomFeedAdapter(launcher, getFeedItems())
+                adapter = feedAdapter
                 clipToPadding = false
                 setPadding(
                     resources.getDimensionPixelSize(R.dimen.custom_feed_padding),
@@ -337,11 +344,38 @@ class CustomFeedOverlay(private val launcher: LawnchairLauncher) : LauncherOverl
                 apps = recentApps
             ),
 
-            // Step Count Placeholder
-            FeedItem(
-                type = FeedItemType.PLACEHOLDER,
-                title = "2396 步数",
-            ),
+            // Step Overview Card
+            run {
+                val stepManager = StepManager.getInstance(launcher)
+                val currentSteps = stepManager.getTodayStats().steps
+                val maxTaskStep = TaskModel.DEFAULT_TASKS.maxByOrNull { it.stepGoal }?.stepGoal ?: 8000
+                val dailyGoal = maxTaskStep
+                
+                // Calculate derived values
+                val distance = currentSteps * 0.7 / 1000.0
+                val calories = currentSteps * 5 / 100
+                
+                val badgeText = if (currentSteps >= dailyGoal) {
+                    launcher.getString(R.string.task_item_progress_label_completed)
+                } else {
+                    launcher.getString(R.string.step_overview_badge_in_progress)
+                }
+
+                // Format daily goal for label
+                val goalFormatted = if (dailyGoal >= 1000) String.format("%,d", dailyGoal) else dailyGoal.toString()
+                
+                FeedItem(
+                    type = FeedItemType.STEP_OVERVIEW,
+                    title = launcher.getString(R.string.step_overview_title),
+                    badgeText = badgeText,
+                    stepCount = currentSteps,
+                    dailyGoal = dailyGoal,
+                    distance = distance,
+                    calories = calories,
+                    stepLabel = launcher.getString(R.string.step_overview_subtitle_format, goalFormatted),
+                    ringLabel = launcher.getString(R.string.step_overview_ring_label_completion)
+                )
+            },
 
             // Rewards Placeholder
             FeedItem(
@@ -551,8 +585,17 @@ class CustomFeedOverlay(private val launcher: LawnchairLauncher) : LauncherOverl
 
     override fun onActivityCreated(activity: Activity, bundle: Bundle?) {}
     override fun onActivityStarted(activity: Activity) {}
-    override fun onActivityResumed(activity: Activity) {}
-    override fun onActivityPaused(activity: Activity) {}
+    override fun onActivityResumed(activity: Activity) {
+        Log.d(TAG, "onActivityResumed")
+        StepManager.getInstance(launcher).registerCallback(this)
+        // Force update on resume
+        updateFeedData()
+    }
+
+    override fun onActivityPaused(activity: Activity) {
+        Log.d(TAG, "onActivityPaused")
+        StepManager.getInstance(launcher).unregisterCallback(this)
+    }
     override fun onActivityStopped(activity: Activity) {}
     override fun onActivitySaveInstanceState(activity: Activity, bundle: Bundle) {}
     override fun onActivityDestroyed(activity: Activity) {
@@ -561,4 +604,20 @@ class CustomFeedOverlay(private val launcher: LawnchairLauncher) : LauncherOverl
     }
 
 
+    override fun onStepChange(stepCount: ExerciseStats?) {
+        Log.d(TAG, "onStepChange: $stepCount")
+        updateFeedData()
+    }
+
+    override fun onStepReachPeriod(hundred_level: Int) {
+        // No-op
+    }
+
+    private fun updateFeedData() {
+        if (feedAdapter != null) {
+            launcher.runOnUiThread {
+                feedAdapter?.updateData(getFeedItems())
+            }
+        }
+    }
 }
