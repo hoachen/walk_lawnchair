@@ -35,10 +35,10 @@ class SmartspaceViewContainer @JvmOverloads constructor(
         val dp = ctx?.deviceProfile
         val leftPadding = dp?.widgetPadding?.left
         smartspaceView.setPadding(leftPadding ?: (left + 16), top, right, bottom)
-        setOnLongClickListener {
-            openOptions()
-            true
-        }
+//        setOnLongClickListener {
+//            openOptions()
+//            true
+//        }
         addView(smartspaceView)
     }
 
