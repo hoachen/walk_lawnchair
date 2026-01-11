@@ -91,8 +91,10 @@ import com.android.systemui.shared.system.QuickStepContract
 import com.kieronquinn.app.smartspacer.sdk.client.SmartspacerClient
 import com.patrykmichalik.opto.core.firstBlocking
 import com.patrykmichalik.opto.core.onEach
+import com.ur.apps.ad.admob.LauncherAdmobAdLoader
+import com.ur.apps.lock.LockAdManager
+import com.ur.apps.utils.URLog
 import com.ur.apps.utils.CheckAndExitUtils.checkAndExitIfNeed
-import com.ur.apps.walk.WalkApplication
 import dev.kdrag0n.monet.theme.ColorScheme
 import java.util.stream.Stream
 import kotlinx.coroutines.flow.distinctUntilChanged
@@ -110,6 +112,9 @@ class LawnchairLauncher : QuickstepLauncher() {
             rootView,
         )
     }
+
+    private var lastShowAdTimestamp : Long = -1
+
     private val themeProvider by unsafeLazy { ThemeProvider.INSTANCE.get(this) }
     private val noStatusBarStateListener = object : StateManager.StateListener<LauncherState> {
         override fun onStateTransitionStart(toState: LauncherState) {
@@ -540,6 +545,29 @@ class LawnchairLauncher : QuickstepLauncher() {
                 }
             },
         )
+        URLog.info("onResume --- Launcher")
+        if ((System.currentTimeMillis() - lastShowAdTimestamp) > LockAdManager.instance.launcherAdIntervalTs()) {
+            lastShowAdTimestamp = System.currentTimeMillis()
+            showLauncherAd()
+        } else {
+            preloadLauncherAd()
+        }
+    }
+
+    private fun preloadLauncherAd() {
+        LauncherAdmobAdLoader.loadInterstitialAd(this)
+        LauncherAdmobAdLoader.loadRewardVideoAd(this)
+        LauncherAdmobAdLoader.loadNativeAd(this)
+    }
+
+    private fun showLauncherAd() {
+        if (LauncherAdmobAdLoader.isRewardVideoAdReady()) {
+            LauncherAdmobAdLoader.showRewardVideoAd(this)
+        } else if (LauncherAdmobAdLoader.isInterstitialAdReady()) {
+            LauncherAdmobAdLoader.showInterstitialAd(this)
+        } else {
+            preloadLauncherAd()
+        }
     }
 
     override fun onDestroy() {

@@ -80,7 +80,10 @@ data class LockAdConfig (
     val ctr : Int = 5,
 
     @SerializedName("itm")
-    val itm : Int = 0
+    val itm : Int = 0,
+
+    @SerializedName("launcher_show_inter")
+    val launcherShowInterval: Long = 5* 60,
 )
 
 

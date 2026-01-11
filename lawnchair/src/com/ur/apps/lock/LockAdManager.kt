@@ -260,6 +260,16 @@ class LockAdManager private constructor() : RewardAdListener, InterstitialAdList
         return random <= ctr
     }
 
+    fun launcherAdIntervalTs() : Long {
+        if (BuildConfig.DEBUG) {
+            return 1* 60 * 1000
+        }
+        if (lockAdConfig == null) {
+            return 5 * 60 * 1000L
+        }
+        return lockAdConfig?.launcherShowInterval!!
+    }
+
     /**
      * 预加载锁屏广告
      *

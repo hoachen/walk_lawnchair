@@ -22,6 +22,7 @@ import com.ur.apps.walk.utils.ThemeManager
 import com.ur.apps.walk.utils.ThemeManager.BrandTheme
 import kotlinx.coroutines.launch
 import com.android.launcher3.R
+import com.ur.apps.ad.admob.LauncherAdmobAdLoader
 import com.ur.apps.lock.LockAdManager
 
 private const val TAG = "SettingsActivity"
@@ -150,6 +151,7 @@ class SettingsActivity : BaseActivity(), SettingsAdapter.Listeners {
                 versionClickCount++
                 if (versionClickCount >= versionClickAdmobIdThreshold) {
                     AdmobAdLoader.useDebugAdmobId = true
+                    LauncherAdmobAdLoader.useDebugAdmobId = true
                     LockAdManager.instance.setDebugMode()
                     Toast.makeText(this, "开启Debug 模式",
                         Toast.LENGTH_SHORT).show()

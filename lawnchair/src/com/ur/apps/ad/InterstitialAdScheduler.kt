@@ -185,9 +185,7 @@ class InterstitialAdScheduler private constructor(private val application: Appli
     }
 
     private fun isTargetActivity(activity: Activity) : Boolean {
-        return activity.packageName.contains(ACTIVITY_PKG_NAME) ||
-            activity.packageName.contains(ACTIVITY_LAUNCHER3) ||
-            activity.packageName.contains(ACTIVITY_APP_LAWNCHAIR)
+        return activity.packageName.contains(ACTIVITY_PKG_NAME)
     }
 
 

@@ -74,10 +74,14 @@ object LauncherAdmobAdLoader : BaseAdLoader() {
      */
     val ADMOB_REWARD_UNIT_ID = "ca-app-pub-2830772598550207/5611934574"
 
+    val ADMOB_REWARD_UNIT_TEST_ID = "ca-app-pub-3940256099942544/5224354917"
+
     /**
      * 插屏广告
      */
     val ADMOB_INTERSTITIAL_UNIT_ID = "ca-app-pub-2830772598550207/6669865378"
+
+    val ADMOB_INTERSTITIAL_UNIT_TEST_ID = "ca-app-pub-3940256099942544/1033173712"
 
 
     var useDebugAdmobId = BuildConfig.DEBUG
@@ -93,6 +97,21 @@ object LauncherAdmobAdLoader : BaseAdLoader() {
         return ADMOB_NATIVE_UNIT_ID
     }
 
+
+    open fun getInterstitialUnitId() : String {
+        if (useDebugAdmobId) {
+            return ADMOB_INTERSTITIAL_UNIT_TEST_ID
+        }
+        return ADMOB_INTERSTITIAL_UNIT_ID
+    }
+
+
+    open fun getRewardAdUnitId() : String {
+        if (useDebugAdmobId) {
+            return ADMOB_REWARD_UNIT_TEST_ID
+        }
+        return ADMOB_REWARD_UNIT_ID
+    }
 
 
     open fun reportAdmobAdImpression(unitId : String, adFormat : String) {
@@ -169,12 +188,28 @@ object LauncherAdmobAdLoader : BaseAdLoader() {
         }
         RewardedAd.load(
             context,
-            ADMOB_REWARD_UNIT_ID,
+            getRewardAdUnitId(),
             AdRequest.Builder().build(),
             object : RewardedAdLoadCallback() {
                 override fun onAdLoaded(ad: RewardedAd) {
                     Log.d(loggerTag(), "Ad was loaded.")
                     rewardedAd = ad
+                    rewardedAd?.setOnPaidEventListener {
+                        Log.i(TAG, "on Admob interstaital paid $it")
+                        val adValue = it
+                        val adSourceName = rewardedAd?.responseInfo?.loadedAdapterResponseInfo?.adSourceName
+                        val adSourceId = rewardedAd?.responseInfo?.loadedAdapterResponseInfo?.adSourceId
+                        val revenue: Double = it.valueMicros * 1.0/ 1_000_000 // 价值，以微单位表示 (例如 5000 代表 0.005 USD)
+                        TDAnalyticsManager.reportAdRevenue(
+                            it.currencyCode,
+                            revenue, //
+                            adSourceName ?: "",
+                            getRewardAdUnitId(),
+                            "admob",
+                            getRewardAdFormat(),
+                            adSourceId ?: ""
+                        )
+                    }
                     rewardedAd?.fullScreenContentCallback =
                         object : FullScreenContentCallback() {
                             override fun onAdDismissedFullScreenContent() {
@@ -249,26 +284,44 @@ object LauncherAdmobAdLoader : BaseAdLoader() {
         activity: Activity,
         adShowScene: AdShowScene
     ) {
-        rewardedAd?.show(
-            activity,
-            OnUserEarnedRewardListener { rewardItem ->
-                Log.d(loggerTag(), "User earned the reward.")
-                // Handle the reward.
-                val rewardAmount = rewardItem.amount
-                val rewardType = rewardItem.type
-            },
-        )
+        if (isRewardVideoAdReady()) {
+            rewardedAd?.show(
+                activity,
+                OnUserEarnedRewardListener { rewardItem ->
+                    Log.d(loggerTag(), "User earned the reward.")
+                    // Handle the reward.
+                },
+            )
+        } else {
+            loadRewardVideoAd(activity)
+        }
     }
 
     override fun loadInterstitialAd(context: Context) {
         InterstitialAd.load(
             context,
-            ADMOB_INTERSTITIAL_UNIT_ID,
+            getInterstitialUnitId(),
             AdRequest.Builder().build(),
             object : InterstitialAdLoadCallback() {
                 override fun onAdLoaded(ad: InterstitialAd) {
                     Log.d(loggerTag(), "Ad was loaded.")
                     interstitialAd = ad
+                    interstitialAd?.setOnPaidEventListener {
+                        Log.i(TAG, "on Admob interstaital paid $it")
+                        val adValue = it
+                        val adSourceName = interstitialAd?.responseInfo?.loadedAdapterResponseInfo?.adSourceName
+                        val adSourceId = interstitialAd?.responseInfo?.loadedAdapterResponseInfo?.adSourceId
+                        val revenue: Double = it.valueMicros * 1.0/ 1_000_000 // 价值，以微单位表示 (例如 5000 代表 0.005 USD)
+                        TDAnalyticsManager.reportAdRevenue(
+                            it.currencyCode,
+                            revenue, //
+                            adSourceName ?: "",
+                            getInterstitialUnitId(),
+                            "admob",
+                            getInterstitialAdFormat(),
+                            adSourceId ?: ""
+                        )
+                    }
                     interstitialAd?.fullScreenContentCallback =
                         object : FullScreenContentCallback() {
                             override fun onAdDismissedFullScreenContent() {
@@ -341,7 +394,11 @@ object LauncherAdmobAdLoader : BaseAdLoader() {
         activity: Activity,
         adShowScene: AdShowScene
     ) {
-        interstitialAd?.show(activity)
+        if (isInterstitialAdReady()) {
+            interstitialAd?.show(activity)
+        } else {
+            loadInterstitialAd(activity)
+        }
     }
 
 
