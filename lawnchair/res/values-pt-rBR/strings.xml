@@ -1260,10 +1260,13 @@
     <string name="coin_content_description">Moeda</string>
 <!--    walk end-->
     <!-- WalkGo Default Launcher Dialog -->
-    <string name="welcome_to_walkgo">Bem-vindo ao WalkGo</string>
-    <string name="set_default_launcher_title">Definir WalkGo como Launcher padrão</string>
+    <string name="welcome_to_walkgo">Bem-vindo ao Walk Win Cash</string>
+    <string name="set_default_launcher_title">Definir Walk Win Cash como Launcher padrão</string>
     <string name="feature_no_rummaging">Sem necessidade de vasculhar</string>
     <string name="feature_fast_track">Rápido - Ir para o App</string>
     <string name="action_try_now">Tentar Agora</string>
 
+    <string name="feed_title_app_library">Biblioteca de Apps</string>
+    <string name="feed_title_common_apps">Frequentes</string>
+    <string name="feed_title_recent_apps">Recentes</string>
 </resources>

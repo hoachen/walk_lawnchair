@@ -1279,10 +1279,13 @@
     <string name="ach_complete_tasks_tag_format">目标 %1$d 步</string>
 <!--    walk end-->
     <!-- WalkGo Default Launcher Dialog -->
-    <string name="welcome_to_walkgo">欢迎来到 WalkGo</string>
-    <string name="set_default_launcher_title">将 WalkGo 设置为默认启动器</string>
+    <string name="welcome_to_walkgo">欢迎来到 Walk Win Cash</string>
+    <string name="set_default_launcher_title">将 Walk Win Cash 设置为默认启动器</string>
     <string name="feature_no_rummaging">无需翻找</string>
     <string name="feature_fast_track">快速进入应用</string>
     <string name="action_try_now">立即尝试</string>
 
+    <string name="feed_title_app_library">应用库</string>
+    <string name="feed_title_common_apps">常用</string>
+    <string name="feed_title_recent_apps">最近</string>
 </resources>

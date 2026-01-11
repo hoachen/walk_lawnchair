@@ -48,7 +48,9 @@ import com.android.launcher3.R
 import android.content.pm.PackageManager
 import android.os.Process
 import com.ur.apps.walk.constants.StatisticConstants
+import com.ur.apps.walk.dialog.RateUsDialog
 import com.ur.apps.walk.dialog.SetDefaultLauncherDialog
+import com.ur.apps.walk.step.utils.SharedPreferencesUtils
 import org.json.JSONObject
 
 
@@ -1248,16 +1250,29 @@ class MainActivityRecycler : BaseRewardActivity(), StepCountChangeCallBack,
         val isDefault = com.ur.apps.walk.utils.LauncherDefaultUtils.isDefaultLauncher(this)
         val fragmentManager = supportFragmentManager
         val existingDialog = fragmentManager.findFragmentByTag(SetDefaultLauncherDialog.TAG)
+        val existingRateDialog = fragmentManager.findFragmentByTag(RateUsDialog.TAG)
 
         if (isDefault) {
             TDAnalyticsManager.reportTrackEvent(
                 StatisticConstants.LAUNCHER_DEFAULT,
                 JSONObject().put(StatisticConstants.TYPE, "true")
             )
-            (existingDialog as? androidx.fragment.app.DialogFragment)?.dismissAllowingStateLoss()
-            Handler(Looper.getMainLooper()).postDelayed({
-                Process.killProcess(Process.myPid())
-            },0)
+            
+            if (existingDialog != null) {
+                (existingDialog as? androidx.fragment.app.DialogFragment)?.dismissAllowingStateLoss()
+                Handler(Looper.getMainLooper()).postDelayed({
+                    Process.killProcess(Process.myPid())
+                }, 0)
+            } else {
+                // Already default, normal run.
+                // Check if we should show Rate Us
+                val prefs = SharedPreferencesUtils(this)
+                val hasRated = prefs.getParam(RateUsDialog.PREF_KEY_HAS_RATED, false) as Boolean
+                
+                if (!hasRated && existingRateDialog == null) {
+                    RateUsDialog.newInstance().show(fragmentManager, RateUsDialog.TAG)
+                }
+            }
         } else {
             if (existingDialog == null) {
                 SetDefaultLauncherDialog.newInstance().show(fragmentManager, SetDefaultLauncherDialog.TAG)

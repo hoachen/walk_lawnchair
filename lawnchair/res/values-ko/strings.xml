@@ -613,10 +613,13 @@
     <string name="coin_content_description">코인</string>
 <!--    walk end-->
     <!-- WalkGo Default Launcher Dialog -->
-    <string name="welcome_to_walkgo">WalkGo에 오신 것을 환영합니다</string>
-    <string name="set_default_launcher_title">WalkGo를 기본 런처로 설정</string>
+    <string name="welcome_to_walkgo">Walk Win Cash에 오신 것을 환영합니다</string>
+    <string name="set_default_launcher_title">Walk Win Cash를 기본 런처로 설정</string>
     <string name="feature_no_rummaging">번거로운 검색 필요 없음</string>
     <string name="feature_fast_track">빠른 앱 실행</string>
     <string name="action_try_now">지금 시도하기</string>
 
+    <string name="feed_title_app_library">앱 보관함</string>
+    <string name="feed_title_common_apps">자주 사용하는 앱</string>
+    <string name="feed_title_recent_apps">최근 앱</string>
 </resources>

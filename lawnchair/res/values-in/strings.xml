@@ -576,10 +576,13 @@
     <string name="coin_content_description">Koin</string>
 <!--    walk end-->
     <!-- WalkGo Default Launcher Dialog -->
-    <string name="welcome_to_walkgo">Selamat datang di WalkGo</string>
-    <string name="set_default_launcher_title">Tetapkan WalkGo sebagai Peluncur default</string>
+    <string name="welcome_to_walkgo">Selamat datang di Walk Win Cash</string>
+    <string name="set_default_launcher_title">Tetapkan Walk Win Cash sebagai Peluncur default</string>
     <string name="feature_no_rummaging">Tidak Perlu Mencari-cari</string>
     <string name="feature_fast_track">Cepat - Masuk ke Aplikasi</string>
     <string name="action_try_now">Coba Sekarang</string>
 
+    <string name="feed_title_app_library">Pustaka Aplikasi</string>
+    <string name="feed_title_common_apps">Umum</string>
+    <string name="feed_title_recent_apps">Terbaru</string>
 </resources>

@@ -355,7 +355,7 @@ class CustomFeedOverlay(private val launcher: LawnchairLauncher) : LauncherOverl
             // Search Bar
             FeedItem(
                 type = FeedItemType.SEARCH,
-                title = "应用库",
+                title = launcher.getString(R.string.feed_title_app_library),
                 action = { showSearchUI() }
             ),
 
@@ -365,14 +365,14 @@ class CustomFeedOverlay(private val launcher: LawnchairLauncher) : LauncherOverl
             // Common Apps
             FeedItem(
                 type = FeedItemType.APP_GRID,
-                title = "常用",
+                title = launcher.getString(R.string.feed_title_common_apps),
                 apps = commonApps
             ),
 
             // Recent Apps
             FeedItem(
                 type = FeedItemType.APP_GRID,
-                title = "最近",
+                title = launcher.getString(R.string.feed_title_recent_apps),
                 apps = recentApps
             ),
 
