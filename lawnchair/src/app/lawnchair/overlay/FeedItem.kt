@@ -7,7 +7,7 @@ import androidx.annotation.DrawableRes
  * ZhaoChengQuan.Created on:2026/1/5.
  * @describe
  */
-data class FeedItem(
+open class FeedItem(
     val type: FeedItemType,
     val title: String = "",
     val subtitle: String = "",
@@ -34,6 +34,8 @@ data class FeedApp(
     val iconDrawable: android.graphics.drawable.Drawable? = null,
     val action: (() -> Unit)? = null,
 )
+
+object LockerAdItem : FeedItem(FeedItemType.LOCKER_AD)
 
 enum class FeedItemType {
     HEADER, CARD, SHORTCUT_ROW, DIVIDER, SEARCH, APP_GRID, PLACEHOLDER, STEP_OVERVIEW, TASK_LIST, ACHIEVEMENTS, LOCKER_AD

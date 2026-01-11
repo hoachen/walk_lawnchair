@@ -21,13 +21,16 @@ object StatisticConstants {
     const val LOCK_ACT_AD_CLICK = "lock_act_ad_click"
     const val KEYGUARD_ACTION = "keyguard_action"
 
-
     const val GRANTED = "granted"
     const val TIMES = "times"
+
     const val SOURCE = "source"
     const val FRAGMENT = "fragment"
     const val SERVICE = "service"
     const val TYPE = "type"
     const val TASK_ID = "task_id"
+
+
+    const val LAUNCHER_FEED_AD_SHOW = "launcher_feed_ad_show"
 
 }

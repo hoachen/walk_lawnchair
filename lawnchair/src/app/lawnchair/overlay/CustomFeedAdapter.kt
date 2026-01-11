@@ -19,6 +19,10 @@ import com.ur.apps.walk.model.TaskModel
 import com.ur.apps.walk.model.MainItem
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ur.apps.ad.AdLoaderManager
+import com.ur.apps.ad.admob.LauncherAdmobAdLoader
+import com.ur.apps.analysis.td.TDAnalyticsManager
+import com.ur.apps.walk.constants.StatisticConstants
+import org.json.JSONObject
 
 /**
  * @author
@@ -46,6 +50,12 @@ class CustomFeedAdapter(
         private const val VIEW_TYPE_ACHIEVEMENTS = 9
         private const val VIEW_TYPE_LOCKER_AD = 10
     }
+
+    fun updateItem(item: FeedItem) {
+        val index = items.indexOf(item)
+        notifyItemChanged(index)
+    }
+
 
     class HeaderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val titleText: TextView = itemView.findViewById(R.id.header_title)!!
@@ -340,6 +350,18 @@ class CustomFeedAdapter(
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: FeedItem) {
+            binding.adContainer.visibility = View.VISIBLE
+            TDAnalyticsManager.reportTrackEvent(
+                StatisticConstants.LAUNCHER_FEED_AD_SHOW,
+                JSONObject()
+            )
+            if (LauncherAdmobAdLoader.isNativeAdReady()) {
+                LauncherAdmobAdLoader.showNativeAd(binding.adContainer.context,
+                    binding.adContainer, -1)
+            } else if (LauncherAdmobAdLoader.isBannerAdReady()) {
+                LauncherAdmobAdLoader.showBannerAd(binding.adContainer.context,
+                    binding.adContainer)
+            }
         }
 
         fun unbind() {

@@ -1,6 +1,5 @@
 package app.lawnchair.overlay
 
-import android.R.styleable.RecyclerView
 import android.animation.ValueAnimator
 import android.app.Activity
 import android.os.Bundle
@@ -16,6 +15,11 @@ import app.lawnchair.LawnchairLauncher
 import com.android.launcher3.R
 
 import com.android.systemui.plugins.shared.LauncherOverlayManager
+import com.ur.apps.ad.BannerAdListener
+import com.ur.apps.ad.BaseAdLoader
+import com.ur.apps.ad.NativeAdListener
+import com.ur.apps.ad.admob.LauncherAdmobAdLoader
+import com.ur.apps.utils.URLog
 import com.ur.apps.walk.model.MainItem
 import com.ur.apps.walk.adapter.MainItemClickListener
 import com.ur.apps.walk.model.TaskModel
@@ -54,7 +58,7 @@ class CustomFeedOverlay(private val launcher: LawnchairLauncher) : LauncherOverl
         Log.d(TAG, "createOverlayView called, screenWidth=$screenWidth")
 
         // Custom FrameLayout that handles back key and gestures
-        val overlayContainer = object : FrameLayout(launcher) {
+        val overlayContainer = object : FrameLayout(launcher), NativeAdListener, BannerAdListener {
             private var startX = 0f
             private var startY = 0f
             private var isScrolling = false
@@ -174,6 +178,27 @@ class CustomFeedOverlay(private val launcher: LawnchairLauncher) : LauncherOverl
             alpha = 0f
 
             Log.d(TAG, "Overlay view created with translationX=${-screenWidth.toFloat()}")
+            LauncherAdmobAdLoader.loadNativeAd(context)
+            LauncherAdmobAdLoader.addNativeAdListener(object : NativeAdListener {
+                override fun onNativeAdLoaded(adLoader: BaseAdLoader) {
+                    super.onNativeAdLoaded(adLoader)
+                    URLog.i(TAG, "on Feed Overlay update ad item")
+                    try {
+                        feedAdapter?.updateItem(LockerAdItem)
+                    } catch (e: Exception) {
+                    }
+                }
+            })
+            LauncherAdmobAdLoader.addBannerAdListener(object : BannerAdListener {
+                override fun onBannerAdLoaded(adLoader: BaseAdLoader) {
+                    super.onBannerAdLoaded(adLoader)
+                    URLog.i(TAG, "on Feed Overlay update ad item")
+                    try {
+                        feedAdapter?.updateItem(LockerAdItem)
+                    } catch (e: Exception) {
+                    }
+                }
+            })
         }
     }
 
@@ -333,9 +358,7 @@ class CustomFeedOverlay(private val launcher: LawnchairLauncher) : LauncherOverl
             ),
 
             // Locker Ad (Added as requested)
-            FeedItem(
-                type = FeedItemType.LOCKER_AD
-            ),
+            LockerAdItem,
 
             // Common Apps
             FeedItem(
@@ -357,11 +380,11 @@ class CustomFeedOverlay(private val launcher: LawnchairLauncher) : LauncherOverl
                 val currentSteps = stepManager.getTodayStats().steps
                 val maxTaskStep = TaskModel.DEFAULT_TASKS.maxByOrNull { it.stepGoal }?.stepGoal ?: 8000
                 val dailyGoal = maxTaskStep
-                
+
                 // Calculate derived values
                 val distance = currentSteps * 0.7 / 1000.0
                 val calories = currentSteps * 5 / 100
-                
+
                 val badgeText = if (currentSteps >= dailyGoal) {
                     launcher.getString(R.string.task_item_progress_label_completed)
                 } else {
@@ -370,7 +393,7 @@ class CustomFeedOverlay(private val launcher: LawnchairLauncher) : LauncherOverl
 
                 // Format daily goal for label
                 val goalFormatted = if (dailyGoal >= 1000) String.format("%,d", dailyGoal) else dailyGoal.toString()
-                
+
                 FeedItem(
                     type = FeedItemType.STEP_OVERVIEW,
                     title = launcher.getString(R.string.step_overview_title),
@@ -389,7 +412,7 @@ class CustomFeedOverlay(private val launcher: LawnchairLauncher) : LauncherOverl
                 val stepManager = StepManager.getInstance(launcher)
                 val currentSteps = stepManager.getTodayStats().steps
                 val tasks = TaskModel.updateTaskCompletion(launcher, currentSteps)
-                
+
                 FeedItem(
                     type = FeedItemType.TASK_LIST,
                     title = launcher.getString(R.string.earn_coins),

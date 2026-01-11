@@ -11,6 +11,7 @@ import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
+import com.android.launcher3.BuildConfig
 import com.google.android.gms.ads.AdError
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdLoader
@@ -42,48 +43,47 @@ import kotlinx.coroutines.launch
 import org.json.JSONObject
 
 
-open class LauncherAdmobAdLoader : BaseAdLoader() {
+object LauncherAdmobAdLoader : BaseAdLoader() {
 
-    companion object {
+    const val TAG = "LauncherAdmobAdLoader"
 
-        const val TAG = "AdmobAdLoader"
+    /**
+     * Native
+     */
+    val ADMOB_NATIVE_UNIT_ID = "ca-app-pub-2830772598550207/5497085202"
 
-        /**
-         * Native
-         */
-        val ADMOB_NATIVE_UNIT_ID = "ca-app-pub-2830772598550207/5497085202"
-
-        /**
-         * Native 测试ID
-         */
-        val ADMOB_NATIVE_UNIT_ID_TEST = "ca-app-pub-3940256099942544/2247696110"
+    /**
+     * Native 测试ID
+     */
+    val ADMOB_NATIVE_UNIT_ID_TEST = "ca-app-pub-3940256099942544/2247696110"
 
 
-        /**
-         * Launcher Banner
-         */
-        val ADMOB_BANNER_UNIT_ID = "ca-app-pub-2830772598550207/6650384775"
-        val ADMOB_BANNER_UNIT_TEST_ID =  "ca-app-pub-2830772598550207/2735190498"
+    /**
+     * Launcher Banner
+     */
+    val ADMOB_BANNER_UNIT_ID = "ca-app-pub-2830772598550207/2735190498"
+
+    /**
+     * Launcher Banner Test
+     */
+    val ADMOB_BANNER_UNIT_TEST_ID =  "ca-app-pub-3940256099942544/9214589741"
 
 
-        /**
-         * 激励视频
-         */
-        val ADMOB_REWARD_UNIT_ID = "ca-app-pub-9332346327319073/7617118213"
+    /**
+     * 激励视频
+     */
+    val ADMOB_REWARD_UNIT_ID = "ca-app-pub-2830772598550207/5611934574"
 
-        /**
-         * 插屏广告
-         */
-        val ADMOB_INTERSTITIAL_UNIT_ID = "ca-app-pub-9332346327319073/8650998280"
+    /**
+     * 插屏广告
+     */
+    val ADMOB_INTERSTITIAL_UNIT_ID = "ca-app-pub-2830772598550207/6669865378"
 
 
-        val ADMOB_OPENAD_UNIT_ID =  "ca-app-pub-2830772598550207/9227806024"
+    var useDebugAdmobId = BuildConfig.DEBUG
 
-        var useDebugAdmobId = false
-
-        const val EVENT_ADMOB_AD_SHOW = "admob_ad_impression"
-        const val EVENT_ADMOB_AD_CLICK = "admob_ad_click"
-    }
+    const val EVENT_ADMOB_AD_SHOW = "launcher_ad_impression"
+    const val EVENT_ADMOB_AD_CLICK = "launcher_ad_click"
 
      open fun getNativeUnitId() : String {
         if (useDebugAdmobId) {
@@ -118,9 +118,13 @@ open class LauncherAdmobAdLoader : BaseAdLoader() {
     }
 
 
-    open fun getBannerAdFormat() : String = "Locker_Banner"
+    open fun getBannerAdFormat() : String = "Launcher_Banner"
 
-    open fun getNativeAdFormat() : String = "Locker_Native"
+    open fun getNativeAdFormat() : String = "Launcher_Native"
+
+    open fun getInterstitialAdFormat() : String = "Launcher_Interstitial"
+
+    open fun getRewardAdFormat() : String = "Launcher_Reward"
 
     open fun getBannerUnitId() : String {
         if (useDebugAdmobId) {
