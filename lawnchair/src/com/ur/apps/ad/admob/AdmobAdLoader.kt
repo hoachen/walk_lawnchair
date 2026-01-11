@@ -152,7 +152,7 @@ open class AdmobAdLoader : BaseAdLoader() {
             AdRequest.Builder().build(),
             object : RewardedAdLoadCallback() {
                 override fun onAdLoaded(ad: RewardedAd) {
-                    Log.d(loggerTag(), "Ad was loaded.")
+                    Log.d(loggerTag(), "reward Ad was loaded.")
                     rewardedAd = ad
                     rewardedAd?.fullScreenContentCallback =
                         object : FullScreenContentCallback() {
@@ -246,7 +246,7 @@ open class AdmobAdLoader : BaseAdLoader() {
             AdRequest.Builder().build(),
             object : InterstitialAdLoadCallback() {
                 override fun onAdLoaded(ad: InterstitialAd) {
-                    Log.d(loggerTag(), "Ad was loaded.")
+                    Log.d(loggerTag(), "interstitial Ad was loaded.")
                     interstitialAd = ad
                     interstitialAd?.fullScreenContentCallback =
                         object : FullScreenContentCallback() {

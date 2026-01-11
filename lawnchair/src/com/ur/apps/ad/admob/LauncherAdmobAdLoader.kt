@@ -306,7 +306,7 @@ object LauncherAdmobAdLoader : BaseAdLoader() {
             AdRequest.Builder().build(),
             object : InterstitialAdLoadCallback() {
                 override fun onAdLoaded(ad: InterstitialAd) {
-                    Log.d(loggerTag(), "Ad was loaded.")
+                    Log.d(loggerTag(), "interstitialAd was loaded.")
                     interstitialAd = ad
                     interstitialAd?.setOnPaidEventListener {
                         Log.i(TAG, "on Admob interstaital paid $it")
