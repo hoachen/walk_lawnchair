@@ -1,13 +1,16 @@
 package com.ur.apps.walk.settings
 
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
 import com.android.launcher3.R
 import com.ur.apps.walk.settings.model.SettingItem
 import com.ur.apps.walk.step.utils.SharedPreferencesUtils
 import com.ur.apps.walk.utils.LocaleHelper
 import com.ur.apps.walk.utils.RegionHelper
 import com.ur.apps.walk.utils.getThemeColor
+import androidx.core.net.toUri
 
 class SettingsManager(private val context: Context) {
     private val sharedPreferences = SharedPreferencesUtils(context)
@@ -73,53 +76,56 @@ class SettingsManager(private val context: Context) {
                     SettingItem.Item.Distance(
                         id = "distance_unit",
                         title = context.getString(R.string.settings_distance_unit),
-                        isKm = true
+                        isKm = true,
                     ),
                     SettingItem.Item.Switch(
                         id = context.getString(R.string.settings_key_notification),
                         title = context.getString(R.string.settings_notification),
-                        isChecked = true
+                        isChecked = true,
                     ),
                     SettingItem.Item.Switch(
                         id = context.getString(R.string.settings_key_sounds),
                         title = context.getString(R.string.settings_sounds),
-                        isChecked = true
+                        isChecked = true,
                     ),
                     SettingItem.Item.Switch(
                         id = context.getString(R.string.settings_key_vibration),
                         title = context.getString(R.string.settings_vibration),
-                        isChecked = true
-                    )
-                )
+                        isChecked = true,
+                    ),
+                ),
             ),
-//            // 喜欢我们吗
-//            SettingItem.Section(
-//                id = "like_us",
-//                title = context.getString(R.string.settings_like_us),
-//                items = listOf(
-//                    SettingItem.Item.Action(
-//                        id = "rate_us",
-//                        title = context.getString(R.string.settings_rate_us),
-//                        onClick = {
-//                            val intent = Intent(Intent.ACTION_VIEW).apply {
-//                                data = Uri.parse("market://details?id=${context.packageName}")
-//                            }
-//                            context.startActivity(intent)
-//                        }
-//                    ),
-//                    SettingItem.Item.Action(
-//                        id = context.getString(R.string.settings_key_share),
-//                        title = context.getString(R.string.settings_share),
-//                        onClick = {
-//                            val intent = Intent(Intent.ACTION_SEND).apply {
-//                                type = "text/plain"
-//                                putExtra(Intent.EXTRA_TEXT, "https://play.google.com/store/apps/details?id=${context.packageName}")
-//                            }
-//                            context.startActivity(Intent.createChooser(intent, null))
-//                        }
-//                    )
-//                )
-//            ),
+            // 喜欢我们吗
+            SettingItem.Section(
+                id = "like_us",
+                title = context.getString(R.string.settings_like_us),
+                items = listOf(
+                    SettingItem.Item.Action(
+                        id = "rate_us",
+                        title = context.getString(R.string.settings_rate_us),
+                        onClick = {
+                            val intent = Intent(Intent.ACTION_VIEW).apply {
+                                data = "market://details?id=${context.packageName}".toUri()
+                            }
+                            context.startActivity(intent)
+                        },
+                    ),
+                    SettingItem.Item.Action(
+                        id = context.getString(R.string.settings_key_share),
+                        title = context.getString(R.string.settings_share),
+                        onClick = {
+                            val intent = Intent(Intent.ACTION_SEND).apply {
+                                type = "text/plain"
+                                putExtra(
+                                    Intent.EXTRA_TEXT,
+                                    "https://play.google.com/store/apps/details?id=${context.packageName}"
+                                )
+                            }
+                            context.startActivity(Intent.createChooser(intent, null))
+                        },
+                    ),
+                ),
+            ),
         )
 //        // Feedback & QA
 //        val feedback = SettingItem.Section(
@@ -177,74 +183,77 @@ class SettingsManager(private val context: Context) {
                         title = context.getString(R.string.settings_privacy_policy),
                         onClick = {
                             com.ur.apps.walk.utils.DialogUtils.showPrivacyDialog(context)
-                        }
+                        },
                     ),
 //                    SettingItem.Item.Action(
 //                        id = context.getString(R.string.settings_key_terms),
 //                        title = context.getString(R.string.settings_terms),
 //                        onClick = {}
 //                    )
-                )
-            ))
+                ),
+            ),
+        )
         // 语言切换
         list.add(
             SettingItem.Section(
-            id = context.getString(R.string.settings_key_language),
-            title = context.getString(R.string.settings_language),
-            items = listOf(
-                SettingItem.Item.Value(
-                    id = context.getString(R.string.settings_key_language),
-                    title = context.getString(R.string.settings_language),
-                    value = LocaleHelper.getLanguageName(
-                        context,
-                        LocaleHelper.getLanguage(context)
+                id = context.getString(R.string.settings_key_language),
+                title = context.getString(R.string.settings_language),
+                items = listOf(
+                    SettingItem.Item.Value(
+                        id = context.getString(R.string.settings_key_language),
+                        title = context.getString(R.string.settings_language),
+                        value = LocaleHelper.getLanguageName(
+                            context,
+                            LocaleHelper.getLanguage(context),
+                        ),
+                        onClick = {},
                     ),
-                    onClick = {}
-                )
-            )
-        ))
+                ),
+            ),
+        )
         // 所在国家地区
         list.add(
             SettingItem.Section(
                 id = context.getString(R.string.settings_key_region),
-            title = context.getString(R.string.settings_region),
-            items = listOf(
-                SettingItem.Item.Value(
-                    id = context.getString(R.string.settings_key_region),
-                    title = context.getString(R.string.settings_region),
-                    value = RegionHelper.getRegionName(
-                        context,
-                        RegionHelper.getRegion(context)
+                title = context.getString(R.string.settings_region),
+                items = listOf(
+                    SettingItem.Item.Value(
+                        id = context.getString(R.string.settings_key_region),
+                        title = context.getString(R.string.settings_region),
+                        value = RegionHelper.getRegionName(
+                            context,
+                            RegionHelper.getRegion(context),
+                        ),
+                        onClick = {},
                     ),
-                    onClick = {}
-                )
-            )
-        ))
+                ),
+            ),
+        )
         // 版本号
         list.add(
             SettingItem.Section(
-            id = context.getString(R.string.settings_key_version),
-            title = context.getString(R.string.settings_version),
-            items = listOf(
-                SettingItem.Item.Value(
-                    id = context.getString(R.string.settings_key_version),
-                    title = context.getString(R.string.settings_version),
-                    value = try {
-                        val packageInfo =
-                            context.packageManager.getPackageInfo(context.packageName, 0)
-                        context.getString(
-                            R.string.settings_version_format,
-                            packageInfo.versionName
-                                ?: context.getString(R.string.settings_value_unknown)
-                        )
-                    } catch (e: PackageManager.NameNotFoundException) {
-                        context.getString(R.string.settings_value_unknown)
-                    },
-                    onClick = {
-                    }
-                )
-            )
-        )
+                id = context.getString(R.string.settings_key_version),
+                title = context.getString(R.string.settings_version),
+                items = listOf(
+                    SettingItem.Item.Value(
+                        id = context.getString(R.string.settings_key_version),
+                        title = context.getString(R.string.settings_version),
+                        value = try {
+                            val packageInfo =
+                                context.packageManager.getPackageInfo(context.packageName, 0)
+                            context.getString(
+                                R.string.settings_version_format,
+                                packageInfo.versionName
+                                    ?: context.getString(R.string.settings_value_unknown),
+                            )
+                        } catch (e: PackageManager.NameNotFoundException) {
+                            context.getString(R.string.settings_value_unknown)
+                        },
+                        onClick = {
+                        },
+                    ),
+                ),
+            ),
         )
         return list
     }
@@ -253,39 +262,44 @@ class SettingsManager(private val context: Context) {
         when (id) {
             context.getString(R.string.settings_key_nickname) -> sharedPreferences.setParam(
                 context.getString(
-                    R.string.pref_key_nickname
-                ), value
+                    R.string.pref_key_nickname,
+                ),
+                value,
             )
 
             "use_system_step" -> sharedPreferences.setParam("use_system_step", value)
             "distance_unit" -> sharedPreferences.setParam("distance_unit", value)
             context.getString(R.string.settings_key_notification) -> sharedPreferences.setParam(
                 context.getString(R.string.settings_key_notification),
-                value
+                value,
             )
 
             context.getString(R.string.settings_key_sounds) -> sharedPreferences.setParam(
                 context.getString(
-                    R.string.settings_key_sounds
-                ), value
+                    R.string.settings_key_sounds,
+                ),
+                value,
             )
 
             context.getString(R.string.settings_key_vibration) -> sharedPreferences.setParam(
                 context.getString(
-                    R.string.settings_key_vibration
-                ), value
+                    R.string.settings_key_vibration,
+                ),
+                value,
             )
 
             context.getString(R.string.settings_key_language) -> sharedPreferences.setParam(
                 context.getString(
-                    R.string.settings_key_language
-                ), value
+                    R.string.settings_key_language,
+                ),
+                value,
             )
 
             context.getString(R.string.settings_key_region) -> sharedPreferences.setParam(
                 context.getString(
-                    R.string.settings_key_region
-                ), value
+                    R.string.settings_key_region,
+                ),
+                value,
             )
         }
     }
