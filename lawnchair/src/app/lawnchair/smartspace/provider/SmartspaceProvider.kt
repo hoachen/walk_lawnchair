@@ -34,11 +34,11 @@ class SmartspaceProvider private constructor(context: Context) : SafeCloseable {
         )
     val targets = state
         .map {
-            if (it.requiresSetup.isNotEmpty()) {
-                listOf(setupTarget) + it.targets
-            } else {
+//            if (it.requiresSetup.isNotEmpty()) {
+//                listOf(setupTarget) + it.targets
+//            } else {
                 it.targets
-            }
+//            }
         }
     val previewTargets = state
         .map { it.targets }
