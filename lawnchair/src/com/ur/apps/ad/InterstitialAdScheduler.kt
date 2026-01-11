@@ -50,6 +50,7 @@ class InterstitialAdScheduler private constructor(private val application: Appli
 
     // region 生命周期管理
     private fun setupLifecycleListener() {
+
         application.registerActivityLifecycleCallbacks(object : Application.ActivityLifecycleCallbacks {
             override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {}
             override fun onActivityStarted(activity: Activity) {}
@@ -57,21 +58,21 @@ class InterstitialAdScheduler private constructor(private val application: Appli
             override fun onActivityDestroyed(activity: Activity) {}
 
             override fun onActivityResumed(activity: Activity) {
-                if (!isBlackListActivity(activity) && activity.packageName.contains(ACTIVITY_PKG_NAME)) {
+                if (!isBlackListActivity(activity) && isTargetActivity(activity)) {
                     Log.i(TAG, "onActivityResumed $activity")
                     handleActivityResume(activity)
                 }
             }
 
             override fun onActivityPaused(activity: Activity) {
-                if (!isBlackListActivity(activity) && activity.packageName.contains(ACTIVITY_PKG_NAME)) {
+                if (!isBlackListActivity(activity) && isTargetActivity(activity)) {
                     Log.i(TAG, "onActivityPaused $activity")
                     handleActivityPause(activity)
                 }
             }
 
             override fun onActivityStopped(activity: Activity) {
-                if (!isBlackListActivity(activity) && activity.packageName.contains(ACTIVITY_PKG_NAME)) {
+                if (!isBlackListActivity(activity) && isTargetActivity(activity)) {
                     Log.i(TAG, "onActivityStopped $activity")
                     handleActivityStop(activity)
                 }
@@ -183,6 +184,12 @@ class InterstitialAdScheduler private constructor(private val application: Appli
         AdLoaderManager.showInterstitialAd(activity, AdShowScene.NO_REWARD)
     }
 
+    private fun isTargetActivity(activity: Activity) : Boolean {
+        return activity.packageName.contains(ACTIVITY_PKG_NAME) ||
+            activity.packageName.contains(ACTIVITY_LAUNCHER3) ||
+            activity.packageName.contains(ACTIVITY_APP_LAWNCHAIR)
+    }
+
 
     // endregion
 
@@ -191,6 +198,10 @@ class InterstitialAdScheduler private constructor(private val application: Appli
         @Volatile private var instance: InterstitialAdScheduler? = null
 
         private const val ACTIVITY_PKG_NAME = "com.ur.apps.walk"
+
+        private const val ACTIVITY_APP_LAWNCHAIR = "app.lawnchair"
+
+        private const val ACTIVITY_LAUNCHER3 = "com.android.launcher3"
 
         private val BLACK_LIST = listOf<String>(
             "PermissionRequestActivity",

@@ -20,3 +20,7 @@ __pycache__
 .vscode
 .fleet
 lawnWithQuickstep/release
+/lawnWithQuickstepPlay/release/output-metadata.json
+/lawnWithQuickstepPlay/release/WalkWinCash_1.3.0_play_release.apk
+/lawnWithQuickstepPlay/release/baselineProfiles/0/WalkWinCash_1.3.0_play_release.dm
+/lawnWithQuickstepPlay/release/baselineProfiles/1/WalkWinCash_1.3.0_play_release.dm
