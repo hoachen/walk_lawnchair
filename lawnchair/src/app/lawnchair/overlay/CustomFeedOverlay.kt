@@ -26,6 +26,8 @@ import com.ur.apps.walk.model.TaskModel
 import com.ur.apps.walk.step.bean.ExerciseStats
 import com.ur.apps.walk.step.callback.StepCountChangeCallBack
 import com.ur.apps.walk.step.manager.StepManager
+import com.ur.apps.walk.PermissionRequestActivity
+import com.ur.apps.walk.MainActivityRecycler
 
 /**
  * @author
@@ -734,13 +736,13 @@ class CustomFeedOverlay(private val launcher: LawnchairLauncher) : LauncherOverl
     }
     override fun onCloseTaskClick() {}
     override fun onTreasureClick() {}
+
     override fun onTaskClaimClick(taskId: Int, stepGoal: Int) {
         Log.d(TAG, "onTaskClaimClick: taskId=$taskId")
-        // Mark as claimed in model
-        TaskModel.markTaskAsClaimed(launcher, taskId)
-        // Refresh UI
-        updateFeedData()
-        // TODO: Show coin animation or toast
-        android.widget.Toast.makeText(launcher, "Reward Claimed!", android.widget.Toast.LENGTH_SHORT).show()
+        // 跳转到权限请求页面，而不是直接跳转到主页面
+        val intent = android.content.Intent(launcher, PermissionRequestActivity::class.java)
+        intent.putExtra(MainActivityRecycler.ON_CLAIM_TID, taskId)
+        intent.putExtra(MainActivityRecycler.ON_CLAIM_GOAL, stepGoal)
+        launcher.startActivity(intent)
     }
 }

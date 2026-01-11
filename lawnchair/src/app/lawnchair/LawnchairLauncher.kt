@@ -91,6 +91,8 @@ import com.android.systemui.shared.system.QuickStepContract
 import com.kieronquinn.app.smartspacer.sdk.client.SmartspacerClient
 import com.patrykmichalik.opto.core.firstBlocking
 import com.patrykmichalik.opto.core.onEach
+import com.ur.apps.utils.CheckAndExitUtils.checkAndExitIfNeed
+import com.ur.apps.walk.WalkApplication
 import dev.kdrag0n.monet.theme.ColorScheme
 import java.util.stream.Stream
 import kotlinx.coroutines.flow.distinctUntilChanged
@@ -165,6 +167,8 @@ class LawnchairLauncher : QuickstepLauncher() {
     val gestureController by unsafeLazy { GestureController(this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        checkAndExitIfNeed(this)
+
         if (!Utilities.ATLEAST_Q) {
             enableEdgeToEdge(
                 navigationBarStyle = SystemBarStyle.auto(
@@ -319,7 +323,7 @@ class LawnchairLauncher : QuickstepLauncher() {
     }
 
     override fun getSupportedShortcuts(): Stream<SystemShortcut.Factory<*>> = Stream.concat(
-        
+
         super.getSupportedShortcuts().filter {  shourtcut->
             shourtcut != SystemShortcut.WIDGETS
         },

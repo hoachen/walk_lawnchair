@@ -284,7 +284,9 @@ class CustomFeedAdapter(
                     override fun onTaskClick(taskId: Int, targetDistance: Int, currentDistance: Int) {}
                     override fun onCloseTaskClick() {}
                     override fun onTreasureClick() {}
-                    override fun onTaskClaimClick(taskId: Int, stepGoal: Int) {}
+                    override fun onTaskClaimClick(taskId: Int, stepGoal: Int) {
+
+                    }
                 }
 
                 taskAdapter = TaskItemAdapter(safeListener, item.stepCount)

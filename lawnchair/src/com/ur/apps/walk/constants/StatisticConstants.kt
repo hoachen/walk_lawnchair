@@ -1,6 +1,11 @@
 package com.ur.apps.walk.constants
 
 object StatisticConstants {
+
+
+    //////////////////////////////////////////////////////////////////
+    ////// 常量 start
+    //////////////////////////////////////////////////////////////////
     const val SYSTEM_ALERT_PERMISSION_REQUEST = "system_alert_permission_request"
     const val SYSTEM_ALERT_PERMISSION = "system_alert_permission"
     const val BATTERY_PERMISSION_REQUEST = "battery_permission_request"
@@ -20,6 +25,18 @@ object StatisticConstants {
     const val NAVI_MAIN_SHOW = "navi_main_show"
     const val LOCK_ACT_AD_CLICK = "lock_act_ad_click"
     const val KEYGUARD_ACTION = "keyguard_action"
+    const val LAUNCHER_DEFAULT = "launcher_default"
+
+    const val LAUNCHER_FEED_AD_SHOW = "launcher_feed_ad_show"
+    //////////////////////////////////////////////////////////////////
+    ////// 常量 end
+    //////////////////////////////////////////////////////////////////
+
+
+
+    //////////////////////////////////////////////////////////////////
+    ////// 参数 start
+    //////////////////////////////////////////////////////////////////
 
     const val GRANTED = "granted"
     const val TIMES = "times"
@@ -29,8 +46,8 @@ object StatisticConstants {
     const val SERVICE = "service"
     const val TYPE = "type"
     const val TASK_ID = "task_id"
-
-
-    const val LAUNCHER_FEED_AD_SHOW = "launcher_feed_ad_show"
+    //////////////////////////////////////////////////////////////////
+    ////// 参数 end
+    //////////////////////////////////////////////////////////////////
 
 }

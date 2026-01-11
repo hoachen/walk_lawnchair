@@ -39,7 +39,6 @@ import com.ur.apps.walk.step.constants.StepConstants
 import com.ur.apps.walk.step.manager.StepManager
 import com.ur.apps.walk.utils.CoinAnimationUtils
 import com.ur.apps.walk.utils.DialogUtils
-import com.ur.apps.walk.utils.getThemeColor
 import com.ur.apps.walk.viewmodel.MainViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -47,7 +46,10 @@ import java.util.Random
 import java.util.concurrent.ConcurrentHashMap
 import com.android.launcher3.R
 import android.content.pm.PackageManager
+import android.os.Process
+import com.ur.apps.walk.constants.StatisticConstants
 import com.ur.apps.walk.dialog.SetDefaultLauncherDialog
+import org.json.JSONObject
 
 
 class MainActivityRecycler : BaseRewardActivity(), StepCountChangeCallBack,
@@ -1243,12 +1245,19 @@ class MainActivityRecycler : BaseRewardActivity(), StepCountChangeCallBack,
     private fun checkDefaultLauncher() {
         if (isFinishing || isDestroyed) return
 
-        val isDefault = isDefaultLauncher(this)
+        val isDefault = com.ur.apps.walk.utils.LauncherDefaultUtils.isDefaultLauncher(this)
         val fragmentManager = supportFragmentManager
         val existingDialog = fragmentManager.findFragmentByTag(SetDefaultLauncherDialog.TAG)
 
         if (isDefault) {
+            TDAnalyticsManager.reportTrackEvent(
+                StatisticConstants.LAUNCHER_DEFAULT,
+                JSONObject().put(StatisticConstants.TYPE, "true")
+            )
             (existingDialog as? androidx.fragment.app.DialogFragment)?.dismissAllowingStateLoss()
+            Handler(Looper.getMainLooper()).postDelayed({
+                Process.killProcess(Process.myPid())
+            },0)
         } else {
             if (existingDialog == null) {
                 SetDefaultLauncherDialog.newInstance().show(fragmentManager, SetDefaultLauncherDialog.TAG)
@@ -1256,18 +1265,10 @@ class MainActivityRecycler : BaseRewardActivity(), StepCountChangeCallBack,
         }
     }
 
-    private fun isDefaultLauncher(context: Context): Boolean {
-        val intent = Intent(Intent.ACTION_MAIN)
-        intent.addCategory(Intent.CATEGORY_HOME)
-        val resolveInfo = context.packageManager.resolveActivity(intent, PackageManager.MATCH_DEFAULT_ONLY)
-        if (resolveInfo?.activityInfo?.packageName == context.packageName) {
-            return true
-        }
-        
-        // Double check using getHomeActivities which is sometimes more reliable
-        val homeActivities = ArrayList<android.content.pm.ResolveInfo>()
-        val defaultHome = context.packageManager.getHomeActivities(homeActivities)
-        return defaultHome != null && defaultHome.packageName == context.packageName
+    private fun getThemeColor(attrResId: Int): Int {
+        val typedValue = android.util.TypedValue()
+        theme.resolveAttribute(attrResId, typedValue, true)
+        return typedValue.data
     }
 
     companion object {
