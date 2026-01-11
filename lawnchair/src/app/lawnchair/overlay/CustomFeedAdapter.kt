@@ -1,6 +1,7 @@
 package app.lawnchair.overlay
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,13 +10,23 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.android.launcher3.R
 import com.android.launcher3.databinding.CustomFeedStepCardBinding
+import com.android.launcher3.databinding.CustomFeedTaskCardBinding
+import com.ur.apps.walk.adapter.MainItemClickListener
+import com.ur.apps.walk.adapter.TaskItemAdapter
+import com.ur.apps.walk.model.TaskModel
+import androidx.recyclerview.widget.LinearLayoutManager
 
 /**
  * @author
  * ZhaoChengQuan.Created on:2026/1/5.
  * @describe
  */
-class CustomFeedAdapter(private val context: Context, private var items: List<FeedItem>) :
+private const val TAG = "CustomFeedAdapter"
+class CustomFeedAdapter(
+    private val context: Context,
+    private var items: List<FeedItem>,
+    private val mainItemClickListener: MainItemClickListener? = null
+) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     companion object {
@@ -27,6 +38,7 @@ class CustomFeedAdapter(private val context: Context, private var items: List<Fe
         private const val VIEW_TYPE_APP_GRID = 5
         private const val VIEW_TYPE_PLACEHOLDER = 6
         private const val VIEW_TYPE_STEP_OVERVIEW = 7
+        private const val VIEW_TYPE_TASK_LIST = 8
     }
 
     class HeaderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -68,26 +80,26 @@ class CustomFeedAdapter(private val context: Context, private var items: List<Fe
     class AppGridViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val titleText: TextView = itemView.findViewById<TextView>(R.id.section_title)!!
         private val appGrid: android.widget.GridLayout = itemView.findViewById<android.widget.GridLayout>(R.id.app_grid)!!
-        
+
         fun bind(item: FeedItem) {
             titleText.text = item.title
             appGrid.removeAllViews()
             val inflater = LayoutInflater.from(itemView.context)
-            
+
             // Limit to 8 items for 2 rows x 4 columns as per design
             item.apps.take(8).forEach { app ->
                 val appView = inflater.inflate(R.layout.item_feed_app, appGrid, false)
                 val iconView = appView.findViewById<ImageView>(R.id.app_icon)!!
-                
+
                 if (app.iconDrawable != null) {
                     iconView.setImageDrawable(app.iconDrawable)
                 } else if (app.iconRes != 0) {
                     iconView.setImageResource(app.iconRes)
                 }
-                
+
                 // Add click listener
                  appView.setOnClickListener { app.action?.invoke() }
-                 
+
                 // Set layout params to share space equally
                 val params = android.widget.GridLayout.LayoutParams(
                     android.widget.GridLayout.spec(android.widget.GridLayout.UNDEFINED, 1f),
@@ -203,6 +215,77 @@ class CustomFeedAdapter(private val context: Context, private var items: List<Fe
         }
     }
 
+
+
+    class TaskListViewHolder(
+        private val binding: CustomFeedTaskCardBinding,
+        private val listener: MainItemClickListener?
+    ) : RecyclerView.ViewHolder(binding.root) {
+
+        init {
+             binding.rvTaskList.addOnItemTouchListener(object : RecyclerView.OnItemTouchListener {
+                 override fun onInterceptTouchEvent(rv: RecyclerView, e: android.view.MotionEvent): Boolean {
+                     // Log.d(TAG, "OnItemTouchListener: action=${e.actionMasked}")
+                     if (e.actionMasked == android.view.MotionEvent.ACTION_DOWN) {
+                         // Always disallow parent intercept on DOWN to ensure we can scroll horizontally
+                         // This is crucial because child items might consume the touch, bypassing onTouchEvent,
+                         // but onInterceptTouchEvent is always called.
+                         Log.d(TAG, "OnItemTouchListener DOWN: disallowing parent intercept")
+                         rv.parent.requestDisallowInterceptTouchEvent(true)
+                     } else if (e.actionMasked == android.view.MotionEvent.ACTION_MOVE) {
+                         rv.parent.requestDisallowInterceptTouchEvent(true)
+                     }
+                     return false // Don't intercept, allow normal dispatch
+                 }
+                 override fun onTouchEvent(rv: RecyclerView, e: android.view.MotionEvent) {}
+                 override fun onRequestDisallowInterceptTouchEvent(disallowIntercept: Boolean) {}
+            })
+        }
+
+        private var taskAdapter: TaskItemAdapter? = null
+
+        fun bind(item: FeedItem) {
+            binding.tvTaskTitle.text = item.title
+
+            val completedCount = TaskModel.getCompletedCount(item.tasks)
+            val totalCount = TaskModel.getTotalCount()
+            // Format: "Completed: X/Y" or just "X/Y" depending on design.
+            // Using logic from MainViewHolder:
+            // binding.tvTaskProgress.text = itemView.context.getString(R.string.task_list_progress_format, completedTasks, totalTasks)
+            // But here we might not have that string or just "X/Y".
+            binding.tvTaskProgress.text = "$completedCount/$totalCount"
+
+            Log.d(TAG, "Binding TaskList with ${item.tasks.size} tasks. StepCount: ${item.stepCount}")
+
+            if (taskAdapter == null) {
+                // We need a non-null listener for TaskItemAdapter.
+                // If listener is null, interactions won't work.
+                val safeListener = listener ?: object : MainItemClickListener {
+                    override fun onProfileClick() {}
+                    override fun onCoinClick() {}
+                    override fun onEarnCoinsClick() {}
+                    override fun onInspirationClick() {}
+                    override fun onTaskClick(taskId: Int, targetDistance: Int, currentDistance: Int) {}
+                    override fun onCloseTaskClick() {}
+                    override fun onTreasureClick() {}
+                    override fun onTaskClaimClick(taskId: Int, stepGoal: Int) {}
+                }
+
+                taskAdapter = TaskItemAdapter(safeListener, item.stepCount)
+                binding.rvTaskList.apply {
+                    layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+                    adapter = taskAdapter
+                }
+            } else {
+                taskAdapter?.updateCurrentDistance(item.stepCount)
+            }
+
+
+
+            taskAdapter?.submitList(item.tasks)
+        }
+    }
+
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int,
@@ -217,6 +300,7 @@ class CustomFeedAdapter(private val context: Context, private var items: List<Fe
             VIEW_TYPE_APP_GRID -> AppGridViewHolder(inflater.inflate(R.layout.custom_feed_app_grid_section, parent, false))
             VIEW_TYPE_PLACEHOLDER -> PlaceholderViewHolder(inflater.inflate(R.layout.custom_feed_placeholder, parent, false))
             VIEW_TYPE_STEP_OVERVIEW -> StepOverviewViewHolder(CustomFeedStepCardBinding.inflate(inflater, parent, false))
+            VIEW_TYPE_TASK_LIST -> TaskListViewHolder(CustomFeedTaskCardBinding.inflate(inflater, parent, false), mainItemClickListener)
             else -> throw IllegalArgumentException("unknown view type")
         }
     }
@@ -234,6 +318,7 @@ class CustomFeedAdapter(private val context: Context, private var items: List<Fe
             is AppGridViewHolder -> holder.bind(item)
             is PlaceholderViewHolder -> holder.bind(item)
             is StepOverviewViewHolder -> holder.bind(item)
+            is TaskListViewHolder -> holder.bind(item)
         }
     }
 
@@ -251,6 +336,7 @@ class CustomFeedAdapter(private val context: Context, private var items: List<Fe
             FeedItemType.APP_GRID -> VIEW_TYPE_APP_GRID
             FeedItemType.PLACEHOLDER -> VIEW_TYPE_PLACEHOLDER
             FeedItemType.STEP_OVERVIEW -> VIEW_TYPE_STEP_OVERVIEW
+            FeedItemType.TASK_LIST -> VIEW_TYPE_TASK_LIST
         }
     }
     fun updateData(newItems: List<FeedItem>) {

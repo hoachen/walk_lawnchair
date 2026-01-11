@@ -16,6 +16,7 @@ import app.lawnchair.LawnchairLauncher
 import com.android.launcher3.R
 
 import com.android.systemui.plugins.shared.LauncherOverlayManager
+import com.ur.apps.walk.adapter.MainItemClickListener
 import com.ur.apps.walk.model.TaskModel
 import com.ur.apps.walk.step.bean.ExerciseStats
 import com.ur.apps.walk.step.callback.StepCountChangeCallBack
@@ -30,7 +31,7 @@ import com.ur.apps.walk.step.manager.StepManager
 private const val TAG = "CustomFeedOverlay"
 
 class CustomFeedOverlay(private val launcher: LawnchairLauncher) : LauncherOverlayManager,
-    LauncherOverlayManager.LauncherOverlay, StepCountChangeCallBack {
+    LauncherOverlayManager.LauncherOverlay, StepCountChangeCallBack, MainItemClickListener {
     init {
         Log.d(TAG, "customFeedOverlay created ")
     }
@@ -153,7 +154,7 @@ class CustomFeedOverlay(private val launcher: LawnchairLauncher) : LauncherOverl
             val recyclerView = RecyclerView(launcher).apply {
                 id = View.generateViewId()
                 layoutManager = LinearLayoutManager(launcher)
-                feedAdapter = CustomFeedAdapter(launcher, getFeedItems())
+                feedAdapter = CustomFeedAdapter(launcher, getFeedItems(), this@CustomFeedOverlay)
                 adapter = feedAdapter
                 clipToPadding = false
                 setPadding(
@@ -377,11 +378,19 @@ class CustomFeedOverlay(private val launcher: LawnchairLauncher) : LauncherOverl
                 )
             },
 
-            // Rewards Placeholder
-            FeedItem(
-                type = FeedItemType.PLACEHOLDER,
-                title = "领取步数奖励",
-            ),
+            // Task List
+            run {
+                val stepManager = StepManager.getInstance(launcher)
+                val currentSteps = stepManager.getTodayStats().steps
+                val tasks = TaskModel.updateTaskCompletion(launcher, currentSteps)
+                
+                FeedItem(
+                    type = FeedItemType.TASK_LIST,
+                    title = launcher.getString(R.string.earn_coins),
+                    tasks = tasks,
+                    stepCount = currentSteps // Used for progress calculation in adapter
+                )
+            },
 
             // Time Rewards Placeholder
             FeedItem(
@@ -619,5 +628,27 @@ class CustomFeedOverlay(private val launcher: LawnchairLauncher) : LauncherOverl
                 feedAdapter?.updateData(getFeedItems())
             }
         }
+    }
+
+    // ========== MainItemClickListener Interface ==========
+    override fun onProfileClick() {}
+    override fun onCoinClick() {
+         // TODO: Open Wallet/Coin Activity
+    }
+    override fun onEarnCoinsClick() {}
+    override fun onInspirationClick() {}
+    override fun onTaskClick(taskId: Int, targetDistance: Int, currentDistance: Int) {
+         // Handle clicking on a task if needed (e.g. show details)
+    }
+    override fun onCloseTaskClick() {}
+    override fun onTreasureClick() {}
+    override fun onTaskClaimClick(taskId: Int, stepGoal: Int) {
+        Log.d(TAG, "onTaskClaimClick: taskId=$taskId")
+        // Mark as claimed in model
+        TaskModel.markTaskAsClaimed(launcher, taskId)
+        // Refresh UI
+        updateFeedData()
+        // TODO: Show coin animation or toast
+        android.widget.Toast.makeText(launcher, "Reward Claimed!", android.widget.Toast.LENGTH_SHORT).show()
     }
 }

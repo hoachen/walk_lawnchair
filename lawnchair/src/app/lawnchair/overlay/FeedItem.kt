@@ -22,6 +22,8 @@ data class FeedItem(
     val badgeText: String = "",
     val stepLabel: String = "",
     val ringLabel: String = "",
+    // For TASK_LIST
+    val tasks: List<com.ur.apps.walk.model.TaskModel> = emptyList(),
 )
 
 data class FeedApp(
@@ -32,5 +34,5 @@ data class FeedApp(
 )
 
 enum class FeedItemType {
-    HEADER, CARD, SHORTCUT_ROW, DIVIDER, SEARCH, APP_GRID, PLACEHOLDER, STEP_OVERVIEW
+    HEADER, CARD, SHORTCUT_ROW, DIVIDER, SEARCH, APP_GRID, PLACEHOLDER, STEP_OVERVIEW, TASK_LIST
 }
