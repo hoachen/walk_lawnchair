@@ -166,7 +166,7 @@ class CustomFeedOverlay(private val launcher: LawnchairLauncher) : LauncherOverl
                 clipToPadding = false
                 setPadding(
                     resources.getDimensionPixelSize(R.dimen.custom_feed_padding),
-                    resources.getDimensionPixelSize(R.dimen.custom_feed_padding),
+                    resources.getDimensionPixelSize(R.dimen.custom_feed_top_padding),
                     resources.getDimensionPixelSize(R.dimen.custom_feed_padding),
                     resources.getDimensionPixelSize(R.dimen.custom_feed_padding),
                 )
@@ -443,7 +443,8 @@ class CustomFeedOverlay(private val launcher: LawnchairLauncher) : LauncherOverl
         overlayView = createOverlayView()
         overlayView?.let { view ->
             // Add to LauncherRootView (parent of DragLayer) so it doesn't move with dragLayer
-            val rootView = launcher.dragLayer.parent as? ViewGroup
+//            val rootView = launcher.dragLayer.parent as? ViewGroup
+         val  rootView =   launcher.window.decorView as? ViewGroup
             if (rootView != null) {
                 Log.d(TAG, "Adding overlay view to rootView, childCount=${rootView.childCount}")
                 rootView.addView(view, 0) // Add at bottom, behind dragLayer
