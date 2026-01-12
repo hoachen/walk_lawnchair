@@ -622,4 +622,6 @@
     <string name="feed_title_app_library">앱 보관함</string>
     <string name="feed_title_common_apps">자주 사용하는 앱</string>
     <string name="feed_title_recent_apps">최근 앱</string>
+    <string name="action_done">완료</string>
+    <string name="feedback_thanks">의견을 보내 주셔서 감사합니다. 제품을 최적화하기 위해 열심히 노력하겠습니다.</string>
 </resources>

@@ -5,14 +5,16 @@ import android.view.View
 import android.widget.AdapterView
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.android.launcher3.R
+import com.android.launcher3.databinding.ActivityWithdrawAmountBinding
 import com.sg.response.FormField
 import com.ur.apps.utils.URLog
 import com.ur.apps.walk.adapter.WithDrawAmountAdapter
-import com.android.launcher3.databinding.ActivityWithdrawAmountBinding
+import com.ur.apps.walk.dialog.RateUsDialog
+import com.ur.apps.walk.step.utils.SharedPreferencesUtils
 import com.ur.apps.walk.utils.RegionHelper
 import com.ur.apps.walk.viewmodel.WithdrawAmountViewModel
 import com.ur.apps.walk.widget.FancyDialog
-import com.android.launcher3.R
 
 
 /**
@@ -53,6 +55,7 @@ class WithdrawAmountActivity : BaseActivity() {
         initDocumentTypeSpinner()
 
         viewModel.loadWithdrawData()
+
     }
 
 //    /**
@@ -78,7 +81,7 @@ class WithdrawAmountActivity : BaseActivity() {
                     parent: AdapterView<*>?,
                     view: View?,
                     position: Int,
-                    id: Long
+                    id: Long,
                 ) {
                     val field: FormField? = parent?.tag as? FormField
                     field?.options?.let {
@@ -88,8 +91,8 @@ class WithdrawAmountActivity : BaseActivity() {
                             field.fieldKey,
                             Pair(
                                 field,
-                                value
-                            )
+                                value,
+                            ),
                         )
                     }
 
@@ -121,6 +124,40 @@ class WithdrawAmountActivity : BaseActivity() {
         }
 
         viewModel.withdrawSuccess.observe(this) {
+            val prefs = SharedPreferencesUtils(this)
+            val firstDayAlreadyDone =
+                prefs.getParam(RateUsDialog.PREF_KEY_SHOULD_RATE_HINT_FIRST_DAY, 0L) as? Long ?: 0L
+
+            val secondDayAlreadyDone =
+                prefs.getParam(RateUsDialog.PREF_KEY_SHOULD_RATE_HINT_SECOND_DAY, 0L) as? Long ?: 0L
+
+            val thirdDayAlreadyDone =
+                prefs.getParam(RateUsDialog.PREF_KEY_SHOULD_RATE_HINT_THIRD_DAY, 0L) as? Long ?: 0L
+
+            val currentTime = System.currentTimeMillis()
+
+            fun isSameDay(t1: Long, t2: Long): Boolean {
+                val c1 = java.util.Calendar.getInstance()
+                c1.timeInMillis = t1
+                val c2 = java.util.Calendar.getInstance()
+                c2.timeInMillis = t2
+                return c1.get(java.util.Calendar.YEAR) == c2.get(java.util.Calendar.YEAR) &&
+                    c1.get(java.util.Calendar.DAY_OF_YEAR) == c2.get(java.util.Calendar.DAY_OF_YEAR)
+            }
+
+            if (firstDayAlreadyDone == 0L) {
+                prefs.setParam(RateUsDialog.PREF_KEY_SHOULD_RATE_HINT_FIRST_DAY, currentTime)
+            } else if (secondDayAlreadyDone == 0L) {
+                if (!isSameDay(firstDayAlreadyDone, currentTime)) {
+                    prefs.setParam(RateUsDialog.PREF_KEY_SHOULD_RATE_HINT_SECOND_DAY, currentTime)
+                }
+            } else if (thirdDayAlreadyDone == 0L) {
+                if (!isSameDay(secondDayAlreadyDone, currentTime)) {
+                    prefs.setParam(RateUsDialog.PREF_KEY_SHOULD_RATE_HINT_THIRD_DAY, currentTime)
+                }
+            }
+
+
             FancyDialog(this).setOnCloseListener {
                 if (!isFinishing) {
                     finish()
@@ -130,7 +167,7 @@ class WithdrawAmountActivity : BaseActivity() {
                 if (telUrl.isNotEmpty()) {
                     val intent = WebViewActivity.createIntent(
                         context = this,
-                        url = telUrl
+                        url = telUrl,
                     )
                     this.startActivity(intent)
                 }
@@ -155,7 +192,7 @@ class WithdrawAmountActivity : BaseActivity() {
                 else -> {
                     URLog.i(TAG, "field setup key(${field.fieldKey})  value($value)")
                     viewModel.formFieldMap.put(
-                        field.fieldKey, Pair(field, value)
+                        field.fieldKey, Pair(field, value),
                     )
                 }
             }
@@ -184,13 +221,13 @@ class WithdrawAmountActivity : BaseActivity() {
                     android.widget.Toast.makeText(
                         this,
                         getString(R.string.key_should_not_empty, it.key),
-                        android.widget.Toast.LENGTH_SHORT
+                        android.widget.Toast.LENGTH_SHORT,
                     ).show()
                     withUnFillupKey = true
                 }
             } else {
                 formFieldMap.put(
-                    it.key, it.value
+                    it.key, it.value,
                 )
             }
         }

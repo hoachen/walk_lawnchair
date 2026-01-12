@@ -7,6 +7,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.os.Process
+import android.provider.Settings
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,6 +19,8 @@ import android.widget.ImageView
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.android.launcher3.R
+import com.android.launcher3.databinding.ActivityMainRecyclerBinding
 import com.sg.UserManager
 import com.sg.model.UserInfo
 import com.ur.apps.ad.AdLoaderManager
@@ -29,29 +33,24 @@ import com.ur.apps.analysis.tenjin.TenjinManager
 import com.ur.apps.utils.URLog
 import com.ur.apps.walk.adapter.MainItemClickListener
 import com.ur.apps.walk.adapter.MainRecyclerAdapter
-import com.android.launcher3.databinding.ActivityMainRecyclerBinding
+import com.ur.apps.walk.constants.StatisticConstants
 import com.ur.apps.walk.dialog.LuckyWheelDialog
+import com.ur.apps.walk.dialog.RateUsDialog
+import com.ur.apps.walk.dialog.SetDefaultLauncherDialog
 import com.ur.apps.walk.model.MainItem
 import com.ur.apps.walk.model.TaskModel
 import com.ur.apps.walk.step.bean.ExerciseStats
 import com.ur.apps.walk.step.callback.StepCountChangeCallBack
 import com.ur.apps.walk.step.constants.StepConstants
 import com.ur.apps.walk.step.manager.StepManager
+import com.ur.apps.walk.step.utils.SharedPreferencesUtils
 import com.ur.apps.walk.utils.CoinAnimationUtils
 import com.ur.apps.walk.utils.DialogUtils
 import com.ur.apps.walk.viewmodel.MainViewModel
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 import java.util.Random
 import java.util.concurrent.ConcurrentHashMap
-import com.android.launcher3.R
-import android.content.pm.PackageManager
-import android.os.Process
-import android.provider.Settings
-import com.ur.apps.walk.constants.StatisticConstants
-import com.ur.apps.walk.dialog.RateUsDialog
-import com.ur.apps.walk.dialog.SetDefaultLauncherDialog
-import com.ur.apps.walk.step.utils.SharedPreferencesUtils
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import org.json.JSONObject
 
 
@@ -95,7 +94,7 @@ class MainActivityRecycler : BaseRewardActivity(), StepCountChangeCallBack,
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
-        grantResults: IntArray
+        grantResults: IntArray,
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
 
@@ -154,7 +153,7 @@ class MainActivityRecycler : BaseRewardActivity(), StepCountChangeCallBack,
             "overlays_permission_check",
             JSONObject().apply {
                 put("hasOverlaysPermission", "$isCanShow")
-            }
+            },
         )
     }
 
@@ -170,10 +169,13 @@ class MainActivityRecycler : BaseRewardActivity(), StepCountChangeCallBack,
         URLog.i(TAG, "maybeShowReward taskId($taskId) goal($goal)")
 
         if (taskId != -1 && goal != -1) {
-            Handler(Looper.getMainLooper()).postDelayed({
-                URLog.i(TAG, "schedule handle task claim taskId($taskId) goal($goal)")
-                handleTaskClaim(taskId, goal)
-            }, 300)
+            Handler(Looper.getMainLooper()).postDelayed(
+                {
+                    URLog.i(TAG, "schedule handle task claim taskId($taskId) goal($goal)")
+                    handleTaskClaim(taskId, goal)
+                },
+                300,
+            )
         }
     }
 
@@ -220,7 +222,7 @@ class MainActivityRecycler : BaseRewardActivity(), StepCountChangeCallBack,
             android.R.color.holo_blue_bright,
             android.R.color.holo_green_light,
             android.R.color.holo_orange_light,
-            android.R.color.holo_red_light
+            android.R.color.holo_red_light,
         )
 
         // 初始化数据
@@ -264,8 +266,8 @@ class MainActivityRecycler : BaseRewardActivity(), StepCountChangeCallBack,
                 dailyGoal = maxTaskStep, // 使用任务列表中的最大步数值作为每日目标
                 distance = stats.distance,
                 calories = stats.calories.toInt(),
-                date = getCurrentDate()
-            )
+                date = getCurrentDate(),
+            ),
         )
 
         // 3. 任务区域（包含标题和任务列表）
@@ -274,8 +276,8 @@ class MainActivityRecycler : BaseRewardActivity(), StepCountChangeCallBack,
                 taskId = 1,
                 targetDistance = TASK_ONE,
                 currentDistance = currentSteps,
-                title = getString(R.string.earn_coins)
-            )
+                title = getString(R.string.earn_coins),
+            ),
         )
 
         // 4. Banner广告位
@@ -290,10 +292,10 @@ class MainActivityRecycler : BaseRewardActivity(), StepCountChangeCallBack,
                 subtitle = getString(R.string.weekly_trend_subtitle),
                 averageText = getString(
                     R.string.weekly_average_format,
-                    formatStepCount(averageSteps)
+                    formatStepCount(averageSteps),
                 ),
-                dailyData = weeklyData
-            )
+                dailyData = weeklyData,
+            ),
         )
 
         // 6. 今日成就区域
@@ -301,8 +303,8 @@ class MainActivityRecycler : BaseRewardActivity(), StepCountChangeCallBack,
             MainItem.AchievementsItem(
                 title = getString(R.string.achievements_title),
                 subtitle = getString(R.string.achievements_subtitle),
-                achievements = getTodayAchievements()
-            )
+                achievements = getTodayAchievements(),
+            ),
         )
 
         // 7. 原生广告位（在页面最底部）
@@ -320,20 +322,22 @@ class MainActivityRecycler : BaseRewardActivity(), StepCountChangeCallBack,
                 is MainItem.SummaryItem -> {
                     // 更新SummaryItem
                     mainAdapter.updateItem(
-                        i, item.copy(
+                        i,
+                        item.copy(
                             stepCount = currentSteps,
                             distance = stats.distance,
-                            calories = stats.calories.toInt()
-                        )
+                            calories = stats.calories.toInt(),
+                        ),
                     )
                 }
 
                 is MainItem.TaskItem -> {
                     // 更新TaskItem
                     mainAdapter.updateItem(
-                        i, item.copy(
-                            currentDistance = currentSteps
-                        )
+                        i,
+                        item.copy(
+                            currentDistance = currentSteps,
+                        ),
                     )
                 }
 
@@ -348,10 +352,10 @@ class MainActivityRecycler : BaseRewardActivity(), StepCountChangeCallBack,
                         item.copy(
                             averageText = getString(
                                 R.string.weekly_average_format,
-                                formatStepCount(averageSteps)
+                                formatStepCount(averageSteps),
                             ),
-                            dailyData = weeklyData
-                        )
+                            dailyData = weeklyData,
+                        ),
                     )
                 }
 
@@ -361,8 +365,8 @@ class MainActivityRecycler : BaseRewardActivity(), StepCountChangeCallBack,
                     mainAdapter.updateItem(
                         i,
                         item.copy(
-                            achievements = getTodayAchievements()
-                        )
+                            achievements = getTodayAchievements(),
+                        ),
                     )
                 }
 
@@ -384,10 +388,13 @@ class MainActivityRecycler : BaseRewardActivity(), StepCountChangeCallBack,
         updateAllItems(stats)
 
         // 延迟1秒后停止刷新动画，模拟网络请求
-        Handler(Looper.getMainLooper()).postDelayed({
-            binding.swipeRefreshLayout.isRefreshing = false
-            showToast(getString(R.string.refresh_completed))
-        }, 1000)
+        Handler(Looper.getMainLooper()).postDelayed(
+            {
+                binding.swipeRefreshLayout.isRefreshing = false
+                showToast(getString(R.string.refresh_completed))
+            },
+            1000,
+        )
     }
 
     /**
@@ -424,7 +431,7 @@ class MainActivityRecycler : BaseRewardActivity(), StepCountChangeCallBack,
                 1, 3, 5 -> {
                     URLog.i(
                         TAG,
-                        "onStepReachPeriod ($hundred_level) createHandPointerGuide for Earn Coins button"
+                        "onStepReachPeriod ($hundred_level) createHandPointerGuide for Earn Coins button",
                     )
                     // 为Earn Coins按钮创建手指引导
                     getEarnCoinsButtonView()?.let { view ->
@@ -441,16 +448,19 @@ class MainActivityRecycler : BaseRewardActivity(), StepCountChangeCallBack,
             mainAdapter.updateButtons(
                 MainItem.ButtonsItem(
                     isEarningEnabled = true,
-                    showInspirationButton = true
-                )
+                    showInspirationButton = true,
+                ),
             )
 
             // 为激励按钮创建手指引导
-            Handler(Looper.getMainLooper()).postDelayed({
-                getInspirationButtonView()?.let { view ->
-                    createHandPointerGuide(view)
-                }
-            }, 500) // 延迟500ms，确保View已经创建
+            Handler(Looper.getMainLooper()).postDelayed(
+                {
+                    getInspirationButtonView()?.let { view ->
+                        createHandPointerGuide(view)
+                    }
+                },
+                500,
+            ) // 延迟500ms，确保View已经创建
         }
     }
 
@@ -596,8 +606,8 @@ class MainActivityRecycler : BaseRewardActivity(), StepCountChangeCallBack,
         handPointerImageView.setImageResource(R.drawable.ic_hand_pointer)
         handPointerImageView.setColorFilter(
             getThemeColor(
-                com.google.android.material.R.attr.colorOnSecondaryContainer
-            )
+                com.google.android.material.R.attr.colorOnSecondaryContainer,
+            ),
         )
 
         // 存储到Map中
@@ -665,7 +675,7 @@ class MainActivityRecycler : BaseRewardActivity(), StepCountChangeCallBack,
             // 创建从下往上的动画
             val animation = TranslateAnimation(
                 0f, 0f,  // X轴不移动
-                0f, safeAnimDistance // Y轴移动的距离，确保安全
+                0f, safeAnimDistance, // Y轴移动的距离，确保安全
             )
             animation.duration = 1500 // 动画持续1.5秒
             animation.repeatCount = Animation.INFINITE  // 无限重复，直到用户点击
@@ -675,10 +685,10 @@ class MainActivityRecycler : BaseRewardActivity(), StepCountChangeCallBack,
             URLog.d(
                 TAG,
                 "动画设置：目标视图=${targetView}, 父容器=${handPointerImageView.parent}, " +
-                        "目标位置=(${targetLocation[0]}, ${targetLocation[1]}), " +
-                        "父位置=(${parentLocation[0]}, ${parentLocation[1]}), " +
-                        "手指位置=(${handPointerImageView.x}, ${handPointerImageView.y}), " +
-                        "移动距离=$safeAnimDistance"
+                    "目标位置=(${targetLocation[0]}, ${targetLocation[1]}), " +
+                    "父位置=(${parentLocation[0]}, ${parentLocation[1]}), " +
+                    "手指位置=(${handPointerImageView.x}, ${handPointerImageView.y}), " +
+                    "移动距离=$safeAnimDistance",
             )
 
             // 开始动画
@@ -710,7 +720,7 @@ class MainActivityRecycler : BaseRewardActivity(), StepCountChangeCallBack,
                     showRewardAd(AdShowScene.REDEEM)
                     it.dismiss()
                 },
-                1500
+                1500,
             )
         }
         dialog.show()
@@ -725,7 +735,7 @@ class MainActivityRecycler : BaseRewardActivity(), StepCountChangeCallBack,
         floatingBalloon = inflater.inflate(
             R.layout.layout_floating_balloon,
             binding.activityMainRecyclerParent,
-            false
+            false,
         )
 
         // 添加到布局中
@@ -849,7 +859,7 @@ class MainActivityRecycler : BaseRewardActivity(), StepCountChangeCallBack,
                     adType = "Reward",
                     adPosition = "Task_Reward",
                     adPositionType = "Reward",
-                    placementId = TopOnAdLoader.TOPON_REWARD_PLACEMENT_ID
+                    placementId = TopOnAdLoader.TOPON_REWARD_PLACEMENT_ID,
                 )
                 DialogUtils.showInspirationDialog(this) {
                     showRewardAd()
@@ -963,12 +973,13 @@ class MainActivityRecycler : BaseRewardActivity(), StepCountChangeCallBack,
         for (i in 0 until mainAdapter.itemCount) {
             if (mainAdapter.getItemViewType(i) == MainItem.TYPE_TASK) {
                 mainAdapter.updateItem(
-                    i, MainItem.TaskItem(
+                    i,
+                    MainItem.TaskItem(
                         taskId = 1,
                         targetDistance = TASK_ONE,
                         currentDistance = stats.steps,
-                        title = getString(R.string.earn_coins)
-                    )
+                        title = getString(R.string.earn_coins),
+                    ),
                 )
                 break
             }
@@ -981,7 +992,7 @@ class MainActivityRecycler : BaseRewardActivity(), StepCountChangeCallBack,
     private fun getCurrentDate(): String {
         val dateFormat = java.text.SimpleDateFormat(
             getString(R.string.lock_date_format_full),
-            java.util.Locale.getDefault()
+            java.util.Locale.getDefault(),
         )
         return dateFormat.format(java.util.Date())
     }
@@ -1047,7 +1058,7 @@ class MainActivityRecycler : BaseRewardActivity(), StepCountChangeCallBack,
             7000, // 周四
             6000, // 周五
             3200, // 周六
-            7500  // 周日
+            7500,  // 周日
         )
 
         // 获取星期几标签
@@ -1058,7 +1069,7 @@ class MainActivityRecycler : BaseRewardActivity(), StepCountChangeCallBack,
             getString(R.string.weekday_thursday),
             getString(R.string.weekday_friday),
             getString(R.string.weekday_saturday),
-            getString(R.string.weekday_sunday)
+            getString(R.string.weekday_sunday),
         )
 
         // 计算最大步数用于百分比计算
@@ -1081,14 +1092,14 @@ class MainActivityRecycler : BaseRewardActivity(), StepCountChangeCallBack,
      */
     private fun filterLastNDays(
         stepDataList: List<com.ur.apps.walk.step.bean.StepData>,
-        days: Int
+        days: Int,
     ): List<com.ur.apps.walk.step.bean.StepData> {
         val calendar = java.util.Calendar.getInstance()
         calendar.add(java.util.Calendar.DAY_OF_YEAR, -days + 1) // +1 是为了包含今天
 
         val sdf = java.text.SimpleDateFormat(
             com.ur.apps.walk.step.constants.StepConstants.DATE_FORMAT_FULL,
-            java.util.Locale.getDefault()
+            java.util.Locale.getDefault(),
         )
         val startDate = sdf.format(calendar.time)
 
@@ -1106,7 +1117,7 @@ class MainActivityRecycler : BaseRewardActivity(), StepCountChangeCallBack,
         val calendar = java.util.Calendar.getInstance()
         val dateFormat = java.text.SimpleDateFormat(
             com.ur.apps.walk.step.constants.StepConstants.DATE_FORMAT_FULL,
-            java.util.Locale.getDefault()
+            java.util.Locale.getDefault(),
         )
         val result = mutableListOf<com.ur.apps.walk.step.bean.StepData>()
 
@@ -1147,7 +1158,7 @@ class MainActivityRecycler : BaseRewardActivity(), StepCountChangeCallBack,
         return try {
             val sdf = java.text.SimpleDateFormat(
                 com.ur.apps.walk.step.constants.StepConstants.DATE_FORMAT_FULL,
-                java.util.Locale.getDefault()
+                java.util.Locale.getDefault(),
             )
             val date = sdf.parse(dateStr) ?: return ""
 
@@ -1208,9 +1219,9 @@ class MainActivityRecycler : BaseRewardActivity(), StepCountChangeCallBack,
                 description = getString(
                     R.string.ach_over_users_desc_format,
                     completedTasks,
-                    totalTasks
+                    totalTasks,
                 ),
-                tag = getString(R.string.ach_over_users_tag_format, taskCompletionPercentage / 5)
+                tag = getString(R.string.ach_over_users_tag_format, taskCompletionPercentage / 5),
             ),
             // 第二个成就：今日行走距离成就
             MainItem.AchievementsItem.Achievement(
@@ -1218,17 +1229,17 @@ class MainActivityRecycler : BaseRewardActivity(), StepCountChangeCallBack,
                 title = getString(R.string.ach_today_distance_title_format, distanceKm),
                 description = getString(
                     R.string.ach_today_distance_desc_format,
-                    (stats.distance * 2.5).toInt()
+                    (stats.distance * 2.5).toInt(),
                 ),
-                tag = getString(R.string.ach_today_distance_tag)
+                tag = getString(R.string.ach_today_distance_tag),
             ),
             // 第三个成就：按照最大任务值显示
             MainItem.AchievementsItem.Achievement(
                 icon = "🎯",
                 title = getString(R.string.ach_complete_tasks_title_format, completedTasks),
                 description = getString(R.string.ach_complete_tasks_desc_format, remainingSteps),
-                tag = getString(R.string.ach_complete_tasks_tag_format, maxTaskStep)
-            )
+                tag = getString(R.string.ach_complete_tasks_tag_format, maxTaskStep),
+            ),
         )
     }
 
@@ -1266,27 +1277,60 @@ class MainActivityRecycler : BaseRewardActivity(), StepCountChangeCallBack,
         if (isDefault) {
             TDAnalyticsManager.reportTrackEvent(
                 StatisticConstants.LAUNCHER_DEFAULT,
-                JSONObject().put(StatisticConstants.TYPE, "true")
+                JSONObject().put(StatisticConstants.TYPE, "true"),
             )
 
             if (existingDialog != null) {
                 (existingDialog as? androidx.fragment.app.DialogFragment)?.dismissAllowingStateLoss()
-                Handler(Looper.getMainLooper()).postDelayed({
-                    Process.killProcess(Process.myPid())
-                }, 0)
             } else {
                 // Already default, normal run.
                 // Check if we should show Rate Us
                 val prefs = SharedPreferencesUtils(this)
                 val hasRated = prefs.getParam(RateUsDialog.PREF_KEY_HAS_RATED, false) as Boolean
+                val firstDay =
+                    prefs.getParam(RateUsDialog.PREF_KEY_SHOULD_RATE_HINT_FIRST_DAY, 0L) as? Long
+                        ?: 0L
+                val firstDayShowed = prefs.getParam(
+                    RateUsDialog.PREF_KEY_SHOULD_RATE_HINT_FIRST_DAY_SHOWED,
+                    false,
+                ) as? Boolean ?: false
+                val secondDay =
+                    prefs.getParam(RateUsDialog.PREF_KEY_SHOULD_RATE_HINT_SECOND_DAY, 0L) as? Long
+                        ?: 0L
+                val secondDayShowed = prefs.getParam(
+                    RateUsDialog.PREF_KEY_SHOULD_RATE_HINT_SECOND_DAY_SHOWED,
+                    false,
+                ) as? Boolean ?: false
+                val thirdDay =
+                    prefs.getParam(RateUsDialog.PREF_KEY_SHOULD_RATE_HINT_THIRD_DAY, 0L) as? Long
+                        ?: 0L
+                val thirdDayShowed = prefs.getParam(
+                    RateUsDialog.PREF_KEY_SHOULD_RATE_HINT_THIRD_DAY_SHOWED,
+                    false,
+                ) as? Boolean ?: false
 
-                if (!hasRated && existingRateDialog == null) {
+
+                val shouldPrompt = if (firstDay > 0 && !firstDayShowed) {
+                    prefs.setParam(RateUsDialog.PREF_KEY_SHOULD_RATE_HINT_FIRST_DAY_SHOWED, true)
+                    true
+                } else if (secondDay > 0 && !secondDayShowed) {
+                    prefs.setParam(RateUsDialog.PREF_KEY_SHOULD_RATE_HINT_SECOND_DAY_SHOWED, true)
+                    true
+                } else if (thirdDay > 0 && !thirdDayShowed) {
+                    prefs.setParam(RateUsDialog.PREF_KEY_SHOULD_RATE_HINT_THIRD_DAY_SHOWED, true)
+                    true
+                } else {
+                    false
+                }
+
+                if (!hasRated && shouldPrompt && existingRateDialog == null) {
                     RateUsDialog.newInstance().show(fragmentManager, RateUsDialog.TAG)
                 }
             }
         } else {
             if (existingDialog == null) {
-                SetDefaultLauncherDialog.newInstance().show(fragmentManager, SetDefaultLauncherDialog.TAG)
+                SetDefaultLauncherDialog.newInstance()
+                    .show(fragmentManager, SetDefaultLauncherDialog.TAG)
             }
         }
     }
