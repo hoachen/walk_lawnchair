@@ -1282,12 +1282,6 @@ class MainActivityRecycler : BaseRewardActivity(), StepCountChangeCallBack,
 
             if (existingDialog != null) {
                 (existingDialog as? androidx.fragment.app.DialogFragment)?.dismissAllowingStateLoss()
-                Handler(Looper.getMainLooper()).postDelayed(
-                    {
-                        Process.killProcess(Process.myPid())
-                    },
-                    0,
-                )
             } else {
                 // Already default, normal run.
                 // Check if we should show Rate Us

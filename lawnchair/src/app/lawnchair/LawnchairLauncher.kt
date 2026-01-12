@@ -172,7 +172,6 @@ class LawnchairLauncher : QuickstepLauncher() {
     val gestureController by unsafeLazy { GestureController(this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        checkAndExitIfNeed(this)
 
         if (!Utilities.ATLEAST_Q) {
             enableEdgeToEdge(
