@@ -20,6 +20,7 @@ import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.FullScreenContentCallback
 import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.appopen.AppOpenAd
+import com.google.firebase.FirebaseApp
 import com.sg.UserManager
 import com.ur.apps.ad.AdLoaderManager
 import com.ur.apps.ad.admob.AdmobAdLoader
@@ -167,6 +168,7 @@ class WalkApplication : LawnchairApp(), StepCountChangeCallBack, DefaultLifecycl
         super<LawnchairApp>.onCreate()
         URLog.d(TAG, "Application onCreate 开始")
         instance = this
+        FirebaseApp.initializeApp(this)
         ThemeManager.getInstance().init(this)
 
 //        CrashReport.initCrashReport(applicationContext, "1d16093eb7", false);
