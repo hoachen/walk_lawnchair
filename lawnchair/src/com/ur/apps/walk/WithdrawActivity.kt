@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
@@ -155,11 +156,14 @@ class WithdrawActivity : BaseActivity() {
 //            "id" -> R.drawable.ic_flag_id
 //            else -> R.drawable.ic_avatar_placeholder
 //        }
+        val imageView : ImageView? = binding.cardCountrySelector.findViewById(R.id.img_flag)
+        imageView?.run {
+            Glide.with(this)
+                .load(regionCode.nationalFlagUrl)
+                .centerInside()
+                .into(imageView)
+        }
 
-        Glide.with(this)
-            .load(regionCode.nationalFlagUrl)
-            .centerInside()
-            .into(binding.cardCountrySelector.findViewById(R.id.img_flag))
 
         // 设置区域名称
         val regionName = RegionHelper.getRegionName(this, regionCode.countryCode)
