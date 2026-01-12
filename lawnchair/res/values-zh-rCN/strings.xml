@@ -1288,4 +1288,6 @@
     <string name="feed_title_app_library">应用库</string>
     <string name="feed_title_common_apps">常用</string>
     <string name="feed_title_recent_apps">最近</string>
+
+    <string name="feedback_thanks">谢谢您的反馈，我们会努力优化我们的产品</string>
 </resources>

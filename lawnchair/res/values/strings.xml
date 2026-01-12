@@ -1550,4 +1550,6 @@
     <string name="feed_title_app_library">App Library</string>
     <string name="feed_title_common_apps">Common</string>
     <string name="feed_title_recent_apps">Recent</string>
+
+    <string name="feedback_thanks">Thank you for your feedback, we will work hard to optimize our product.</string>
 </resources>

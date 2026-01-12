@@ -585,4 +585,6 @@
     <string name="feed_title_app_library">Pustaka Aplikasi</string>
     <string name="feed_title_common_apps">Umum</string>
     <string name="feed_title_recent_apps">Terbaru</string>
+    <string name="action_done">Selesai</string>
+    <string name="feedback_thanks">Terima kasih atas tanggapan Anda, kami akan bekerja keras untuk mengoptimalkan produk kami.</string>
 </resources>

@@ -20,6 +20,8 @@ import com.ur.apps.walk.model.RegionUi
 import com.ur.apps.walk.utils.RegionHelper
 import com.ur.apps.walk.viewmodel.WithdrawViewModel
 import com.android.launcher3.R
+import com.ur.apps.walk.dialog.RateUsDialog
+import com.ur.apps.walk.step.utils.SharedPreferencesUtils
 
 /**
  * 提现页面

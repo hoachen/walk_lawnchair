@@ -1269,4 +1269,5 @@
     <string name="feed_title_app_library">Biblioteca de Apps</string>
     <string name="feed_title_common_apps">Frequentes</string>
     <string name="feed_title_recent_apps">Recentes</string>
+    <string name="feedback_thanks">Obrigado pelo seu feedback, trabalharemos duro para otimizar nosso produto.</string>
 </resources>
