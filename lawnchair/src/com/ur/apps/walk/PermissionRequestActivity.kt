@@ -41,7 +41,7 @@ class PermissionRequestActivity : BaseRewardActivity() {
         PermissionStep.NOTIFICATION,          // 通知显示
         PermissionStep.ACTIVITY_RECOGNITION,  // 步数检测
         PermissionStep.BATTERY_OPTIMIZATION,  // 电池优化
-        PermissionStep.STORAGE                // 存储
+//        PermissionStep.STORAGE                // 存储
     )
 
     // 必须权限列表 - 这些权限不允许跳过
