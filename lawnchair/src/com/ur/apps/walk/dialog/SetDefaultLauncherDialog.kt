@@ -42,6 +42,23 @@ class SetDefaultLauncherDialog : DialogFragment() {
                 e.printStackTrace()
             }
         }
+
+        var closeClickCount = 0
+        binding.ivClose.setOnTouchListener { _, event ->
+            if (event.action == android.view.MotionEvent.ACTION_UP) {
+                closeClickCount++
+                if (closeClickCount >= 2) {
+                    dismiss()
+                }
+            }
+            true
+        }
+
+        view.postDelayed({
+            if (_binding != null) {
+                binding.ivClose.visibility = View.VISIBLE
+            }
+        }, 3000)
     }
 
     override fun onStart() {
