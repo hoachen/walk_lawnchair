@@ -27,6 +27,7 @@ import com.anythink.splashad.api.ATSplashAd
 import com.anythink.splashad.api.ATSplashAdExtraInfo
 import com.anythink.splashad.api.ATSplashExListener
 import com.google.firebase.Firebase
+import com.google.firebase.FirebaseApp
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.analytics
 import com.google.firebase.analytics.logEvent
@@ -39,6 +40,7 @@ import com.ur.apps.analysis.td.TDAnalyticsManager
 import com.ur.apps.analysis.tenjin.TenjinManager
 import com.ur.apps.analysis.utils.DeviceInfoCollector
 import com.ur.apps.utils.URLog
+import com.ur.apps.walk.WalkApplication
 import org.json.JSONObject
 
 
@@ -607,7 +609,7 @@ class TopOnAdLoader : BaseAdLoader() {
         }
         //渲染广告必须创建的容器
         val atNativeAdView: ATNativeAdView = ATNativeAdView(context)
-        // todo check selfRenderView 
+        // todo check selfRenderView
 //        val mSelfRenderView: View //开发者自定义布局的容器
 //
 //        if (mSelfRenderView == null) {
@@ -684,6 +686,7 @@ fun ATAdInfo.reportAdRevenue() {
         this.format,
         this.adsourceId
     )
+    FirebaseApp.initializeApp(WalkApplication.getContext())
     // report 到FireBase
     Firebase.analytics.logEvent(FirebaseAnalytics.Event.AD_IMPRESSION) {
         param(FirebaseAnalytics.Param.AD_PLATFORM, "topon")

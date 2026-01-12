@@ -4,6 +4,18 @@ import org.jetbrains.kotlin.gradle.dsl.JvmDefaultMode
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        // 1. 添加 Google Services Classpath
+//        classpath 'com.android.tools.build:gradle:8.x.x' // 你的 Gradle 版本
+        classpath 'com.google.gms:google-services:4.4.4' // 检查最新版本
+    }
+}
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.android.library) apply false
@@ -265,7 +277,7 @@ android {
         }
 
         debug {
-            applicationIdSuffix ".debug"
+//            applicationIdSuffix ".debug"
             resValue("string", "derived_app_name", "Walk (Debug)")
         }
 
@@ -704,3 +716,5 @@ spotless {
 //    bundleAndroidAsset = true
 //    androidAssetReportPath = 'licenses.json'
 //}
+
+apply plugin: 'com.google.gms.google-services'
