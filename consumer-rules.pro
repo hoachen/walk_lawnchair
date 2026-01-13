@@ -316,3 +316,4 @@
 # --- 通用：保留所有中介适配器类，防止被 R8 优化掉 ---
 -keep class * extends com.google.android.gms.ads.mediation.MediationAdapter { *; }
 -keep class * extends com.google.android.gms.ads.mediation.Adapter { *; }
+-keep class com.bytedance.sdk.** { *; }

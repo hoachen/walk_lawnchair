@@ -57,6 +57,9 @@ pluginManagement {
         maven {
             url "https://jfrog.anythinktech.com/artifactory/debugger"
         }
+        maven {
+            url = uri("https://artifact.bytedance.com/repository/pangle/")
+        }
 
         gradlePluginPortal()
         resolutionStrategy {
@@ -128,6 +131,9 @@ dependencyResolutionManagement {
         }
         maven {
             url "https://jfrog.anythinktech.com/artifactory/debugger"
+        }
+        maven {
+            url = uri("https://artifact.bytedance.com/repository/pangle/")
         }
         mavenCentral()
         maven { url 'https://jitpack.io' }
