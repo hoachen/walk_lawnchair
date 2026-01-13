@@ -59,11 +59,15 @@ class RateUsDialog : DialogFragment() {
                 binding.ratingBar.visibility = View.GONE
                 binding.tvMaybeLater.visibility = View.GONE
                 binding.tvDesc.text = getString(R.string.feedback_thanks)
-
+                binding.tvBtnDismiss.visibility = View.VISIBLE
             }
         }
 
         binding.tvMaybeLater.setOnClickListener {
+            dismiss()
+        }
+
+        binding.tvBtnDismiss.setOnClickListener {
             dismiss()
         }
     }

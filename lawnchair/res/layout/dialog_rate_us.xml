@@ -64,5 +64,19 @@
             android:textColor="#999999"
             android:textSize="14sp" />
 
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/tv_btn_dismiss"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/bg_blue_gradient_btn"
+            android:gravity="center"
+            android:text="@string/settings_rate_us"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:visibility="visible" />
+
     </LinearLayout>
 </androidx.cardview.widget.CardView>
