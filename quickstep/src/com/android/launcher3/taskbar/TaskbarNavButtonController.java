@@ -143,6 +143,7 @@ public class TaskbarNavButtonController implements TaskbarControllers.LoggableTa
                 break;
             case BUTTON_RECENTS:
                 logEvent(LAUNCHER_TASKBAR_OVERVIEW_BUTTON_TAP);
+                Log.d(TAG, "onButtonClick: recents tapped, screenPinned=" + mScreenPinned);
                 navigateToOverview();
                 break;
             case BUTTON_IME_SWITCH:
@@ -288,11 +289,22 @@ public class TaskbarNavButtonController implements TaskbarControllers.LoggableTa
 
     private void navigateToOverview() {
         if (mScreenPinned) {
+            Log.w("navigateToOverview", "navigateToOverview: screen pinned, ignoring");
             return;
         }
+        Log.d("navigateToOverview", "navigateToOverview: begin");
         TestLogging.recordEvent(TestProtocol.SEQUENCE_MAIN, "onOverviewToggle");
-        TaskUtils.closeSystemWindowsAsync(CLOSE_SYSTEM_WINDOWS_REASON_RECENTS);
-        mCallbacks.onToggleOverview();
+        try {
+            TaskUtils.closeSystemWindowsAsync(CLOSE_SYSTEM_WINDOWS_REASON_RECENTS);
+        } catch (Throwable t) {
+            Log.e("navigateToOverview", "navigateToOverview: closeSystemWindows failed", t);
+        }
+        try {
+            mCallbacks.onToggleOverview();
+            Log.d("navigateToOverview", "navigateToOverview: dispatched onToggleOverview");
+        } catch (Throwable t) {
+            Log.e("navigateToOverview", "navigateToOverview: onToggleOverview failed", t);
+        }
     }
 
     private void executeBack() {

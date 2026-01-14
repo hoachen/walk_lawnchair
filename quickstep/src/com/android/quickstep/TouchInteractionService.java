@@ -235,13 +235,26 @@ public class TouchInteractionService extends Service {
         @BinderThread
         public void onOverviewToggle() {
             TestLogging.recordEvent(TestProtocol.SEQUENCE_MAIN, "onOverviewToggle");
+            Log.d(TAG, "onOverviewToggle: called");
             executeForTouchInteractionService(tis -> {
                 // If currently screen pinning, do not enter overview
-                if (tis.mDeviceState.isScreenPinningActive()) {
+                boolean pinned = tis.mDeviceState.isScreenPinningActive();
+                Log.d(TAG, "onOverviewToggle: screenPinningActive=" + pinned);
+                if (pinned) {
                     return;
                 }
-                TaskUtils.closeSystemWindowsAsync(CLOSE_SYSTEM_WINDOWS_REASON_RECENTS);
-                tis.mOverviewCommandHelper.addCommand(OverviewCommandHelper.TYPE_TOGGLE);
+                try {
+                    TaskUtils.closeSystemWindowsAsync(CLOSE_SYSTEM_WINDOWS_REASON_RECENTS);
+                    Log.d(TAG, "onOverviewToggle: requested closeSystemWindows");
+                } catch (Throwable t) {
+                    Log.e(TAG, "onOverviewToggle: closeSystemWindows failed", t);
+                }
+                try {
+                    tis.mOverviewCommandHelper.addCommand(OverviewCommandHelper.TYPE_TOGGLE);
+                    Log.d(TAG, "onOverviewToggle: added toggle command");
+                } catch (Throwable t) {
+                    Log.e(TAG, "onOverviewToggle: addCommand failed", t);
+                }
             });
         }
 
