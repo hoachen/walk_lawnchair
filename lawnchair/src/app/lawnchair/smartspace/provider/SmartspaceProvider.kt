@@ -20,8 +20,8 @@ class SmartspaceProvider private constructor(context: Context) : SafeCloseable {
 
     val dataSources = listOf(
         SmartspaceWidgetReader(context),
-        BatteryStatusProvider(context),
-        NowPlayingProvider(context),
+//        BatteryStatusProvider(context),
+ //       NowPlayingProvider(context),
     )
 
     private val state = dataSources
