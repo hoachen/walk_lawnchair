@@ -205,16 +205,20 @@ public class NetworkUtils {
      */
     @RequiresPermission(allOf = {ACCESS_NETWORK_STATE, ACCESS_WIFI_STATE})
     public int getNetworkType() {
-        if (!isNetworkAvailable()) {
-            return NETWORK_TYPE_NONE;
-        }
+        try {
+            if (!isNetworkAvailable()) {
+                return NETWORK_TYPE_NONE;
+            }
 
-        if (isWifiConnected()) {
-            return NETWORK_TYPE_WIFI;
-        }
+            if (isWifiConnected()) {
+                return NETWORK_TYPE_WIFI;
+            }
 
-        if (isMobileDataConnected()) {
-            return getMobileNetworkType();
+            if (isMobileDataConnected()) {
+                return getMobileNetworkType();
+            }
+        } catch (Exception e) {
+            return NETWORK_TYPE_UNKNOWN;
         }
 
         return NETWORK_TYPE_UNKNOWN;
@@ -225,17 +229,21 @@ public class NetworkUtils {
      */
     @SuppressLint("MissingPermission")
     private int getMobileNetworkType() {
-        if (telephonyManager == null) {
-            return NETWORK_TYPE_UNKNOWN;
-        }
+        try {
+            if (telephonyManager == null) {
+                return NETWORK_TYPE_UNKNOWN;
+            }
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            int dataNetworkType = telephonyManager.getDataNetworkType();
-            return convertToNetworkType(dataNetworkType);
-        } else {
-            @Suppress(names = "deprecation")
-            int networkType = telephonyManager.getNetworkType();
-            return convertToNetworkType(networkType);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                int dataNetworkType = telephonyManager.getDataNetworkType();
+                return convertToNetworkType(dataNetworkType);
+            } else {
+                @Suppress(names = "deprecation")
+                int networkType = telephonyManager.getNetworkType();
+                return convertToNetworkType(networkType);
+            }
+        } catch (Exception e) {
+            return NETWORK_TYPE_UNKNOWN;
         }
     }
 

@@ -248,7 +248,7 @@
             android:name="com.ur.apps.walk.step.service.StepService"
             android:enabled="true"
             android:exported="false"
-            android:foregroundServiceType="dataSync|health" />
+            android:foregroundServiceType="health" />
 
 
         <meta-data
