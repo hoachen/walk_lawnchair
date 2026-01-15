@@ -211,7 +211,5 @@
     <color name="colorPrimaryDark">#3700B3</color>
     <!--    强调色，用于突出显示、交互性元素（如按钮、选中的状态、活动指示器等）。-->
     <color name="colorAccent">#03DAC5</color>
-
-    <color name="colorOnBackground">?attr/colorOnBackground</color>
 <!--    walk end-->
 </resources>
