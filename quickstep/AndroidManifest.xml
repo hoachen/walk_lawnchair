@@ -53,16 +53,8 @@
     <permission android:name="${applicationId}.permission.START_WIDGET_PICKER_ACTIVITY"
         android:protectionLevel="signature|privileged" />
 
-    <application android:backupAgent="com.android.launcher3.LauncherBackupAgent"
-         android:fullBackupOnly="true"
-         android:fullBackupContent="@xml/backupscheme"
-         android:hardwareAccelerated="true"
-         android:icon="@drawable/ic_launcher_home"
-         android:label="@string/derived_app_name"
-         android:theme="@style/AppTheme"
-         android:largeHeap="@bool/config_largeHeap"
-         android:restoreAnyVersion="true"
-         android:supportsRtl="true">
+    <application
+        android:supportsRtl="true">
 
 
         <service android:name="com.android.quickstep.TouchInteractionService"
