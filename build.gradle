@@ -1,12 +1,11 @@
-import app.cash.licensee.SpdxId
+//import app.cash.licensee.SpdxId
 import com.android.build.gradle.api.AndroidBasePlugin
 import org.jetbrains.kotlin.gradle.dsl.JvmDefaultMode
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    alias(libs.plugins.android.application)
-    alias(libs.plugins.android.library) apply false
+    alias(libs.plugins.android.library)
     alias(libs.plugins.android.test) apply false
     alias(libs.plugins.androidx.baselineprofile)
     alias(libs.plugins.kotlin.android)
@@ -15,9 +14,10 @@ plugins {
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.google.ksp)
     alias(libs.plugins.google.protobuf)
-    alias(libs.plugins.cash.licensee)
+//    alias(libs.plugins.cash.licensee)
     alias(libs.plugins.rikka.refine)
     alias(libs.plugins.diffplug.spotless)
+    id 'maven-publish'
 }
 
 
@@ -144,15 +144,20 @@ final def ciRef = System.getenv("GITHUB_REF") ?: ""
 final def ciRunNumber = System.getenv("GITHUB_RUN_NUMBER") ?: ""
 final def isReleaseBuild = ciBuild && ciRef.contains("beta")
 final def devReleaseName = ciBuild ? "Dev.(#${ciRunNumber})" : "Dev.(${buildCommit})"
-final def version = "15"
+final def launcherVersion = "15"
 final def releaseName = "Beta 2"
-final def versionDisplayName = "${version}.${isReleaseBuild ? releaseName : devReleaseName}"
+final def versionDisplayName = "${launcherVersion}.${isReleaseBuild ? releaseName : devReleaseName}"
 final def majorVersion = versionDisplayName.split("\\.")[0]
 
 final def quickstepMinSdk = "29"
 final def quickstepMaxSdk = "35"
 
 android {
+    compileSdk {
+        version = release(36) {
+            minorApiLevel = 1
+        }
+    }
     namespace "com.android.launcher3"
     defaultConfig {
         // Lawnchair Launcher 15.0 Beta 2
@@ -163,23 +168,20 @@ android {
         buildConfigField "String", "MAJOR_VERSION", "\"${majorVersion}\""
         buildConfigField "String", "COMMIT_HASH", "\"${buildCommit}\""
         buildConfigField "boolean", "ENABLE_AUTO_INSTALLS_LAYOUT", "false"
+        buildConfigField "String", "APPLICATION_ID", "\"com.android.launcher3\""
+        buildConfigField "String", "VERSION_NAME", "\"${versionDisplayName}\""
+        buildConfigField "int", "VERSION_CODE", "15000202"
 
         manifestPlaceholders.quickstepMinSdk = quickstepMinSdk
         manifestPlaceholders.quickstepMaxSdk = quickstepMaxSdk
         buildConfigField "int", "QUICKSTEP_MIN_SDK", quickstepMinSdk
         buildConfigField "int", "QUICKSTEP_MAX_SDK", quickstepMaxSdk
+        resValue("string", "launcher_component", "com.android.launcher3/app.lawnchair.LawnchairLauncher")
     }
 
-    applicationVariants.configureEach { variant ->
-        variant.outputs.configureEach {
-            def channel = variant.productFlavors.last().name
-            outputFileName = "Lawnchair.${variant.versionName}.$channel.${variant.buildType.name}.apk"
-        }
-    }
+    // applicationVariants removed for library build
 
-    androidResources {
-        generateLocaleConfig true
-    }
+
 
     buildFeatures {
         aidl true
@@ -227,42 +229,22 @@ android {
     }
 
     buildTypes {
-        all {
-            signingConfig releaseSigning
-
-            applicationVariants.configureEach { variant ->
-                variant.outputs.configureEach {
-                    def channel = variant.productFlavors.last().name
-                    // Override signingConfig to debug if the "nightly" flavor is selected
-                    if (channel.any { it == "nightly" }) {
-                        signingConfig = signingConfigs.debug
-                    }
-                }
-            }
-            pseudoLocalesEnabled true
-        }
-
         debug {
-            applicationIdSuffix ".debug"
-            resValue("string", "derived_app_name", "Lawnchair (Debug)")
+            resValue("string", "derived_app_name", "Walk (Debug)")
         }
 
         release {
-            resValue("string", "derived_app_name", "Lawnchair")
-            minifyEnabled true
-            shrinkResources true
-            proguardFiles proguardFilesFromAosp + "proguard.pro"
+            resValue("string", "derived_app_name", "Walk")
+            minifyEnabled false
+            proguardFiles proguardFilesFromAosp + "proguard.pro" + getDefaultProguardFile('proguard-android-optimize.txt') + "proguard-rules.pro" + "consumer-rules.pro"
         }
     }
 
     compileOptions {
-        coreLibraryDesugaringEnabled true
+        coreLibraryDesugaringEnabled false
     }
 
-    dependenciesInfo {
-        includeInApk = false
-        includeInBundle = false
-    }
+
 
     // See: https://developer.android.com/studio/build/build-variants#flavor-dimensions
     flavorDimensions += ["app", "recents", "channel"]
@@ -278,23 +260,16 @@ android {
         }
 
         github {
-            applicationId 'app.lawnchair'
             dimension "channel"
         }
 
         nightly {
-            applicationId 'app.lawnchair.nightly'
             dimension "channel"
         }
 
         play {
-            applicationId "app.lawnchair.play"
             dimension "channel"
             isDefault true
-        }
-
-        configureEach {
-            resValue("string", "launcher_component", "${applicationId}/app.lawnchair.LawnchairLauncher")
         }
     }
 
@@ -390,7 +365,7 @@ dependencies {
     implementation fileTree(dir: FRAMEWORK_PREBUILTS_DIR, include: 'WindowManager-Shell-15.jar')
     withQuickstepCompileOnly fileTree(dir: FRAMEWORK_PREBUILTS_DIR, include: 'framework-15.jar')
 
-    coreLibraryDesugaring libs.android.desugarJdkLibs
+//    coreLibraryDesugaring libs.android.desugarJdkLibs
 
     implementation libs.androidx.profileinstaller
     baselineProfile projects.baselineProfile
@@ -452,7 +427,7 @@ dependencies {
 
     implementation libs.hoko.blur
 
-    implementation libs.androidx.window
+    implementation libs.androidx.window    
 }
 
 ksp {
@@ -478,16 +453,101 @@ spotless {
     }
 }
 
-licensee {
-    allow(SpdxId.Apache_20)
-    allow(SpdxId.BSD_3_Clause)
-    allow(SpdxId.GPL_20_or_later)
-    allowDependency(libs.libsu.core)
-    allowDependency(libs.libsu.service)
-    allowUrl("https://github.com/patrykmichalik/opto/blob/master/LICENSE")
-    allowUrl("https://github.com/RikkaApps/HiddenApiRefinePlugin/blob/main/LICENSE")
-    allowUrl("https://opensource.org/licenses/mit-license.php")
+//licensee {
+//    allow(SpdxId.Apache_20)
+//    allow(SpdxId.BSD_3_Clause)
+//    allow(SpdxId.GPL_20_or_later)
+//    allowDependency(libs.libsu.core)
+//    allowDependency(libs.libsu.service)
+//    allowUrl("https://github.com/patrykmichalik/opto/blob/master/LICENSE")
+//    allowUrl("https://github.com/RikkaApps/HiddenApiRefinePlugin/blob/main/LICENSE")
+//    allowUrl("https://opensource.org/licenses/mit-license.php")
+//
+//    bundleAndroidAsset = true
+//    androidAssetReportPath = 'licenses.json'
+//}
 
-    bundleAndroidAsset = true
-    androidAssetReportPath = 'licenses.json'
+// ============ Maven 发布配置 ============
+afterEvaluate {
+    publishing {
+        publications {
+            // Release 版本
+            lawnWithQuickstepPlayRelease(MavenPublication) {
+                from components.findByName('lawnWithQuickstepPlayRelease')
+                
+                groupId = 'com.lawnchair'
+                artifactId = 'launcher-sdk'
+                version = '1.0.13'
+                
+                pom {
+                    name = 'Lawnchair Launcher SDK'
+                    description = 'Lawnchair Launcher SDK for third-party integration'
+                }
+            }
+            
+            // Debug 版本
+            lawnWithQuickstepPlayDebug(MavenPublication) {
+                from components.findByName('lawnWithQuickstepPlayDebug')
+                
+                groupId = 'com.lawnchair'
+                artifactId = 'launcher-sdk-debug'
+                version = '1.0.13'
+                
+                pom {
+                    name = 'Lawnchair Launcher SDK (Debug)'
+                    description = 'Lawnchair Launcher SDK for third-party integration (Debug version)'
+                }
+            }
+        }
+        
+        repositories {
+            maven {
+                name = 'localRepo'
+                url = uri("${rootProject.buildDir}/repo")
+            }
+        }
+    }
+}
+
+subprojects {
+    plugins.withId('com.android.library') {
+        apply plugin: 'maven-publish'
+
+        android {
+            publishing {
+                singleVariant("release") {
+                    withSourcesJar()
+                }
+            }
+        }
+
+        afterEvaluate {
+            // Configure duplicates strategy for sourcesJar task if it exists
+            tasks.withType(Jar).configureEach {
+                duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+            }
+
+            publishing {
+                publications {
+                    // Check if the 'release' component exists before trying to access it
+                    if (components.findByName('release')) {
+                        release(MavenPublication) {
+                            from components.release
+                            
+                            groupId = 'com.lawnchair'
+                            artifactId = project.name
+                            version = '1.0.13'
+                        }
+                    }
+                }
+                
+                repositories {
+                    maven {
+                        name = 'localRepo'
+                        url = uri("${rootProject.buildDir}/repo")
+                    }
+                }
+            }
+        }
+    }
 }

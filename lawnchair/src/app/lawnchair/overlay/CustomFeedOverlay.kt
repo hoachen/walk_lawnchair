@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import app.lawnchair.LawnchairLauncher
 import com.android.launcher3.R
 import com.android.systemui.plugins.shared.LauncherOverlayManager
+import app.lawnchair.LauncherSDK
 
 /**
  * @author
@@ -44,6 +45,21 @@ class CustomFeedOverlay(private val launcher: LawnchairLauncher) : LauncherOverl
 
     private fun createOverlayView(): View {
         Log.d(TAG, "createOverlayView called, screenWidth=$screenWidth")
+        
+        LauncherSDK.overlayProvider?.let { provider ->
+             val view = provider.createView(launcher)
+             // Ensure layout params are match parent
+             if (view.layoutParams == null) {
+                 view.layoutParams = FrameLayout.LayoutParams(
+                     ViewGroup.LayoutParams.MATCH_PARENT,
+                     ViewGroup.LayoutParams.MATCH_PARENT,
+                 )
+             }
+             // Initial state: hidden to the left
+             view.translationX = -screenWidth.toFloat()
+             view.alpha = 0f
+             return view
+        }
 
         // Custom FrameLayout that handles back key and gestures
         val overlayContainer = object : FrameLayout(launcher) {
@@ -151,7 +167,7 @@ class CustomFeedOverlay(private val launcher: LawnchairLauncher) : LauncherOverl
                 clipToPadding = false
                 setPadding(
                     resources.getDimensionPixelSize(R.dimen.custom_feed_padding),
-                    resources.getDimensionPixelSize(R.dimen.custom_feed_padding),
+                    resources.getDimensionPixelSize(R.dimen.custom_feed_top_padding),
                     resources.getDimensionPixelSize(R.dimen.custom_feed_padding),
                     resources.getDimensionPixelSize(R.dimen.custom_feed_padding),
                 )
@@ -364,7 +380,8 @@ class CustomFeedOverlay(private val launcher: LawnchairLauncher) : LauncherOverl
         overlayView = createOverlayView()
         overlayView?.let { view ->
             // Add to LauncherRootView (parent of DragLayer) so it doesn't move with dragLayer
-            val rootView = launcher.dragLayer.parent as? ViewGroup
+//            val rootView = launcher.dragLayer.parent as? ViewGroup
+         val  rootView =   launcher.window.decorView as? ViewGroup
             if (rootView != null) {
                 Log.d(TAG, "Adding overlay view to rootView, childCount=${rootView.childCount}")
                 rootView.addView(view, 0) // Add at bottom, behind dragLayer
@@ -489,6 +506,7 @@ class CustomFeedOverlay(private val launcher: LawnchairLauncher) : LauncherOverl
 // ========== LauncherOverlay Interface ==========
 
     override fun onScrollInteractionBegin() {
+        if (!LauncherSDK.isOverlayEnabled) return
         Log.d(TAG, "onScrollInteractionBegin called, isAttached=$isAttached")
         animator?.cancel()
         if (!isAttached) {
@@ -497,6 +515,7 @@ class CustomFeedOverlay(private val launcher: LawnchairLauncher) : LauncherOverl
     }
 
     override fun onScrollInteractionEnd() {
+        if (!LauncherSDK.isOverlayEnabled) return
         Log.d(TAG, "onScrollInteractionEnd called, currentProgress=$currentProgress")
         // Snap to fully open or closed based on progress
         val targetProgress = if (currentProgress > 0.5f) 1f else 0f
@@ -504,6 +523,7 @@ class CustomFeedOverlay(private val launcher: LawnchairLauncher) : LauncherOverl
     }
 
     override fun onScrollChange(progress: Float, rtl: Boolean) {
+        if (!LauncherSDK.isOverlayEnabled) return
         Log.d(TAG, "onScrollChange called, progress=$progress, rtl=$rtl")
         updateOverlayPosition(progress)
     }
@@ -531,6 +551,10 @@ class CustomFeedOverlay(private val launcher: LawnchairLauncher) : LauncherOverl
 
     override fun openOverlay() {
         Log.d(TAG, "openOverlay called")
+        if (!LauncherSDK.isOverlayEnabled) {
+            Log.d(TAG, "Overlay disabled by LauncherSDK")
+            return
+        }
         if (!isAttached) {
             attachOverlay()
         }

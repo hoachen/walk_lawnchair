@@ -40,10 +40,37 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.REQUEST_DELETE_PACKAGES" />
     <uses-permission android:name="android.permission.READ_DEVICE_CONFIG" />
-    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES" />
     <uses-permission android:name="android.permission.EXPAND_STATUS_BAR" />
     <uses-permission android:name="android.permission.ACCESS_RESTRICTED_SETTINGS" />
-    
+
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.HOME" />
+        </intent>
+        <intent>
+            <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+        </intent>
+        <intent>
+            <action android:name="com.novalauncher.THEME" />
+        </intent>
+        <intent>
+            <action android:name="org.adw.launcher.icons.ACTION_PICK_ICON" />
+        </intent>
+        <intent>
+            <action android:name="com.dlto.atom.launcher.THEME" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="com.anddoes.launcher.THEME" />
+        </intent>
+        <package android:name="app.lawnchair.lawnicons" />
+    </queries>
+
     <!-- for rotating surface by arbitrary degree -->
     <uses-permission android:name="android.permission.VIBRATE"/>
     <uses-permission android:name="android.permission.ROTATE_SURFACE_FLINGER" />
@@ -71,17 +98,12 @@
 
     <application
         android:backupAgent="com.android.launcher3.LauncherBackupAgent"
-        android:name="app.lawnchair.LawnchairApp"
         android:fullBackupOnly="true"
         android:backupInForeground="true"
-        android:fullBackupContent="@xml/backupscheme"
         android:hardwareAccelerated="true"
-        android:icon="@drawable/ic_launcher_home"
-        android:label="@string/derived_app_name"
         android:largeHeap="@bool/config_largeHeap"
         android:restoreAnyVersion="true"
-        android:supportsRtl="true"
-        tools:replace="android:label">
+        android:supportsRtl="true">
 
         <!-- Intent received when a session is committed -->
         <receiver

@@ -79,7 +79,7 @@ public class LauncherAppState implements SafeCloseable {
         @Override
         protected void onPostInit(Context context) {
             super.onPostInit(context);
-            LawnchairAppKt.getLawnchairApp(context).onLauncherAppStateCreated();
+            LawnchairAppKt.getLawnchairApp(context).onLauncherAppStateCreated((android.app.Application) context);
         }
     };
 

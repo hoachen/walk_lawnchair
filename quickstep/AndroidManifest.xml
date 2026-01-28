@@ -24,7 +24,6 @@
     <uses-permission android:name="android.permission.BROADCAST_CLOSE_SYSTEM_DIALOGS" />
     <uses-permission android:name="android.permission.CONTROL_REMOTE_APP_TRANSITION_ANIMATIONS"/>
     <uses-permission android:name="android.permission.VIBRATE"/>
-    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES"/>
     <uses-permission android:name="android.permission.START_TASKS_FROM_RECENTS"/>
     <uses-permission android:name="android.permission.REMOVE_TASKS"/>
     <uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS"/>
@@ -53,27 +52,9 @@
     <permission android:name="${applicationId}.permission.START_WIDGET_PICKER_ACTIVITY"
         android:protectionLevel="signature|privileged" />
 
-    <application android:backupAgent="com.android.launcher3.LauncherBackupAgent"
-         android:fullBackupOnly="true"
-         android:fullBackupContent="@xml/backupscheme"
-         android:hardwareAccelerated="true"
-         android:icon="@drawable/ic_launcher_home"
-         android:label="@string/derived_app_name"
-         android:theme="@style/AppTheme"
-         android:largeHeap="@bool/config_largeHeap"
-         android:restoreAnyVersion="true"
-         android:supportsRtl="true">
+    <application>
 
-        <activity android:name="com.ur.chair.walk.SplashActivity"
-            android:launchMode="singleTask"
-            android:theme="@style/Theme.Lawnchair"
-            android:exported="true"
-            android:enabled="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+
 
         <service android:name="com.android.quickstep.TouchInteractionService"
              android:permission="android.permission.STATUS_BAR_SERVICE"

@@ -87,7 +87,7 @@ import org.xmlpull.v1.XmlPullParser;
 import java.io.InputStream;
 import java.io.StringReader;
 
-import app.lawnchair.LawnchairApp;
+import app.lawnchair.LauncherSDK;
 import app.lawnchair.LawnchairAppKt;
 
 /**
@@ -122,7 +122,7 @@ public class ModelDbController {
 
         try {
             if (!forMigration && dbName != null) {
-                LawnchairApp app = LawnchairAppKt.getLawnchairApp(mContext);
+                LauncherSDK app = LauncherSDK.INSTANCE;
                 app.renameRestoredDb(dbName);
                 app.migrateDbName(dbName);
             }

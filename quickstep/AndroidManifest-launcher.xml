@@ -32,14 +32,9 @@
     -->
 
     <application
-        android:name="app.lawnchair.LawnchairApp"
         android:backupAgent="com.android.launcher3.LauncherBackupAgent"
         android:fullBackupOnly="true"
-        android:fullBackupContent="@xml/backupscheme"
         android:hardwareAccelerated="true"
-        android:icon="@drawable/ic_launcher_home"
-        android:label="@string/derived_app_name"
-        android:theme="@style/AppTheme"
         android:largeHeap="@bool/config_largeHeap"
         android:restoreAnyVersion="true"
         android:supportsRtl="true" >
@@ -49,16 +44,7 @@
         attributes and intent filters the same
         -->
 
-        <activity android:name="com.ur.chair.walk.SplashActivity"
-            android:launchMode="singleTask"
-            android:theme="@style/Theme.Lawnchair"
-            android:exported="true"
-            android:enabled="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <action android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
-        </activity>
+
 
         <activity
             android:name="app.lawnchair.LawnchairLauncher"

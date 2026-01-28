@@ -55,15 +55,7 @@ class SmartspaceProvider private constructor(context: Context) : SafeCloseable {
     )
 
     suspend fun startSetup(activity: Activity) {
-        state
-            .map { it.requiresSetup }
-            .dropWhileBusy()
-            .collect { sources ->
-                sources.forEach {
-                    it.startSetup(activity)
-                    it.onSetupDone()
-                }
-            }
+
     }
 
     override fun close() {

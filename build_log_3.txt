@@ -1,0 +1,1306 @@
+Parallel Configuration Cache is an incubating feature.
+Reusing configuration cache.
+> Task :anim:preBuild UP-TO-DATE
+> Task :flags:preBuild UP-TO-DATE
+> Task :animationlib:preBuild UP-TO-DATE
+> Task :anim:preDebugBuild UP-TO-DATE
+> Task :iconloaderlib:preBuild UP-TO-DATE
+> Task :animationlib:preDebugBuild UP-TO-DATE
+> Task :flags:preDebugBuild UP-TO-DATE
+> Task :compatLib:preBuild UP-TO-DATE
+> Task :iconloaderlib:preDebugBuild UP-TO-DATE
+> Task :compatLib:preDebugBuild UP-TO-DATE
+> Task :anim:writeDebugAarMetadata UP-TO-DATE
+> Task :animationlib:writeDebugAarMetadata UP-TO-DATE
+> Task :flags:writeDebugAarMetadata UP-TO-DATE
+> Task :compatLib:writeDebugAarMetadata UP-TO-DATE
+> Task :iconloaderlib:writeDebugAarMetadata UP-TO-DATE
+> Task :searchuilib:preBuild UP-TO-DATE
+> Task :shared:preBuild UP-TO-DATE
+> Task :searchuilib:preDebugBuild UP-TO-DATE
+> Task :shared:preDebugBuild UP-TO-DATE
+> Task :viewcapture:preBuild UP-TO-DATE
+> Task :unfold:preBuild UP-TO-DATE
+> Task :searchuilib:writeDebugAarMetadata UP-TO-DATE
+> Task :unfold:preDebugBuild UP-TO-DATE
+> Task :wmshell:preBuild UP-TO-DATE
+> Task :wmshell:preDebugBuild UP-TO-DATE
+> Task :compatLib:compatLibVQ:preBuild UP-TO-DATE
+> Task :compatLib:compatLibVQ:preDebugBuild UP-TO-DATE
+> Task :unfold:writeDebugAarMetadata UP-TO-DATE
+> Task :wmshell:writeDebugAarMetadata UP-TO-DATE
+> Task :compatLib:compatLibVQ:writeDebugAarMetadata UP-TO-DATE
+> Task :compatLib:compatLibVR:preBuild UP-TO-DATE
+> Task :compatLib:compatLibVS:preBuild UP-TO-DATE
+> Task :compatLib:compatLibVR:preDebugBuild UP-TO-DATE
+> Task :compatLib:compatLibVT:preBuild UP-TO-DATE
+> Task :viewcapture:preDebugBuild UP-TO-DATE
+> Task :shared:writeDebugAarMetadata UP-TO-DATE
+> Task :compatLib:compatLibVR:writeDebugAarMetadata UP-TO-DATE
+> Task :viewcapture:writeDebugAarMetadata UP-TO-DATE
+> Task :compatLib:compatLibVU:preBuild UP-TO-DATE
+> Task :compatLib:compatLibVT:preDebugBuild UP-TO-DATE
+> Task :compatLib:compatLibVT:writeDebugAarMetadata UP-TO-DATE
+> Task :compatLib:compatLibVV:preBuild UP-TO-DATE
+> Task :compatLib:compatLibVS:preDebugBuild UP-TO-DATE
+> Task :compatLib:compatLibVV:preDebugBuild UP-TO-DATE
+> Task :preBuild UP-TO-DATE
+> Task :plugincore:preBuild UP-TO-DATE
+> Task :log:preBuild UP-TO-DATE
+> Task :preLawnWithQuickstepPlayDebugBuild UP-TO-DATE
+> Task :plugincore:preDebugBuild UP-TO-DATE
+> Task :compatLib:compatLibVU:preDebugBuild UP-TO-DATE
+> Task :compatLib:compatLibVS:writeDebugAarMetadata UP-TO-DATE
+> Task :compatLib:compatLibVU:writeDebugAarMetadata UP-TO-DATE
+> Task :plugincore:writeDebugAarMetadata UP-TO-DATE
+> Task :hidden-api:preBuild UP-TO-DATE
+> Task :plugin:preBuild UP-TO-DATE
+> Task :hidden-api:preDebugBuild UP-TO-DATE
+> Task :plugin:preDebugBuild UP-TO-DATE
+> Task :log:preDebugBuild UP-TO-DATE
+> Task :checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :compatLib:compatLibVV:writeDebugAarMetadata UP-TO-DATE
+> Task :log:writeDebugAarMetadata UP-TO-DATE
+> Task :protobufDummy UP-TO-DATE
+> Task :anim:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :generateLawnWithQuickstepPlayDebugResValues UP-TO-DATE
+> Task :extractDebugProto UP-TO-DATE
+> Task :generateLawnWithQuickstepPlayDebugBuildConfig UP-TO-DATE
+> Task :animationlib:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :anim:generateDebugResources UP-TO-DATE
+> Task :extractDeepLinksForAarLawnWithQuickstepPlayDebug UP-TO-DATE
+> Task :anim:processDebugNavigationResources UP-TO-DATE
+> Task :hidden-api:compileDebugAidl NO-SOURCE
+> Task :animationlib:generateDebugResources UP-TO-DATE
+> Task :mergeLawnWithQuickstepPlayDebugJniLibFolders UP-TO-DATE
+> Task :animationlib:processDebugNavigationResources UP-TO-DATE
+> Task :mergeLawnWithQuickstepPlayDebugNativeLibs NO-SOURCE
+> Task :animationlib:javaPreCompileDebug UP-TO-DATE
+> Task :stripLawnWithQuickstepPlayDebugDebugSymbols NO-SOURCE
+> Task :compatLib:generateDebugResources UP-TO-DATE
+> Task :compatLib:processDebugNavigationResources UP-TO-DATE
+> Task :flags:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :compatLib:javaPreCompileDebug UP-TO-DATE
+> Task :copyLawnWithQuickstepPlayDebugJniLibsProjectAndLocalJars UP-TO-DATE
+> Task :checkLawnWithQuickstepPlayDebugAarMetadata UP-TO-DATE
+> Task :flags:generateDebugResources UP-TO-DATE
+> Task :flags:processDebugNavigationResources UP-TO-DATE
+> Task :compatLib:compatLibVQ:generateDebugResources UP-TO-DATE
+> Task :compatLib:compatLibVQ:processDebugNavigationResources UP-TO-DATE
+> Task :anim:packageDebugResources UP-TO-DATE
+> Task :compatLib:compatLibVQ:javaPreCompileDebug UP-TO-DATE
+> Task :compatLib:compatLibVR:generateDebugResources UP-TO-DATE
+> Task :animationlib:packageDebugResources UP-TO-DATE
+> Task :anim:parseDebugLocalResources UP-TO-DATE
+> Task :compatLib:packageDebugResources UP-TO-DATE
+> Task :compatLib:compatLibVR:processDebugNavigationResources UP-TO-DATE
+> Task :animationlib:parseDebugLocalResources UP-TO-DATE
+> Task :compatLib:compatLibVR:javaPreCompileDebug UP-TO-DATE
+> Task :compatLib:parseDebugLocalResources UP-TO-DATE
+> Task :compatLib:compatLibVS:generateDebugResources UP-TO-DATE
+> Task :compatLib:compatLibVQ:packageDebugResources UP-TO-DATE
+> Task :flags:packageDebugResources UP-TO-DATE
+> Task :anim:generateDebugRFile UP-TO-DATE
+> Task :animationlib:generateDebugRFile UP-TO-DATE
+> Task :compatLib:compatLibVR:packageDebugResources UP-TO-DATE
+> Task :compatLib:generateDebugRFile UP-TO-DATE
+> Task :flags:parseDebugLocalResources UP-TO-DATE
+> Task :compatLib:compatLibVQ:parseDebugLocalResources UP-TO-DATE
+> Task :compatLib:compatLibVS:processDebugNavigationResources UP-TO-DATE
+> Task :compatLib:compatLibVR:parseDebugLocalResources UP-TO-DATE
+> Task :compatLib:compatLibVT:generateDebugResources UP-TO-DATE
+> Task :flags:generateDebugRFile UP-TO-DATE
+> Task :compatLib:compatLibVS:javaPreCompileDebug UP-TO-DATE
+> Task :compatLib:compatLibVQ:generateDebugRFile UP-TO-DATE
+> Task :compatLib:compatLibVR:generateDebugRFile UP-TO-DATE
+> Task :compatLib:compatLibVT:processDebugNavigationResources UP-TO-DATE
+> Task :compatLib:compatLibVT:javaPreCompileDebug UP-TO-DATE
+> Task :compatLib:compatLibVU:javaPreCompileDebug UP-TO-DATE
+> Task :compatLib:compatLibVU:processDebugNavigationResources UP-TO-DATE
+> Task :compatLib:compatLibVV:processDebugNavigationResources UP-TO-DATE
+> Task :compatLib:compatLibVS:packageDebugResources UP-TO-DATE
+> Task :compatLib:compatLibVV:javaPreCompileDebug UP-TO-DATE
+> Task :wmshell:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :compatLib:compatLibVU:generateDebugResources UP-TO-DATE
+> Task :flags:javaPreCompileDebug UP-TO-DATE
+> Task :compatLib:compatLibVV:generateDebugResources UP-TO-DATE
+> Task :compatLib:compatLibVS:parseDebugLocalResources UP-TO-DATE
+> Task :compatLib:compatLibVT:packageDebugResources UP-TO-DATE
+> Task :compatLib:compileDebugAidl UP-TO-DATE
+> Task :animationlib:compileDebugKotlin NO-SOURCE
+> Task :compatLib:compatLibVS:generateDebugRFile UP-TO-DATE
+> Task :compatLib:compatLibVV:packageDebugResources UP-TO-DATE
+> Task :compatLib:compatLibVU:packageDebugResources UP-TO-DATE
+> Task :wmshell:generateDebugResources UP-TO-DATE
+> Task :wmshell:processDebugNavigationResources UP-TO-DATE
+> Task :compatLib:compatLibVT:parseDebugLocalResources UP-TO-DATE
+> Task :plugincore:compileDebugAidl NO-SOURCE
+> Task :compatLib:compatLibVV:parseDebugLocalResources UP-TO-DATE
+> Task :compatLib:compatLibVU:parseDebugLocalResources UP-TO-DATE
+> Task :compatLib:compatLibVU:generateDebugRFile UP-TO-DATE
+> Task :animationlib:compileDebugJavaWithJavac UP-TO-DATE
+> Task :log:compileDebugAidl NO-SOURCE
+> Task :animationlib:bundleLibCompileToJarDebug UP-TO-DATE
+> Task :wmshell:javaPreCompileDebug UP-TO-DATE
+> Task :animationlib:bundleLibRuntimeToJarDebug UP-TO-DATE
+> Task :compatLib:compatLibVT:generateDebugRFile UP-TO-DATE
+> Task :animationlib:processDebugJavaRes NO-SOURCE
+> Task :anim:javaPreCompileDebug UP-TO-DATE
+> Task :common:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :common:preBuild UP-TO-DATE
+> Task :common:preDebugBuild UP-TO-DATE
+> Task :compatLib:compatLibVV:generateDebugRFile UP-TO-DATE
+> Task :compatLib:processDebugJavaRes NO-SOURCE
+> Task :animationlib:createFullJarDebug UP-TO-DATE
+> Task :common:generateDebugResources UP-TO-DATE
+> Task :common:javaPreCompileDebug UP-TO-DATE
+> Task :common:processDebugNavigationResources UP-TO-DATE
+> Task :hidden-api:generateDebugResources UP-TO-DATE
+> Task :hidden-api:javaPreCompileDebug UP-TO-DATE
+> Task :wmshell:compileDebugAidl UP-TO-DATE
+> Task :iconloaderlib:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :wmshell:packageDebugResources UP-TO-DATE
+> Task :compatLib:compileDebugJavaWithJavac UP-TO-DATE
+> Task :hidden-api:processDebugNavigationResources UP-TO-DATE
+> Task :unfold:compileDebugAidl UP-TO-DATE
+> Task :compatLib:bundleLibCompileToJarDebug UP-TO-DATE
+> Task :wmshell:parseDebugLocalResources UP-TO-DATE
+> Task :compatLib:bundleLibRuntimeToJarDebug UP-TO-DATE
+> Task :common:packageDebugResources UP-TO-DATE
+> Task :compatLib:createFullJarDebug UP-TO-DATE
+> Task :wmshell:generateDebugRFile UP-TO-DATE
+> Task :common:parseDebugLocalResources UP-TO-DATE
+> Task :iconloaderlib:generateDebugResources UP-TO-DATE
+> Task :hidden-api:packageDebugResources UP-TO-DATE
+> Task :iconloaderlib:processDebugNavigationResources UP-TO-DATE
+> Task :log:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :iconloaderlib:javaPreCompileDebug UP-TO-DATE
+> Task :plugincore:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :hidden-api:parseDebugLocalResources UP-TO-DATE
+> Task :common:generateDebugRFile UP-TO-DATE
+> Task :log:generateDebugResources UP-TO-DATE
+> Task :log:processDebugNavigationResources UP-TO-DATE
+> Task :hidden-api:generateDebugRFile UP-TO-DATE
+> Task :plugincore:processDebugNavigationResources UP-TO-DATE
+> Task :anim:compileDebugAidl NO-SOURCE
+> Task :plugincore:javaPreCompileDebug UP-TO-DATE
+> Task :plugincore:generateDebugResources UP-TO-DATE
+> Task :log:packageDebugResources UP-TO-DATE
+> Task :log:javaPreCompileDebug UP-TO-DATE
+> Task :plugin:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :log:parseDebugLocalResources UP-TO-DATE
+> Task :iconloaderlib:packageDebugResources UP-TO-DATE
+> Task :plugin:generateDebugResources UP-TO-DATE
+> Task :plugincore:packageDebugResources UP-TO-DATE
+> Task :compatLib:compatLibVQ:compileDebugJavaWithJavac UP-TO-DATE
+> Task :plugin:compileDebugAidl NO-SOURCE
+> Task :plugincore:parseDebugLocalResources UP-TO-DATE
+> Task :iconloaderlib:parseDebugLocalResources UP-TO-DATE
+> Task :compatLib:compatLibVQ:bundleLibCompileToJarDebug UP-TO-DATE
+> Task :log:generateDebugRFile UP-TO-DATE
+> Task :plugincore:generateDebugRFile UP-TO-DATE
+> Task :plugin:processDebugNavigationResources UP-TO-DATE
+> Task :plugin:javaPreCompileDebug UP-TO-DATE
+> Task :plugin:packageDebugResources UP-TO-DATE
+> Task :searchuilib:generateDebugResources UP-TO-DATE
+> Task :plugin:parseDebugLocalResources UP-TO-DATE
+> Task :searchuilib:processDebugNavigationResources UP-TO-DATE
+> Task :hidden-api:compileDebugJavaWithJavac UP-TO-DATE
+> Task :hidden-api:bundleLibRuntimeToJarDebug UP-TO-DATE
+> Task :plugin:generateDebugRFile UP-TO-DATE
+> Task :searchuilib:javaPreCompileDebug UP-TO-DATE
+> Task :searchuilib:processDebugJavaRes NO-SOURCE
+> Task :hidden-api:bundleLibCompileToJarDebug UP-TO-DATE
+> Task :shared:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :compatLib:compatLibVR:compileDebugJavaWithJavac UP-TO-DATE
+> Task :searchuilib:packageDebugResources UP-TO-DATE
+> Task :common:compileDebugKotlin UP-TO-DATE
+> Task :hidden-api:processDebugJavaRes UP-TO-DATE
+> Task :compatLib:compatLibVR:bundleLibCompileToJarDebug UP-TO-DATE
+> Task :shared:generateDebugResources UP-TO-DATE
+> Task :shared:processDebugNavigationResources UP-TO-DATE
+> Task :hidden-api:createFullJarDebug UP-TO-DATE
+> Task :common:compileDebugJavaWithJavac NO-SOURCE
+> Task :searchuilib:parseDebugLocalResources UP-TO-DATE
+> Task :common:bundleLibRuntimeToJarDebug UP-TO-DATE
+> Task :common:bundleLibCompileToJarDebug UP-TO-DATE
+> Task :androidx-lib:preBuild UP-TO-DATE
+> Task :androidx-lib:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :androidx-lib:preDebugBuild UP-TO-DATE
+> Task :unfold:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :common:processDebugJavaRes UP-TO-DATE
+> Task :searchuilib:generateDebugRFile UP-TO-DATE
+> Task :common:createFullJarDebug UP-TO-DATE
+> Task :unfold:generateDebugResources UP-TO-DATE
+> Task :androidx-lib:generateDebugResources UP-TO-DATE
+> Task :androidx-lib:javaPreCompileDebug UP-TO-DATE
+> Task :androidx-lib:processDebugNavigationResources UP-TO-DATE
+> Task :iconloaderlib:generateDebugRFile UP-TO-DATE
+> Task :unfold:processDebugNavigationResources UP-TO-DATE
+> Task :shared:packageDebugResources UP-TO-DATE
+> Task :unfold:javaPreCompileDebug UP-TO-DATE
+> Task :androidx-lib:packageDebugResources UP-TO-DATE
+> Task :shared:parseDebugLocalResources UP-TO-DATE
+> Task :shared:javaPreCompileDebug UP-TO-DATE
+> Task :unfold:packageDebugResources UP-TO-DATE
+> Task :viewcapture:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :compatLib:compatLibVS:compileDebugJavaWithJavac UP-TO-DATE
+> Task :androidx-lib:parseDebugLocalResources UP-TO-DATE
+> Task :viewcapture:protobufDummy UP-TO-DATE
+> Task :shared:generateDebugRFile UP-TO-DATE
+> Task :unfold:parseDebugLocalResources UP-TO-DATE
+> Task :searchuilib:compileDebugJavaWithJavac UP-TO-DATE
+> Task :compatLib:compatLibVQ:bundleLibRuntimeToJarDebug UP-TO-DATE
+> Task :androidx-lib:generateDebugRFile UP-TO-DATE
+> Task :viewcapture:extractDebugProto UP-TO-DATE
+> Task :compatLib:compatLibVS:bundleLibCompileToJarDebug UP-TO-DATE
+> Task :searchuilib:bundleLibRuntimeToJarDebug UP-TO-DATE
+> Task :compatLib:compatLibVR:bundleLibRuntimeToJarDebug UP-TO-DATE
+> Task :compatLib:compatLibVQ:processDebugJavaRes NO-SOURCE
+> Task :searchuilib:createFullJarDebug UP-TO-DATE
+> Task :compatLib:compatLibVR:processDebugJavaRes NO-SOURCE
+> Task :compatLib:compatLibVS:bundleLibRuntimeToJarDebug UP-TO-DATE
+> Task :compatLib:compatLibVS:processDebugJavaRes NO-SOURCE
+> Task :compatLib:compatLibVR:createFullJarDebug UP-TO-DATE
+> Task :compatLib:compatLibVQ:createFullJarDebug UP-TO-DATE
+> Task :compatLib:compatLibVT:processDebugJavaRes NO-SOURCE
+> Task :compatLib:compatLibVS:createFullJarDebug UP-TO-DATE
+> Task :shared:compileDebugAidl UP-TO-DATE
+> Task :compatLib:compatLibVU:processDebugJavaRes NO-SOURCE
+> Task :viewcapture:generateDebugResources UP-TO-DATE
+> Task :viewcapture:javaPreCompileDebug UP-TO-DATE
+> Task :unfold:generateDebugRFile UP-TO-DATE
+> Task :viewcapture:processDebugNavigationResources UP-TO-DATE
+> Task :extractLawnWithQuickstepPlayProto UP-TO-DATE
+> Task :extractLawnWithQuickstepPlayDebugProto UP-TO-DATE
+> Task :compatLib:compatLibVV:processDebugJavaRes NO-SOURCE
+> Task :extractPlayProto UP-TO-DATE
+> Task :extractWithQuickstepProto UP-TO-DATE
+> Task :searchuilib:bundleLibCompileToJarDebug UP-TO-DATE
+> Task :generateLawnWithQuickstepPlayDebugAssets UP-TO-DATE
+> Task :viewcapture:packageDebugResources UP-TO-DATE
+> Task :compatLib:compatLibVT:compileDebugJavaWithJavac UP-TO-DATE
+> Task :javaPreCompileLawnWithQuickstepPlayDebug UP-TO-DATE
+> Task :compatLib:compatLibVT:bundleLibCompileToJarDebug UP-TO-DATE
+> Task :compatLib:compatLibVT:bundleLibRuntimeToJarDebug UP-TO-DATE
+> Task :viewcapture:parseDebugLocalResources UP-TO-DATE
+> Task :compatLib:compatLibVT:createFullJarDebug UP-TO-DATE
+> Task :viewcapture:generateDebugRFile UP-TO-DATE
+> Task :prepareLintJarForPublish UP-TO-DATE
+> Task :mergeLawnWithQuickstepPlayDebugAssets UP-TO-DATE
+> Task :processLawnWithQuickstepPlayDebugManifest UP-TO-DATE
+> Task :writeLawnWithQuickstepPlayDebugAarMetadata UP-TO-DATE
+> Task :preLawnWithQuickstepPlayReleaseBuild UP-TO-DATE
+> Task :anim:preReleaseBuild UP-TO-DATE
+> Task :compatLib:compatLibVU:compileDebugJavaWithJavac UP-TO-DATE
+> Task :anim:writeReleaseAarMetadata UP-TO-DATE
+> Task :compatLib:compatLibVU:bundleLibCompileToJarDebug UP-TO-DATE
+> Task :compatLib:compatLibVU:bundleLibRuntimeToJarDebug UP-TO-DATE
+> Task :compatLib:compatLibVU:createFullJarDebug UP-TO-DATE
+> Task :animationlib:preReleaseBuild UP-TO-DATE
+> Task :generatePomFileForLawnWithQuickstepPlayDebugPublication
+> Task :compatLib:preReleaseBuild UP-TO-DATE
+> Task :animationlib:writeReleaseAarMetadata UP-TO-DATE
+> Task :flags:preReleaseBuild UP-TO-DATE
+> Task :compileLawnWithQuickstepPlayDebugAidl UP-TO-DATE
+> Task :compatLib:writeReleaseAarMetadata UP-TO-DATE
+> Task :iconloaderlib:preReleaseBuild UP-TO-DATE
+> Task :log:preReleaseBuild UP-TO-DATE
+> Task :flags:writeReleaseAarMetadata UP-TO-DATE
+> Task :iconloaderlib:writeReleaseAarMetadata UP-TO-DATE
+> Task :plugincore:preReleaseBuild UP-TO-DATE
+> Task :searchuilib:preReleaseBuild UP-TO-DATE
+> Task :log:writeReleaseAarMetadata UP-TO-DATE
+> Task :searchuilib:writeReleaseAarMetadata UP-TO-DATE
+> Task :shared:preReleaseBuild UP-TO-DATE
+> Task :plugincore:writeReleaseAarMetadata UP-TO-DATE
+> Task :unfold:preReleaseBuild UP-TO-DATE
+> Task :viewcapture:preReleaseBuild UP-TO-DATE
+> Task :compatLib:compatLibVV:compileDebugJavaWithJavac UP-TO-DATE
+> Task :unfold:writeReleaseAarMetadata UP-TO-DATE
+> Task :shared:writeReleaseAarMetadata UP-TO-DATE
+> Task :wmshell:preReleaseBuild UP-TO-DATE
+> Task :viewcapture:writeReleaseAarMetadata UP-TO-DATE
+> Task :compatLib:compatLibVQ:preReleaseBuild UP-TO-DATE
+> Task :wmshell:writeReleaseAarMetadata UP-TO-DATE
+> Task :compatLib:compatLibVV:bundleLibRuntimeToJarDebug UP-TO-DATE
+> Task :compatLib:compatLibVV:bundleLibCompileToJarDebug UP-TO-DATE
+> Task :compatLib:compatLibVQ:writeReleaseAarMetadata UP-TO-DATE
+> Task :compatLib:compatLibVV:createFullJarDebug UP-TO-DATE
+> Task :androidx-lib:compileDebugKotlin NO-SOURCE
+> Task :iconloaderlib:compileDebugKotlin UP-TO-DATE
+> Task :wmshell:kspDebugKotlin UP-TO-DATE
+> Task :androidx-lib:compileDebugJavaWithJavac UP-TO-DATE
+> Task :iconloaderlib:processDebugJavaRes UP-TO-DATE
+> Task :androidx-lib:bundleLibCompileToJarDebug UP-TO-DATE
+> Task :prepareLawnWithQuickstepPlayDebugArtProfile UP-TO-DATE
+> Task :iconloaderlib:compileDebugJavaWithJavac UP-TO-DATE
+> Task :iconloaderlib:bundleLibRuntimeToJarDebug UP-TO-DATE
+> Task :iconloaderlib:createFullJarDebug UP-TO-DATE
+> Task :iconloaderlib:bundleLibCompileToJarDebug UP-TO-DATE
+> Task :compatLib:compatLibVR:preReleaseBuild UP-TO-DATE
+> Task :plugincore:compileDebugKotlin NO-SOURCE
+> Task :viewcapture:extractIncludeDebugProto UP-TO-DATE
+> Task :plugincore:processDebugJavaRes NO-SOURCE
+> Task :compatLib:compatLibVR:writeReleaseAarMetadata UP-TO-DATE
+> Task :compatLib:compatLibVS:preReleaseBuild UP-TO-DATE
+> Task :compatLib:compatLibVS:writeReleaseAarMetadata UP-TO-DATE
+> Task :compatLib:compatLibVT:preReleaseBuild UP-TO-DATE
+> Task :compatLib:compatLibVT:writeReleaseAarMetadata UP-TO-DATE
+> Task :compatLib:compatLibVU:preReleaseBuild UP-TO-DATE
+> Task :compatLib:compatLibVU:writeReleaseAarMetadata UP-TO-DATE
+> Task :compatLib:compatLibVV:preReleaseBuild UP-TO-DATE
+> Task :compatLib:compatLibVV:writeReleaseAarMetadata UP-TO-DATE
+> Task :plugincore:compileDebugJavaWithJavac UP-TO-DATE
+> Task :unfold:kspDebugKotlin UP-TO-DATE
+> Task :plugincore:bundleLibRuntimeToJarDebug UP-TO-DATE
+> Task :plugincore:bundleLibCompileToJarDebug UP-TO-DATE
+> Task :wmshell:compileDebugKotlin UP-TO-DATE
+> Task :plugincore:createFullJarDebug UP-TO-DATE
+> Task :viewcapture:generateDebugProto UP-TO-DATE
+> Task :flags:compileDebugKotlin UP-TO-DATE
+> Task :wmshell:processDebugJavaRes UP-TO-DATE
+> Task :wmshell:compileDebugJavaWithJavac UP-TO-DATE
+> Task :flags:processDebugJavaRes UP-TO-DATE
+> Task :wmshell:bundleLibCompileToJarDebug UP-TO-DATE
+> Task :wmshell:bundleLibRuntimeToJarDebug UP-TO-DATE
+> Task :wmshell:createFullJarDebug UP-TO-DATE
+> Task :viewcapture:compileDebugKotlin UP-TO-DATE
+> Task :viewcapture:compileDebugJavaWithJavac UP-TO-DATE
+> Task :viewcapture:bundleLibRuntimeToJarDebug UP-TO-DATE
+> Task :viewcapture:processDebugJavaRes UP-TO-DATE
+> Task :viewcapture:createFullJarDebug UP-TO-DATE
+> Task :viewcapture:bundleLibCompileToJarDebug UP-TO-DATE
+> Task :hidden-api:preReleaseBuild UP-TO-DATE
+> Task :hidden-api:compileReleaseAidl NO-SOURCE
+> Task :plugin:preReleaseBuild UP-TO-DATE
+> Task :mergeLawnWithQuickstepPlayReleaseJniLibFolders UP-TO-DATE
+> Task :mergeLawnWithQuickstepPlayReleaseNativeLibs NO-SOURCE
+> Task :stripLawnWithQuickstepPlayReleaseDebugSymbols NO-SOURCE
+> Task :copyLawnWithQuickstepPlayReleaseJniLibsProjectAndLocalJars UP-TO-DATE
+> Task :generateLawnWithQuickstepPlayReleaseResValues UP-TO-DATE
+> Task :unfold:compileDebugKotlin UP-TO-DATE
+> Task :extractDeepLinksForAarLawnWithQuickstepPlayRelease UP-TO-DATE
+> Task :checkLawnWithQuickstepPlayReleaseAarMetadata UP-TO-DATE
+> Task :compatLib:compileReleaseAidl UP-TO-DATE
+> Task :plugincore:compileReleaseAidl NO-SOURCE
+> Task :unfold:compileDebugJavaWithJavac UP-TO-DATE
+> Task :wmshell:compileReleaseAidl UP-TO-DATE
+> Task :log:compileReleaseAidl NO-SOURCE
+> Task :unfold:bundleLibRuntimeToJarDebug UP-TO-DATE
+> Task :unfold:bundleLibCompileToJarDebug UP-TO-DATE
+> Task :generateLawnWithQuickstepPlayReleaseBuildConfig UP-TO-DATE
+> Task :anim:generateReleaseResources UP-TO-DATE
+> Task :unfold:compileReleaseAidl UP-TO-DATE
+> Task :anim:processReleaseNavigationResources UP-TO-DATE
+> Task :animationlib:generateReleaseResources UP-TO-DATE
+> Task :unfold:processDebugJavaRes UP-TO-DATE
+> Task :unfold:createFullJarDebug UP-TO-DATE
+> Task :anim:packageReleaseResources UP-TO-DATE
+> Task :anim:compileReleaseAidl NO-SOURCE
+> Task :anim:parseReleaseLocalResources UP-TO-DATE
+> Task :animationlib:processReleaseNavigationResources UP-TO-DATE
+> Task :animationlib:packageReleaseResources UP-TO-DATE
+> Task :animationlib:parseReleaseLocalResources UP-TO-DATE
+> Task :flags:compileDebugJavaWithJavac UP-TO-DATE
+> Task :plugin:compileReleaseAidl NO-SOURCE
+> Task :animationlib:javaPreCompileRelease UP-TO-DATE
+> Task :flags:bundleLibRuntimeToJarDebug UP-TO-DATE
+> Task :flags:bundleLibCompileToJarDebug UP-TO-DATE
+> Task :flags:createFullJarDebug UP-TO-DATE
+> Task :compatLib:generateReleaseResources UP-TO-DATE
+> Task :animationlib:generateReleaseRFile UP-TO-DATE
+> Task :animationlib:compileReleaseKotlin NO-SOURCE
+> Task :compatLib:packageReleaseResources UP-TO-DATE
+> Task :log:compileDebugKotlin UP-TO-DATE
+> Task :log:compileDebugJavaWithJavac NO-SOURCE
+> Task :log:bundleLibRuntimeToJarDebug UP-TO-DATE
+> Task :log:processDebugJavaRes UP-TO-DATE
+> Task :log:bundleLibCompileToJarDebug UP-TO-DATE
+> Task :animationlib:compileReleaseJavaWithJavac UP-TO-DATE
+> Task :compatLib:processReleaseNavigationResources UP-TO-DATE
+> Task :log:createFullJarDebug UP-TO-DATE
+> Task :compatLib:parseReleaseLocalResources UP-TO-DATE
+> Task :animationlib:bundleLibCompileToJarRelease UP-TO-DATE
+> Task :compatLib:generateReleaseRFile UP-TO-DATE
+> Task :compatLib:javaPreCompileRelease UP-TO-DATE
+> Task :flags:processReleaseNavigationResources UP-TO-DATE
+> Task :flags:generateReleaseResources UP-TO-DATE
+> Task :compatLib:compatLibVQ:generateReleaseResources UP-TO-DATE
+> Task :compatLib:compileReleaseJavaWithJavac UP-TO-DATE
+> Task :compatLib:bundleLibCompileToJarRelease UP-TO-DATE
+> Task :compatLib:compatLibVQ:processReleaseNavigationResources UP-TO-DATE
+> Task :compatLib:compatLibVQ:javaPreCompileRelease UP-TO-DATE
+> Task :compatLib:compatLibVR:generateReleaseResources UP-TO-DATE
+> Task :shared:compileReleaseAidl UP-TO-DATE
+> Task :compatLib:compatLibVR:packageReleaseResources UP-TO-DATE
+> Task :compatLib:compatLibVR:processReleaseNavigationResources UP-TO-DATE
+> Task :compatLib:compatLibVR:parseReleaseLocalResources UP-TO-DATE
+> Task :compatLib:compatLibVR:generateReleaseRFile UP-TO-DATE
+> Task :compileLawnWithQuickstepPlayReleaseAidl UP-TO-DATE
+> Task :compatLib:compatLibVR:javaPreCompileRelease UP-TO-DATE
+> Task :compatLib:compatLibVS:generateReleaseResources UP-TO-DATE
+> Task :compatLib:compatLibVS:processReleaseNavigationResources UP-TO-DATE
+> Task :compatLib:compatLibVS:javaPreCompileRelease UP-TO-DATE
+> Task :compatLib:compatLibVT:generateReleaseResources UP-TO-DATE
+> Task :compatLib:compatLibVS:packageReleaseResources UP-TO-DATE
+> Task :compatLib:compatLibVS:parseReleaseLocalResources UP-TO-DATE
+> Task :compatLib:compatLibVS:generateReleaseRFile UP-TO-DATE
+> Task :compatLib:compatLibVT:packageReleaseResources UP-TO-DATE
+> Task :compatLib:compatLibVT:processReleaseNavigationResources UP-TO-DATE
+> Task :compatLib:compatLibVT:javaPreCompileRelease UP-TO-DATE
+> Task :compatLib:compatLibVT:parseReleaseLocalResources UP-TO-DATE
+> Task :compatLib:compatLibVU:generateReleaseResources UP-TO-DATE
+> Task :generateLawnWithQuickstepPlayDebugResources UP-TO-DATE
+> Task :processLawnWithQuickstepPlayDebugNavigationResources UP-TO-DATE
+> Task :compatLib:compatLibVT:generateReleaseRFile UP-TO-DATE
+> Task :anim:generateReleaseRFile UP-TO-DATE
+> Task :compatLib:compatLibVV:generateReleaseResources UP-TO-DATE
+> Task :compatLib:compatLibVQ:packageReleaseResources UP-TO-DATE
+> Task :compatLib:compatLibVU:processReleaseNavigationResources UP-TO-DATE
+> Task :compatLib:compatLibVU:javaPreCompileRelease UP-TO-DATE
+> Task :compatLib:compatLibVV:javaPreCompileRelease UP-TO-DATE
+> Task :compatLib:compatLibVV:processReleaseNavigationResources UP-TO-DATE
+> Task :compatLib:compatLibVQ:parseReleaseLocalResources UP-TO-DATE
+> Task :flags:javaPreCompileRelease UP-TO-DATE
+> Task :wmshell:processReleaseNavigationResources UP-TO-DATE
+> Task :wmshell:generateReleaseResources UP-TO-DATE
+> Task :wmshell:javaPreCompileRelease UP-TO-DATE
+> Task :compatLib:compatLibVU:packageReleaseResources UP-TO-DATE
+> Task :flags:packageReleaseResources UP-TO-DATE
+> Task :anim:javaPreCompileRelease UP-TO-DATE
+> Task :compatLib:compatLibVU:parseReleaseLocalResources UP-TO-DATE
+> Task :compatLib:compatLibVQ:generateReleaseRFile UP-TO-DATE
+> Task :flags:parseReleaseLocalResources UP-TO-DATE
+> Task :animationlib:bundleLibRuntimeToJarRelease UP-TO-DATE
+> Task :compatLib:compatLibVV:packageReleaseResources UP-TO-DATE
+> Task :animationlib:processReleaseJavaRes NO-SOURCE
+> Task :wmshell:packageReleaseResources UP-TO-DATE
+> Task :compatLib:compatLibVU:generateReleaseRFile UP-TO-DATE
+> Task :common:preReleaseBuild UP-TO-DATE
+> Task :animationlib:createFullJarRelease UP-TO-DATE
+> Task :flags:generateReleaseRFile UP-TO-DATE
+> Task :wmshell:parseReleaseLocalResources UP-TO-DATE
+> Task :common:generateReleaseResources UP-TO-DATE
+> Task :common:processReleaseNavigationResources UP-TO-DATE
+> Task :common:javaPreCompileRelease UP-TO-DATE
+> Task :compatLib:compatLibVQ:compileReleaseJavaWithJavac UP-TO-DATE
+> Task :compatLib:processReleaseJavaRes NO-SOURCE
+> Task :compatLib:bundleLibRuntimeToJarRelease UP-TO-DATE
+> Task :compatLib:compatLibVQ:bundleLibCompileToJarRelease UP-TO-DATE
+> Task :hidden-api:generateReleaseResources UP-TO-DATE
+> Task :wmshell:generateReleaseRFile UP-TO-DATE
+> Task :compatLib:createFullJarRelease UP-TO-DATE
+> Task :hidden-api:javaPreCompileRelease UP-TO-DATE
+> Task :hidden-api:processReleaseNavigationResources UP-TO-DATE
+> Task :iconloaderlib:processReleaseNavigationResources UP-TO-DATE
+> Task :iconloaderlib:generateReleaseResources UP-TO-DATE
+> Task :iconloaderlib:javaPreCompileRelease UP-TO-DATE
+> Task :log:generateReleaseResources UP-TO-DATE
+> Task :compatLib:compatLibVR:compileReleaseJavaWithJavac UP-TO-DATE
+> Task :compatLib:compatLibVR:bundleLibCompileToJarRelease UP-TO-DATE
+> Task :common:packageReleaseResources UP-TO-DATE
+> Task :hidden-api:packageReleaseResources UP-TO-DATE
+> Task :common:parseReleaseLocalResources UP-TO-DATE
+> Task :hidden-api:parseReleaseLocalResources UP-TO-DATE
+> Task :log:packageReleaseResources UP-TO-DATE
+> Task :iconloaderlib:packageReleaseResources UP-TO-DATE
+> Task :compatLib:compatLibVS:compileReleaseJavaWithJavac UP-TO-DATE
+> Task :hidden-api:generateReleaseRFile UP-TO-DATE
+> Task :compatLib:compatLibVS:bundleLibCompileToJarRelease UP-TO-DATE
+> Task :iconloaderlib:parseReleaseLocalResources UP-TO-DATE
+> Task :iconloaderlib:generateReleaseRFile UP-TO-DATE
+> Task :log:processReleaseNavigationResources UP-TO-DATE
+> Task :log:parseReleaseLocalResources UP-TO-DATE
+> Task :log:generateReleaseRFile UP-TO-DATE
+> Task :anim:compileDebugKotlin UP-TO-DATE
+> Task :hidden-api:compileReleaseJavaWithJavac UP-TO-DATE
+> Task :compatLib:compatLibVT:compileReleaseJavaWithJavac UP-TO-DATE
+> Task :common:generateReleaseRFile UP-TO-DATE
+> Task :compatLib:compatLibVT:bundleLibCompileToJarRelease UP-TO-DATE
+> Task :hidden-api:bundleLibRuntimeToJarRelease UP-TO-DATE
+> Task :anim:processDebugJavaRes UP-TO-DATE
+> Task :plugincore:generateReleaseResources UP-TO-DATE
+> Task :hidden-api:processReleaseJavaRes UP-TO-DATE
+> Task :plugincore:packageReleaseResources UP-TO-DATE
+> Task :hidden-api:createFullJarRelease UP-TO-DATE
+> Task :plugincore:javaPreCompileRelease UP-TO-DATE
+> Task :plugincore:processReleaseNavigationResources UP-TO-DATE
+> Task :log:javaPreCompileRelease UP-TO-DATE
+> Task :compatLib:compatLibVU:compileReleaseJavaWithJavac UP-TO-DATE
+> Task :plugincore:parseReleaseLocalResources UP-TO-DATE
+> Task :plugin:generateReleaseResources UP-TO-DATE
+> Task :compatLib:compatLibVU:bundleLibCompileToJarRelease UP-TO-DATE
+> Task :plugincore:generateReleaseRFile UP-TO-DATE
+> Task :anim:compileDebugJavaWithJavac UP-TO-DATE
+> Task :plugin:processReleaseNavigationResources UP-TO-DATE
+> Task :plugin:javaPreCompileRelease UP-TO-DATE
+> Task :anim:bundleLibRuntimeToJarDebug UP-TO-DATE
+> Task :anim:bundleLibCompileToJarDebug UP-TO-DATE
+> Task :searchuilib:generateReleaseResources UP-TO-DATE
+> Task :anim:createFullJarDebug UP-TO-DATE
+> Task :searchuilib:processReleaseNavigationResources UP-TO-DATE
+> Task :searchuilib:javaPreCompileRelease UP-TO-DATE
+> Task :searchuilib:packageReleaseResources UP-TO-DATE
+> Task :searchuilib:processReleaseJavaRes NO-SOURCE
+> Task :searchuilib:parseReleaseLocalResources UP-TO-DATE
+> Task :hidden-api:bundleLibCompileToJarRelease UP-TO-DATE
+> Task :searchuilib:generateReleaseRFile UP-TO-DATE
+> Task :common:compileReleaseKotlin UP-TO-DATE
+> Task :searchuilib:compileReleaseJavaWithJavac UP-TO-DATE
+> Task :common:compileReleaseJavaWithJavac NO-SOURCE
+> Task :common:bundleLibRuntimeToJarRelease UP-TO-DATE
+> Task :common:processReleaseJavaRes UP-TO-DATE
+> Task :common:createFullJarRelease UP-TO-DATE
+> Task :common:bundleLibCompileToJarRelease UP-TO-DATE
+> Task :searchuilib:bundleLibRuntimeToJarRelease UP-TO-DATE
+> Task :shared:processReleaseNavigationResources UP-TO-DATE
+> Task :androidx-lib:preReleaseBuild UP-TO-DATE
+> Task :searchuilib:createFullJarRelease UP-TO-DATE
+> Task :androidx-lib:generateReleaseResources UP-TO-DATE
+> Task :androidx-lib:processReleaseNavigationResources UP-TO-DATE
+> Task :androidx-lib:javaPreCompileRelease UP-TO-DATE
+> Task :unfold:generateReleaseResources UP-TO-DATE
+> Task :androidx-lib:packageReleaseResources UP-TO-DATE
+> Task :unfold:packageReleaseResources UP-TO-DATE
+> Task :androidx-lib:parseReleaseLocalResources UP-TO-DATE
+> Task :unfold:processReleaseNavigationResources UP-TO-DATE
+> Task :compatLib:compatLibVV:parseReleaseLocalResources UP-TO-DATE
+> Task :shared:generateReleaseResources UP-TO-DATE
+> Task :unfold:parseReleaseLocalResources UP-TO-DATE
+> Task :androidx-lib:generateReleaseRFile UP-TO-DATE
+> Task :compatLib:compatLibVV:generateReleaseRFile UP-TO-DATE
+> Task :plugin:packageReleaseResources UP-TO-DATE
+> Task :unfold:javaPreCompileRelease UP-TO-DATE
+> Task :plugin:parseReleaseLocalResources UP-TO-DATE
+> Task :unfold:generateReleaseRFile UP-TO-DATE
+> Task :shared:javaPreCompileRelease UP-TO-DATE
+> Task :compatLib:compatLibVQ:bundleLibRuntimeToJarRelease UP-TO-DATE
+> Task :plugin:generateReleaseRFile UP-TO-DATE
+> Task :compatLib:compatLibVV:compileReleaseJavaWithJavac UP-TO-DATE
+> Task :compatLib:compatLibVV:bundleLibCompileToJarRelease UP-TO-DATE
+> Task :compatLib:compatLibVR:processReleaseJavaRes NO-SOURCE
+> Task :compatLib:compatLibVQ:processReleaseJavaRes NO-SOURCE
+> Task :shared:packageReleaseResources UP-TO-DATE
+> Task :compatLib:compatLibVR:bundleLibRuntimeToJarRelease UP-TO-DATE
+> Task :plugincore:compileReleaseKotlin NO-SOURCE
+> Task :wmshell:kspReleaseKotlin UP-TO-DATE
+> Task :shared:parseReleaseLocalResources UP-TO-DATE
+> Task :plugincore:processReleaseJavaRes NO-SOURCE
+> Task :androidx-lib:compileReleaseKotlin NO-SOURCE
+> Task :plugincore:compileReleaseJavaWithJavac UP-TO-DATE
+> Task :plugincore:bundleLibCompileToJarRelease UP-TO-DATE
+> Task :wmshell:compileReleaseKotlin UP-TO-DATE
+> Task :plugin:compileDebugKotlin UP-TO-DATE
+> Task :flags:compileReleaseKotlin UP-TO-DATE
+> Task :androidx-lib:compileReleaseJavaWithJavac UP-TO-DATE
+> Task :iconloaderlib:compileReleaseKotlin UP-TO-DATE
+> Task :flags:processReleaseJavaRes UP-TO-DATE
+> Task :flags:compileReleaseJavaWithJavac UP-TO-DATE
+> Task :plugin:compileDebugJavaWithJavac UP-TO-DATE
+> Task :flags:bundleLibCompileToJarRelease UP-TO-DATE
+> Task :plugin:bundleLibCompileToJarDebug UP-TO-DATE
+> Task :wmshell:compileReleaseJavaWithJavac UP-TO-DATE
+> Task :wmshell:bundleLibCompileToJarRelease UP-TO-DATE
+> Task :log:compileReleaseKotlin UP-TO-DATE
+> Task :flags:bundleLibRuntimeToJarRelease UP-TO-DATE
+> Task :plugin:bundleLibRuntimeToJarDebug UP-TO-DATE
+> Task :flags:createFullJarRelease UP-TO-DATE
+> Task :log:compileReleaseJavaWithJavac NO-SOURCE
+> Task :log:bundleLibRuntimeToJarRelease UP-TO-DATE
+> Task :iconloaderlib:compileReleaseJavaWithJavac UP-TO-DATE
+> Task :iconloaderlib:bundleLibRuntimeToJarRelease UP-TO-DATE
+> Task :log:bundleLibCompileToJarRelease UP-TO-DATE
+> Task :plugincore:bundleLibRuntimeToJarRelease UP-TO-DATE
+> Task :log:processReleaseJavaRes UP-TO-DATE
+> Task :shared:kspDebugKotlin UP-TO-DATE
+> Task :plugincore:createFullJarRelease UP-TO-DATE
+> Task :log:createFullJarRelease UP-TO-DATE
+> Task :compatLib:compatLibVQ:createFullJarRelease UP-TO-DATE
+> Task :androidx-lib:bundleLibCompileToJarRelease UP-TO-DATE
+> Task :compatLib:compatLibVR:createFullJarRelease UP-TO-DATE
+> Task :compatLib:compatLibVS:bundleLibRuntimeToJarRelease UP-TO-DATE
+> Task :compatLib:compatLibVS:processReleaseJavaRes NO-SOURCE
+> Task :compatLib:compatLibVS:createFullJarRelease UP-TO-DATE
+> Task :unfold:kspReleaseKotlin UP-TO-DATE
+> Task :compatLib:compatLibVT:bundleLibRuntimeToJarRelease UP-TO-DATE
+> Task :iconloaderlib:processReleaseJavaRes UP-TO-DATE
+> Task :compatLib:compatLibVT:processReleaseJavaRes NO-SOURCE
+> Task :shared:compileDebugKotlin UP-TO-DATE
+> Task :iconloaderlib:createFullJarRelease UP-TO-DATE
+> Task :compatLib:compatLibVT:createFullJarRelease UP-TO-DATE
+> Task :shared:processDebugJavaRes UP-TO-DATE
+> Task :compatLib:compatLibVU:bundleLibRuntimeToJarRelease UP-TO-DATE
+> Task :compatLib:compatLibVU:processReleaseJavaRes NO-SOURCE
+> Task :compatLib:compatLibVV:bundleLibRuntimeToJarRelease UP-TO-DATE
+> Task :compatLib:compatLibVU:createFullJarRelease UP-TO-DATE
+> Task :viewcapture:extractReleaseProto UP-TO-DATE
+> Task :compatLib:compatLibVV:processReleaseJavaRes NO-SOURCE
+> Task :viewcapture:generateReleaseResources UP-TO-DATE
+> Task :compatLib:compatLibVV:createFullJarRelease UP-TO-DATE
+> Task :unfold:compileReleaseKotlin UP-TO-DATE
+> Task :shared:compileDebugJavaWithJavac UP-TO-DATE
+> Task :viewcapture:packageReleaseResources UP-TO-DATE
+> Task :shared:bundleLibRuntimeToJarDebug UP-TO-DATE
+> Task :unfold:processReleaseJavaRes UP-TO-DATE
+> Task :shared:createFullJarDebug UP-TO-DATE
+> Task :anim:compileReleaseKotlin UP-TO-DATE
+> Task :viewcapture:extractIncludeReleaseProto UP-TO-DATE
+> Task :shared:bundleLibCompileToJarDebug UP-TO-DATE
+> Task :viewcapture:processReleaseNavigationResources UP-TO-DATE
+> Task :viewcapture:parseReleaseLocalResources UP-TO-DATE
+> Task :viewcapture:generateReleaseRFile UP-TO-DATE
+> Task :viewcapture:generateReleaseProto UP-TO-DATE
+> Task :viewcapture:javaPreCompileRelease UP-TO-DATE
+> Task :unfold:compileReleaseJavaWithJavac UP-TO-DATE
+> Task :wmshell:bundleLibRuntimeToJarRelease UP-TO-DATE
+> Task :unfold:bundleLibCompileToJarRelease UP-TO-DATE
+> Task :unfold:bundleLibRuntimeToJarRelease UP-TO-DATE
+> Task :unfold:createFullJarRelease UP-TO-DATE
+> Task :anim:processReleaseJavaRes UP-TO-DATE
+> Task :extractLawnWithQuickstepPlayReleaseProto UP-TO-DATE
+> Task :anim:compileReleaseJavaWithJavac UP-TO-DATE
+> Task :extractReleaseProto UP-TO-DATE
+> Task :anim:bundleLibRuntimeToJarRelease UP-TO-DATE
+> Task :anim:bundleLibCompileToJarRelease UP-TO-DATE
+> Task :anim:createFullJarRelease UP-TO-DATE
+> Task :processLawnWithQuickstepPlayReleaseNavigationResources UP-TO-DATE
+> Task :iconloaderlib:bundleLibCompileToJarRelease UP-TO-DATE
+> Task :searchuilib:bundleLibCompileToJarRelease UP-TO-DATE
+> Task :generateLawnWithQuickstepPlayReleaseAssets UP-TO-DATE
+> Task :mergeLawnWithQuickstepPlayReleaseAssets UP-TO-DATE
+> Task :javaPreCompileLawnWithQuickstepPlayRelease UP-TO-DATE
+> Task :prepareLawnWithQuickstepPlayReleaseArtProfile UP-TO-DATE
+> Task :viewcapture:compileReleaseKotlin UP-TO-DATE
+> Task :processLawnWithQuickstepPlayReleaseManifest UP-TO-DATE
+> Task :viewcapture:processReleaseJavaRes UP-TO-DATE
+> Task :writeLawnWithQuickstepPlayReleaseAarMetadata UP-TO-DATE
+> Task :generatePomFileForLawnWithQuickstepPlayReleasePublication
+> Task :androidx-lib:checkReleaseAarMetadata UP-TO-DATE
+> Task :androidx-lib:mergeReleaseJniLibFolders UP-TO-DATE
+> Task :androidx-lib:mergeReleaseNativeLibs NO-SOURCE
+> Task :androidx-lib:stripReleaseDebugSymbols NO-SOURCE
+> Task :androidx-lib:copyReleaseJniLibsProjectAndLocalJars UP-TO-DATE
+> Task :androidx-lib:extractDeepLinksForAarRelease UP-TO-DATE
+> Task :generateLawnWithQuickstepPlayReleaseResources UP-TO-DATE
+> Task :shared:generateReleaseRFile UP-TO-DATE
+> Task :packageLawnWithQuickstepPlayDebugResources UP-TO-DATE
+> Task :androidx-lib:generateReleaseAssets UP-TO-DATE
+> Task :androidx-lib:mergeReleaseAssets UP-TO-DATE
+> Task :viewcapture:compileReleaseJavaWithJavac UP-TO-DATE
+> Task :parseLawnWithQuickstepPlayDebugLocalResources UP-TO-DATE
+> Task :plugin:processDebugJavaRes UP-TO-DATE
+> Task :androidx-lib:mergeReleaseGeneratedProguardFiles UP-TO-DATE
+> Task :wmshell:processReleaseJavaRes UP-TO-DATE
+> Task :generateLawnWithQuickstepPlayDebugRFile UP-TO-DATE
+> Task :viewcapture:bundleLibRuntimeToJarRelease UP-TO-DATE
+> Task :wmshell:createFullJarRelease UP-TO-DATE
+> Task :viewcapture:bundleLibCompileToJarRelease UP-TO-DATE
+> Task :plugin:createFullJarDebug UP-TO-DATE
+> Task :viewcapture:createFullJarRelease UP-TO-DATE
+> Task :androidx-lib:extractReleaseAnnotations UP-TO-DATE
+> Task :androidx-lib:prepareLintJarForPublish UP-TO-DATE
+> Task :androidx-lib:processReleaseJavaRes NO-SOURCE
+> Task :androidx-lib:mergeReleaseConsumerProguardFiles UP-TO-DATE
+> Task :androidx-lib:prepareReleaseArtProfile UP-TO-DATE
+> Task :androidx-lib:processReleaseManifest UP-TO-DATE
+> Task :androidx-lib:writeReleaseAarMetadata UP-TO-DATE
+> Task :androidx-lib:mergeReleaseJavaResource UP-TO-DATE
+> Task :anim:mergeReleaseJniLibFolders UP-TO-DATE
+> Task :androidx-lib:generatePomFileForReleasePublication
+> Task :plugin:compileReleaseKotlin UP-TO-DATE
+> Task :anim:checkReleaseAarMetadata UP-TO-DATE
+> Task :anim:mergeReleaseNativeLibs NO-SOURCE
+> Task :anim:extractDeepLinksForAarRelease UP-TO-DATE
+> Task :androidx-lib:syncReleaseLibJars UP-TO-DATE
+> Task :androidx-lib:bundleReleaseAar UP-TO-DATE
+> Task :anim:generateReleaseAssets UP-TO-DATE
+> Task :anim:stripReleaseDebugSymbols NO-SOURCE
+> Task :androidx-lib:sourceReleaseJar UP-TO-DATE
+> Task :anim:copyReleaseJniLibsProjectAndLocalJars UP-TO-DATE
+> Task :anim:mergeReleaseAssets UP-TO-DATE
+> Task :anim:prepareLintJarForPublish UP-TO-DATE
+> Task :anim:mergeReleaseGeneratedProguardFiles UP-TO-DATE
+> Task :plugin:processReleaseJavaRes UP-TO-DATE
+> Task :androidx-lib:generateMetadataFileForReleasePublication
+> Task :anim:prepareReleaseArtProfile UP-TO-DATE
+> Task :anim:processReleaseManifest UP-TO-DATE
+> Task :plugin:compileReleaseJavaWithJavac UP-TO-DATE
+> Task :anim:extractReleaseAnnotations UP-TO-DATE
+> Task :anim:mergeReleaseJavaResource UP-TO-DATE
+> Task :plugin:bundleLibCompileToJarRelease UP-TO-DATE
+> Task :anim:syncReleaseLibJars UP-TO-DATE
+> Task :extractIncludeLawnWithQuickstepPlayDebugProto UP-TO-DATE
+> Task :anim:generatePomFileForReleasePublication
+> Task :anim:sourceReleaseJar UP-TO-DATE
+> Task :animationlib:checkReleaseAarMetadata UP-TO-DATE
+> Task :animationlib:extractDeepLinksForAarRelease UP-TO-DATE
+> Task :shared:kspReleaseKotlin UP-TO-DATE
+> Task :generateLawnWithQuickstepPlayDebugProto UP-TO-DATE
+> Task :animationlib:extractReleaseAnnotations UP-TO-DATE
+> Task :animationlib:generateReleaseAssets UP-TO-DATE
+> Task :animationlib:mergeReleaseAssets UP-TO-DATE
+> Task :animationlib:mergeReleaseGeneratedProguardFiles UP-TO-DATE
+> Task :animationlib:mergeReleaseConsumerProguardFiles UP-TO-DATE
+> Task :animationlib:mergeReleaseJniLibFolders UP-TO-DATE
+> Task :animationlib:mergeReleaseNativeLibs NO-SOURCE
+> Task :androidx-lib:publishReleasePublicationToLocalRepoRepository
+> Task :androidx-lib:publish
+> Task :anim:mergeReleaseConsumerProguardFiles UP-TO-DATE
+> Task :plugin:bundleLibRuntimeToJarRelease UP-TO-DATE
+> Task :animationlib:prepareReleaseArtProfile UP-TO-DATE
+> Task :animationlib:prepareLintJarForPublish UP-TO-DATE
+> Task :animationlib:stripReleaseDebugSymbols NO-SOURCE
+> Task :shared:compileReleaseKotlin UP-TO-DATE
+> Task :plugin:createFullJarRelease UP-TO-DATE
+> Task :animationlib:copyReleaseJniLibsProjectAndLocalJars UP-TO-DATE
+> Task :anim:bundleReleaseAar UP-TO-DATE
+> Task :animationlib:mergeReleaseJavaResource UP-TO-DATE
+> Task :animationlib:processReleaseManifest UP-TO-DATE
+> Task :animationlib:syncReleaseLibJars UP-TO-DATE
+> Task :animationlib:generatePomFileForReleasePublication
+> Task :anim:generateMetadataFileForReleasePublication
+> Task :animationlib:sourceReleaseJar UP-TO-DATE
+> Task :animationlib:bundleReleaseAar UP-TO-DATE
+> Task :common:checkReleaseAarMetadata UP-TO-DATE
+> Task :common:extractDeepLinksForAarRelease UP-TO-DATE
+> Task :common:mergeReleaseJniLibFolders UP-TO-DATE
+> Task :common:mergeReleaseNativeLibs NO-SOURCE
+> Task :common:stripReleaseDebugSymbols NO-SOURCE
+> Task :common:extractReleaseAnnotations UP-TO-DATE
+> Task :common:generateReleaseAssets UP-TO-DATE
+> Task :animationlib:generateMetadataFileForReleasePublication
+> Task :common:mergeReleaseAssets UP-TO-DATE
+> Task :common:mergeReleaseGeneratedProguardFiles UP-TO-DATE
+> Task :common:copyReleaseJniLibsProjectAndLocalJars UP-TO-DATE
+> Task :shared:processReleaseJavaRes UP-TO-DATE
+> Task :common:prepareLintJarForPublish UP-TO-DATE
+> Task :common:prepareReleaseArtProfile UP-TO-DATE
+> Task :common:mergeReleaseJavaResource UP-TO-DATE
+> Task :common:processReleaseManifest UP-TO-DATE
+> Task :common:writeReleaseAarMetadata UP-TO-DATE
+> Task :common:syncReleaseLibJars UP-TO-DATE
+> Task :common:generatePomFileForReleasePublication
+> Task :shared:compileReleaseJavaWithJavac UP-TO-DATE
+> Task :common:sourceReleaseJar UP-TO-DATE
+> Task :compatLib:checkReleaseAarMetadata UP-TO-DATE
+> Task :compatLib:mergeReleaseJniLibFolders UP-TO-DATE
+> Task :shared:bundleLibCompileToJarRelease UP-TO-DATE
+> Task :compatLib:mergeReleaseNativeLibs NO-SOURCE
+> Task :compatLib:stripReleaseDebugSymbols NO-SOURCE
+> Task :compatLib:extractDeepLinksForAarRelease UP-TO-DATE
+> Task :animationlib:publishReleasePublicationToLocalRepoRepository
+> Task :animationlib:publish
+> Task :compatLib:generateReleaseAssets UP-TO-DATE
+> Task :compatLib:copyReleaseJniLibsProjectAndLocalJars UP-TO-DATE
+> Task :compatLib:mergeReleaseAssets UP-TO-DATE
+> Task :compatLib:mergeReleaseGeneratedProguardFiles UP-TO-DATE
+> Task :compatLib:mergeReleaseConsumerProguardFiles UP-TO-DATE
+> Task :compatLib:prepareReleaseArtProfile UP-TO-DATE
+> Task :shared:bundleLibRuntimeToJarRelease UP-TO-DATE
+> Task :compatLib:prepareLintJarForPublish UP-TO-DATE
+> Task :compatLib:extractReleaseAnnotations UP-TO-DATE
+> Task :shared:createFullJarRelease UP-TO-DATE
+> Task :compatLib:mergeReleaseJavaResource UP-TO-DATE
+> Task :compatLib:syncReleaseLibJars UP-TO-DATE
+> Task :compatLib:generatePomFileForReleasePublication
+> Task :compatLib:sourceReleaseJar UP-TO-DATE
+> Task :flags:checkReleaseAarMetadata UP-TO-DATE
+> Task :extractIncludeLawnWithQuickstepPlayReleaseProto UP-TO-DATE
+> Task :anim:publishReleasePublicationToLocalRepoRepository
+> Task :anim:publish
+> Task :generateLawnWithQuickstepPlayReleaseProto UP-TO-DATE
+> Task :flags:generateReleaseAssets UP-TO-DATE
+> Task :flags:mergeReleaseAssets UP-TO-DATE
+> Task :compatLib:processReleaseManifest UP-TO-DATE
+> Task :flags:mergeReleaseGeneratedProguardFiles UP-TO-DATE
+> Task :flags:mergeReleaseJniLibFolders UP-TO-DATE
+> Task :compatLib:bundleReleaseAar UP-TO-DATE
+> Task :flags:mergeReleaseConsumerProguardFiles UP-TO-DATE
+> Task :flags:mergeReleaseNativeLibs NO-SOURCE
+> Task :flags:stripReleaseDebugSymbols NO-SOURCE
+> Task :flags:prepareLintJarForPublish UP-TO-DATE
+> Task :compatLib:generateMetadataFileForReleasePublication
+> Task :flags:copyReleaseJniLibsProjectAndLocalJars UP-TO-DATE
+> Task :flags:extractReleaseAnnotations UP-TO-DATE
+> Task :flags:processReleaseManifest UP-TO-DATE
+> Task :flags:mergeReleaseJavaResource UP-TO-DATE
+> Task :flags:extractDeepLinksForAarRelease UP-TO-DATE
+> Task :common:mergeReleaseConsumerProguardFiles UP-TO-DATE
+> Task :flags:syncReleaseLibJars UP-TO-DATE
+> Task :packageLawnWithQuickstepPlayReleaseResources UP-TO-DATE
+> Task :parseLawnWithQuickstepPlayReleaseLocalResources UP-TO-DATE
+> Task :flags:generatePomFileForReleasePublication
+> Task :hidden-api:checkReleaseAarMetadata UP-TO-DATE
+> Task :common:bundleReleaseAar UP-TO-DATE
+> Task :flags:prepareReleaseArtProfile UP-TO-DATE
+> Task :hidden-api:mergeReleaseJniLibFolders UP-TO-DATE
+> Task :hidden-api:extractDeepLinksForAarRelease UP-TO-DATE
+> Task :hidden-api:mergeReleaseNativeLibs NO-SOURCE
+> Task :generateLawnWithQuickstepPlayReleaseRFile UP-TO-DATE
+> Task :hidden-api:stripReleaseDebugSymbols NO-SOURCE
+> Task :common:generateMetadataFileForReleasePublication
+> Task :hidden-api:extractReleaseAnnotations UP-TO-DATE
+> Task :hidden-api:generateReleaseAssets UP-TO-DATE
+> Task :hidden-api:copyReleaseJniLibsProjectAndLocalJars UP-TO-DATE
+> Task :hidden-api:mergeReleaseGeneratedProguardFiles UP-TO-DATE
+> Task :hidden-api:mergeReleaseAssets UP-TO-DATE
+> Task :hidden-api:prepareLintJarForPublish UP-TO-DATE
+> Task :hidden-api:mergeReleaseConsumerProguardFiles UP-TO-DATE
+> Task :hidden-api:prepareReleaseArtProfile UP-TO-DATE
+> Task :flags:bundleReleaseAar UP-TO-DATE
+> Task :hidden-api:writeReleaseAarMetadata UP-TO-DATE
+> Task :hidden-api:mergeReleaseJavaResource UP-TO-DATE
+> Task :hidden-api:processReleaseManifest UP-TO-DATE
+> Task :hidden-api:syncReleaseLibJars UP-TO-DATE
+> Task :flags:sourceReleaseJar UP-TO-DATE
+> Task :hidden-api:generatePomFileForReleasePublication
+> Task :hidden-api:bundleReleaseAar UP-TO-DATE
+> Task :iconloaderlib:mergeReleaseJniLibFolders UP-TO-DATE
+> Task :iconloaderlib:checkReleaseAarMetadata UP-TO-DATE
+> Task :iconloaderlib:mergeReleaseNativeLibs NO-SOURCE
+> Task :iconloaderlib:extractDeepLinksForAarRelease UP-TO-DATE
+> Task :iconloaderlib:stripReleaseDebugSymbols NO-SOURCE
+> Task :iconloaderlib:copyReleaseJniLibsProjectAndLocalJars UP-TO-DATE
+> Task :iconloaderlib:generateReleaseAssets UP-TO-DATE
+> Task :kspLawnWithQuickstepPlayDebugKotlin UP-TO-DATE
+> Task :iconloaderlib:mergeReleaseAssets UP-TO-DATE
+> Task :iconloaderlib:mergeReleaseGeneratedProguardFiles UP-TO-DATE
+> Task :iconloaderlib:extractReleaseAnnotations UP-TO-DATE
+> Task :lawnWithQuickstepPlayDebugSourcesJar UP-TO-DATE
+> Task :iconloaderlib:mergeReleaseConsumerProguardFiles UP-TO-DATE
+> Task :iconloaderlib:prepareLintJarForPublish UP-TO-DATE
+> Task :kspLawnWithQuickstepPlayReleaseKotlin UP-TO-DATE
+> Task :flags:generateMetadataFileForReleasePublication
+> Task :iconloaderlib:prepareReleaseArtProfile UP-TO-DATE
+> Task :iconloaderlib:processReleaseManifest UP-TO-DATE
+> Task :lawnWithQuickstepPlayReleaseSourcesJar UP-TO-DATE
+> Task :iconloaderlib:mergeReleaseJavaResource UP-TO-DATE
+> Task :hidden-api:sourceReleaseJar UP-TO-DATE
+> Task :iconloaderlib:syncReleaseLibJars UP-TO-DATE
+> Task :common:publishReleasePublicationToLocalRepoRepository
+> Task :common:publish
+> Task :iconloaderlib:bundleReleaseAar UP-TO-DATE
+> Task :iconloaderlib:sourceReleaseJar UP-TO-DATE
+> Task :iconloaderlib:generatePomFileForReleasePublication
+> Task :log:checkReleaseAarMetadata UP-TO-DATE
+> Task :iconloaderlib:generateMetadataFileForReleasePublication
+> Task :log:extractDeepLinksForAarRelease UP-TO-DATE
+> Task :log:mergeReleaseJniLibFolders UP-TO-DATE
+> Task :log:mergeReleaseNativeLibs NO-SOURCE
+> Task :log:stripReleaseDebugSymbols NO-SOURCE
+> Task :log:copyReleaseJniLibsProjectAndLocalJars UP-TO-DATE
+> Task :log:generateReleaseAssets UP-TO-DATE
+> Task :log:mergeReleaseAssets UP-TO-DATE
+> Task :log:mergeReleaseGeneratedProguardFiles UP-TO-DATE
+> Task :log:mergeReleaseConsumerProguardFiles UP-TO-DATE
+> Task :log:prepareLintJarForPublish UP-TO-DATE
+> Task :log:prepareReleaseArtProfile UP-TO-DATE
+> Task :log:extractReleaseAnnotations UP-TO-DATE
+> Task :compatLib:publishReleasePublicationToLocalRepoRepository
+> Task :compatLib:publish
+> Task :log:processReleaseManifest UP-TO-DATE
+> Task :log:mergeReleaseJavaResource UP-TO-DATE
+> Task :hidden-api:generateMetadataFileForReleasePublication
+> Task :log:generatePomFileForReleasePublication
+> Task :log:syncReleaseLibJars UP-TO-DATE
+> Task :plugin:checkReleaseAarMetadata UP-TO-DATE
+> Task :log:bundleReleaseAar UP-TO-DATE
+> Task :plugin:extractDeepLinksForAarRelease UP-TO-DATE
+> Task :plugin:mergeReleaseJniLibFolders UP-TO-DATE
+> Task :plugin:mergeReleaseNativeLibs NO-SOURCE
+> Task :plugin:stripReleaseDebugSymbols NO-SOURCE
+> Task :plugin:copyReleaseJniLibsProjectAndLocalJars UP-TO-DATE
+> Task :plugin:generateReleaseAssets UP-TO-DATE
+> Task :plugin:mergeReleaseAssets UP-TO-DATE
+> Task :log:sourceReleaseJar UP-TO-DATE
+> Task :plugin:extractReleaseAnnotations UP-TO-DATE
+> Task :plugin:prepareLintJarForPublish UP-TO-DATE
+> Task :plugin:mergeReleaseGeneratedProguardFiles UP-TO-DATE
+> Task :plugin:prepareReleaseArtProfile UP-TO-DATE
+> Task :plugin:mergeReleaseConsumerProguardFiles UP-TO-DATE
+> Task :plugin:processReleaseManifest UP-TO-DATE
+> Task :log:generateMetadataFileForReleasePublication
+> Task :plugin:writeReleaseAarMetadata UP-TO-DATE
+> Task :plugin:mergeReleaseJavaResource UP-TO-DATE
+> Task :plugin:syncReleaseLibJars UP-TO-DATE
+> Task :plugin:sourceReleaseJar UP-TO-DATE
+> Task :plugin:bundleReleaseAar UP-TO-DATE
+> Task :plugin:generatePomFileForReleasePublication
+> Task :plugin:generateMetadataFileForReleasePublication
+> Task :plugincore:checkReleaseAarMetadata UP-TO-DATE
+> Task :plugincore:mergeReleaseJniLibFolders UP-TO-DATE
+> Task :plugincore:mergeReleaseNativeLibs NO-SOURCE
+> Task :plugincore:stripReleaseDebugSymbols NO-SOURCE
+> Task :hidden-api:publishReleasePublicationToLocalRepoRepository
+> Task :hidden-api:publish
+> Task :plugincore:copyReleaseJniLibsProjectAndLocalJars UP-TO-DATE
+> Task :plugincore:extractDeepLinksForAarRelease UP-TO-DATE
+> Task :plugincore:generateReleaseAssets UP-TO-DATE
+> Task :plugincore:mergeReleaseAssets UP-TO-DATE
+> Task :plugincore:mergeReleaseGeneratedProguardFiles UP-TO-DATE
+> Task :plugincore:mergeReleaseConsumerProguardFiles UP-TO-DATE
+> Task :plugincore:prepareLintJarForPublish UP-TO-DATE
+> Task :plugincore:extractReleaseAnnotations UP-TO-DATE
+> Task :plugincore:prepareReleaseArtProfile UP-TO-DATE
+> Task :plugincore:processReleaseManifest UP-TO-DATE
+> Task :plugincore:mergeReleaseJavaResource UP-TO-DATE
+> Task :plugincore:syncReleaseLibJars UP-TO-DATE
+> Task :plugincore:sourceReleaseJar UP-TO-DATE
+> Task :plugincore:bundleReleaseAar UP-TO-DATE
+> Task :plugincore:generatePomFileForReleasePublication
+> Task :plugincore:generateMetadataFileForReleasePublication
+> Task :searchuilib:checkReleaseAarMetadata UP-TO-DATE
+> Task :searchuilib:mergeReleaseJniLibFolders UP-TO-DATE
+> Task :searchuilib:mergeReleaseNativeLibs NO-SOURCE
+> Task :searchuilib:stripReleaseDebugSymbols NO-SOURCE
+> Task :iconloaderlib:publishReleasePublicationToLocalRepoRepository
+> Task :iconloaderlib:publish
+> Task :searchuilib:copyReleaseJniLibsProjectAndLocalJars UP-TO-DATE
+> Task :searchuilib:extractDeepLinksForAarRelease UP-TO-DATE
+> Task :searchuilib:generateReleaseAssets UP-TO-DATE
+> Task :searchuilib:extractReleaseAnnotations UP-TO-DATE
+> Task :searchuilib:mergeReleaseAssets UP-TO-DATE
+> Task :searchuilib:mergeReleaseGeneratedProguardFiles UP-TO-DATE
+> Task :searchuilib:prepareLintJarForPublish UP-TO-DATE
+> Task :searchuilib:mergeReleaseConsumerProguardFiles UP-TO-DATE
+> Task :searchuilib:prepareReleaseArtProfile UP-TO-DATE
+> Task :plugin:publishReleasePublicationToLocalRepoRepository
+> Task :plugin:publish
+> Task :searchuilib:processReleaseManifest UP-TO-DATE
+> Task :flags:publishReleasePublicationToLocalRepoRepository
+> Task :flags:publish
+> Task :searchuilib:generatePomFileForReleasePublication
+> Task :searchuilib:mergeReleaseJavaResource UP-TO-DATE
+> Task :shared:mergeReleaseJniLibFolders UP-TO-DATE
+> Task :searchuilib:sourceReleaseJar UP-TO-DATE
+> Task :shared:mergeReleaseNativeLibs NO-SOURCE
+> Task :shared:extractDeepLinksForAarRelease UP-TO-DATE
+> Task :searchuilib:syncReleaseLibJars UP-TO-DATE
+> Task :shared:checkReleaseAarMetadata UP-TO-DATE
+> Task :shared:stripReleaseDebugSymbols NO-SOURCE
+> Task :shared:generateReleaseAssets UP-TO-DATE
+> Task :searchuilib:bundleReleaseAar UP-TO-DATE
+> Task :shared:copyReleaseJniLibsProjectAndLocalJars UP-TO-DATE
+> Task :shared:mergeReleaseAssets UP-TO-DATE
+> Task :shared:prepareLintJarForPublish UP-TO-DATE
+> Task :log:publishReleasePublicationToLocalRepoRepository
+> Task :log:publish
+> Task :shared:prepareReleaseArtProfile UP-TO-DATE
+> Task :shared:mergeReleaseGeneratedProguardFiles UP-TO-DATE
+> Task :shared:mergeReleaseConsumerProguardFiles UP-TO-DATE
+> Task :searchuilib:generateMetadataFileForReleasePublication
+> Task :shared:processReleaseManifest UP-TO-DATE
+> Task :shared:mergeReleaseJavaResource UP-TO-DATE
+> Task :shared:generatePomFileForReleasePublication
+> Task :shared:extractReleaseAnnotations UP-TO-DATE
+> Task :unfold:mergeReleaseJniLibFolders UP-TO-DATE
+> Task :unfold:checkReleaseAarMetadata UP-TO-DATE
+> Task :plugincore:publishReleasePublicationToLocalRepoRepository
+> Task :unfold:mergeReleaseNativeLibs NO-SOURCE
+> Task :shared:syncReleaseLibJars UP-TO-DATE
+> Task :unfold:stripReleaseDebugSymbols NO-SOURCE
+> Task :plugincore:publish
+> Task :unfold:extractDeepLinksForAarRelease UP-TO-DATE
+> Task :unfold:generateReleaseAssets UP-TO-DATE
+> Task :shared:bundleReleaseAar UP-TO-DATE
+> Task :unfold:copyReleaseJniLibsProjectAndLocalJars UP-TO-DATE
+> Task :unfold:mergeReleaseAssets UP-TO-DATE
+> Task :unfold:prepareLintJarForPublish UP-TO-DATE
+> Task :unfold:prepareReleaseArtProfile UP-TO-DATE
+> Task :unfold:mergeReleaseGeneratedProguardFiles UP-TO-DATE
+> Task :unfold:mergeReleaseConsumerProguardFiles UP-TO-DATE
+> Task :unfold:processReleaseManifest UP-TO-DATE
+> Task :unfold:mergeReleaseJavaResource UP-TO-DATE
+> Task :shared:sourceReleaseJar UP-TO-DATE
+> Task :unfold:generatePomFileForReleasePublication
+> Task :viewcapture:checkReleaseAarMetadata UP-TO-DATE
+> Task :viewcapture:mergeReleaseJniLibFolders UP-TO-DATE
+> Task :shared:generateMetadataFileForReleasePublication
+> Task :viewcapture:extractDeepLinksForAarRelease UP-TO-DATE
+> Task :viewcapture:mergeReleaseNativeLibs NO-SOURCE
+> Task :viewcapture:stripReleaseDebugSymbols NO-SOURCE
+> Task :viewcapture:copyReleaseJniLibsProjectAndLocalJars UP-TO-DATE
+> Task :unfold:extractReleaseAnnotations UP-TO-DATE
+> Task :viewcapture:generateReleaseAssets UP-TO-DATE
+> Task :unfold:sourceReleaseJar UP-TO-DATE
+> Task :viewcapture:mergeReleaseAssets UP-TO-DATE
+> Task :unfold:syncReleaseLibJars UP-TO-DATE
+> Task :viewcapture:prepareLintJarForPublish UP-TO-DATE
+> Task :viewcapture:mergeReleaseGeneratedProguardFiles UP-TO-DATE
+> Task :viewcapture:prepareReleaseArtProfile UP-TO-DATE
+> Task :viewcapture:mergeReleaseConsumerProguardFiles UP-TO-DATE
+> Task :unfold:bundleReleaseAar UP-TO-DATE
+> Task :viewcapture:processReleaseManifest UP-TO-DATE
+> Task :viewcapture:mergeReleaseJavaResource UP-TO-DATE
+> Task :viewcapture:extractReleaseAnnotations UP-TO-DATE
+> Task :unfold:generateMetadataFileForReleasePublication
+> Task :viewcapture:generatePomFileForReleasePublication
+> Task :viewcapture:syncReleaseLibJars UP-TO-DATE
+> Task :wmshell:checkReleaseAarMetadata UP-TO-DATE
+> Task :viewcapture:sourceReleaseJar UP-TO-DATE
+> Task :viewcapture:bundleReleaseAar UP-TO-DATE
+> Task :wmshell:extractDeepLinksForAarRelease UP-TO-DATE
+> Task :wmshell:mergeReleaseJniLibFolders UP-TO-DATE
+> Task :wmshell:mergeReleaseNativeLibs NO-SOURCE
+> Task :searchuilib:publishReleasePublicationToLocalRepoRepository
+> Task :wmshell:stripReleaseDebugSymbols NO-SOURCE
+> Task :searchuilib:publish
+> Task :wmshell:generateReleaseAssets UP-TO-DATE
+> Task :viewcapture:generateMetadataFileForReleasePublication
+> Task :wmshell:copyReleaseJniLibsProjectAndLocalJars UP-TO-DATE
+> Task :wmshell:mergeReleaseAssets UP-TO-DATE
+> Task :wmshell:mergeReleaseGeneratedProguardFiles UP-TO-DATE
+> Task :wmshell:prepareLintJarForPublish UP-TO-DATE
+> Task :wmshell:extractReleaseAnnotations UP-TO-DATE
+> Task :wmshell:mergeReleaseConsumerProguardFiles UP-TO-DATE
+> Task :wmshell:processReleaseManifest UP-TO-DATE
+> Task :wmshell:mergeReleaseJavaResource UP-TO-DATE
+> Task :wmshell:sourceReleaseJar UP-TO-DATE
+> Task :wmshell:generatePomFileForReleasePublication
+> Task :compatLib:compatLibVQ:checkReleaseAarMetadata UP-TO-DATE
+> Task :wmshell:syncReleaseLibJars UP-TO-DATE
+> Task :compatLib:compatLibVQ:mergeReleaseJniLibFolders UP-TO-DATE
+> Task :compatLib:compatLibVQ:extractDeepLinksForAarRelease UP-TO-DATE
+> Task :compatLib:compatLibVQ:mergeReleaseNativeLibs NO-SOURCE
+> Task :viewcapture:publishReleasePublicationToLocalRepoRepository
+> Task :compatLib:compatLibVQ:stripReleaseDebugSymbols NO-SOURCE
+> Task :viewcapture:publish
+> Task :compatLib:compatLibVQ:generateReleaseAssets UP-TO-DATE
+> Task :compatLib:compatLibVQ:copyReleaseJniLibsProjectAndLocalJars UP-TO-DATE
+> Task :compatLib:compatLibVQ:mergeReleaseAssets UP-TO-DATE
+> Task :compatLib:compatLibVQ:mergeReleaseGeneratedProguardFiles UP-TO-DATE
+> Task :compatLib:compatLibVQ:prepareLintJarForPublish UP-TO-DATE
+> Task :compatLib:compatLibVQ:mergeReleaseConsumerProguardFiles UP-TO-DATE
+> Task :compatLib:compatLibVQ:prepareReleaseArtProfile UP-TO-DATE
+> Task :compatLib:compatLibVQ:extractReleaseAnnotations UP-TO-DATE
+> Task :compatLib:compatLibVQ:mergeReleaseJavaResource UP-TO-DATE
+> Task :compatLib:compatLibVQ:syncReleaseLibJars UP-TO-DATE
+> Task :compatLib:compatLibVQ:generatePomFileForReleasePublication
+> Task :shared:publishReleasePublicationToLocalRepoRepository
+> Task :compatLib:compatLibVR:checkReleaseAarMetadata UP-TO-DATE
+> Task :compatLib:compatLibVR:mergeReleaseJniLibFolders UP-TO-DATE
+> Task :shared:publish
+> Task :compatLib:compatLibVR:mergeReleaseNativeLibs NO-SOURCE
+> Task :compatLib:compatLibVR:extractDeepLinksForAarRelease UP-TO-DATE
+> Task :compatLib:compatLibVR:stripReleaseDebugSymbols NO-SOURCE
+> Task :compatLib:compatLibVR:extractReleaseAnnotations UP-TO-DATE
+> Task :compatLib:compatLibVR:generateReleaseAssets UP-TO-DATE
+> Task :compatLib:compatLibVR:mergeReleaseAssets UP-TO-DATE
+> Task :compatLib:compatLibVQ:sourceReleaseJar UP-TO-DATE
+> Task :compatLib:compatLibVR:prepareLintJarForPublish UP-TO-DATE
+> Task :compatLib:compatLibVR:mergeReleaseGeneratedProguardFiles UP-TO-DATE
+> Task :compatLib:compatLibVR:mergeReleaseConsumerProguardFiles UP-TO-DATE
+> Task :compatLib:compatLibVR:prepareReleaseArtProfile UP-TO-DATE
+> Task :compatLib:compatLibVR:mergeReleaseJavaResource UP-TO-DATE
+> Task :compatLib:compatLibVR:syncReleaseLibJars UP-TO-DATE
+> Task :compatLib:compatLibVR:sourceReleaseJar UP-TO-DATE
+> Task :compatLib:compatLibVR:generatePomFileForReleasePublication
+> Task :unfold:publishReleasePublicationToLocalRepoRepository
+> Task :unfold:publish
+> Task :compatLib:compatLibVS:checkReleaseAarMetadata UP-TO-DATE
+> Task :compatLib:compatLibVS:extractDeepLinksForAarRelease UP-TO-DATE
+> Task :compatLib:compatLibVS:mergeReleaseJniLibFolders UP-TO-DATE
+> Task :compatLib:compatLibVS:mergeReleaseNativeLibs NO-SOURCE
+> Task :compatLib:compatLibVS:extractReleaseAnnotations UP-TO-DATE
+> Task :compatLib:compatLibVS:generateReleaseAssets UP-TO-DATE
+> Task :compatLib:compatLibVS:stripReleaseDebugSymbols NO-SOURCE
+> Task :compatLib:compatLibVS:mergeReleaseAssets UP-TO-DATE
+> Task :compatLib:compatLibVS:copyReleaseJniLibsProjectAndLocalJars UP-TO-DATE
+> Task :compatLib:compatLibVS:prepareLintJarForPublish UP-TO-DATE
+> Task :compatLib:compatLibVR:copyReleaseJniLibsProjectAndLocalJars UP-TO-DATE
+> Task :compatLib:compatLibVQ:processReleaseManifest UP-TO-DATE
+> Task :compatLib:compatLibVS:mergeReleaseGeneratedProguardFiles UP-TO-DATE
+> Task :compatLib:compatLibVS:mergeReleaseConsumerProguardFiles UP-TO-DATE
+> Task :compatLib:compatLibVQ:bundleReleaseAar UP-TO-DATE
+> Task :compatLib:compatLibVS:processReleaseManifest UP-TO-DATE
+> Task :compatLib:compatLibVS:mergeReleaseJavaResource UP-TO-DATE
+> Task :compatLib:compatLibVQ:generateMetadataFileForReleasePublication
+> Task :compatLib:compatLibVS:syncReleaseLibJars UP-TO-DATE
+> Task :compatLib:compatLibVS:sourceReleaseJar UP-TO-DATE
+> Task :compatLib:compatLibVS:generatePomFileForReleasePublication
+> Task :wmshell:prepareReleaseArtProfile UP-TO-DATE
+> Task :compatLib:compatLibVT:checkReleaseAarMetadata UP-TO-DATE
+> Task :wmshell:bundleReleaseAar UP-TO-DATE
+> Task :compatLib:compatLibVT:extractDeepLinksForAarRelease UP-TO-DATE
+> Task :compatLib:compatLibVT:mergeReleaseJniLibFolders UP-TO-DATE
+> Task :compatLib:compatLibVT:mergeReleaseNativeLibs NO-SOURCE
+> Task :compatLib:compatLibVS:prepareReleaseArtProfile UP-TO-DATE
+> Task :compatLib:compatLibVT:stripReleaseDebugSymbols NO-SOURCE
+> Task :compatLib:compatLibVS:bundleReleaseAar UP-TO-DATE
+> Task :wmshell:generateMetadataFileForReleasePublication
+> Task :compatLib:compatLibVT:extractReleaseAnnotations UP-TO-DATE
+> Task :compatLib:compatLibVT:generateReleaseAssets UP-TO-DATE
+> Task :compatLib:compatLibVT:copyReleaseJniLibsProjectAndLocalJars UP-TO-DATE
+> Task :compatLib:compatLibVR:processReleaseManifest UP-TO-DATE
+> Task :compatLib:compatLibVS:generateMetadataFileForReleasePublication
+> Task :compatLib:compatLibVT:mergeReleaseGeneratedProguardFiles UP-TO-DATE
+> Task :compatLib:compatLibVT:mergeReleaseAssets UP-TO-DATE
+> Task :compatLib:compatLibVT:mergeReleaseConsumerProguardFiles UP-TO-DATE
+> Task :compatLib:compatLibVT:prepareLintJarForPublish UP-TO-DATE
+> Task :compatLib:compatLibVT:prepareReleaseArtProfile UP-TO-DATE
+> Task :compatLib:compatLibVR:bundleReleaseAar UP-TO-DATE
+> Task :compatLib:compatLibVT:mergeReleaseJavaResource UP-TO-DATE
+> Task :compatLib:compatLibVT:processReleaseManifest UP-TO-DATE
+> Task :compatLib:compatLibVT:syncReleaseLibJars UP-TO-DATE
+> Task :compatLib:compatLibVR:generateMetadataFileForReleasePublication
+> Task :compileLawnWithQuickstepPlayReleaseKotlin UP-TO-DATE
+> Task :compatLib:compatLibVT:bundleReleaseAar UP-TO-DATE
+> Task :compatLib:compatLibVT:sourceReleaseJar UP-TO-DATE
+> Task :compileLawnWithQuickstepPlayDebugKotlin UP-TO-DATE
+> Task :extractLawnWithQuickstepPlayReleaseAnnotations UP-TO-DATE
+> Task :compatLib:compatLibVQ:publishReleasePublicationToLocalRepoRepository
+> Task :extractLawnWithQuickstepPlayDebugAnnotations UP-TO-DATE
+> Task :compatLib:compatLibVQ:publish
+> Task :compatLib:compatLibVT:generateMetadataFileForReleasePublication
+> Task :compatLib:compatLibVT:generatePomFileForReleasePublication
+> Task :compatLib:compatLibVS:publishReleasePublicationToLocalRepoRepository
+> Task :compatLib:compatLibVS:publish
+> Task :compatLib:compatLibVR:publishReleasePublicationToLocalRepoRepository
+> Task :compatLib:compatLibVR:publish
+> Task :compatLib:compatLibVU:checkReleaseAarMetadata UP-TO-DATE
+> Task :compatLib:compatLibVU:extractDeepLinksForAarRelease UP-TO-DATE
+> Task :processLawnWithQuickstepPlayReleaseJavaRes UP-TO-DATE
+> Task :compatLib:compatLibVU:mergeReleaseJniLibFolders UP-TO-DATE
+> Task :mergeLawnWithQuickstepPlayReleaseJavaResource UP-TO-DATE
+> Task :compatLib:compatLibVU:mergeReleaseNativeLibs NO-SOURCE
+> Task :compatLib:compatLibVU:generateReleaseAssets UP-TO-DATE
+> Task :compatLib:compatLibVU:stripReleaseDebugSymbols NO-SOURCE
+> Task :compatLib:compatLibVU:mergeReleaseAssets UP-TO-DATE
+> Task :compatLib:compatLibVU:copyReleaseJniLibsProjectAndLocalJars UP-TO-DATE
+> Task :compatLib:compatLibVU:mergeReleaseGeneratedProguardFiles UP-TO-DATE
+> Task :compatLib:compatLibVU:extractReleaseAnnotations UP-TO-DATE
+> Task :compatLib:compatLibVU:prepareLintJarForPublish UP-TO-DATE
+> Task :compatLib:compatLibVU:prepareReleaseArtProfile UP-TO-DATE
+> Task :compatLib:compatLibVU:mergeReleaseConsumerProguardFiles UP-TO-DATE
+> Task :compatLib:compatLibVU:processReleaseManifest UP-TO-DATE
+> Task :compatLib:compatLibVU:mergeReleaseJavaResource UP-TO-DATE
+> Task :compatLib:compatLibVU:generatePomFileForReleasePublication
+> Task :compatLib:compatLibVU:syncReleaseLibJars UP-TO-DATE
+> Task :compatLib:compatLibVV:checkReleaseAarMetadata UP-TO-DATE
+> Task :compatLib:compatLibVU:bundleReleaseAar UP-TO-DATE
+> Task :compatLib:compatLibVV:extractDeepLinksForAarRelease UP-TO-DATE
+> Task :compatLib:compatLibVV:mergeReleaseJniLibFolders UP-TO-DATE
+> Task :compatLib:compatLibVV:mergeReleaseNativeLibs NO-SOURCE
+> Task :compatLib:compatLibVV:stripReleaseDebugSymbols NO-SOURCE
+> Task :compatLib:compatLibVV:copyReleaseJniLibsProjectAndLocalJars UP-TO-DATE
+> Task :compatLib:compatLibVV:extractReleaseAnnotations UP-TO-DATE
+> Task :compatLib:compatLibVV:generateReleaseAssets UP-TO-DATE
+> Task :compatLib:compatLibVV:mergeReleaseGeneratedProguardFiles UP-TO-DATE
+> Task :compatLib:compatLibVV:mergeReleaseConsumerProguardFiles UP-TO-DATE
+> Task :processLawnWithQuickstepPlayDebugJavaRes UP-TO-DATE
+> Task :compatLib:compatLibVV:mergeReleaseAssets UP-TO-DATE
+> Task :compatLib:compatLibVV:prepareLintJarForPublish UP-TO-DATE
+> Task :compatLib:compatLibVU:sourceReleaseJar UP-TO-DATE
+> Task :mergeLawnWithQuickstepPlayDebugJavaResource UP-TO-DATE
+> Task :compatLib:compatLibVV:processReleaseManifest UP-TO-DATE
+> Task :compatLib:compatLibVV:prepareReleaseArtProfile UP-TO-DATE
+> Task :compatLib:compatLibVV:mergeReleaseJavaResource UP-TO-DATE
+> Task :compatLib:compatLibVU:generateMetadataFileForReleasePublication
+> Task :compatLib:compatLibVV:generatePomFileForReleasePublication
+> Task :compatLib:compatLibVV:sourceReleaseJar UP-TO-DATE
+> Task :compatLib:compatLibVV:syncReleaseLibJars UP-TO-DATE
+> Task :wmshell:publishReleasePublicationToLocalRepoRepository
+> Task :wmshell:publish
+> Task :compatLib:compatLibVV:bundleReleaseAar UP-TO-DATE
+> Task :compatLib:compatLibVV:generateMetadataFileForReleasePublication
+> Task :compatLib:compatLibVT:publishReleasePublicationToLocalRepoRepository
+> Task :compatLib:compatLibVT:publish
+> Task :compatLib:compatLibVU:publishReleasePublicationToLocalRepoRepository
+> Task :compatLib:compatLibVU:publish
+> Task :compatLib:compatLibVV:publishReleasePublicationToLocalRepoRepository
+> Task :compatLib:compatLibVV:publish
+
+> Task :compileLawnWithQuickstepPlayReleaseJavaWithJavac
+/Users/davidzhao/Desktop/lawnchair_gitcode/src/com/android/launcher3/LauncherAppState.java:82: 错误: 无法将类 LauncherSDK中的方法 onLauncherAppStateCreated应用到给定类型;
+            LawnchairAppKt.getLawnchairApp(context).onLauncherAppStateCreated();
+                                                   ^
+  需要: Application
+  找到:    没有参数
+  原因: 实际参数列表和形式参数列表长度不同
+/Users/davidzhao/Desktop/lawnchair_gitcode/quickstep/src/com/android/quickstep/TaskViewUtils.java:478: 警告: [dep-ann] 未使用 @Deprecated 对已过时的项目进行注释
+    public static void composeRecentsSplitLaunchAnimatorLegacy(
+                       ^
+注: 某些输入文件使用或覆盖了已过时的 API。
+注: 有关详细信息, 请使用 -Xlint:deprecation 重新编译。
+注: 某些输入文件使用了未经检查或不安全的操作。
+注: 有关详细信息, 请使用 -Xlint:unchecked 重新编译。
+1 个错误
+1 个警告
+
+> Task :compileLawnWithQuickstepPlayDebugJavaWithJavac FAILED
+/Users/davidzhao/Desktop/lawnchair_gitcode/src/com/android/launcher3/LauncherAppState.java:82: 错误: 无法将类 LauncherSDK中的方法 onLauncherAppStateCreated应用到给定类型;
+            LawnchairAppKt.getLawnchairApp(context).onLauncherAppStateCreated();
+                                                   ^
+  需要: Application
+  找到:    没有参数
+  原因: 实际参数列表和形式参数列表长度不同
+/Users/davidzhao/Desktop/lawnchair_gitcode/quickstep/src/com/android/quickstep/TaskViewUtils.java:478: 警告: [dep-ann] 未使用 @Deprecated 对已过时的项目进行注释
+    public static void composeRecentsSplitLaunchAnimatorLegacy(
+                       ^
+注: 某些输入文件使用或覆盖了已过时的 API。
+注: 有关详细信息, 请使用 -Xlint:deprecation 重新编译。
+注: 某些输入文件使用了未经检查或不安全的操作。
+注: 有关详细信息, 请使用 -Xlint:unchecked 重新编译。
+1 个错误
+1 个警告
+
+> Task :compileLawnWithQuickstepPlayReleaseJavaWithJavac FAILED
+
+[Incubating] Problems report is available at: file:///Users/davidzhao/Desktop/lawnchair_gitcode/build/reports/problems/problems-report.html
+
+FAILURE: Build completed with 2 failures.
+
+1: Task failed with an exception.
+-----------
+* What went wrong:
+Execution failed for task ':compileLawnWithQuickstepPlayDebugJavaWithJavac'.
+> Compilation failed; see the compiler output below.
+  /Users/davidzhao/Desktop/lawnchair_gitcode/src/com/android/launcher3/LauncherAppState.java:82: 错误: 无法将类 LauncherSDK中的方法 onLauncherAppStateCreated应用到给定类型;
+              LawnchairAppKt.getLawnchairApp(context).onLauncherAppStateCreated();
+                                                     ^
+    需要: Application
+    找到:    没有参数
+    原因: 实际参数列表和形式参数列表长度不同
+  注: 有关详细信息, 请使用 -Xlint:deprecation 重新编译。
+  /Users/davidzhao/Desktop/lawnchair_gitcode/quickstep/src/com/android/quickstep/TaskViewUtils.java:478: 警告: [dep-ann] 未使用 @Deprecated 对已过时的项目进行注释
+      public static void composeRecentsSplitLaunchAnimatorLegacy(
+                         ^
+  注: 有关详细信息, 请使用 -Xlint:unchecked 重新编译。
+  注: 某些输入文件使用或覆盖了已过时的 API。
+  注: 某些输入文件使用了未经检查或不安全的操作。
+  1 个错误
+  1 个警告
+
+* Try:
+> Check your code and dependencies to fix the compilation error(s)
+==============================================================================
+
+2: Task failed with an exception.
+-----------
+* What went wrong:
+Execution failed for task ':compileLawnWithQuickstepPlayReleaseJavaWithJavac'.
+> Compilation failed; see the compiler output below.
+  /Users/davidzhao/Desktop/lawnchair_gitcode/src/com/android/launcher3/LauncherAppState.java:82: 错误: 无法将类 LauncherSDK中的方法 onLauncherAppStateCreated应用到给定类型;
+              LawnchairAppKt.getLawnchairApp(context).onLauncherAppStateCreated();
+                                                     ^
+    需要: Application
+    找到:    没有参数
+    原因: 实际参数列表和形式参数列表长度不同
+  注: 有关详细信息, 请使用 -Xlint:deprecation 重新编译。
+  /Users/davidzhao/Desktop/lawnchair_gitcode/quickstep/src/com/android/quickstep/TaskViewUtils.java:478: 警告: [dep-ann] 未使用 @Deprecated 对已过时的项目进行注释
+      public static void composeRecentsSplitLaunchAnimatorLegacy(
+                         ^
+  注: 有关详细信息, 请使用 -Xlint:unchecked 重新编译。
+  注: 某些输入文件使用或覆盖了已过时的 API。
+  注: 某些输入文件使用了未经检查或不安全的操作。
+  1 个错误
+  1 个警告
+
+* Try:
+> Check your code and dependencies to fix the compilation error(s)
+==============================================================================
+
+BUILD FAILED in 15s
+992 actionable tasks: 70 executed, 922 up-to-date
+Configuration cache entry reused.

@@ -635,12 +635,12 @@ class PreferenceManager2 private constructor(private val context: Context) :
 
     val smartspaceBatteryStatus = preference(
         key = booleanPreferencesKey("enable_smartspace_battery_status"),
-        defaultValue = true,
+        defaultValue = false,
     )
 
     val smartspaceNowPlaying = preference(
         key = booleanPreferencesKey("enable_smartspace_now_playing"),
-        defaultValue = true,
+        defaultValue = false,
     )
 
     val smartspaceShowDate = preference(
