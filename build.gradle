@@ -286,6 +286,7 @@ android {
         lawn {
             java.srcDirs = ['src_flags', 'src_shortcuts_overrides', 'lawnchair/src', 'tests/shared']
             aidl.srcDirs = ['lawnchair/aidl']
+            jniLibs.srcDirs = ['lawnchair/jniLibs']
             res.srcDirs = ['lawnchair/res', 'platform_frameworks_libs_systemui/animationlib/res']
             manifest.srcFile "lawnchair/AndroidManifest.xml"
             assets {
@@ -427,7 +428,7 @@ dependencies {
 
     implementation libs.hoko.blur
 
-    implementation libs.androidx.window    
+    implementation libs.androidx.window
 }
 
 ksp {
@@ -474,32 +475,32 @@ afterEvaluate {
             // Release 版本
             lawnWithQuickstepPlayRelease(MavenPublication) {
                 from components.findByName('lawnWithQuickstepPlayRelease')
-                
+
                 groupId = 'com.lawnchair'
                 artifactId = 'launcher-sdk'
-                version = '1.0.13'
-                
+                version = '1.0.14'
+
                 pom {
                     name = 'Lawnchair Launcher SDK'
                     description = 'Lawnchair Launcher SDK for third-party integration'
                 }
             }
-            
+
             // Debug 版本
             lawnWithQuickstepPlayDebug(MavenPublication) {
                 from components.findByName('lawnWithQuickstepPlayDebug')
-                
+
                 groupId = 'com.lawnchair'
                 artifactId = 'launcher-sdk-debug'
-                version = '1.0.13'
-                
+                version = '1.0.14'
+
                 pom {
                     name = 'Lawnchair Launcher SDK (Debug)'
                     description = 'Lawnchair Launcher SDK for third-party integration (Debug version)'
                 }
             }
         }
-        
+
         repositories {
             maven {
                 name = 'localRepo'
@@ -533,14 +534,14 @@ subprojects {
                     if (components.findByName('release')) {
                         release(MavenPublication) {
                             from components.release
-                            
+
                             groupId = 'com.lawnchair'
                             artifactId = project.name
-                            version = '1.0.13'
+                            version = '1.0.14'
                         }
                     }
                 }
-                
+
                 repositories {
                     maven {
                         name = 'localRepo'

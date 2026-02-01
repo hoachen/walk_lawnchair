@@ -4,7 +4,7 @@
 
 本文档说明如何通过 Maven 方式将 Lawnchair SDK 集成到您的 Android 项目中。
 
-**最新版本**: `1.0.13`
+**最新版本**: `1.0.14`
 
 ## 1. 引入依赖
 
@@ -23,14 +23,14 @@ dependencyResolutionManagement {
 }
 ```
 
-### 1.2 添加项目依赖
+### 1.2 添加项目依赖[launcher-sdk-1.0.13.aar](build/repo/com/lawnchair/launcher-sdk/1.0.13/launcher-sdk-1.0.13.aar)
 
 在模块级 `build.gradle` (例如 `app/build.gradle`) 中添加 SDK 依赖：
 
 ```gradle
 dependencies {
     // Release 版本 (推荐)
-    implementation 'com.lawnchair:launcher-sdk:1.0.13'
+    implementation 'com.lawnchair:launcher-sdk:1.0.14'
 
   
 }
