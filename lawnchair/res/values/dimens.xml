@@ -73,7 +73,8 @@
     <dimen name="enhanced_smartspace_combination_card_padding">8dp</dimen>
     <dimen name="enhanced_smartspace_combination_sub_card_corner_radius">20dp</dimen>
     <dimen name="enhanced_smartspace_dismiss_margin">16dp</dimen>
-    <dimen name="enhanced_smartspace_height">104dp</dimen>
+    <!-- Space reserved by the original workspace Smartspace card. -->
+    <dimen name="enhanced_smartspace_height">152dp</dimen>
     <dimen name="enhanced_smartspace_icon_margin">6dp</dimen>
     <dimen name="enhanced_smartspace_icon_size">20dp</dimen>
     <dimen name="enhanced_smartspace_margin_start_launcher">0dp</dimen>

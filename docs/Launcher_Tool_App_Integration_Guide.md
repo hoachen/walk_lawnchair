@@ -1,6 +1,6 @@
 # Walk Lawnchair：工具 App 接入与页面定制指南
 
-**适用发布物：** `com.lawnchair:launcher-sdk:1.0.19`（Release）与 `com.lawnchair:launcher-sdk-debug:1.0.19`（Debug）
+**适用发布物：** `com.lawnchair:launcher-sdk:1.0.20`（Release）与 `com.lawnchair:launcher-sdk-debug:1.0.20`（Debug）
 **适用工程：** `walk_lawnchair` 当前分支  
 **最后更新：** 2026-08-01
 
@@ -33,7 +33,7 @@ repositories {
 
 dependencies {
     // 仅用于源码阅读或同进程定制；不作为独立工具 App 的运行时接入方式
-    implementation("com.lawnchair:launcher-sdk:1.0.19")
+    implementation("com.lawnchair:launcher-sdk:1.0.20")
 }
 ```
 
@@ -140,7 +140,11 @@ LauncherSDK.overlayProvider = object : LauncherSDK.OverlayProvider {
 }
 ```
 
-`CustomFeedOverlay` 会在 `createOverlayView()` 调用该 Provider，并把 View 放入 Launcher 的 `DragLayer`。该方式可直接使用普通 View/Compose 容器，开发成本最低。
+`CustomFeedOverlay` 会在 `createOverlayView()` 调用该 Provider，并将其包进 Launcher 顶层的手势宿主。该方式可直接使用普通 View/Compose 容器，开发成本最低。
+
+SDK 手势宿主会统一处理“从负一屏向右滑回主页”：它不会让 `ScrollView` / `RecyclerView` 的
+`requestDisallowInterceptTouchEvent()` 阻断横向手势，且会通过 `onOverlayScrollChanged()` 同步
+Workspace 位移。接入 App **不要**自行隐藏页面或实现回主页动画；Provider 只处理纵向滚动和自身点击。
 
 **重要：** 这段代码必须在 Lawnchair 进程、且在创建 `CustomFeedOverlay` 前执行。独立工具 App 无法借由 Maven AAR 或反射设置它。
 
@@ -154,6 +158,17 @@ LauncherSDK.overlayProvider = object : LauncherSDK.OverlayProvider {
 | 默认 Overlay 入口 | `lawnchair/src/app/lawnchair/LawnchairLauncher.kt` |
 
 ## 5. Launcher 主页面如何定制
+
+### 原生首页时间卡
+
+`1.0.20` 将时间/日期卡实现为 Lawnchair 原有的 Smartspace 日期卡
+（`res/layout/smartspace_card_date.xml`），而非叠加在 `DragLayer` 上的悬浮 View。因此它只占用
+首页原生布局中的 Smartspace 区域，不覆盖图标，也不会出现在其他 Workspace 页。样式可通过该布局、
+`home_clock_card_background.xml` 和 `enhanced_smartspace_height` 定制。
+
+该样式要求 Smartspace 模式为 **Lawnchair**；Google Smartspace 由 Google App 自身渲染，Launcher
+不能可靠修改其内部文字样式。已有设备若仍显示 “August …” 的 Google 卡片，请在 Lawnchair 设置中将
+Smartspace 模式切换为 Lawnchair 后重启 Launcher。
 
 主页是 `Workspace` 的多个 `CellLayout` 页面；图标、文件夹和 Widget 都由 Launcher 数据库与 Model 绑定。当前工程没有对外“插入自定义页面”的稳定 API。
 

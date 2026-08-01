@@ -28,10 +28,8 @@ import android.os.Handler
 import android.os.Looper
 import android.util.Pair
 import android.view.Display
-import android.view.Gravity
 import android.view.View
 import android.view.ViewTreeObserver
-import android.widget.FrameLayout
 import android.window.SplashScreen
 import androidx.activity.SystemBarStyle
 import androidx.activity.enableEdgeToEdge
@@ -61,7 +59,6 @@ import app.lawnchair.ui.popup.LawnchairShortcut
 import app.lawnchair.util.getThemedIconPacksInstalled
 import app.lawnchair.util.unsafeLazy
 import app.lawnchair.views.LawnchairFloatingSurfaceView
-import app.lawnchair.views.HomeDashboardView
 import com.android.launcher3.AbstractFloatingView
 import com.android.launcher3.BaseActivity
 import com.android.launcher3.BubbleTextView
@@ -165,7 +162,6 @@ class LawnchairLauncher : QuickstepLauncher() {
     }
 
     private lateinit var colorScheme: ColorScheme
-    private lateinit var homeDashboard: HomeDashboardView
     private var hasBackGesture = false
 
     val gestureController by unsafeLazy { GestureController(this) }
@@ -181,24 +177,6 @@ class LawnchairLauncher : QuickstepLauncher() {
         }
         layoutInflater.factory2 = LawnchairLayoutFactory(this)
         super.onCreate(savedInstanceState)
-        homeDashboard = HomeDashboardView(this)
-        dragLayer.addView(homeDashboard, FrameLayout.LayoutParams(
-            FrameLayout.LayoutParams.MATCH_PARENT,
-            (190 * resources.displayMetrics.density).toInt(),
-            Gravity.TOP,
-        ).apply {
-            marginStart = (24 * resources.displayMetrics.density).toInt()
-            marginEnd = (24 * resources.displayMetrics.density).toInt()
-            topMargin = (88 * resources.displayMetrics.density).toInt()
-        })
-        stateManager.addStateListener(object : StateManager.StateListener<LauncherState> {
-            override fun onStateTransitionStart(toState: LauncherState) {
-                homeDashboard.animate().alpha(if (toState == LauncherState.NORMAL) 1f else 0f)
-                    .setDuration(160).start()
-            }
-            override fun onStateTransitionComplete(finalState: LauncherState) {}
-        })
-
         prefs.launcherTheme.subscribeChanges(this, ::updateTheme)
 //        prefs.feedProvider.subscribeChanges(this, defaultOverlay::reconnect)
 //        preferenceManager2.enableFeed.get().distinctUntilChanged().onEach { enable ->
@@ -572,24 +550,6 @@ class LawnchairLauncher : QuickstepLauncher() {
     }
 
     override fun getDefaultOverlay(): LauncherOverlayManager = defaultOverlay
-
-    override fun onPageEndTransition() {
-        super.onPageEndTransition()
-        // The dashboard belongs only to the first home page; ordinary workspace pages retain
-        // their user-arranged icon layout without a global floating clock card.
-        if (::homeDashboard.isInitialized && !defaultOverlay.isOverlayOpen()) {
-            homeDashboard.visibility = if (workspace.currentPage == 0) View.VISIBLE else View.GONE
-        }
-    }
-
-    /** Keeps the Launcher-owned home header behind the -1 page during the shared swipe. */
-    fun setHomeDashboardOverlayProgress(progress: Float) {
-        if (::homeDashboard.isInitialized) {
-            val visibleOnFirstPage = workspace.currentPage == 0
-            homeDashboard.alpha = if (visibleOnFirstPage) 1f - progress.coerceIn(0f, 1f) else 0f
-            homeDashboard.isClickable = visibleOnFirstPage && progress == 0f
-        }
-    }
 
     fun recreateIfNotScheduled() {
         if (sRestartFlags == 0) {

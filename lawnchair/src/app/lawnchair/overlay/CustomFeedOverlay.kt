@@ -73,6 +73,18 @@ class CustomFeedOverlay(private val launcher: LawnchairLauncher) : LauncherOverl
                 return super.dispatchKeyEvent(event)
             }
 
+            /**
+             * Provider content commonly contains a ScrollView/RecyclerView. Those views request
+             * disallow-intercept while handling a drag, which previously stopped this outer
+             * container from seeing MOVE and made a right swipe on the -1 page impossible to
+             * close. Keep the request inside this host: vertical content still receives events,
+             * while this host can reliably decide whether a horizontal close gesture has begun.
+             */
+            override fun requestDisallowInterceptTouchEvent(disallowIntercept: Boolean) {
+                if (!isScrolling) return
+                super.requestDisallowInterceptTouchEvent(disallowIntercept)
+            }
+
             override fun onInterceptTouchEvent(ev: android.view.MotionEvent): Boolean {
                 when (ev.actionMasked) {
                     android.view.MotionEvent.ACTION_DOWN -> {
@@ -85,12 +97,10 @@ class CustomFeedOverlay(private val launcher: LawnchairLauncher) : LauncherOverl
                         if (isScrolling) return true
                         val dx = ev.x - startX
                         val dy = ev.y - startY
-                        if (kotlin.math.abs(dx) > touchSlop && kotlin.math.abs(dx) > kotlin.math.abs(dy)) {
-                            // Only intercept if dragging LEFT (to close) implies dx < 0 ??
-                            // Actually allow both directions to be responsive
+                        if (dx > touchSlop && dx > kotlin.math.abs(dy)) {
+                            // The overlay is the -1 page. Only a rightward horizontal drag closes
+                            // it; leftward drags remain available to provider content.
                             isScrolling = true
-                            // Prevent RecyclerView from stealing subsequent events
-                            requestDisallowInterceptTouchEvent(true)
                             return true
                         }
                     }
@@ -444,7 +454,6 @@ class CustomFeedOverlay(private val launcher: LawnchairLauncher) : LauncherOverl
                 "updateOverlayPosition: progress=$progress, translationX=$newTranslationX, alpha=${view.alpha}, visibility=${view.visibility}",
             )
         } ?: Log.d(TAG, "updateOverlayPosition: overlayView is null!")
-        launcher.setHomeDashboardOverlayProgress(progress)
         // Notify launcher to offset workspace
         callbacks?.onOverlayScrollChanged(progress)
     }

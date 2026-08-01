@@ -24,7 +24,9 @@ class BcSmartspaceCard @JvmOverloads constructor(
 ) : LinearLayout(context, attrs) {
 
     private var baseActionIconSubtitleView: DoubleShadowTextView? = null
-    private var dateView: IcuDateTextView? = null
+    // The home date card may use an IcuDateTextView or TextClock. Using TextView here keeps
+    // the clock inside the native Smartspace layout instead of a DragLayer overlay.
+    private var dateView: TextView? = null
     private var dndImageView: ImageView? = null
     private var extrasGroup: ViewGroup? = null
     private var iconDrawable: DoubleShadowIconDrawable? = null
