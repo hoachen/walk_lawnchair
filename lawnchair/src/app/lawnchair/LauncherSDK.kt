@@ -38,7 +38,6 @@ import com.android.systemui.shared.system.QuickStepContract
 import java.io.File
 
 import android.view.View
-import com.ur.apps.launcher.LauncherDeepUtils
 
 object LauncherSDK {
     private const val TAG = "LauncherSDK"
@@ -66,7 +65,6 @@ object LauncherSDK {
         this.context = context.applicationContext
         QuickStepContract.sRecentsDisabled = !recentsEnabled
         Flowerpot.Manager.getInstance(context)
-        LauncherDeepUtils.getInstance().fun1()
     }
 
     fun hideClockInStatusBar() {
