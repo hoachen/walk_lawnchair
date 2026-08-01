@@ -478,7 +478,7 @@ afterEvaluate {
 
                 groupId = 'com.lawnchair'
                 artifactId = 'launcher-sdk'
-                version = '1.0.20'
+                version = '1.0.21'
 
                 pom {
                     name = 'Lawnchair Launcher SDK'
@@ -492,7 +492,7 @@ afterEvaluate {
 
                 groupId = 'com.lawnchair'
                 artifactId = 'launcher-sdk-debug'
-                version = '1.0.20'
+                version = '1.0.21'
 
                 pom {
                     name = 'Lawnchair Launcher SDK (Debug)'
@@ -537,7 +537,7 @@ subprojects {
 
                             groupId = 'com.lawnchair'
                             artifactId = project.name
-                            version = '1.0.20'
+                            version = '1.0.21'
                         }
                     }
                 }

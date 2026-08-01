@@ -1,6 +1,6 @@
 # Walk Lawnchair：工具 App 接入与页面定制指南
 
-**适用发布物：** `com.lawnchair:launcher-sdk:1.0.20`（Release）与 `com.lawnchair:launcher-sdk-debug:1.0.20`（Debug）
+**适用发布物：** `com.lawnchair:launcher-sdk:1.0.21`（Release）与 `com.lawnchair:launcher-sdk-debug:1.0.21`（Debug）
 **适用工程：** `walk_lawnchair` 当前分支  
 **最后更新：** 2026-08-01
 
@@ -33,7 +33,7 @@ repositories {
 
 dependencies {
     // 仅用于源码阅读或同进程定制；不作为独立工具 App 的运行时接入方式
-    implementation("com.lawnchair:launcher-sdk:1.0.20")
+    implementation("com.lawnchair:launcher-sdk:1.0.21")
 }
 ```
 
@@ -169,6 +169,14 @@ Workspace 位移。接入 App **不要**自行隐藏页面或实现回主页动�
 该样式要求 Smartspace 模式为 **Lawnchair**；Google Smartspace 由 Google App 自身渲染，Launcher
 不能可靠修改其内部文字样式。已有设备若仍显示 “August …” 的 Google 卡片，请在 Lawnchair 设置中将
 Smartspace 模式切换为 Lawnchair 后重启 Launcher。
+
+内嵌 SDK 的接入 App 可在 `ContentProvider.onCreate()` 中、创建 Launcher 前调用：
+
+```kotlin
+LauncherSDK.useLawnchairSmartspace(appContext)
+```
+
+这是 `1.0.21` 提供的公开门面；不要直接依赖 `PreferenceManager2` 或写入 Launcher 的内部 DataStore。
 
 主页是 `Workspace` 的多个 `CellLayout` 页面；图标、文件夹和 Widget 都由 Launcher 数据库与 Model 绑定。当前工程没有对外“插入自定义页面”的稳定 API。
 

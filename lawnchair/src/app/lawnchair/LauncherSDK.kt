@@ -23,11 +23,15 @@ import androidx.core.content.FileProvider
 import app.lawnchair.backup.LawnchairBackup
 import app.lawnchair.flowerpot.Flowerpot
 import app.lawnchair.preferences.PreferenceManager
+import app.lawnchair.preferences2.PreferenceManager2
+import app.lawnchair.smartspace.model.LawnchairSmartspace
 import app.lawnchair.ui.ModalBottomSheetContent
 import app.lawnchair.ui.preferences.destinations.openAppInfo
 import app.lawnchair.util.restartLauncher
 import app.lawnchair.util.unsafeLazy
 import app.lawnchair.views.ComposeBottomSheet
+import com.patrykmichalik.opto.core.firstBlocking
+import com.patrykmichalik.opto.core.setBlocking
 import com.android.launcher3.BuildConfig
 import com.android.launcher3.InvariantDeviceProfile
 import com.android.launcher3.Launcher
@@ -48,6 +52,17 @@ object LauncherSDK {
 
     var isOverlayEnabled: Boolean = true
     var overlayProvider: OverlayProvider? = null
+
+    /**
+     * Selects the Launcher-owned Smartspace implementation before the home screen is created.
+     * Use this from an embedding App instead of writing Lawnchair's internal DataStore directly.
+     */
+    fun useLawnchairSmartspace(context: Context) {
+        val preferences = PreferenceManager2.getInstance(context.applicationContext)
+        if (preferences.smartspaceMode.firstBlocking() != LawnchairSmartspace) {
+            preferences.smartspaceMode.setBlocking(LawnchairSmartspace)
+        }
+    }
 
     @SuppressLint("StaticFieldLeak")
     lateinit var context: Context
