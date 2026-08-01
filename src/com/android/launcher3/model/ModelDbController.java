@@ -502,46 +502,37 @@ public class ModelDbController {
         if (LauncherPrefs.get(mContext).get(getEmptyDbCreatedKey())) {
             Log.d(TAG, "loading default workspace");
 
-            mOpenHelper.createEmptyDB(mOpenHelper.getWritableDatabase());
-            clearFlagEmptyDbCreated();
-//            LauncherWidgetHolder widgetHolder = mOpenHelper.newLauncherWidgetHolder();
-//            try {
-//                AutoInstallsLayout loader = createWorkspaceLoaderFromAppRestriction(widgetHolder);
-//                if (loader == null) {
-//                    loader = AutoInstallsLayout.get(mContext, widgetHolder, mOpenHelper);
-//                }
-//                if (loader == null) {
-//                    final Partner partner = Partner.get(mContext.getPackageManager());
-//                    if (partner != null) {
-//                        int workspaceResId = partner.getXmlResId(RES_PARTNER_DEFAULT_LAYOUT);
-//                        if (workspaceResId != 0) {
-//                            loader = new DefaultLayoutParser(mContext, widgetHolder,
-//                                    mOpenHelper, partner.getResources(), workspaceResId);
-//                        }
-//                    }
-//                }
-//
-//                final boolean usingExternallyProvidedLayout = loader != null;
-//                if (loader == null) {
-//                    loader = getDefaultLayoutParser(widgetHolder);
-//                }
-//
-//                // There might be some partially restored DB items, due to buggy restore logic
-//                // in
-//                // previous versions of launcher.
-//                mOpenHelper.createEmptyDB(mOpenHelper.getWritableDatabase());
-//                // Populate favorites table with initial favorites
-//                if ((mOpenHelper.loadFavorites(mOpenHelper.getWritableDatabase(), loader) <= 0)
-//                        && usingExternallyProvidedLayout) {
-//                    // Unable to load external layout. Cleanup and load the internal layout.
-//                    mOpenHelper.createEmptyDB(mOpenHelper.getWritableDatabase());
-//                    mOpenHelper.loadFavorites(mOpenHelper.getWritableDatabase(),
-//                            getDefaultLayoutParser(widgetHolder));
-//                }
-//                clearFlagEmptyDbCreated();
-//            } finally {
-//                widgetHolder.destroy();
-//            }
+            LauncherWidgetHolder widgetHolder = mOpenHelper.newLauncherWidgetHolder();
+            try {
+                AutoInstallsLayout loader = createWorkspaceLoaderFromAppRestriction(widgetHolder);
+                if (loader == null) loader = AutoInstallsLayout.get(mContext, widgetHolder, mOpenHelper);
+                if (loader == null) {
+                    final Partner partner = Partner.get(mContext.getPackageManager());
+                    if (partner != null) {
+                        int workspaceResId = partner.getXmlResId(RES_PARTNER_DEFAULT_LAYOUT);
+                        if (workspaceResId != 0) {
+                            loader = new DefaultLayoutParser(mContext, widgetHolder, mOpenHelper,
+                                    partner.getResources(), workspaceResId);
+                        }
+                    }
+                }
+
+                final boolean usingExternallyProvidedLayout = loader != null;
+                if (loader == null) loader = getDefaultLayoutParser(widgetHolder);
+
+                // Only an explicitly empty database reaches this path; existing user layouts
+                // are never overwritten by the product default workspace.
+                mOpenHelper.createEmptyDB(mOpenHelper.getWritableDatabase());
+                if ((mOpenHelper.loadFavorites(mOpenHelper.getWritableDatabase(), loader) <= 0)
+                        && usingExternallyProvidedLayout) {
+                    mOpenHelper.createEmptyDB(mOpenHelper.getWritableDatabase());
+                    mOpenHelper.loadFavorites(mOpenHelper.getWritableDatabase(),
+                            getDefaultLayoutParser(widgetHolder));
+                }
+                clearFlagEmptyDbCreated();
+            } finally {
+                widgetHolder.destroy();
+            }
         }
     }
 
