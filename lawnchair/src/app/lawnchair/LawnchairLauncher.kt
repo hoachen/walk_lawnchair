@@ -573,11 +573,21 @@ class LawnchairLauncher : QuickstepLauncher() {
 
     override fun getDefaultOverlay(): LauncherOverlayManager = defaultOverlay
 
+    override fun onPageEndTransition() {
+        super.onPageEndTransition()
+        // The dashboard belongs only to the first home page; ordinary workspace pages retain
+        // their user-arranged icon layout without a global floating clock card.
+        if (::homeDashboard.isInitialized && !defaultOverlay.isOverlayOpen()) {
+            homeDashboard.visibility = if (workspace.currentPage == 0) View.VISIBLE else View.GONE
+        }
+    }
+
     /** Keeps the Launcher-owned home header behind the -1 page during the shared swipe. */
     fun setHomeDashboardOverlayProgress(progress: Float) {
         if (::homeDashboard.isInitialized) {
-            homeDashboard.alpha = 1f - progress.coerceIn(0f, 1f)
-            homeDashboard.isClickable = progress == 0f
+            val visibleOnFirstPage = workspace.currentPage == 0
+            homeDashboard.alpha = if (visibleOnFirstPage) 1f - progress.coerceIn(0f, 1f) else 0f
+            homeDashboard.isClickable = visibleOnFirstPage && progress == 0f
         }
     }
 

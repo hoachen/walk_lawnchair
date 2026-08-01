@@ -427,13 +427,18 @@ class CustomFeedOverlay(private val launcher: LawnchairLauncher) : LauncherOverl
     private fun updateOverlayPosition(progress: Float) {
         currentProgress = progress
         overlayView?.let { view ->
+            // When closed the top-level container must be out of hit testing. Otherwise this
+            // ViewGroup's onTouchEvent() consumes the next home-screen swipe before Workspace can
+            // start its overlay edge effect.
+            val isOpen = progress > 0f
+            view.visibility = if (isOpen) View.VISIBLE else View.INVISIBLE
             // Move overlay based on progress
             val newTranslationX = -screenWidth * (1 - progress)
             view.translationX = newTranslationX
             // Fade in effect
             view.alpha = progress.coerceIn(0f, 1f)
-            view.isClickable = progress > 0f
-            view.isFocusable = progress > 0f
+            view.isClickable = isOpen
+            view.isFocusable = isOpen
             Log.d(
                 TAG,
                 "updateOverlayPosition: progress=$progress, translationX=$newTranslationX, alpha=${view.alpha}, visibility=${view.visibility}",
@@ -535,6 +540,9 @@ class CustomFeedOverlay(private val launcher: LawnchairLauncher) : LauncherOverl
         if (!isAttached) {
             attachOverlay()
         }
+        // Workspace owns the opening gesture and forwards progress through onScrollChange().
+        // Make the container eligible for the subsequent in-overlay closing gesture.
+        overlayView?.visibility = View.VISIBLE
     }
 
     override fun onScrollInteractionEnd() {

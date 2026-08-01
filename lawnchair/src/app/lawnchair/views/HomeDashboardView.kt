@@ -21,7 +21,9 @@ class HomeDashboardView(context: Context) : FrameLayout(context) {
             gravity = Gravity.CENTER
             setPadding(dp(20), dp(12), dp(20), dp(12))
             background = GradientDrawable().apply {
-                setColor(Color.argb(150, 20, 28, 38))
+                // Opaque enough to keep the user workspace icons from visually bleeding through
+                // the Launcher-owned header.
+                setColor(Color.argb(232, 20, 28, 38))
                 cornerRadius = dp(28).toFloat()
             }
         }
