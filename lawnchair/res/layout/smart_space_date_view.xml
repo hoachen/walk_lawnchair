@@ -15,19 +15,33 @@
   ~ limitations under the License.
   -->
 
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/smartspace_content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
     android:animateLayoutChanges="true"
-    android:background="@android:color/transparent">
+    android:background="@drawable/home_clock_card_background"
+    android:gravity="center"
+    android:minHeight="140dp"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextClock
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-light"
+        android:format12Hour="hh:mm"
+        android:format24Hour="HH:mm"
+        android:includeFontPadding="false"
+        android:textColor="#FFFFFF"
+        android:textSize="58sp" />
 
     <TextClock
         android:id="@+id/date_text"
         android:layout_width="wrap_content"
-        android:layout_height="30dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:fontFamily="sans-serif"
         android:format12Hour="EEEE, MMM d"
@@ -41,6 +55,6 @@
         android:shadowDy="0"
         android:shadowRadius="9"
         android:textColor="#FFFFFF"
-        android:textSize="24sp"
+        android:textSize="22sp"
         tools:text="Rag123" />
-</FrameLayout>
+</LinearLayout>

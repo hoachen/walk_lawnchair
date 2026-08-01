@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.KeyEvent
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.DecelerateInterpolator
 import android.widget.FrameLayout
 import androidx.core.animation.doOnEnd
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -48,24 +49,15 @@ class CustomFeedOverlay(private val launcher: LawnchairLauncher) : LauncherOverl
     private fun createOverlayView(): View {
         Log.d(TAG, "createOverlayView called, screenWidth=$screenWidth")
         
-        LauncherSDK.overlayProvider?.let { provider ->
-             val view = provider.createView(launcher)
-             // Ensure layout params are match parent
-             if (view.layoutParams == null) {
-                 view.layoutParams = FrameLayout.LayoutParams(
-                     ViewGroup.LayoutParams.MATCH_PARENT,
-                     ViewGroup.LayoutParams.MATCH_PARENT,
-                 )
-             }
-             // Initial state: hidden to the left
-             view.translationX = -screenWidth.toFloat()
-             view.alpha = 0f
-             return view
-        }
+        // Do not return an application supplied view directly. The outer container owns the
+        // overlay progress and talks to Workspace through callbacks, so it must wrap both the
+        // default feed and every SDK overlayProvider implementation.
+        val providerContent = LauncherSDK.overlayProvider?.createView(launcher)
 
         // Custom FrameLayout that handles back key and gestures
         val overlayContainer = object : FrameLayout(launcher) {
             private var startX = 0f
+            private var lastRawX = 0f
             private var startY = 0f
             private var isScrolling = false
             private val touchSlop = android.view.ViewConfiguration.get(context).scaledTouchSlop
@@ -85,6 +77,7 @@ class CustomFeedOverlay(private val launcher: LawnchairLauncher) : LauncherOverl
                 when (ev.actionMasked) {
                     android.view.MotionEvent.ACTION_DOWN -> {
                         startX = ev.x
+                        lastRawX = ev.rawX
                         startY = ev.y
                         isScrolling = false
                     }
@@ -109,22 +102,16 @@ class CustomFeedOverlay(private val launcher: LawnchairLauncher) : LauncherOverl
                 when (event.actionMasked) {
                     android.view.MotionEvent.ACTION_MOVE -> {
                         if (isScrolling) {
-                            val dx = event.x - startX
+                            // rawX stays stable while this overlay translates with the gesture.
+                            val dx = event.rawX - lastRawX
+                            lastRawX = event.rawX
                             // progress range: 1.0 (open) to 0.0 (closed)
                             // View moves by dx. width corresponds to range 0..1
                             // If dx is -width, progress should change by -1.
-                            val newProgress = (currentProgress + dx / width).coerceIn(0f, 1f)
+                            // This container is the -1 page: swiping right reveals home, hence
+                            // positive horizontal movement must reduce the open progress.
+                            val newProgress = (currentProgress - dx / screenWidth).coerceIn(0f, 1f)
                             updateOverlayPosition(newProgress)
-                            // Reset startX to ensure smooth continuous scrolling
-                            // actually simpler to just use absolute difference from initial touch
-                            // But since we update progress immediately, we want delta.
-                            // Let's stick to simple delta model:
-                            // The problem with updating progress AND relying on touch is that
-                            // if we move the view, the touch event coordinate (relative to view) MIGHT shift if the parent moves?
-                            // This layout IS the moving part?
-                            // Yes, this view has translationX.
-                            // If we change translationX, the subsequent ACTION_MOVE event.x might be affected depending on OS.
-                            // Usually event.getRawX() is safer for absolute screen movement tracking.
                         }
                     }
                     android.view.MotionEvent.ACTION_UP, android.view.MotionEvent.ACTION_CANCEL -> {
@@ -151,7 +138,18 @@ class CustomFeedOverlay(private val launcher: LawnchairLauncher) : LauncherOverl
             isFocusableInTouchMode = true
 
 
-            // Content container
+            if (providerContent != null) {
+                addView(
+                    providerContent,
+                    FrameLayout.LayoutParams(
+                        ViewGroup.LayoutParams.MATCH_PARENT,
+                        ViewGroup.LayoutParams.MATCH_PARENT,
+                    ),
+                )
+                return@apply
+            }
+
+            // Default Feed content container.
             val contentContainer = FrameLayout(launcher).apply {
                 layoutParams = FrameLayout.LayoutParams(
                     ViewGroup.LayoutParams.MATCH_PARENT,
@@ -438,10 +436,11 @@ class CustomFeedOverlay(private val launcher: LawnchairLauncher) : LauncherOverl
         callbacks?.onOverlayScrollChanged(progress)
     }
 
-    private fun animateToProgress(targetProgress: Float, duration: Long = 300L) {
+    private fun animateToProgress(targetProgress: Float, duration: Long = 220L) {
         animator?.cancel()
         animator = ValueAnimator.ofFloat(currentProgress, targetProgress).apply {
             this.duration = duration
+            interpolator = DecelerateInterpolator(1.8f)
             addUpdateListener { animation ->
                 updateOverlayPosition(animation.animatedValue as Float)
             }
