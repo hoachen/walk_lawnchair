@@ -398,13 +398,18 @@ class CustomFeedOverlay(private val launcher: LawnchairLauncher) : LauncherOverl
          val  rootView =   launcher.window.decorView as? ViewGroup
             if (rootView != null) {
                 Log.d(TAG, "Adding overlay view to rootView, childCount=${rootView.childCount}")
-                rootView.addView(view, 0) // Add at bottom, behind dragLayer
+                // The overlay must sit above Launcher/DragLayer while open so its parent can
+                // intercept the right-swipe-back gesture even when provider content consumes
+                // touch events. updateOverlayPosition disables it at progress 0.
+                rootView.addView(view)
                 isAttached = true
+                updateOverlayPosition(currentProgress)
                 Log.d(TAG, "Overlay attached successfully to rootView")
             } else {
                 Log.e(TAG, "Failed to get rootView, falling back to dragLayer")
-                launcher.dragLayer.addView(view, 0)
+                launcher.dragLayer.addView(view)
                 isAttached = true
+                updateOverlayPosition(currentProgress)
             }
         }
     }
@@ -427,11 +432,14 @@ class CustomFeedOverlay(private val launcher: LawnchairLauncher) : LauncherOverl
             view.translationX = newTranslationX
             // Fade in effect
             view.alpha = progress.coerceIn(0f, 1f)
+            view.isClickable = progress > 0f
+            view.isFocusable = progress > 0f
             Log.d(
                 TAG,
                 "updateOverlayPosition: progress=$progress, translationX=$newTranslationX, alpha=${view.alpha}, visibility=${view.visibility}",
             )
         } ?: Log.d(TAG, "updateOverlayPosition: overlayView is null!")
+        launcher.setHomeDashboardOverlayProgress(progress)
         // Notify launcher to offset workspace
         callbacks?.onOverlayScrollChanged(progress)
     }

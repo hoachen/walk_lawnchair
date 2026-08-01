@@ -1,6 +1,6 @@
 # Walk Lawnchair：工具 App 接入与页面定制指南
 
-**适用发布物：** `com.lawnchair:launcher-sdk:1.0.17`（Release）与 `com.lawnchair:launcher-sdk-debug:1.0.17`（Debug）
+**适用发布物：** `com.lawnchair:launcher-sdk:1.0.18`（Release）与 `com.lawnchair:launcher-sdk-debug:1.0.18`（Debug）
 **适用工程：** `walk_lawnchair` 当前分支  
 **最后更新：** 2026-08-01
 
@@ -33,7 +33,7 @@ repositories {
 
 dependencies {
     // 仅用于源码阅读或同进程定制；不作为独立工具 App 的运行时接入方式
-    implementation("com.lawnchair:launcher-sdk:1.0.17")
+    implementation("com.lawnchair:launcher-sdk:1.0.18")
 }
 ```
 
