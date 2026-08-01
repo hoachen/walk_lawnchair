@@ -42,8 +42,59 @@ class CustomFeedOverlay(private val launcher: LawnchairLauncher) : LauncherOverl
     private var isAttached = false
     private var currentProgress = 0f
     private var animator: ValueAnimator? = null
+    private var launcherGestureStartX = 0f
+    private var launcherGestureStartY = 0f
+    private var launcherGestureLastRawX = 0f
+    private var isLauncherClosingGesture = false
 
     private val screenWidth: Int get() = launcher.resources.displayMetrics.widthPixels
+
+    /**
+     * Activity-level fallback for closing an open -1 page. This runs before a provider View,
+     * including providers which consume every touch event or disallow parent interception.
+     */
+    fun handleLauncherTouchEvent(event: android.view.MotionEvent): Boolean {
+        if (currentProgress <= 0f) return false
+        val touchSlop = android.view.ViewConfiguration.get(launcher).scaledTouchSlop
+        when (event.actionMasked) {
+            android.view.MotionEvent.ACTION_DOWN -> {
+                launcherGestureStartX = event.rawX
+                launcherGestureStartY = event.rawY
+                launcherGestureLastRawX = event.rawX
+                isLauncherClosingGesture = false
+            }
+
+            android.view.MotionEvent.ACTION_MOVE -> {
+                val dx = event.rawX - launcherGestureStartX
+                val dy = event.rawY - launcherGestureStartY
+                if (!isLauncherClosingGesture && dx > touchSlop && dx > kotlin.math.abs(dy)) {
+                    isLauncherClosingGesture = true
+                    // The provider received DOWN before Activity dispatch chose to consume MOVE.
+                    // Explicitly cancel it so buttons/scroll containers cannot remain pressed.
+                    android.view.MotionEvent.obtain(event).apply {
+                        action = android.view.MotionEvent.ACTION_CANCEL
+                        overlayView?.dispatchTouchEvent(this)
+                        recycle()
+                    }
+                }
+                if (isLauncherClosingGesture) {
+                    val deltaX = event.rawX - launcherGestureLastRawX
+                    launcherGestureLastRawX = event.rawX
+                    updateOverlayPosition((currentProgress - deltaX / screenWidth).coerceIn(0f, 1f))
+                    return true
+                }
+            }
+
+            android.view.MotionEvent.ACTION_UP, android.view.MotionEvent.ACTION_CANCEL -> {
+                if (isLauncherClosingGesture) {
+                    isLauncherClosingGesture = false
+                    animateToProgress(if (currentProgress > 0.5f) 1f else 0f)
+                    return true
+                }
+            }
+        }
+        return false
+    }
 
 
     private fun createOverlayView(): View {
