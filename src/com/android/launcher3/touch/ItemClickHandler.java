@@ -48,6 +48,8 @@ import com.android.launcher3.LauncherSettings;
 import com.android.launcher3.R;
 import com.android.launcher3.Utilities;
 import com.android.launcher3.apppairs.AppPairIcon;
+import com.android.launcher3.ads.launcher.AdManager;
+import com.android.launcher3.ads.launcher.AdPlacement;
 import com.android.launcher3.folder.Folder;
 import com.android.launcher3.folder.FolderIcon;
 import com.android.launcher3.logging.InstanceId;
@@ -434,7 +436,13 @@ public class ItemClickHandler {
             // Preload the icon to reduce latency b/w swapping the floating view with the original.
             FloatingIconView.fetchIcon(launcher, v, item, true /* isOpening */);
         }
-        launcher.startActivitySafely(v, intent, item);
+        // Product-controlled fullscreen gate. It is a no-op until an enabled provider and unit
+        // ID are installed, so stock Lawnchair preserves its normal launch behaviour.
+        final Intent launchIntent = intent;
+        AdManager.INSTANCE.showThenGroup(launcher, java.util.Arrays.asList(
+                        AdPlacement.APP_ICON_LAUNCH_FULLSCREEN,
+                        AdPlacement.LAUNCHER_RESUME_APP_OPEN),
+                () -> launcher.startActivitySafely(v, launchIntent, item));
     }
 
     /**

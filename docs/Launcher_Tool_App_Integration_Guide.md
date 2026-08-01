@@ -1,6 +1,6 @@
 # Walk Lawnchair：工具 App 接入与页面定制指南
 
-**适用发布物：** `com.lawnchair:launcher-sdk:1.0.15`（Release）与 `com.lawnchair:launcher-sdk-debug:1.0.15`（Debug）  
+**适用发布物：** `com.lawnchair:launcher-sdk:1.0.16`（Release）与 `com.lawnchair:launcher-sdk-debug:1.0.16`（Debug）
 **适用工程：** `walk_lawnchair` 当前分支  
 **最后更新：** 2026-08-01
 
@@ -33,7 +33,7 @@ repositories {
 
 dependencies {
     // 仅用于源码阅读或同进程定制；不作为独立工具 App 的运行时接入方式
-    implementation("com.lawnchair:launcher-sdk:1.0.15")
+    implementation("com.lawnchair:launcher-sdk:1.0.16")
 }
 ```
 
@@ -222,12 +222,90 @@ data class Promotion(
 | 结果数据模型 | `lawnchair/src/app/lawnchair/search/adapter/SearchAdapterItem.kt` |
 | RecyclerView 网格跨度 | `src/com/android/launcher3/allapps/AllAppsGridAdapter.java` |
 
+### Lawnchair 广告模块：接入 App 必须实现的内容
+
+Lawnchair 已提供 `com.android.launcher3.ads` 通用模块，不携带任何广告网络 SDK、App ID 或广告单元 ID。接入方需在**最终打包 Launcher 的 App 模块**中实现 `IAdProvider`；`AdManager` 只负责广告位调度、回退、原生广告容器清理和原操作的继续执行。
+
+> 若“接入 App”是另一个独立安装、不同进程的 APK，它不能直接实现并注入 `IAdProvider`（接口和 View 均在 Launcher 进程）。该模式需要另建 AIDL/服务协议，且仅传递经校验的数据，不应跨进程传递广告 SDK View。当前接口适用于产品 App 与 Lawnchair 一起编译、一起打包的场景。
+
+#### `AdMobProvider` 应放在哪里
+
+参考工程的 `com.android.launcher3.ads.launcher.AdMobProvider` **不应直接放入 Lawnchair 核心模块**，而应由接入 App 实现，例如 `com.yourapp.ads.ProductAdMobProvider : IAdProvider`。原因是该实现会直接依赖 Google Mobile Ads 的插屏、激励、App Open、原生广告 API，以及 Firebase/Singular 等产品级收入与归因能力；同时还需要使用该产品自己的 App ID 和各广告位 unit id。
+
+推荐分层：
+
+```text
+Lawnchair 核心
+└── com.android.launcher3.ads
+    ├── AdManager / IAdProvider
+    ├── ConsentManager / AdRequestPolicy
+    └── 广告位与容器调度
+
+最终产品 App
+└── com.yourapp.ads
+    ├── ProductAdMobProvider : IAdProvider
+    ├── ProductConsentManager / ProductAdRequestPolicy
+    └── BuildConfig、CI 私密变量中的 App ID / unit id
+```
+
+若多个产品都确定使用 AdMob，可单独发布可选的 `ads-admob` 扩展模块来提供通用 `AdMobProvider`，但它仍必须由最终产品 App 显式依赖、传入配置并负责广告 SDK 的 Manifest 声明。不要让 Lawnchair 默认产物传递依赖任何广告网络 SDK。
+
+#### 已预留广告位
+
+| 广告位 | 格式 | 当前 Lawnchair 调用状态 |
+|---|---|---|
+| `SPLASH_FULLSCREEN` | App Open | 预留给启动页 |
+| `ONBOARDING_COMPLETE_FULLSCREEN` | 插屏 | 预留给引导/同意完成页 |
+| `APP_ICON_LAUNCH_FULLSCREEN` | 插屏 | 已在桌面与全部应用图标启动前调用 |
+| `WORKSPACE_LONG_PRESS_FULLSCREEN` | 插屏 | 已在桌面空白处长按菜单前调用 |
+| `LAUNCHER_RESUME_APP_OPEN` | App Open | 已在 Launcher 恢复时预加载，并作为门控回退候选 |
+| `SEARCH_LANDING_NATIVE` / `SEARCH_PAGE_NATIVE` | 原生 | 前者已接入自定义搜索落地页；后者供独立搜索页使用 |
+| `WEATHER_PAGE_NATIVE` | 原生 | 预留给产品天气页 |
+| `ALL_APPS_NATIVE_FIRST` / `ALL_APPS_NATIVE_SECOND` | 原生 | 预留给全部应用列表的两个广告行 |
+| `DIALOG_GATE_FULLSCREEN` | 插屏 | 可通过 `AdDialogGate` 接入任意产品操作 |
+
+#### 产品 App 的最小实现
+
+1. 在产品模块添加所选广告网络/聚合 SDK、网络权限和该 SDK 需要的 Manifest `meta-data`；App ID 放在构建变量或私有配置中。
+2. 实现 `IAdProvider`：`initialize` 初始化 SDK，`loadAd` 使用对应广告位的 unit id 预加载，`play*` 展示已缓存广告。全屏广告关闭或失败必须回调 `onDismissed` / `onFailed`，否则 Launcher 的原操作不会继续。
+3. 对原生广告，`playNative` 在加载成功后将渲染 View 添加到传入 `ViewGroup`，失败调用 `onFailed`；`destroyNativeAd` 必须销毁 SDK 的 `NativeAd` 对象和监听器。
+4. 实现 `ConsentManager`（CMP/地区隐私同意）和 `AdRequestPolicy`（远程开关、频控、冷启动保护、测试设备）。任一项不允许时返回 `false`，Lawnchair 将无广告继续原操作。
+5. 在产品 `Application.onCreate()` 中、`LawnchairApp` 初始化之前或之后安装 Provider：
+
+```kotlin
+AdManager.install(
+    provider = ProductAdProvider(),
+    configurationProvider = {
+        AdConfiguration(
+            appId = BuildConfig.ADS_APP_ID,
+            unitIds = mapOf(
+                AdPlacement.APP_ICON_LAUNCH_FULLSCREEN to BuildConfig.AD_UNIT_LAUNCH,
+                AdPlacement.WORKSPACE_LONG_PRESS_FULLSCREEN to BuildConfig.AD_UNIT_MENU,
+                AdPlacement.SEARCH_LANDING_NATIVE to BuildConfig.AD_UNIT_SEARCH_NATIVE,
+            ),
+            enabled = !BuildConfig.DEBUG && BuildConfig.ADS_ENABLED,
+        )
+    },
+    consentManager = ProductConsentManager(),
+    requestPolicy = ProductAdRequestPolicy(),
+)
+```
+
+`AdManager.install()` 可在 `LawnchairApp.onCreate()` 前后调用；若 Launcher 已创建，会立即尝试初始化。未安装、`enabled=false`、缺少 unit id、未同意或频控拒绝时均为安全 no-op。
+
+#### 接入验收
+
+- 使用广告平台测试 App ID / 测试 unit id 和测试设备完成联调，生产 ID 不写入仓库。
+- 验证初始化、无网、加载失败、关闭广告、旋转、Activity 销毁和回到前台时，原操作均只执行一次。
+- 原生广告必须含平台要求的“广告/赞助”标识、关闭/不感兴趣入口及无障碍描述。
+- 发布前复核 GDPR/CCPA/当地法规、儿童/家庭政策、数据安全声明与应用商店广告政策。
+
 ### 广告安全与产品要求
 
 - 默认关闭；首次开启前明确告知数据用途，并可在 Launcher 设置中关闭个性化/广告。
 - 只在用户输入查询后请求；不要上传完整已安装应用列表、主页布局或联系人数据。
 - Provider 需签名校验、每次请求超时（建议 300 ms 预算）和缓存；超时/失败时不显示广告，不阻塞本地搜索。
-- 使用 HTTPS、最小化日志；不得在 Launcher 进程加载第三方广告 SDK 或远程 WebView。
+- 使用 HTTPS、最小化日志；广告 SDK 仅由最终产品 App 的 `IAdProvider` 承载，Launcher 核心不直接依赖任何广告网络或远程 WebView。
 - 始终显示“赞助内容”，不得模拟自然搜索结果；广告点击、关闭和频控均应可审计。
 
 ## 7. 上线前验收清单

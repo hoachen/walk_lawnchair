@@ -53,6 +53,8 @@ import com.android.launcher3.testing.shared.TestProtocol;
 import com.android.launcher3.util.TouchUtil;
 
 import app.lawnchair.LawnchairLauncher;
+import com.android.launcher3.ads.launcher.AdManager;
+import com.android.launcher3.ads.launcher.AdPlacement;
 
 /**
  * Helper class to handle touch on empty space in workspace and show options
@@ -220,7 +222,10 @@ public class WorkspaceTouchListener extends GestureDetector.SimpleOnGestureListe
                 mWorkspace.performHapticFeedback(HapticFeedbackConstants.LONG_PRESS,
                         HapticFeedbackConstants.FLAG_IGNORE_VIEW_SETTING);
                 mLauncher.getStatsLogManager().logger().log(LAUNCHER_WORKSPACE_LONGPRESS);
-                mLauncher.showDefaultOptions(mTouchDownPoint.x, mTouchDownPoint.y);
+                AdManager.INSTANCE.showThenGroup(mLauncher, java.util.Arrays.asList(
+                                AdPlacement.WORKSPACE_LONG_PRESS_FULLSCREEN,
+                                AdPlacement.LAUNCHER_RESUME_APP_OPEN),
+                        () -> mLauncher.showDefaultOptions(mTouchDownPoint.x, mTouchDownPoint.y));
                 if (FeatureFlags.enableSplitContextually() && mLauncher.isSplitSelectionActive()) {
                     mLauncher.dismissSplitSelection(LAUNCHER_SPLIT_SELECTION_EXIT_INTERRUPTED);
                 }

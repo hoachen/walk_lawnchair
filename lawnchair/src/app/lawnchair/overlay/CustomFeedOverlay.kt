@@ -14,6 +14,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import app.lawnchair.LawnchairLauncher
 import com.android.launcher3.R
+import com.android.launcher3.ads.launcher.AdManager
+import com.android.launcher3.ads.launcher.AdPlacement
 import com.android.systemui.plugins.shared.LauncherOverlayManager
 import app.lawnchair.LauncherSDK
 
@@ -212,6 +214,7 @@ class CustomFeedOverlay(private val launcher: LawnchairLauncher) : LauncherOverl
             val searchInput = searchView!!.findViewById<android.widget.EditText>(R.id.search_input)!!
             val searchCancel = searchView!!.findViewById<android.widget.TextView>(R.id.search_cancel)!!
             val searchRecycler = searchView!!.findViewById<androidx.recyclerview.widget.RecyclerView>(R.id.search_results_recycler)!!
+            val searchAdSlot = searchView!!.findViewById<FrameLayout>(R.id.search_ad_slot)!!
 
             // Adjust header padding for status bar
             val searchHeader = searchView!!.findViewById<android.widget.LinearLayout>(R.id.search_container_header)!!
@@ -233,6 +236,8 @@ class CustomFeedOverlay(private val launcher: LawnchairLauncher) : LauncherOverl
             val searchAdapter = CustomSearchAdapter(allAppsCache)
             searchRecycler.adapter = searchAdapter
 
+            bindSearchAd(searchAdSlot)
+
             searchCancel.setOnClickListener {
                 hideSearchUI()
             }
@@ -241,6 +246,11 @@ class CustomFeedOverlay(private val launcher: LawnchairLauncher) : LauncherOverl
                 override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                     val query = s.toString()
+                    if (query.isEmpty()) {
+                        bindSearchAd(searchAdSlot)
+                    } else {
+                        AdManager.clearNativeAd(searchAdSlot)
+                    }
                     val filtered = if (query.isEmpty()) {
                         allAppsCache
                     } else {
@@ -268,13 +278,19 @@ class CustomFeedOverlay(private val launcher: LawnchairLauncher) : LauncherOverl
         }
     }
 
+    /** Requests the product-configured native ad for the empty-query search landing page. */
+    private fun bindSearchAd(slot: FrameLayout) {
+        AdManager.showNativeAd(launcher, AdPlacement.SEARCH_LANDING_NATIVE, slot)
+    }
+
     private fun hideSearchUI() {
         searchView?.let { view ->
             if (view.parent != null) {
                  // Hide keyboard
                  val searchInput = view.findViewById<android.widget.EditText>(R.id.search_input)!!
-                 val imm = launcher.getSystemService(android.content.Context.INPUT_METHOD_SERVICE) as android.view.inputmethod.InputMethodManager
-                 imm.hideSoftInputFromWindow(searchInput.windowToken, 0)
+                val imm = launcher.getSystemService(android.content.Context.INPUT_METHOD_SERVICE) as android.view.inputmethod.InputMethodManager
+                imm.hideSoftInputFromWindow(searchInput.windowToken, 0)
+                view.findViewById<FrameLayout>(R.id.search_ad_slot)?.let(AdManager::clearNativeAd)
 
                 view.animate().alpha(0f).setDuration(200).withEndAction {
                     (view.parent as ViewGroup).removeView(view)

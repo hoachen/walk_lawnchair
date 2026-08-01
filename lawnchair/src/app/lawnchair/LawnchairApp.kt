@@ -49,6 +49,7 @@ import com.android.launcher3.InvariantDeviceProfile
 import com.android.launcher3.Launcher
 import com.android.launcher3.R
 import com.android.launcher3.Utilities
+import com.android.launcher3.ads.launcher.AdManager
 import com.android.quickstep.RecentsActivity
 import com.android.systemui.shared.system.QuickStepContract
 import java.io.File
@@ -59,6 +60,7 @@ class LawnchairApp : Application() {
         super.onCreate()
         LauncherSDK.init(this)
         LauncherSDK.onLauncherAppStateCreated(this)
+        AdManager.onAppCreate(this)
     }
 
     companion object {

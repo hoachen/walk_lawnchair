@@ -47,6 +47,8 @@ import app.lawnchair.gestures.VerticalSwipeTouchController
 import app.lawnchair.gestures.config.GestureHandlerConfig
 import app.lawnchair.nexuslauncher.OverlayCallbackImpl
 import app.lawnchair.overlay.CustomFeedOverlay
+import com.android.launcher3.ads.launcher.AdManager
+import com.android.launcher3.ads.launcher.AdPlacement
 import app.lawnchair.preferences.PreferenceManager
 import app.lawnchair.preferences2.PreferenceManager2
 import app.lawnchair.root.RootHelperManager
@@ -517,6 +519,10 @@ class LawnchairLauncher : QuickstepLauncher() {
 
     override fun onResume() {
         super.onResume()
+        // Mirrors the reference Launcher's resume-time ad warm-up. A request only occurs when a
+        // product App has installed an enabled provider and configured this placement.
+        AdManager.preload(AdPlacement.APP_ICON_LAUNCH_FULLSCREEN)
+        AdManager.preload(AdPlacement.LAUNCHER_RESUME_APP_OPEN)
         restartIfPending()
 
         dragLayer.viewTreeObserver.addOnDrawListener(
