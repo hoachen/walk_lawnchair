@@ -1,0 +1,91 @@
+<title>Walk Lawnchair：工具 App 接入与页面定制指南</title>
+<p>适用发布物：<code>com.lawnchair:launcher-sdk:1.0.15</code>（Release）与 <code>launcher-sdk-debug:1.0.15</code>（Debug）。更新日期：2026-08-01。</p>
+
+<h1>结论与接入边界</h1>
+<callout emoji="❗" background-color="light-yellow" border-color="yellow">
+  <p>当前 <code>build/repo</code> 发布的是完整 Launcher 的 AAR，不是独立 APK 可跨进程调用的稳定 SDK。<code>LauncherSDK.overlayProvider</code> 是 Launcher 进程内静态变量；工具 App 即使依赖 AAR，设置它也只会影响自身进程，不会改变已安装 Lawnchair。</p>
+</callout>
+<table>
+  <thead><tr><th background-color="light-gray">目标</th><th background-color="light-gray">当前可用方式</th><th background-color="light-gray">是否需修改 Launcher</th></tr></thead>
+  <tbody>
+    <tr><td>主页工具入口</td><td>App Widget、动态快捷方式、<code>requestPinShortcut()</code></td><td>否；由用户确认放置</td></tr>
+    <tr><td>完整负一屏</td><td><code>WINDOW_OVERLAY</code> Service + <code>ILauncherOverlay</code> AIDL</td><td>否；需通过签名白名单</td></tr>
+    <tr><td>内置产品负一屏</td><td><code>CustomFeedOverlay</code> / <code>LauncherSDK.overlayProvider</code></td><td>是；代码随 Launcher 打包</td></tr>
+    <tr><td>固定工具主页页</td><td>新增受控 Page Host 与对外 AIDL</td><td>是</td></tr>
+    <tr><td>搜索广告位</td><td>扩展搜索 Adapter 与受控 Sponsored Provider</td><td>是</td></tr>
+  </tbody>
+</table>
+<p>不建议在独立工具 App 中运行时依赖 <code>launcher-sdk</code>：它包含完整 Launcher 实现和大量传递依赖，既不能连到已安装 Launcher，也可能引入 Manifest、资源和类冲突。建议单独发布只含常量、Parcelable 数据模型和 AIDL 的 <code>launcher-tool-api</code>。</p>
+
+<h1>发布仓库与基础接入</h1>
+<p>本地 Maven 仓库位于 <code>build/repo</code>；当前坐标为 <code>com.lawnchair:launcher-sdk:1.0.15</code>。重新生成 Release 发布物：</p>
+<pre lang="bash"><code>./gradlew publishLawnWithQuickstepPlayReleasePublicationToLocalRepoRepository</code></pre>
+<p>发布目录应包含 AAR、POM、Gradle module metadata 与 sources jar。当前 POM 还会带出多个 Lawnchair 内部模块，因此不应承诺为工具 App 的稳定运行时 SDK。</p>
+<p><b>普通主页入口。</b>工具 App 可提供 Activity、动态快捷方式和 App Widget。置顶快捷方式必须经用户确认；不要直接写 Launcher 数据库、SharedPreferences 或强制改动主页、Hotseat 和页面顺序。</p>
+<pre lang="kotlin"><code>val shortcut = ShortcutInfo.Builder(context, "open_tools")
+    .setShortLabel("工具中心")
+    .setIntent(Intent(context, ToolActivity::class.java).setAction(Intent.ACTION_VIEW))
+    .build()
+ShortcutManagerCompat.requestPinShortcut(context, shortcut, null)</code></pre>
+<p><b>回到主页与设置页。</b>可用 HOME Intent 回到默认桌面；当前工程导出了 <code>android.intent.action.APPLICATION_PREFERENCES</code> 设置页。调用前使用 <code>resolveActivity()</code>，并为未找到目标准备降级处理。</p>
+
+<h1>自定义负一屏</h1>
+<h2>独立 Feed Provider（推荐）</h2>
+<p>Lawnchair 会发现带有 action <code>com.android.launcher3.WINDOW_OVERLAY</code> 的 Service，并按 Google/Lawnfeed 的 <code>ILauncherOverlay</code> Binder 协议绑定。协议位于 <code>lawnchair/aidl/com/google/android/libraries/launcherclient/</code>。</p>
+<pre lang="xml"><code>&lt;service android:name=".feed.ToolFeedService" android:exported="true"&gt;
+    &lt;intent-filter&gt;
+        &lt;action android:name="com.android.launcher3.WINDOW_OVERLAY" /&gt;
+    &lt;/intent-filter&gt;
+&lt;/service&gt;</code></pre>
+<p>Service 的 <code>onBind()</code> 返回 <code>ILauncherOverlay.Stub</code>。Launcher 会调用 <code>windowAttached2()</code>、<code>setActivityState()</code>、<code>startScroll()</code>、<code>onScroll()</code>、<code>endScroll()</code>、<code>openOverlay()</code> 和 <code>closeOverlay()</code>；Provider 负责自己的窗口与 <code>ILauncherOverlayCallback</code> 回调。</p>
+<p><b>发现与安全。</b>用户在 Lawnchair 设置的“负一屏 / Feed Provider”中选择 Provider。Release 构建会校验 Provider 签名哈希；自定义包默认不在白名单中。上线前在 <code>FeedBridge.initializeWhitelist()</code> 增加工具 App 包名及发布签名哈希，并重新签名发布 Launcher。调试构建可放宽校验，但生产环境不得依赖 <code>ignoreFeedWhitelist</code>。</p>
+<h2>内置负一屏</h2>
+<p>若内容与 Launcher 同一团队维护，可以在 Lawnchair 进程、且创建 <code>CustomFeedOverlay</code> 前设置 Provider：</p>
+<pre lang="kotlin"><code>LauncherSDK.isOverlayEnabled = true
+LauncherSDK.overlayProvider = object : LauncherSDK.OverlayProvider {
+    override fun createView(context: Context): View = ToolFeedView(context)
+}</code></pre>
+<p><code>CustomFeedOverlay</code> 会把该 View 加入 Launcher 的 <code>DragLayer</code>。独立工具 App 不可借由 Maven AAR 或反射使用此方式。内置 Feed 的主要实现文件为 <code>CustomFeedOverlay.kt</code>、<code>FeedItem.kt</code>、<code>CustomFeedAdapter.kt</code> 与 <code>LawnchairLauncher.kt</code>。</p>
+
+<h1>主页页面定制</h1>
+<p>主页由 <code>Workspace</code> 的多个 <code>CellLayout</code> 构成，图标、文件夹和 Widget 由 Launcher 数据库与 Model 绑定。当前工程没有对外“插入自定义主页页面”的稳定 API。</p>
+<p>无需修改 Launcher 的定制应使用 Widget、Pin Shortcut、Deep Link 和 App Search；Launcher 偏好只能由用户通过设置 UI 修改。</p>
+<p>如产品要求固定的工具页、仪表盘页或运营页，应在 Launcher 内实现 Page Host，而不是让第三方直接操作 Workspace 私有数据：</p>
+<ol>
+  <li seq="auto">定义 <code>HomePageProvider</code> AIDL：版本、页面 id、可见条件、<code>RemoteViews</code>/数据快照与点击 PendingIntent。</li>
+  <li seq="auto">Launcher 仅绑定可信 Provider，并完成签名白名单、超时、死亡重连与版本协商。</li>
+  <li seq="auto">在 Workspace 前后插入受 Launcher 控制的页面容器；不要伪装为 <code>CellLayout</code>，以免破坏拖拽、页面删除和数据库持久化。</li>
+  <li seq="auto">所有点击使用经校验的 PendingIntent；Provider 不获得 Workspace 或数据库写权限。</li>
+  <li seq="auto">提供用户开关与“移除该页”；Provider 不可用时自动隐藏。</li>
+</ol>
+
+<h1>搜索页添加广告位</h1>
+<p>All Apps 搜索不是独立 Activity：<code>AllAppsSearchInput</code> 接收查询，<code>LawnchairSearchAlgorithm</code> 生成 <code>SearchAdapterItem</code>，<code>LawnchairSearchAdapterProvider</code> 再为 <code>SearchRecyclerView</code> 创建和绑定每行 View。外部工具 App 当前没有广告位 SPI，不能从自己的进程向 RecyclerView 注入 View。</p>
+<p><b>推荐方案：</b>将广告做成有明确标识的全宽“赞助结果行”，而不是浮层或插屏。新增受控的 <code>SearchPromotionProvider</code>，只向 Launcher 返回 id、标题、副标题、图标 URI、已校验的点击 PendingIntent 和固定披露文案“赞助内容”；外部 Provider 不得传入 View、HTML 或任意代码。</p>
+<ol>
+  <li seq="auto"><b>新增 View Type。</b>在 <code>LawnchairSearchAdapterProvider</code> 增加 <code>SEARCH_RESULT_SPONSORED</code>，映射到 <code>search_result_sponsored</code> 布局；<code>getItemsPerRow()</code> 返回 1，使其全宽显示。</li>
+  <li seq="auto"><b>新增数据项。</b>创建 <code>SponsoredSearchAdapterItem</code>，保存经校验的展示字段与 PendingIntent，并让其不参与默认 quick-launch。</li>
+  <li seq="auto"><b>合并结果。</b>在 <code>LawnchairSearchAlgorithm.transformSearchResults()</code> 末尾插入至多一条广告。只在非空 query 且自然结果至少一条时展示；建议置于第 3 个自然结果之后，结果少于 3 条则置于其后，绝不挤掉第一条自然结果。</li>
+  <li seq="auto"><b>绑定与度量。</b>展示“赞助内容”、广告主和关闭/不感兴趣入口；曝光仅在至少 50% 可见并停留 1 秒后记一次，点击只通过 <code>PendingIntent.send()</code> 执行。</li>
+</ol>
+<callout emoji="💡" background-color="light-blue" border-color="blue">
+  <p>广告 Provider 应默认关闭并可在设置中关闭个性化。每次请求应设置约 300 ms 预算和缓存；失败或超时只是不显示广告，绝不阻塞本地搜索。不得上传完整已安装应用列表、主页布局或联系人数据；不得在 Launcher 进程加载第三方广告 SDK 或远程 WebView。</p>
+</callout>
+<p>相关代码入口：<code>AllAppsSearchInput.kt</code>、<code>LawnchairSearchAlgorithm.kt</code>、<code>LawnchairSearchAdapterProvider.kt</code>、<code>SearchAdapterItem.kt</code> 和 <code>AllAppsGridAdapter.java</code>。</p>
+
+<h1>上线验收</h1>
+<checkbox done="false">工具 App 与 Release Launcher 使用预期签名；负一屏 Provider 已加入 FeedBridge 白名单。</checkbox>
+<checkbox done="false">Provider 能在设置中选择；绑定失败、卸载和进程重启后主页仍可正常使用。</checkbox>
+<checkbox done="false">已验证 RTL、旋转、返回键、锁屏/解锁和 Provider 不可用的降级。</checkbox>
+<checkbox done="false">固定主页页不影响拖拽、Widget 添加和页面删除；Provider 不可用时自动隐藏。</checkbox>
+<checkbox done="false">搜索广告有“赞助内容”标识、关闭入口、频控、无网降级，且未改变自然结果排序或默认 quick-launch。</checkbox>
+<checkbox done="false">生产 Release 不依赖调试开关或 ignoreFeedWhitelist。</checkbox>
+
+<h1>代码依据</h1>
+<ul>
+  <li><code>build.gradle</code>：Maven 发布配置。</li>
+  <li><code>LauncherSDK.kt</code>：内置 Overlay API。</li>
+  <li><code>FeedBridge.kt</code>：Feed Provider 发现、白名单与签名校验。</li>
+  <li><code>Workspace.java</code>、<code>LauncherOverlayManager.java</code>：Overlay 手势接入。</li>
+  <li><code>AllAppsSearchInput.kt</code>、<code>LawnchairSearchAlgorithm.kt</code>、<code>LawnchairSearchAdapterProvider.kt</code>：搜索扩展链路。</li>
+</ul>
