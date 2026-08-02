@@ -67,7 +67,9 @@ class CustomFeedOverlay(private val launcher: LawnchairLauncher) : LauncherOverl
             android.view.MotionEvent.ACTION_MOVE -> {
                 val dx = event.rawX - launcherGestureStartX
                 val dy = event.rawY - launcherGestureStartY
-                if (!isLauncherClosingGesture && dx > touchSlop && dx > kotlin.math.abs(dy)) {
+                if (!isLauncherClosingGesture && kotlin.math.abs(dx) > touchSlop &&
+                    kotlin.math.abs(dx) > kotlin.math.abs(dy)
+                ) {
                     isLauncherClosingGesture = true
                     // The provider received DOWN before Activity dispatch chose to consume MOVE.
                     // Explicitly cancel it so buttons/scroll containers cannot remain pressed.
@@ -78,7 +80,9 @@ class CustomFeedOverlay(private val launcher: LawnchairLauncher) : LauncherOverl
                     }
                 }
                 if (isLauncherClosingGesture) {
-                    val deltaX = event.rawX - launcherGestureLastRawX
+                    // Product overlays may be presented on either side (or in RTL). Once the
+                    // -1 page is open, any intentional horizontal drag is a return gesture.
+                    val deltaX = kotlin.math.abs(event.rawX - launcherGestureLastRawX)
                     launcherGestureLastRawX = event.rawX
                     updateOverlayPosition((currentProgress - deltaX / screenWidth).coerceIn(0f, 1f))
                     return true
