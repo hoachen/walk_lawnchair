@@ -1,6 +1,6 @@
 # Walk Lawnchair：工具 App 接入与页面定制指南
 
-**适用发布物：** `com.lawnchair:launcher-sdk:1.0.32`（Release）与 `com.lawnchair:launcher-sdk-debug:1.0.32`（Debug）
+**适用发布物：** `com.lawnchair:launcher-sdk:1.0.33`（Release）与 `com.lawnchair:launcher-sdk-debug:1.0.33`（Debug）
 **适用工程：** `walk_lawnchair` 当前分支  
 **最后更新：** 2026-08-01
 
@@ -33,7 +33,7 @@ repositories {
 
 dependencies {
     // 仅用于源码阅读或同进程定制；不作为独立工具 App 的运行时接入方式
-    implementation("com.lawnchair:launcher-sdk:1.0.32")
+    implementation("com.lawnchair:launcher-sdk:1.0.33")
 }
 ```
 
@@ -281,7 +281,7 @@ Lawnchair 核心
 | `ONBOARDING_COMPLETE_FULLSCREEN` | 插屏 | 预留给引导/同意完成页 |
 | `APP_ICON_LAUNCH_FULLSCREEN` | 插屏 | 已在桌面与全部应用图标启动前调用 |
 | `WORKSPACE_LONG_PRESS_FULLSCREEN` | 插屏 | 已在桌面空白处长按菜单前调用 |
-| `LAUNCHER_RESUME_APP_OPEN` | App Open | 已在 Launcher 恢复时预加载，并作为门控回退候选 |
+| `LAUNCHER_RESUME_APP_OPEN` | App Open | Launcher 恢复后首帧尝试展示；全局开关、自然/非自然流量、概率与频控均由云端策略控制 |
 | `SEARCH_LANDING_NATIVE` / `SEARCH_PAGE_NATIVE` | 原生 | 前者已接入自定义搜索落地页；后者供独立搜索页使用 |
 | `WEATHER_PAGE_NATIVE` | 原生 | 预留给产品天气页 |
 | `ALL_APPS_NATIVE_FIRST` / `ALL_APPS_NATIVE_SECOND` | 原生 | 已接入 SDK 的 All Apps 全宽原生广告行；默认插入应用抽屉前两行图标之后 |

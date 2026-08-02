@@ -164,6 +164,7 @@ class LawnchairLauncher : QuickstepLauncher() {
 
     private lateinit var colorScheme: ColorScheme
     private var hasBackGesture = false
+    private var resumeAppOpenScheduled = false
 
     val gestureController by unsafeLazy { GestureController(this) }
 
@@ -532,6 +533,7 @@ class LawnchairLauncher : QuickstepLauncher() {
         // product App has installed an enabled provider and configured this placement.
         AdManager.preload(AdPlacement.APP_ICON_LAUNCH_FULLSCREEN)
         AdManager.preload(AdPlacement.LAUNCHER_RESUME_APP_OPEN)
+        showResumeAppOpenWhenReady()
         restartIfPending()
 
         dragLayer.viewTreeObserver.addOnDrawListener(
@@ -551,6 +553,22 @@ class LawnchairLauncher : QuickstepLauncher() {
                 }
             },
         )
+    }
+
+    /**
+     * The integrating App's cloud configuration decides whether this App Open request is eligible,
+     * including organic/non-organic cohorts, probability and frequency. Posting after the first
+     * resumed frame prevents an App Open from delaying Launcher rendering.
+     */
+    private fun showResumeAppOpenWhenReady() {
+        if (resumeAppOpenScheduled) return
+        resumeAppOpenScheduled = true
+        dragLayer.post {
+            resumeAppOpenScheduled = false
+            if (!isFinishing && !isDestroyed) {
+                AdManager.showThen(this, AdPlacement.LAUNCHER_RESUME_APP_OPEN, Runnable {})
+            }
+        }
     }
 
     override fun onDestroy() {

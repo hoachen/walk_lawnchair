@@ -21,7 +21,7 @@ enum class AdPlacement(val type: IAdType) {
     APP_ICON_LAUNCH_FULLSCREEN(IAdType.Interstitial),
     /** Fullscreen gate before opening the workspace long-press options menu. */
     WORKSPACE_LONG_PRESS_FULLSCREEN(IAdType.Interstitial),
-    /** Optional app-open inventory to preload when Launcher becomes foreground. */
+    /** Cloud-controlled App Open inventory when Launcher becomes foreground. */
     LAUNCHER_RESUME_APP_OPEN(IAdType.AppOpen),
     SEARCH_LANDING_NATIVE(IAdType.Native),
     /** Reference launcher search activity native card. */
