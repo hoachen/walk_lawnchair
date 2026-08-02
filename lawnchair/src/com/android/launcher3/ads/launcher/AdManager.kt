@@ -5,6 +5,8 @@ import android.app.Application
 import android.view.View
 import android.view.ViewGroup
 import com.android.launcher3.ads.npa.AdRequestPolicy
+import com.android.launcher3.ads.npa.AdRequestPrivacy
+import com.android.launcher3.ads.npa.AdRequestPrivacyProvider
 import com.android.launcher3.ads.npa.ConsentManager
 import com.android.launcher3.ads.white.NativeAdSlot
 import java.util.WeakHashMap
@@ -32,15 +34,62 @@ enum class AdPlacement(val type: IAdType) {
     ALL_APPS_NATIVE_SECOND(IAdType.Native),
     /** Generic dialog/action gate; the caller supplies a native host when applicable. */
     DIALOG_GATE_FULLSCREEN(IAdType.Interstitial),
+    /** Product action: choose an alert sound. */
+    SOUND_SELECTION_FULLSCREEN(IAdType.Interstitial),
+    /** Product action: persist an alert-sound setting. */
+    ALERT_SOUND_SAVE_FULLSCREEN(IAdType.Interstitial),
+    /** Product action: dismiss the phone-found result screen. */
+    PHONE_FOUND_DISMISS_FULLSCREEN(IAdType.Interstitial),
+    /** Rewarded fallback for the phone-found result screen. */
+    PHONE_FOUND_DISMISS_REWARDED(IAdType.Rewarded),
+    /** In-feed native card for the find-phone minus-one page. */
+    FIND_PHONE_NATIVE(IAdType.Native),
+    /** In-feed native card for the phone-found result page. */
+    PHONE_FOUND_NATIVE(IAdType.Native),
+    /** In-feed native card for the alert-sound page. */
+    ALERT_SOUND_NATIVE(IAdType.Native),
 }
+
+/**
+ * Attribution result supplied by the integrating App. Lawnchair deliberately does not link to
+ * Tenjin (or to any other attribution SDK), so the App remains the only owner of attribution
+ * collection, consent and SDK lifecycle.
+ */
+enum class AdTrafficType {
+    ORGANIC,
+    NON_ORGANIC,
+    /** Attribution has not completed or cannot be trusted yet. Ads fail closed in this state. */
+    UNKNOWN,
+}
+
+fun interface AdAttributionProvider {
+    /** Return the latest Tenjin-derived traffic classification. This is queried for every request. */
+    fun getTrafficType(): AdTrafficType
+}
+
+/**
+ * A server-driven rule for a single placement. The App fetches/deserializes this data and exposes
+ * it through [AdConfigurationProvider]; Lawnchair only evaluates the already supplied rule.
+ */
+data class AdPlacementPolicy(
+    val enabled: Boolean = true,
+    val allowOrganic: Boolean = false,
+    val allowNonOrganic: Boolean = true,
+)
 
 /** Product-specific IDs. Lawnchair ships neither an app ID nor production ad-unit IDs. */
 data class AdConfiguration(
     val appId: String,
     val unitIds: Map<AdPlacement, String>,
     val enabled: Boolean = false,
+    /** Optional placement overrides from the App's remote advertising strategy. */
+    val placementPolicies: Map<AdPlacement, AdPlacementPolicy> = emptyMap(),
 ) {
     fun unitIdFor(placement: AdPlacement): String? = unitIds[placement]?.takeIf { it.isNotBlank() }
+
+    /** Mirrors the reference manager's default: organic users do not receive ads. */
+    fun policyFor(placement: AdPlacement): AdPlacementPolicy =
+        placementPolicies[placement] ?: AdPlacementPolicy()
 }
 
 fun interface AdConfigurationProvider {
@@ -55,7 +104,9 @@ object AdManager {
     private var application: Application? = null
     private var provider: IAdProvider? = null
     private var configurationProvider: AdConfigurationProvider? = null
+    private var attributionProvider: AdAttributionProvider? = null
     private var consentManager: ConsentManager? = null
+    private var requestPrivacyProvider: AdRequestPrivacyProvider? = null
     private var requestPolicy: AdRequestPolicy? = null
     private var initializedProvider: IAdProvider? = null
     private val slotRequests = WeakHashMap<ViewGroup, Long>()
@@ -64,12 +115,16 @@ object AdManager {
     fun install(
         provider: IAdProvider,
         configurationProvider: AdConfigurationProvider,
+        attributionProvider: AdAttributionProvider,
         consentManager: ConsentManager? = null,
+        requestPrivacyProvider: AdRequestPrivacyProvider? = null,
         requestPolicy: AdRequestPolicy? = null,
     ) {
         this.provider = provider
         this.configurationProvider = configurationProvider
+        this.attributionProvider = attributionProvider
         this.consentManager = consentManager
+        this.requestPrivacyProvider = requestPrivacyProvider
         this.requestPolicy = requestPolicy
         initializedProvider = null
         application?.let(::initializeIfEnabled)
@@ -79,7 +134,9 @@ object AdManager {
     fun uninstall() {
         provider = null
         configurationProvider = null
+        attributionProvider = null
         consentManager = null
+        requestPrivacyProvider = null
         requestPolicy = null
         initializedProvider = null
     }
@@ -104,9 +161,9 @@ object AdManager {
         val installedProvider = provider ?: return false
         val configuration = configurationProvider?.get() ?: return false
         val unitId = configuration.unitIdFor(placement) ?: return false
-        if (!configuration.enabled) return false
+        if (!configuration.enabled || !isTrafficEligible(configuration, placement)) return false
         application?.let(::initializeIfEnabled)
-        return installedProvider.loadAd(placement.type, placement, unitId)
+        return installedProvider.loadAd(placement.type, placement, unitId, requestPrivacyFor(placement))
     }
 
     fun showNativeAd(activity: Activity, placement: AdPlacement, container: ViewGroup) {
@@ -115,6 +172,7 @@ object AdManager {
         val configuration = configurationProvider?.get()
         val eligible = installedProvider != null && configuration?.enabled == true &&
             configuration.unitIdFor(placement) != null && placement.type == IAdType.Native &&
+            isTrafficEligible(configuration, placement) &&
             (consentManager?.canRequestAds(activity) ?: true) &&
             (requestPolicy?.canRequest(activity, placement) ?: true)
         if (!eligible) {
@@ -170,6 +228,7 @@ object AdManager {
         val configuration = configurationProvider?.get()
         val eligible = installedProvider != null && configuration?.enabled == true &&
             configuration.unitIdFor(placement) != null && placement.type != IAdType.Native &&
+            isTrafficEligible(configuration, placement) &&
             (consentManager?.canRequestAds(activity) ?: true) &&
             (requestPolicy?.canRequest(activity, placement) ?: true)
         if (!eligible) {
@@ -220,4 +279,22 @@ object AdManager {
         provider?.destroyNativeAd(container)
         NativeAdSlot.clear(container)
     }
+
+    /**
+     * Equivalent to the reference project's isNonOrganic/isIgnoreOrganic branch, except that
+     * attribution is injected by the App (for example, from Tenjin) and each server policy can
+     * explicitly allow either cohort. Unknown attribution never requests an ad.
+     */
+    private fun isTrafficEligible(configuration: AdConfiguration, placement: AdPlacement): Boolean {
+        val policy = configuration.policyFor(placement)
+        if (!policy.enabled) return false
+        return when (attributionProvider?.getTrafficType() ?: AdTrafficType.UNKNOWN) {
+            AdTrafficType.ORGANIC -> policy.allowOrganic
+            AdTrafficType.NON_ORGANIC -> policy.allowNonOrganic
+            AdTrafficType.UNKNOWN -> false
+        }
+    }
+
+    private fun requestPrivacyFor(placement: AdPlacement): AdRequestPrivacy =
+        requestPrivacyProvider?.get(placement) ?: AdRequestPrivacy()
 }

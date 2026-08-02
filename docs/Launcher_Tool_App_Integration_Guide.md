@@ -1,6 +1,6 @@
 # Walk Lawnchair：工具 App 接入与页面定制指南
 
-**适用发布物：** `com.lawnchair:launcher-sdk:1.0.29`（Release）与 `com.lawnchair:launcher-sdk-debug:1.0.29`（Debug）
+**适用发布物：** `com.lawnchair:launcher-sdk:1.0.31`（Release）与 `com.lawnchair:launcher-sdk-debug:1.0.31`（Debug）
 **适用工程：** `walk_lawnchair` 当前分支  
 **最后更新：** 2026-08-01
 
@@ -33,7 +33,7 @@ repositories {
 
 dependencies {
     // 仅用于源码阅读或同进程定制；不作为独立工具 App 的运行时接入方式
-    implementation("com.lawnchair:launcher-sdk:1.0.29")
+    implementation("com.lawnchair:launcher-sdk:1.0.31")
 }
 ```
 
@@ -286,13 +286,25 @@ Lawnchair 核心
 | `WEATHER_PAGE_NATIVE` | 原生 | 预留给产品天气页 |
 | `ALL_APPS_NATIVE_FIRST` / `ALL_APPS_NATIVE_SECOND` | 原生 | 预留给全部应用列表的两个广告行 |
 | `DIALOG_GATE_FULLSCREEN` | 插屏 | 可通过 `AdDialogGate` 接入任意产品操作 |
+| `SOUND_SELECTION_FULLSCREEN` | 插屏 | ClapFinder 声音选择操作已接入 |
+| `ALERT_SOUND_SAVE_FULLSCREEN` | 插屏 | ClapFinder 提示音保存操作已接入 |
+| `PHONE_FOUND_DISMISS_FULLSCREEN` / `PHONE_FOUND_DISMISS_REWARDED` | 插屏 / 激励 | ClapFinder 找回手机完成操作按顺序回退 |
+| `FIND_PHONE_NATIVE` / `PHONE_FOUND_NATIVE` / `ALERT_SOUND_NATIVE` | 原生 | 已与参考源码对齐并预留；待对应 App 页面提供 `ViewGroup` 后调用 `showNativeAd` |
+
+#### 参考工程广告位盘点与对齐
+
+参考 `ClapFinderLauncher/sources` 中的实际调用已归并到上述 placement：图标启动和桌面长按（`AdManager`）、独立搜索/天气/全部应用列表（`AdmobNativeAdManager`），以及找手机、找回结果、声音与提示音页面的插屏、激励和原生位。Banner 是产品页面自行持有的 `AdView`，不应混入 `AdManager` 的全屏/原生调度。
+
+`white` 包仅负责两件事：`NativeAdSlot` 在新请求、失败和页面销毁时清理容器，`AdDialogGate` 保证广告不可用时原操作仍执行。`npa` 包是隐私边界：`ConsentManager` 决定是否可以请求，`AdRequestPrivacyProvider` 决定是否 NPA；最终广告网络参数必须由 App 的 `IAdProvider` 写入请求。
 
 #### 产品 App 的最小实现
 
 1. 在产品模块添加所选广告网络/聚合 SDK、网络权限和该 SDK 需要的 Manifest `meta-data`；App ID 放在构建变量或私有配置中。
 2. 实现 `IAdProvider`：`initialize` 初始化 SDK，`loadAd` 使用对应广告位的 unit id 预加载，`play*` 展示已缓存广告。全屏广告关闭或失败必须回调 `onDismissed` / `onFailed`，否则 Launcher 的原操作不会继续。
 3. 对原生广告，`playNative` 在加载成功后将渲染 View 添加到传入 `ViewGroup`，失败调用 `onFailed`；`destroyNativeAd` 必须销毁 SDK 的 `NativeAd` 对象和监听器。
-4. 实现 `ConsentManager`（CMP/地区隐私同意）和 `AdRequestPolicy`（远程开关、频控、冷启动保护、测试设备）。任一项不允许时返回 `false`，Lawnchair 将无广告继续原操作。
+4. 使用 Tenjin 获取归因，但只在 App 中实现 `AdAttributionProvider` 并返回 `ORGANIC`、`NON_ORGANIC` 或 `UNKNOWN`；Lawnchair 不依赖 Tenjin、Singular 或任何归因 SDK。`UNKNOWN` 默认安全地不请求广告。
+5. App 从服务端拉取广告策略，并通过 `AdConfigurationProvider` 返回：全局开关、广告位 unit id，以及每个广告位的 `AdPlacementPolicy`（是否启用、是否允许自然/非自然流量）。SDK 不包含服务端地址、请求或缓存逻辑。
+6. 实现 `ConsentManager`（CMP/地区隐私同意）和 `AdRequestPolicy`（远程开关、频控、冷启动保护、测试设备）。任一项不允许时返回 `false`，Lawnchair 将无广告继续原操作。
 5. 在产品 `Application.onCreate()` 中、`LawnchairApp` 初始化之前或之后安装 Provider：
 
 ```kotlin
@@ -307,14 +319,37 @@ AdManager.install(
                 AdPlacement.SEARCH_LANDING_NATIVE to BuildConfig.AD_UNIT_SEARCH_NATIVE,
             ),
             enabled = !BuildConfig.DEBUG && BuildConfig.ADS_ENABLED,
+            // 此对象由 App 的服务端策略反序列化而来；示例仅展示形状。
+            placementPolicies = mapOf(
+                AdPlacement.APP_ICON_LAUNCH_FULLSCREEN to AdPlacementPolicy(
+                    allowOrganic = false,
+                    allowNonOrganic = true,
+                ),
+                AdPlacement.SEARCH_LANDING_NATIVE to AdPlacementPolicy(
+                    allowOrganic = true,
+                    allowNonOrganic = true,
+                ),
+            ),
         )
     },
+    // Tenjin 回调完成前返回 UNKNOWN；不确定归因时 SDK 不加载/展示广告。
+    attributionProvider = AdAttributionProvider {
+        when (tenjinAttributionRepository.trafficType()) {
+            TrafficType.ORGANIC -> AdTrafficType.ORGANIC
+            TrafficType.NON_ORGANIC -> AdTrafficType.NON_ORGANIC
+            else -> AdTrafficType.UNKNOWN
+        }
+    },
     consentManager = ProductConsentManager(),
+    // 未取得个性化广告同意时，App 的 Provider 必须将其转换为所在广告网络的 NPA 参数。
+    requestPrivacyProvider = AdRequestPrivacyProvider {
+        AdRequestPrivacy(nonPersonalizedAds = !productCmp.hasPersonalizedAdConsent())
+    },
     requestPolicy = ProductAdRequestPolicy(),
 )
 ```
 
-`AdManager.install()` 可在 `LawnchairApp.onCreate()` 前后调用；若 Launcher 已创建，会立即尝试初始化。未安装、`enabled=false`、缺少 unit id、未同意或频控拒绝时均为安全 no-op。
+`AdManager.install()` 可在 `LawnchairApp.onCreate()` 前后调用；若 Launcher 已创建，会立即尝试初始化。默认策略与参考 `AdManager.canPlayAdNow(false)` 一致：自然流量不展示广告；服务端可针对特定广告位将 `allowOrganic` 打开。未安装、归因未知、`enabled=false`、缺少 unit id、未同意或频控拒绝时均为安全 no-op。未提供 `AdRequestPrivacyProvider` 时，SDK 默认请求 NPA；Provider 负责把该值翻译为广告网络参数。
 
 #### 接入验收
 

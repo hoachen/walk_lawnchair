@@ -3,6 +3,7 @@ package com.android.launcher3.ads.launcher
 import android.app.Activity
 import android.app.Application
 import android.view.ViewGroup
+import com.android.launcher3.ads.npa.AdRequestPrivacy
 
 /**
  * SDK adapter owned by the integrating product application.
@@ -22,6 +23,17 @@ interface IAdProvider {
 
     /** Start an asynchronous load. Return false when the request cannot be started. */
     fun loadAd(type: IAdType, placement: AdPlacement, unitId: String): Boolean = false
+
+    /**
+     * Called by current Lawnchair releases. Providers translate [privacy] to their network's
+     * request flags. The three-argument overload remains for source compatibility.
+     */
+    fun loadAd(
+        type: IAdType,
+        placement: AdPlacement,
+        unitId: String,
+        privacy: AdRequestPrivacy,
+    ): Boolean = loadAd(type, placement, unitId)
 
     fun playInterstitial(activity: Activity, placement: AdPlacement, listener: IAdPlayListener): Boolean = false
 
