@@ -16,6 +16,7 @@ import com.android.launcher3.InvariantDeviceProfile.OnIDPChangeListener
 import com.android.launcher3.allapps.AllAppsStore
 import com.android.launcher3.allapps.AlphabeticalAppsList
 import com.android.launcher3.allapps.BaseAllAppsAdapter.AdapterItem
+import com.android.launcher3.allapps.BaseAllAppsAdapter.VIEW_TYPE_NATIVE_AD_ROW
 import com.android.launcher3.allapps.PrivateProfileManager
 import com.android.launcher3.allapps.WorkProfileManager
 import com.android.launcher3.model.data.AppInfo
@@ -42,6 +43,14 @@ class LawnchairAlphabeticalAppsList<T>(
     private val viewModel: FolderViewModel by (context as ComponentActivity).viewModels()
     private var folderList = mutableListOf<FolderInfo>()
     private val filteredList = mutableListOf<AppInfo>()
+
+    /**
+     * The reference app hosts two native placements in one full-width All Apps row. Keeping the
+     * row after two icon rows prevents it from appearing before the user has reached app content.
+     */
+    private companion object {
+        const val NATIVE_AD_INSERT_AFTER_ITEMS = 8
+    }
 
     private val folderOrder = FolderOrderUtils.stringToIntList(prefs.drawerListOrder.get())
 
@@ -81,6 +90,7 @@ class LawnchairAlphabeticalAppsList<T>(
         val drawerListDefault = prefs.drawerList.get()
         filteredList.clear()
         var position = startPosition
+        val contentStart = mAdapterItems.size
 
         // Show app drawer folders only on main profile, to prevent state complexity
         if (isWorkOrPrivateSpace(appList)) return super.addAppsWithSections(appList, position)
@@ -118,6 +128,15 @@ class LawnchairAlphabeticalAppsList<T>(
             }
             val remainingApps = appList.filterNot { app -> filteredList.contains(app) && prefs.folderApps.get() }
             position = super.addAppsWithSections(remainingApps, position)
+        }
+
+        val contentItemCount = mAdapterItems.size - contentStart
+        if (!hasSearchResults() && contentItemCount >= NATIVE_AD_INSERT_AFTER_ITEMS) {
+            mAdapterItems.add(
+                contentStart + NATIVE_AD_INSERT_AFTER_ITEMS,
+                AdapterItem(VIEW_TYPE_NATIVE_AD_ROW),
+            )
+            position++
         }
 
         return position

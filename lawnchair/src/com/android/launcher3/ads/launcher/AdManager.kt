@@ -28,9 +28,9 @@ enum class AdPlacement(val type: IAdType) {
     SEARCH_PAGE_NATIVE(IAdType.Native),
     /** Reference weather activity native card. */
     WEATHER_PAGE_NATIVE(IAdType.Native),
-    /** Reserved for a future All Apps adapter native row. */
+    /** First native host in the SDK-owned All Apps adapter row. */
     ALL_APPS_NATIVE_FIRST(IAdType.Native),
-    /** Reserved for a future All Apps adapter native row. */
+    /** Second native host in the SDK-owned All Apps adapter row. */
     ALL_APPS_NATIVE_SECOND(IAdType.Native),
     /** Generic dialog/action gate; the caller supplies a native host when applicable. */
     DIALOG_GATE_FULLSCREEN(IAdType.Interstitial),

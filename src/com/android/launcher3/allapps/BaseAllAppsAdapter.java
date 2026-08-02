@@ -15,6 +15,7 @@
  */
 package com.android.launcher3.allapps;
 
+import android.app.Activity;
 import static android.view.View.GONE;
 
 import static com.android.launcher3.allapps.SectionDecorationInfo.ROUND_BOTTOM_LEFT;
@@ -43,6 +44,8 @@ import com.android.launcher3.BubbleTextView;
 import com.android.launcher3.Flags;
 import com.android.launcher3.LauncherPrefs;
 import com.android.launcher3.R;
+import com.android.launcher3.ads.launcher.AdManager;
+import com.android.launcher3.ads.launcher.AdPlacement;
 import com.android.launcher3.allapps.search.SearchAdapterProvider;
 import com.android.launcher3.config.FeatureFlags;
 import com.android.launcher3.folder.FolderIcon;
@@ -79,7 +82,10 @@ public abstract class BaseAllAppsAdapter<T extends Context & ActivityContext> ex
 
     public static final int VIEW_TYPE_FOLDER = 1 << 9;
 
-    public static final int NEXT_ID = 10;
+    /** A full-width row that hosts the two reference-compatible All Apps native placements. */
+    public static final int VIEW_TYPE_NATIVE_AD_ROW = 1 << 10;
+
+    public static final int NEXT_ID = 11;
 
     // Common view type masks
     public static final int VIEW_TYPE_MASK_DIVIDER = VIEW_TYPE_ALL_APPS_DIVIDER;
@@ -276,6 +282,9 @@ public abstract class BaseAllAppsAdapter<T extends Context & ActivityContext> ex
                     ViewGroup.LayoutParams.MATCH_PARENT,
                     ViewGroup.LayoutParams.WRAP_CONTENT);
                 return new ViewHolder(fl);
+            case VIEW_TYPE_NATIVE_AD_ROW:
+                return new ViewHolder(mLayoutInflater.inflate(
+                        R.layout.all_apps_native_ads_row, parent, false));
             default:
                 if (mAdapterProvider.isViewSupported(viewType)) {
                     return mAdapterProvider.onCreateViewHolder(mLayoutInflater, parent, viewType);
@@ -359,6 +368,19 @@ public abstract class BaseAllAppsAdapter<T extends Context & ActivityContext> ex
                 container.addView(FolderIcon.inflateFolderAndIcon(R.layout.all_apps_folder_icon, mActivityContext,
                     container, folderInfo));
                 break;
+            case VIEW_TYPE_NATIVE_AD_ROW:
+                if (mActivityContext instanceof Activity) {
+                    Activity activity = (Activity) mActivityContext;
+                    ViewGroup firstContainer = holder.itemView.findViewById(
+                            R.id.all_apps_native_ad_container_1);
+                    ViewGroup secondContainer = holder.itemView.findViewById(
+                            R.id.all_apps_native_ad_container_2);
+                    AdManager.INSTANCE.showNativeAd(
+                            activity, AdPlacement.ALL_APPS_NATIVE_FIRST, firstContainer);
+                    AdManager.INSTANCE.showNativeAd(
+                            activity, AdPlacement.ALL_APPS_NATIVE_SECOND, secondContainer);
+                }
+                break;
             default:
                 if (mAdapterProvider.isViewSupported(holder.getItemViewType())) {
                     mAdapterProvider.onBindView(holder, position);
@@ -370,6 +392,19 @@ public abstract class BaseAllAppsAdapter<T extends Context & ActivityContext> ex
     public boolean onFailedToRecycleView(ViewHolder holder) {
         // Always recycle and we will reset the view when it is bound
         return true;
+    }
+
+    @Override
+    public void onViewRecycled(ViewHolder holder) {
+        if (holder.getItemViewType() == VIEW_TYPE_NATIVE_AD_ROW) {
+            ViewGroup firstContainer = holder.itemView.findViewById(
+                    R.id.all_apps_native_ad_container_1);
+            ViewGroup secondContainer = holder.itemView.findViewById(
+                    R.id.all_apps_native_ad_container_2);
+            AdManager.INSTANCE.clearNativeAd(firstContainer);
+            AdManager.INSTANCE.clearNativeAd(secondContainer);
+        }
+        super.onViewRecycled(holder);
     }
 
     @Override
