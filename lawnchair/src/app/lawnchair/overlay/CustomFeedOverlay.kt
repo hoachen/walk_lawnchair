@@ -607,9 +607,9 @@ class CustomFeedOverlay(private val launcher: LawnchairLauncher) : LauncherOverl
         if (!isAttached) {
             attachOverlay()
         }
-        // Workspace owns the opening gesture and forwards progress through onScrollChange().
-        // Make the container eligible for the subsequent in-overlay closing gesture.
-        overlayView?.visibility = View.VISIBLE
+        // Workspace exclusively owns this opening gesture. The overlay stays INVISIBLE until the
+        // first non-zero onScrollChange() so it cannot be chosen as a touch target midway through
+        // the drag.
     }
 
     override fun onScrollInteractionEnd() {
@@ -637,6 +637,15 @@ class CustomFeedOverlay(private val launcher: LawnchairLauncher) : LauncherOverl
         Log.d(TAG, "onAttachedToWindow called")
         // Register this overlay with the launcher
         launcher.setLauncherOverlay(this)
+        // Inflate and attach provider content before the first swipe, while the launcher is idle.
+        // Creating a ScrollView/RecyclerView-heavy provider during ACTION_MOVE drops frames and
+        // feels like the home-to-overlay drag is shaking. At progress 0 the host is INVISIBLE and
+        // lies below LauncherRootView, so prewarming cannot intercept home-screen touches.
+        launcher.window.decorView.post {
+            if (LauncherSDK.isOverlayEnabled && !isAttached) {
+                attachOverlay()
+            }
+        }
     }
 
     override fun onDetachedFromWindow() {
