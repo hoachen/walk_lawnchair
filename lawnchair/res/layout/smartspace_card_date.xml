@@ -25,9 +25,9 @@
         android:includeFontPadding="false"
         android:letterSpacing="0.015"
         android:shadowColor="#66000000"
-        android:shadowDx="0dp"
-        android:shadowDy="2dp"
-        android:shadowRadius="4dp"
+        android:shadowDx="0"
+        android:shadowDy="2"
+        android:shadowRadius="4"
         android:textColor="@android:color/white"
         android:textSize="58sp" />
 
