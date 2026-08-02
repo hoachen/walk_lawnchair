@@ -463,10 +463,13 @@ class CustomFeedOverlay(private val launcher: LawnchairLauncher) : LauncherOverl
          val  rootView =   launcher.window.decorView as? ViewGroup
             if (rootView != null) {
                 Log.d(TAG, "Adding overlay view to rootView, childCount=${rootView.childCount}")
-                // The overlay must sit above Launcher/DragLayer while open so its parent can
-                // intercept the right-swipe-back gesture even when provider content consumes
-                // touch events. updateOverlayPosition disables it at progress 0.
-                rootView.addView(view)
+                // Keep the overlay below LauncherRootView/DragLayer while Workspace is opening
+                // it. Adding it on top here makes the freshly attached overlay receive the next
+                // MOVE in the same gesture, while Workspace is still updating its edge effect;
+                // that ownership hand-off manifests as a visible shake and makes the -1 page
+                // hard to enter. Closing is intentionally handled at Activity level by
+                // handleLauncherTouchEvent(), so provider content cannot block the return drag.
+                rootView.addView(view, 0)
                 isAttached = true
                 updateOverlayPosition(currentProgress)
                 Log.d(TAG, "Overlay attached successfully to rootView")
