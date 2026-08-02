@@ -46,6 +46,7 @@ class CustomFeedOverlay(private val launcher: LawnchairLauncher) : LauncherOverl
     private var launcherGestureStartY = 0f
     private var launcherGestureLastRawX = 0f
     private var isLauncherClosingGesture = false
+    private var isLauncherGestureEligible = false
 
     private val screenWidth: Int get() = launcher.resources.displayMetrics.widthPixels
 
@@ -54,7 +55,6 @@ class CustomFeedOverlay(private val launcher: LawnchairLauncher) : LauncherOverl
      * including providers which consume every touch event or disallow parent interception.
      */
     fun handleLauncherTouchEvent(event: android.view.MotionEvent): Boolean {
-        if (currentProgress <= 0f) return false
         val touchSlop = android.view.ViewConfiguration.get(launcher).scaledTouchSlop
         when (event.actionMasked) {
             android.view.MotionEvent.ACTION_DOWN -> {
@@ -62,9 +62,15 @@ class CustomFeedOverlay(private val launcher: LawnchairLauncher) : LauncherOverl
                 launcherGestureStartY = event.rawY
                 launcherGestureLastRawX = event.rawX
                 isLauncherClosingGesture = false
+                // Activity dispatch is only the fallback for an *already open* overlay. If this
+                // DOWN began on home, Workspace owns the complete home-to-overlay sequence. Do
+                // not reconsider eligibility on a later MOVE after Workspace has made progress
+                // non-zero, otherwise both paths modify progress and the drag visibly shakes.
+                isLauncherGestureEligible = currentProgress >= 0.99f
             }
 
             android.view.MotionEvent.ACTION_MOVE -> {
+                if (!isLauncherGestureEligible) return false
                 val dx = event.rawX - launcherGestureStartX
                 val dy = event.rawY - launcherGestureStartY
                 if (!isLauncherClosingGesture && kotlin.math.abs(dx) > touchSlop &&
@@ -92,9 +98,11 @@ class CustomFeedOverlay(private val launcher: LawnchairLauncher) : LauncherOverl
             android.view.MotionEvent.ACTION_UP, android.view.MotionEvent.ACTION_CANCEL -> {
                 if (isLauncherClosingGesture) {
                     isLauncherClosingGesture = false
+                    isLauncherGestureEligible = false
                     animateToProgress(if (currentProgress > 0.5f) 1f else 0f)
                     return true
                 }
+                isLauncherGestureEligible = false
             }
         }
         return false
