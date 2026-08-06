@@ -53,6 +53,18 @@ object LauncherSDK {
     var isOverlayEnabled: Boolean = true
     var overlayProvider: OverlayProvider? = null
 
+    @Volatile
+    private var overlayOpener: (() -> Unit)? = null
+
+    /** Opens the registered -1 page using Lawnchair's normal workspace animation. */
+    fun openOverlay() {
+        overlayOpener?.invoke()
+    }
+
+    internal fun setOverlayOpener(opener: (() -> Unit)?) {
+        overlayOpener = opener
+    }
+
     /**
      * Selects the Launcher-owned Smartspace implementation before the home screen is created.
      * Use this from an embedding App instead of writing Lawnchair's internal DataStore directly.

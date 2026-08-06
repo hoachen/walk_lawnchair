@@ -645,6 +645,7 @@ class CustomFeedOverlay(private val launcher: LawnchairLauncher) : LauncherOverl
         Log.d(TAG, "onAttachedToWindow called")
         // Register this overlay with the launcher
         launcher.setLauncherOverlay(this)
+        LauncherSDK.setOverlayOpener(::openOverlay)
         // Inflate and attach provider content before the first swipe, while the launcher is idle.
         // Creating a ScrollView/RecyclerView-heavy provider during ACTION_MOVE drops frames and
         // feels like the home-to-overlay drag is shaking. At progress 0 the host is INVISIBLE and
@@ -658,6 +659,7 @@ class CustomFeedOverlay(private val launcher: LawnchairLauncher) : LauncherOverl
 
     override fun onDetachedFromWindow() {
         Log.d(TAG, "onDetachedFromWindow called")
+        LauncherSDK.setOverlayOpener(null)
         launcher.setLauncherOverlay(null)
         detachOverlay()
         // Clear cache
