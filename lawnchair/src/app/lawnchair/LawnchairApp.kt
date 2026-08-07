@@ -25,6 +25,8 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.provider.Settings
 import android.util.Log
 import androidx.compose.foundation.layout.Spacer
@@ -41,17 +43,24 @@ import app.lawnchair.flowerpot.Flowerpot
 import app.lawnchair.preferences.PreferenceManager
 import app.lawnchair.ui.ModalBottomSheetContent
 import app.lawnchair.ui.preferences.destinations.openAppInfo
+import app.lawnchair.util.isDefaultLauncher
 import app.lawnchair.util.restartLauncher
 import app.lawnchair.util.unsafeLazy
 import app.lawnchair.views.ComposeBottomSheet
 import com.android.launcher3.BuildConfig
 import com.android.launcher3.InvariantDeviceProfile
 import com.android.launcher3.Launcher
+import com.android.launcher3.LauncherState
 import com.android.launcher3.R
 import com.android.launcher3.Utilities
 import com.android.launcher3.ads.launcher.AdManager
 import com.android.quickstep.RecentsActivity
 import com.android.systemui.shared.system.QuickStepContract
+import com.urtech.launcher.sdk.GameLauncherConfig
+import com.urtech.launcher.sdk.GameLauncherFeature
+import com.urtech.launcher.sdk.GameLauncherHostController
+import com.urtech.launcher.sdk.GameLauncherPlacement
+import com.urtech.launcher.sdk.GameLauncherSdk
 import java.io.File
 
 class LawnchairApp : Application() {
@@ -60,7 +69,90 @@ class LawnchairApp : Application() {
         super.onCreate()
         LauncherSDK.init(this)
         LauncherSDK.onLauncherAppStateCreated(this)
+        GameLauncherSdk.init(
+            this,
+            GameLauncherConfig.Builder()
+                .setGameId("walk_lawnchair")
+                .setLauncherPackageName(packageName)
+                .setLauncherActivityClassName(LawnchairLauncher::class.java.name)
+                .setMinusOneEnabled(true)
+                .build(),
+        )
+        GameLauncherSdk.installHostController(LawnchairGameHostController())
         AdManager.onAppCreate(this)
+    }
+
+    private class LawnchairGameHostController : GameLauncherHostController {
+        override fun openLauncher(context: Context): Boolean {
+            return context.startLauncherActivity()
+        }
+
+        override fun openMinusOne(context: Context): Boolean {
+            val launcher = LawnchairLauncher.instance
+            if (launcher != null) {
+                launcher.rootView.post { LauncherSDK.openOverlay() }
+                return true
+            }
+            return context.startLauncherActivity().also { started ->
+                if (started) {
+                    Handler(Looper.getMainLooper()).postDelayed({ LauncherSDK.openOverlay() }, 500)
+                }
+            }
+        }
+
+        override fun openAllApps(context: Context): Boolean {
+            val launcher = LawnchairLauncher.instance
+            if (launcher != null) {
+                launcher.rootView.post {
+                    launcher.stateManager.goToState(LauncherState.ALL_APPS, true)
+                }
+                return true
+            }
+            return context.startLauncherActivity(
+                Intent(context, LawnchairLauncher::class.java)
+                    .setAction(Intent.ACTION_ALL_APPS),
+            )
+        }
+
+        override fun openFeature(context: Context, feature: GameLauncherFeature, query: String?): Boolean {
+            return when (feature) {
+                GameLauncherFeature.LAUNCHER -> openLauncher(context)
+                GameLauncherFeature.MINUS_ONE, GameLauncherFeature.FEED_PAGE -> openMinusOne(context)
+                GameLauncherFeature.ALL_APPS, GameLauncherFeature.SEARCH -> openAllApps(context)
+                else -> false
+            }
+        }
+
+        override fun returnHome(context: Context): Boolean {
+            val launcher = LawnchairLauncher.instance
+            if (launcher != null) {
+                launcher.rootView.post {
+                    launcher.stateManager.goToState(LauncherState.NORMAL, true)
+                }
+                return true
+            }
+            return context.startLauncherActivity()
+        }
+
+        override fun isDefaultLauncher(context: Context): Boolean? {
+            return context.isDefaultLauncher()
+        }
+
+        override fun isLauncherAlive(): Boolean? {
+            return LawnchairLauncher.instance != null
+        }
+
+        override fun isInLauncherMainPage(): Boolean? {
+            return LawnchairLauncher.instance?.isInState(LauncherState.NORMAL)
+        }
+
+        override fun preloadPlacement(context: Context, placement: GameLauncherPlacement): Boolean {
+            return placement == GameLauncherPlacement.LAUNCHER_VISIBLE
+        }
+
+        override fun preloadWhenLauncherVisible(context: Context): Boolean {
+            return true
+        }
     }
 
     companion object {
@@ -76,6 +168,19 @@ class LawnchairApp : Application() {
             return LauncherSDK.getUriForFile(context, file)
         }
     }
+}
+
+private fun Context.startLauncherActivity(
+    intent: Intent = Intent(this, LawnchairLauncher::class.java),
+): Boolean {
+    return runCatching {
+        startActivity(
+            intent
+                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                .addCategory(Intent.CATEGORY_HOME),
+        )
+        true
+    }.getOrElse { false }
 }
 
 val Context.lawnchairApp get() = LauncherSDK

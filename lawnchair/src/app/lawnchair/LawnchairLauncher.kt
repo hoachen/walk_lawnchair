@@ -94,6 +94,9 @@ import com.android.systemui.shared.system.QuickStepContract
 import com.kieronquinn.app.smartspacer.sdk.client.SmartspacerClient
 import com.patrykmichalik.opto.core.firstBlocking
 import com.patrykmichalik.opto.core.onEach
+import com.urtech.launcher.sdk.GameLauncherFeature
+import com.urtech.launcher.sdk.GameLauncherIntents
+import com.urtech.launcher.sdk.GameLauncherSdk
 import dev.kdrag0n.monet.theme.ColorScheme
 import java.util.stream.Stream
 import kotlinx.coroutines.flow.distinctUntilChanged
@@ -377,6 +380,53 @@ class LawnchairLauncher : QuickstepLauncher() {
         bindInflatedItems(inflatedItems, if (forceAnimateIcons) AnimatorSet() else null)
     }
 
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        when {
+            intent.getBooleanExtra(GameLauncherIntents.EXTRA_OPEN_MINUS_ONE, false) ||
+                intent.action == GameLauncherIntents.ACTION_OPEN_MINUS_ONE -> {
+                rootView.post { LauncherSDK.openOverlay() }
+            }
+
+            intent.getBooleanExtra(GameLauncherIntents.EXTRA_OPEN_ALL_APPS, false) ||
+                intent.action == GameLauncherIntents.ACTION_OPEN_ALL_APPS -> {
+                rootView.post {
+                    stateManager.goToState(LauncherState.ALL_APPS, true)
+                }
+            }
+
+            intent.action == GameLauncherIntents.ACTION_OPEN_FEATURE -> {
+                val feature = intent.getStringExtra(GameLauncherIntents.EXTRA_OPEN_FEATURE)
+                    ?.let { value ->
+                        GameLauncherFeature.entries.firstOrNull { it.key == value }
+                    }
+                handleGameLauncherFeature(feature)
+            }
+        }
+    }
+
+    private fun handleGameLauncherFeature(feature: GameLauncherFeature?) {
+        when (feature) {
+            GameLauncherFeature.MINUS_ONE, GameLauncherFeature.FEED_PAGE -> {
+                rootView.post { LauncherSDK.openOverlay() }
+            }
+
+            GameLauncherFeature.ALL_APPS, GameLauncherFeature.SEARCH -> {
+                rootView.post {
+                    stateManager.goToState(LauncherState.ALL_APPS, true)
+                }
+            }
+
+            GameLauncherFeature.LAUNCHER -> {
+                rootView.post {
+                    stateManager.goToState(LauncherState.NORMAL, true)
+                }
+            }
+
+            else -> Unit
+        }
+    }
+
     override fun handleGestureContract(intent: Intent?) {
         if (!LawnchairApp.isRecentsEnabled) {
             val gnc = GestureNavContract.fromIntent(intent)
@@ -529,6 +579,7 @@ class LawnchairLauncher : QuickstepLauncher() {
 
     override fun onResume() {
         super.onResume()
+        GameLauncherSdk.notifyLauncherVisible(this)
         // Mirrors the reference Launcher's resume-time ad warm-up. A request only occurs when a
         // product App has installed an enabled provider and configured this placement.
         AdManager.preload(AdPlacement.APP_ICON_LAUNCH_FULLSCREEN)
